@@ -1,4 +1,4 @@
-// worker/scripts/spike-innertube.ts — run: pnpm tsx worker/scripts/spike-innertube.ts
+// worker/scripts/spike-innertube.ts — run: pnpm spike:innertube (from the repo root)
 // Proves the TV-client device flow works against InnerTube and records redacted fixtures (replaces the synthetic ones).
 import { readFileSync, writeFileSync } from 'node:fs';
 const env = Object.fromEntries(readFileSync('.dev.vars', 'utf8').split('\n').filter(l => l.includes('=')).map(l => l.split('=') as [string, string]));

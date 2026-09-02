@@ -20,4 +20,4 @@ Move your Spotify library — playlists, liked songs, saved albums, followed art
 
 **Cost model.** Per job: about one alarm per 50 s of work, one KV read per track, one KV write per cache miss. A 5,000-track job is roughly 120 alarms, 5,000 KV reads and up to 5,000 KV writes — well under $0.05. The $5/month Workers Paid plan covers thousands of jobs.
 
-**When YouTube changes something.** Re-run `pnpm tsx worker/scripts/spike-innertube.ts` with your `.dev.vars`, look at what the new response looks like, adjust the parser in `worker/src/innertube.ts`, re-record the fixtures (redacted), and run the tests. The same goes for Spotify with `worker/scripts/spike-spotify.ts`.
+**When YouTube changes something.** Re-run `pnpm spike:innertube` with your `.dev.vars`, look at what the new response looks like, adjust the parser in `worker/src/innertube.ts`, re-record the fixtures (redacted), and run the tests. The same goes for Spotify with `pnpm spike:spotify`.

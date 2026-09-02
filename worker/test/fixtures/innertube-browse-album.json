@@ -1,115 +1,14 @@
 {
- "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
- "responseContext": {
-  "visitorData": "REDACTED"
- },
- "contents": {
-  "twoColumnBrowseResultsRenderer": {
-   "tabs": [],
-   "secondaryContents": {
-    "sectionListRenderer": {
-     "contents": [
-      {
-       "musicShelfRenderer": {
-        "contents": [
-         {
-          "musicResponsiveListItemRenderer": {
-           "thumbnail": {
-            "musicThumbnailRenderer": {
-             "thumbnail": {
-              "thumbnails": [
-               {
-                "url": "https://lh3.googleusercontent.com/x",
-                "width": 60,
-                "height": 60
-               }
-              ]
-             }
-            }
-           },
-           "flexColumns": [
-            {
-             "musicResponsiveListItemFlexColumnRenderer": {
-              "text": {
-               "runs": [
-                {
-                 "text": "Xtal",
-                 "navigationEndpoint": {
-                  "watchEndpoint": {
-                   "videoId": "pWXDlEgiBfC"
-                  }
-                 }
-                }
-               ]
-              },
-              "displayPriority": "MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"
-             }
-            },
-            {
-             "musicResponsiveListItemFlexColumnRenderer": {
-              "text": {
-               "runs": [
-                {
-                 "text": "Aphex Twin",
-                 "navigationEndpoint": {
-                  "browseEndpoint": {
-                   "browseId": "UCjddz54U_7vl7VcQyxvkarw"
-                  }
-                 }
-                },
-                {
-                 "text": " \u2022 "
-                },
-                {
-                 "text": "4:53"
-                }
-               ]
-              },
-              "displayPriority": "MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"
-             }
-            }
-           ],
-           "playlistItemData": {
-            "videoId": "pWXDlEgiBfC"
-           },
-           "overlay": {
-            "musicItemThumbnailOverlayRenderer": {
-             "content": {
-              "musicPlayButtonRenderer": {
-               "playNavigationEndpoint": {
-                "watchEndpoint": {
-                 "videoId": "pWXDlEgiBfC",
-                 "watchEndpointMusicSupportedConfigs": {
-                  "watchEndpointMusicConfig": {
-                   "musicVideoType": "MUSIC_VIDEO_TYPE_ATV"
-                  }
-                 }
-                }
-               }
-              }
-             }
-            }
-           },
-           "menu": {
-            "menuRenderer": {
-             "items": []
-            }
-           }
-          }
-         }
-        ]
-       }
-      }
-     ]
-    }
+ "error": {
+  "code": 400,
+  "message": "Request contains an invalid argument.",
+  "errors": [
+   {
+    "message": "Request contains an invalid argument.",
+    "domain": "global",
+    "reason": "badRequest"
    }
-  }
- },
- "microformat": {
-  "microformatDataRenderer": {
-   "urlCanonical": "https://music.youtube.com/playlist?list=OLAK5uy_Yoz21lnzHyhpU5cJWc1hMJOtALBQCCbNF",
-   "title": "Selected Ambient Works 85-92",
-   "description": "Aphex Twin \u00b7 1992"
-  }
+  ],
+  "status": "INVALID_ARGUMENT"
  }
 }

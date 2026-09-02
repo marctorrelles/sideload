@@ -41,4 +41,4 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 
 ## Status
 
-Worker complete and tested (49 tests) against **synthetic fixtures** shaped from the API docs / ytmusicapi. Before launch: run `worker/scripts/spike-innertube.ts` and `worker/scripts/spike-spotify.ts` with real credentials to record real fixtures (they overwrite `worker/test/fixtures/*.json`; redact afterwards, see `worker/CLAUDE.md`), then run the matcher calibration (`worker/scripts/calibrate-match.ts`, to be written with the real token). Web (Part B) not started.
+Worker complete and tested (49 tests) against **synthetic fixtures** shaped from the API docs / ytmusicapi. Before launch: run `pnpm spike:innertube` and `SPOTIFY_CLIENT_ID=… pnpm spike:spotify` with real credentials to record real fixtures (they overwrite `worker/test/fixtures/*.json`; redact afterwards, see `worker/CLAUDE.md`), then run the matcher calibration (`worker/scripts/calibrate-match.ts`, to be written with the real token). Web (Part B) not started.

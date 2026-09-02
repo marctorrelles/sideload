@@ -7,3 +7,5 @@ dist
 worker/test/fixtures/*.raw.json
 docs/*
 !docs/design/
+
+.yt_token.json

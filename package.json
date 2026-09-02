@@ -12,12 +12,15 @@
     "build": "pnpm --filter web build",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
-    "deploy": "pnpm build && wrangler deploy"
+    "deploy": "pnpm build && wrangler deploy",
+    "spike:innertube": "tsx worker/scripts/spike-innertube.ts",
+    "spike:spotify": "tsx worker/scripts/spike-spotify.ts"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
     "typescript": "^5.6.0",
-    "wrangler": "^4.128.0"
+    "wrangler": "^4.128.0",
+    "tsx": "^4.19.0"
   },
   "packageManager": "pnpm@11.5.1"
 }

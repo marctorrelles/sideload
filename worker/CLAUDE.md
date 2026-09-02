@@ -20,7 +20,7 @@ Cloudflare Worker: Hono routes + OAuth + provider clients + the job engine. Test
 | `stats-do.ts` | `StatsDO`: global counters for the landing page (`add`, `get` → tracksMoved, jobs, matchRate, medianMinutes over runs ≥ 100 tracks). |
 | `routes-validate.ts` | `validateSelection` for `POST /api/jobs` (Spotify id regex, length caps, 500/2000/2000 item caps). |
 
-`scripts/` holds one-off Node scripts run with `pnpm tsx …` (outside the worker typecheck): `spike-innertube.ts`, `spike-spotify.ts` record fixtures with real credentials.
+`scripts/` holds one-off Node scripts run from the repo root with `pnpm spike:innertube` / `pnpm spike:spotify` (tsx is a root devDependency; outside the worker typecheck): `spike-innertube.ts`, `spike-spotify.ts` record fixtures with real credentials.
 
 ## JobDO
 

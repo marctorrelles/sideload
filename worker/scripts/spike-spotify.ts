@@ -1,4 +1,4 @@
-// worker/scripts/spike-spotify.ts — run: SPOTIFY_CLIENT_ID=... pnpm tsx worker/scripts/spike-spotify.ts
+// worker/scripts/spike-spotify.ts — run: SPOTIFY_CLIENT_ID=... pnpm spike:spotify (from the repo root)
 // Proves PKCE with a BYO client id and records redacted fixtures (replaces the synthetic ones).
 import { createServer } from 'node:http';
 import { writeFileSync } from 'node:fs';

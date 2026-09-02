@@ -1,105 +1,14 @@
 {
- "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
- "responseContext": {
-  "visitorData": "REDACTED"
- },
- "contents": {
-  "twoColumnBrowseResultsRenderer": {
-   "tabs": [
-    {
-     "tabRenderer": {
-      "content": {
-       "sectionListRenderer": {
-        "contents": [
-         {
-          "musicResponsiveHeaderRenderer": {
-           "title": {
-            "runs": [
-             {
-              "text": "sideload spike (delete me)"
-             }
-            ]
-           }
-          }
-         }
-        ]
-       }
-      }
-     }
-    }
-   ],
-   "secondaryContents": {
-    "sectionListRenderer": {
-     "contents": [
-      {
-       "musicPlaylistShelfRenderer": {
-        "playlistId": "PLGcOfUXGdGy8i2_U0m-F96kY7ewWk5r0j",
-        "contents": [
-         {
-          "musicResponsiveListItemRenderer": {
-           "playlistItemData": {
-            "videoId": "5kYhHOx3JL4",
-            "playlistSetVideoId": "s"
-           },
-           "flexColumns": [
-            {
-             "musicResponsiveListItemFlexColumnRenderer": {
-              "text": {
-               "runs": [
-                {
-                 "text": "T",
-                 "navigationEndpoint": {
-                  "watchEndpoint": {
-                   "videoId": "5kYhHOx3JL4"
-                  }
-                 }
-                }
-               ]
-              },
-              "displayPriority": "MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"
-             }
-            },
-            {
-             "musicResponsiveListItemFlexColumnRenderer": {
-              "text": {
-               "runs": [
-                {
-                 "text": "A",
-                 "navigationEndpoint": {
-                  "browseEndpoint": {
-                   "browseId": "UCjddz54U_7vl7VcQyxvkarw"
-                  }
-                 }
-                }
-               ]
-              },
-              "displayPriority": "MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"
-             }
-            }
-           ],
-           "fixedColumns": [
-            {
-             "musicResponsiveListItemFixedColumnRenderer": {
-              "text": {
-               "runs": [
-                {
-                 "text": "3:00"
-                }
-               ]
-              }
-             }
-            }
-           ]
-          }
-         }
-        ],
-        "collapsedItemCount": 25
-       }
-      }
-     ]
-    }
+ "error": {
+  "code": 400,
+  "message": "Request contains an invalid argument.",
+  "errors": [
+   {
+    "message": "Request contains an invalid argument.",
+    "domain": "global",
+    "reason": "badRequest"
    }
-  }
- },
- "header": {}
+  ],
+  "status": "INVALID_ARGUMENT"
+ }
 }

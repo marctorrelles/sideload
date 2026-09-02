@@ -1,0 +1,39 @@
+---
+// web/src/pages/faq.astro — questions verbatim from the plan; also emitted as FAQPage JSON-LD.
+import Base from '../layouts/Base.astro';
+import CoffeePanel from '../components/CoffeePanel.astro';
+const faq: [string, string][] = [
+  ['What does Sideload move?', 'Playlists (with their public/private setting and song order), liked songs (as likes plus a private "Liked Songs" playlist that keeps your order), saved albums and followed artists. Podcasts, local files and playlist cover art are not moved; local files are listed in your report so nothing goes missing quietly. Playlists made by other people that you follow can\'t be read by a personal Spotify app, so they are shown greyed out.'],
+  ['Why do I need to create a Spotify app?', 'Since February 2026 Spotify caps every new app at 5 users, so one shared "Sign in with Spotify" button would stop working after the fifth person. Creating your own app takes two minutes and needs a Spotify Premium account. The Connect step walks you through it; Sideload never sees a client secret.'],
+  ['Why does YouTube Music ask me to type a code on google.com/device?', 'YouTube Music has no public API. The only sign-in that works for a web tool is the one TVs use: a short code you approve in your Google account. Sideload gets a token that can create playlists, like songs and follow artists — nothing else.'],
+  ['How long does it take?', 'Roughly 45 songs a minute for songs nobody has moved before, faster for songs already in the shared match cache. A 3,000-song library is usually under an hour. You can close the tab; the transfer keeps running on our side.'],
+  ['Is my data stored?', 'Your Spotify token is deleted the moment the transfer finishes. Your YouTube Music token is kept for up to 24 hours so you can fix unmatched songs, or until you press "Disconnect now". The transfer record (song titles and what happened to them) is deleted 7 days after completion. There are no accounts and no analytics cookies.'],
+  ['What is the shared match cache?', 'When a song is matched with high confidence, the pair "artist · title → YouTube video" is kept for 180 days so the next person moving the same song does not need a search. It contains no information about who moved it.'],
+  ['What happens to songs that can\'t be matched?', 'They appear in the "Needs your review" list with the closest candidate. You can accept it, search manually, or skip. Everything is in the CSV report either way. Two more cases land there on purpose: songs whose best match is a video another of your songs already uses (a remix or live take collapsing onto the studio version — YouTube would silently merge them, we ask), and songs YouTube accepted but never actually added.'],
+  ['Why does each playlist say "checking" at the end?', 'Because YouTube sometimes says yes and does nothing: in the migration this tool grew out of, 346 of 2,585 likes came back as success and never took effect. Sideload reads every playlist back after writing it and re-adds whatever is missing until the two sides agree.'],
+  ['Can I move Apple Music or Tidal?', 'Not yet. They are on the list.'],
+  ['Is it really free?', 'Yes. It runs on a single Cloudflare Worker that costs a few dollars a month. If it saved you an afternoon, a coffee covers the bill for the next few hundred transfers.'],
+  ['Where is the code?', 'github.com/marctorrelles/sideload, MIT licensed. You can self-host it with your own Google and Cloudflare accounts.'],
+];
+const jsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
+---
+<Base title="FAQ — Sideload" description="How Sideload moves a Spotify library to YouTube Music: what is moved, why you need your own Spotify app, how the YouTube sign-in works, what is stored and for how long." jsonLd={jsonLd}>
+  <section class="container page">
+    <p class="eyebrow page__eyebrow">FAQ</p>
+    <h1 class="h2">Questions people ask before pressing start.</h1>
+    <dl class="faq">
+      {faq.map(([q, a]) => <div class="faq__item"><dt>{q}</dt><dd>{a}</dd></div>)}
+    </dl>
+    <CoffeePanel />
+  </section>
+</Base>
+<style>
+  .page { padding-top: 52px; padding-bottom: 46px; }
+  .page__eyebrow { color: var(--accent); margin: 0 0 22px; }
+  .faq { margin: 34px 0 0; max-width: 72ch; }
+  .faq__item { padding: 22px 0; border-top: 1px solid var(--hairline); }
+  .faq__item:last-child { border-bottom: 1px solid var(--hairline); }
+  .faq dt { font: 600 16px/1.3 var(--font-ui); letter-spacing: -.01em; }
+  .faq dd { margin: 10px 0 0; font: 400 14.5px/1.6 var(--font-ui); color: var(--fg-2); }
+  @media (max-width: 900px) { .page { padding-top: 36px; padding-bottom: 34px; } .faq dt { font-size: 15px; } .faq dd { font-size: 13.5px; } }
+</style>

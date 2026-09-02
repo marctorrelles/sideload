@@ -1,0 +1,61 @@
+---
+// web/src/pages/privacy.astro — privacy + terms (#terms). Needed for Google OAuth verification.
+import Base from '../layouts/Base.astro';
+---
+<Base title="Privacy and terms — Sideload" description="What Sideload stores while it moves your Spotify library to YouTube Music, where, for how long, and how to disconnect. No accounts, no analytics cookies.">
+  <section class="container page prose">
+    <p class="eyebrow page__eyebrow">Privacy</p>
+    <h1 class="h2">What we keep, and for how long.</h1>
+    <p class="lede">Sideload is a transfer tool, not a service you sign up for. It holds what it needs to move your library and then lets go of it.</p>
+
+    <h2>What we collect</h2>
+    <ul>
+      <li><b>Tokens.</b> A Spotify access token (read-only scopes: your library, playlists and followed artists, plus your email to show which account is signed in) and a YouTube token (scope <code>youtube</code>: create playlists, add songs, like, subscribe). Both are encrypted at rest with a key only the worker holds.</li>
+      <li><b>Library metadata for the transfer.</b> Playlist names, song titles, artists, albums, durations, and for each song what happened to it (moved, needs review, skipped).</li>
+      <li><b>Your IP address</b>, used only for rate limiting and never stored with a transfer.</li>
+      <li><b>Cookies.</b> Two HttpOnly session cookies (<code>sl_s</code>, 1 hour; <code>sl_o</code>, 15 minutes) that hold your sign-in state until the transfer starts. No analytics or advertising cookies.</li>
+    </ul>
+
+    <h2>Where it is stored</h2>
+    <p>On Cloudflare, in a Durable Object dedicated to your transfer, encrypted at rest. The service is region-agnostic. The shared match cache (below) lives in Cloudflare KV.</p>
+
+    <h2>How long</h2>
+    <table class="retention">
+      <tr><th>Spotify token</th><td>Deleted the moment the transfer finishes (or fails)</td></tr>
+      <tr><th>YouTube token</th><td>Kept up to 24 hours after the transfer so you can fix unmatched songs; deleted earlier when you press "Disconnect now"</td></tr>
+      <tr><th>Transfer record</th><td>Deleted 7 days after completion. The link stops working then.</td></tr>
+      <tr><th>Match cache</th><td>180 days. Contains only "artist · title → YouTube video" pairs, nothing about who moved them.</td></tr>
+      <tr><th>Logs</th><td>7 days. They contain counts and the first 6 characters of a transfer id, never titles, emails or tokens.</td></tr>
+    </table>
+
+    <h2>Third parties</h2>
+    <p>Spotify (reading your library), Google / YouTube (writing to your YouTube Music account) and Cloudflare (hosting). No analytics vendors, no advertising, no resale of anything.</p>
+
+    <h2>Google API Services</h2>
+    <p>Sideload's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. The YouTube token is used only to create the playlists, likes and subscriptions you asked for, and is deleted as described above.</p>
+
+    <h2>Your choices</h2>
+    <ul>
+      <li>Press <b>Disconnect now</b> on a finished transfer to drop the YouTube token immediately.</li>
+      <li>Revoke Sideload's access at any time at <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a> and at <a href="https://www.spotify.com/account/apps/" rel="noopener">spotify.com/account/apps</a>. Your Spotify app is yours: delete it from the developer dashboard whenever you like.</li>
+      <li>Questions: <a href="mailto:marctorrelles@gmail.com">marctorrelles@gmail.com</a>.</li>
+    </ul>
+
+    <h2 id="terms">Terms</h2>
+    <p>Sideload is provided as is, without warranty of any kind, under the <a href="https://github.com/marctorrelles/sideload/blob/main/LICENSE" rel="noopener">MIT license</a>. It copies data into your own accounts at your request and never deletes anything on the Spotify side. Matching is automatic and imperfect: check the review list and the CSV report. Sideload is not affiliated with Spotify, YouTube, Google, Apple or Tidal. You are responsible for complying with those services' terms when you use it.</p>
+  </section>
+</Base>
+<style>
+  .page { padding-top: 52px; padding-bottom: 46px; }
+  .page__eyebrow { color: var(--accent); margin: 0 0 22px; }
+  .prose { max-width: 72ch; }
+  .prose h2 { font: 600 18px/1.3 var(--font-ui); letter-spacing: -.01em; margin: 40px 0 10px; }
+  .prose p, .prose li { font: 400 14.5px/1.6 var(--font-ui); color: var(--fg-2); }
+  .prose p { margin: 0 0 12px; } .prose ul { padding-left: 18px; margin: 0; } .prose li { margin-bottom: 8px; }
+  .prose b { color: var(--fg); font-weight: 600; } .prose code { font-size: 12.5px; }
+  .retention { border-collapse: collapse; width: 100%; font: 400 13.5px/1.5 var(--font-ui); }
+  .retention th, .retention td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-top: 1px solid var(--hairline); }
+  .retention th { color: var(--fg); font-weight: 500; white-space: nowrap; width: 9em; } .retention td { color: var(--fg-2); }
+  .retention tr:last-child th, .retention tr:last-child td { border-bottom: 1px solid var(--hairline); }
+  @media (max-width: 900px) { .page { padding-top: 36px; padding-bottom: 34px; } }
+</style>

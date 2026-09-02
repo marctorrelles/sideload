@@ -1,0 +1,42 @@
+---
+// web/src/layouts/Base.astro — every page: head (SEO), header, optional step bar, main, footer.
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/components.css';
+import '../styles/motion.css';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StepBar from '../components/StepBar.astro';
+interface Props { title: string; description: string; step?: 1 | 2 | 3 | 'done'; noindex?: boolean; jsonLd?: object }
+const { title, description, step, noindex = false, jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sideload" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL('/og.png', Astro.site)} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#121110" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  <ClientRouter />
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+  <Header />
+  {step && <StepBar step={step} />}
+  <main id="main" transition:animate="fade"><slot /></main>
+  <Footer />
+</body>
+</html>

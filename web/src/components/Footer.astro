@@ -1,0 +1,14 @@
+---
+// web/src/components/Footer.astro
+---
+<footer class="ftr hairline-top"><div class="container ftr__in">
+  <p>Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</p>
+  <p class="made">Made with ♥ by <a href="https://marctorrelles.com" rel="me noopener">Marc Torrelles</a></p>
+</div></footer>
+<style>
+  .ftr { background: var(--bg-footer); }
+  .ftr__in { display: flex; justify-content: space-between; gap: 8px; padding-top: 18px; padding-bottom: 18px; }
+  .ftr p { margin: 0; font: 400 11.5px/1.5 var(--font-ui); color: var(--fg-4); }
+  .made { color: var(--fg-3); } .made a { color: rgba(255,255,255,.7); text-decoration: none; } .made a:hover { text-decoration: underline; }
+  @media (max-width: 900px) { .ftr__in { flex-direction: column; } .ftr p { font-size: 11px; } }
+</style>

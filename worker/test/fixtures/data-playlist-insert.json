@@ -1,0 +1,37 @@
+{
+ "_recorded": "recorded 2026-09-02 with worker/scripts/spike-innertube.ts; visitorData/consistencyTokenJar redacted",
+ "kind": "youtube#playlist",
+ "etag": "-9_155-SinctTQLkbXyGkBRqXkM",
+ "id": "PLYoHQq7hLMGg",
+ "snippet": {
+  "publishedAt": "2026-09-02T16:29:07Z",
+  "channelId": "UCMFAS2Sv4Ye5mCeykp4k1vg",
+  "title": "sideload spike (delete me)",
+  "description": "",
+  "thumbnails": {
+   "default": {
+    "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+    "width": 120,
+    "height": 90
+   },
+   "medium": {
+    "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+    "width": 320,
+    "height": 180
+   },
+   "high": {
+    "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+    "width": 480,
+    "height": 360
+   }
+  },
+  "channelTitle": "Marc Torrelles",
+  "localized": {
+   "title": "sideload spike (delete me)",
+   "description": ""
+  }
+ },
+ "status": {
+  "privacyStatus": "private"
+ }
+}

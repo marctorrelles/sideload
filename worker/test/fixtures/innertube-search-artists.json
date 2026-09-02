@@ -1,14 +1,1 @@
-{
- "error": {
-  "code": 400,
-  "message": "Request contains an invalid argument.",
-  "errors": [
-   {
-    "message": "Request contains an invalid argument.",
-    "domain": "global",
-    "reason": "badRequest"
-   }
-  ],
-  "status": "INVALID_ARGUMENT"
- }
-}
+{"_recorded":"recorded 2026-09-02 with worker/scripts/spike-innertube.ts; visitorData/consistencyTokenJar redacted; trimmed: menu/thumbnail/tracking/top-result card removed","contents":{"tabbedSearchResultsRenderer":{"tabs":[{"tabRenderer":{"title":"YT Music","selected":true,"content":{"sectionListRenderer":{"contents":[{"musicShelfRenderer":{"title":{"runs":[{"text":"Artists"}]},"contents":[{"musicResponsiveListItemRenderer":{"flexColumns":[{"musicResponsiveListItemFlexColumnRenderer":{"text":{"runs":[{"text":"Aphex Twin"}]},"displayPriority":"MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"}},{"musicResponsiveListItemFlexColumnRenderer":{"text":{"runs":[{"text":"Artist"},{"text":" \u2022 "},{"text":"550M monthly audience"}]},"displayPriority":"MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"}}],"flexColumnDisplayStyle":"MUSIC_RESPONSIVE_LIST_ITEM_FLEX_COLUMN_DISPLAY_STYLE_TWO_LINE_STACK","navigationEndpoint":{"clickTrackingParams":"CBIQ1WgYACITCI3Mk_Km0JYDFXU98QUdyqUIVcoBBLlm3v4=","browseEndpoint":{"browseId":"UCWmnkYUzoOiOztmPBhIlZjg","browseEndpointContextSupportedConfigs":{"browseEndpointContextMusicConfig":{"pageType":"MUSIC_PAGE_TYPE_ARTIST"}}}},"itemHeight":"MUSIC_RESPONSIVE_LIST_ITEM_HEIGHT_TALL"}},{"musicResponsiveListItemRenderer":{"flexColumns":[{"musicResponsiveListItemFlexColumnRenderer":{"text":{"runs":[{"text":"AFX"}]},"displayPriority":"MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"}},{"musicResponsiveListItemFlexColumnRenderer":{"text":{"runs":[{"text":"Artist"},{"text":" \u2022 "},{"text":"3.02K subscribers"}]},"displayPriority":"MUSIC_RESPONSIVE_LIST_ITEM_COLUMN_DISPLAY_PRIORITY_HIGH"}}],"flexColumnDisplayStyle":"MUSIC_RESPONSIVE_LIST_ITEM_FLEX_COLUMN_DISPLAY_STYLE_TWO_LINE_STACK","navigationEndpoint":{"clickTrackingParams":"CAwQ1WgYASITCI3Mk_Km0JYDFXU98QUdyqUIVcoBBLlm3v4=","browseEndpoint":{"browseId":"UCabdVJ3p3taM8aTqJLnYNrg","browseEndpointContextSupportedConfigs":{"browseEndpointContextMusicConfig":{"pageType":"MUSIC_PAGE_TYPE_ARTIST"}}}},"itemHeight":"MUSIC_RESPONSIVE_LIST_ITEM_HEIGHT_TALL"}}],"shelfDivider":{"musicShelfDividerRenderer":{"hidden":true}}}}]}},"tabIdentifier":"music_search_catalog"}}]}}}

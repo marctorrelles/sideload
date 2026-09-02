@@ -356,7 +356,7 @@ export class JobDO extends DurableObject<Env> {
   private async handleError(e: unknown, job: JobRow): Promise<void> {
     const attempt = job.attempt + 1;
     if (e instanceof ThrottleError || (e instanceof SpotifyError && e.status === 429)) {
-      const wait = e instanceof SpotifyError ? e.retryAfter * 1000 : Math.min(5_000 * 2 ** (attempt - 1), 600_000);
+      const wait = e instanceof SpotifyError ? e.retryAfter * 1000 : e.retryAfterMs ?? Math.min(5_000 * 2 ** (attempt - 1), 600_000); // retryAfterMs: Data API daily quota → next midnight Pacific
       this.sql.exec('UPDATE job SET attempt = ?, throttled_until = ?', attempt, Date.now() + wait);
       console.log(JSON.stringify({ evt: 'throttle', job: job.id.slice(0, 6), attempt, wait, err: String(e).slice(0, 200) }));
       return this.ctx.storage.setAlarm(Date.now() + wait);

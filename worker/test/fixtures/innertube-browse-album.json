@@ -1,14 +1,32 @@
 {
- "error": {
-  "code": 400,
-  "message": "Request contains an invalid argument.",
-  "errors": [
-   {
-    "message": "Request contains an invalid argument.",
-    "domain": "global",
-    "reason": "badRequest"
-   }
-  ],
-  "status": "INVALID_ARGUMENT"
- }
+ "_recorded": "recorded 2026-09-02 with worker/scripts/spike-innertube.ts; visitorData/consistencyTokenJar redacted; trimmed to microformat (albumPlaylistId reads only urlCanonical)",
+ "microformat": {
+  "microformatDataRenderer": {
+   "urlCanonical": "https://music.youtube.com/playlist?list=OLAK5uy_npVGHGqWs_-hTzVUivb8lCndQPVB7aIm0",
+   "title": "Selected Ambient Works 85-92",
+   "description": "Album \u2022 Aphex Twin",
+   "thumbnail": {
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/6xbkQdLlw4MyqY3Xp3rDJ1UCMdfE2HRbB9jeRSpViRxQcczRS3YeMvxGIZtn3bDQs2cD3sea4ziPit9D=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ]
+   },
+   "siteName": "YouTube Music",
+   "appName": "YouTube Music",
+   "androidPackage": "com.google.android.apps.youtube.music",
+   "iosAppStoreId": "1017492454",
+   "ogType": "music.album",
+   "urlApplinksWeb": "https://music.youtube.com/playlist?list=OLAK5uy_npVGHGqWs_-hTzVUivb8lCndQPVB7aIm0&feature=applinks",
+   "urlApplinksIos": "vnd.youtube.music://music.youtube.com/playlist?list=OLAK5uy_npVGHGqWs_-hTzVUivb8lCndQPVB7aIm0&feature=applinks",
+   "urlApplinksAndroid": "vnd.youtube.music://music.youtube.com/playlist?list=OLAK5uy_npVGHGqWs_-hTzVUivb8lCndQPVB7aIm0&feature=applinks",
+   "urlTwitterIos": "vnd.youtube.music://music.youtube.com/playlist?list=OLAK5uy_npVGHGqWs_-hTzVUivb8lCndQPVB7aIm0&feature=twitter-deep-link",
+   "urlTwitterAndroid": "vnd.youtube.music://music.youtube.com/playlist?list=OLAK5uy_npVGHGqWs_-hTzVUivb8lCndQPVB7aIm0&feature=twitter-deep-link",
+   "twitterCardType": "summary",
+   "twitterSiteHandle": "@youtubemusic"
+  }
+ },
+ "contents": {}
 }

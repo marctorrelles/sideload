@@ -1,6 +1,6 @@
 # Sideload
 
-Free, MIT-licensed web service that moves a Spotify library (playlists, liked songs, saved albums, followed artists) to YouTube Music. One Cloudflare Worker (Hono) serves the API and the static Astro site; each transfer is a SQLite Durable Object driven by alarms, so a job survives crashes and resumes for free. Users bring their own Spotify Client ID (PKCE, no secret); YouTube Music is written through InnerTube with a Google "TV and Limited Input devices" OAuth client (device-code flow). The visual/copy spec is `docs/design/handoff.md` + `docs/design/sideload-final.dc.html`.
+Free, MIT-licensed web service that moves a Spotify library (playlists, liked songs, saved albums, followed artists) to YouTube Music. One Cloudflare Worker (Hono) serves the API and the static Astro site; each transfer is a SQLite Durable Object driven by alarms, so a job survives crashes and resumes for free. Users bring their own Spotify Client ID (PKCE, no secret). YouTube side, verified live 2026-09-02: searches are anonymous InnerTube (`WEB_REMIX`), adds/likes/subscribes go through InnerTube `TVHTML5` with a Google "TV and Limited Input devices" OAuth token (device-code flow; the only InnerTube client that accepts it), playlist creation and read-back verification go through the YouTube Data API v3 (50 units per playlist, 1 unit per 50 items read). The visual/copy spec is `docs/design/handoff.md` + `docs/design/sideload-final.dc.html`.
 
 ## Repo rules
 
@@ -35,10 +35,11 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 ## Accounts and external constraints (verified 2026-09-02)
 
 - Spotify Development Mode apps are capped at 5 users per Client ID and the owner needs Premium → every user brings their own Client ID. Redirect URI must use `127.0.0.1`, not `localhost`.
-- YouTube Data API v3 quota makes the official API useless (100 units per search) → InnerTube. Web-client OAuth tokens are rejected by InnerTube; only the TV-client type works.
+- YouTube Data API v3 quota (10k units/day, 100 per search, 50 per insert) rules it out for search and item adds → InnerTube for those. OAuth tokens are rejected by InnerTube's music/web/android clients (400) and accepted only by `TVHTML5`, which cannot create playlists → `playlists.insert` on the Data API (50 units; ~200 playlists/day until a quota increase is granted, request it with verification).
+- Google's abuse page (403 HTML "Sorry…") shows up after request bursts from one IP; the client treats it as a throttle and backs off.
 - Google sensitive-scope verification is a launch blocker: unverified apps have a lifetime 100-user cap. Do not publish the URL before it is granted.
 - Cloudflare: Workers Paid plan, KV namespace (`pnpm wrangler kv namespace create MATCH_CACHE` → id into `wrangler.jsonc`), custom domain, Workers Logs on.
 
 ## Status
 
-Worker complete and tested (49 tests) against **synthetic fixtures** shaped from the API docs / ytmusicapi. Before launch: run `pnpm spike:innertube` and `SPOTIFY_CLIENT_ID=… pnpm spike:spotify` with real credentials to record real fixtures (they overwrite `worker/test/fixtures/*.json`; redact afterwards, see `worker/CLAUDE.md`), then run the matcher calibration (`worker/scripts/calibrate-match.ts`, to be written with the real token). Web (Part B) not started.
+Worker complete and tested. YouTube fixtures are **recorded** (2026-09-02, redacted); Spotify fixtures are still **synthetic** until `SPOTIFY_CLIENT_ID=… pnpm spike:spotify` runs (overwrites `worker/test/fixtures/spotify-*.json`; redact afterwards, see `worker/CLAUDE.md`). Still to do before launch: matcher calibration (`worker/scripts/calibrate-match.ts`, needs real Spotify fixtures), Google verification + Data API quota increase. Web (Part B) not started.

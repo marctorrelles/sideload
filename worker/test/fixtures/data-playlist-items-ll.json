@@ -1,0 +1,39 @@
+{
+ "_recorded": "recorded 2026-09-02 with worker/scripts/spike-innertube.ts; visitorData/consistencyTokenJar redacted; items trimmed to 3 (personal listening data), nextPageToken kept",
+ "kind": "youtube#playlistItemListResponse",
+ "etag": "nv_l1XkVTp9T0gjsZlXgcVfTt4M",
+ "nextPageToken": "EAAaHlBUOkNESWlFRGhETlVaQlJUWkNNVFkwT0RFelF6Zw",
+ "items": [
+  {
+   "kind": "youtube#playlistItem",
+   "etag": "Nfekab66SB8p5MAJPVABil4xzDk",
+   "id": "TEwuQTVJSlZPT2ZEa0k",
+   "contentDetails": {
+    "videoId": "A5IJVOOfDkI",
+    "videoPublishedAt": "2023-02-16T10:02:00Z"
+   }
+  },
+  {
+   "kind": "youtube#playlistItem",
+   "etag": "w0OF1s232lar4XH-o9BLnMsG0Io",
+   "id": "TEwudTNZdmpzb2Zldlk",
+   "contentDetails": {
+    "videoId": "u3YvjsofevY",
+    "videoPublishedAt": "2020-04-28T02:57:47Z"
+   }
+  },
+  {
+   "kind": "youtube#playlistItem",
+   "etag": "L2LQspsJjrcoXcX5F3lob_XIh20",
+   "id": "TEwubFFZa1ZqUWRxTDg",
+   "contentDetails": {
+    "videoId": "lQYkVjQdqL8",
+    "videoPublishedAt": "2017-03-04T09:31:52Z"
+   }
+  }
+ ],
+ "pageInfo": {
+  "totalResults": 2592,
+  "resultsPerPage": 50
+ }
+}

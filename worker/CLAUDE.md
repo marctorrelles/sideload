@@ -13,7 +13,7 @@ Cloudflare Worker: Hono routes + OAuth + provider clients + the job engine. Test
 | `crypto.ts` | `seal/open` (AES-256-GCM, base64url iv‖ct‖tag), `randomId` (128 bits → 26 lowercase Crockford chars, `ID_RE`), PKCE verifier/challenge, base64url helpers. |
 | `spotify.ts` | PKCE URL/exchange/refresh (no client secret), `Spotify` client with transparent refresh + `onRefresh` persistence, 30 s timeout → `SpotifyError(429,'timeout')`, `toTrack` (handles `item` and legacy `track` wrappers, local files, episodes, null entries). |
 | `google.ts` | Device-code flow (`deviceCode`, `pollDevice` → pending/slow_down/denied/expired/ok) and `refreshGoogle`. |
-| `innertube.ts` | Hand-ported ytmusicapi calls: search (songs/videos/albums/artists), `playlist/create`, `browse/edit_playlist`, `like/like` (video or playlist), `browse` (album → `OLAK5uy_` playlist id; playlist/`LM` read-back with continuations), `subscription/subscribe`. Parsers never hardcode shelf paths (`findAll`). 401/403 → `AuthError`; 429/5xx/HTML-with-200/timeout → `ThrottleError`. |
+| `innertube.ts` | One `InnerTube` class, three transports: `music()` anonymous `WEB_REMIX` on music.youtube.com (search songs/videos/albums/artists, album → `OLAK5uy_` id via `microformat.urlCanonical`); `tv()` `TVHTML5` on www.youtube.com with the bearer token (`addPlaylistItems`, `like`, `likePlaylist` = save album, `subscribe`); `data()` Data API v3 (`createPlaylist` = `playlists.insert`, `playlistVideoIds`/`likedVideoIds` = `playlistItems.list`, `LL` = liked videos). Errors: 401 → `AuthError`; 429/5xx/HTML-200/403-HTML-abuse-page/timeout → `ThrottleError`; Data API `quotaExceeded` → `ThrottleError` with `retryAfterMs` until midnight Pacific; other Data API 403 → `AuthError`. |
 | `match.ts` | `stripFeat`, `buildQuery` (primary artist + title, no `&`), `cacheKey` (`artist|title`, NFKD, lowercase, punctuation collapsed), Dice-bigram `similarity`, `score`, `pickBest` with the confidence gate (title ≥ 0.6, artist ≥ 0.5, duration Δ ≤ 15 s). |
 | `csv.ts` | `toCsv` with BOM, CRLF, RFC quoting. |
 | `job-do.ts` | `JobDO`: the transfer engine (below). |
@@ -31,8 +31,8 @@ State machines. Item: `queued → fetching → matching → writing → verifyin
 Invariants:
 - Every unit of work (`step()`) is persisted in a `transactionSync` before the next `await`. A crash anywhere resumes at the last step.
 - `alarm()` → `tick()` runs `step()` in a loop for ≤ 50 s wall-clock, then re-arms itself. Concurrency is 2 searches per step (`CONCURRENCY`; ponytail ceiling, upgrade path = global limiter DO).
-- Errors: `ThrottleError` / Spotify 429 → exponential backoff (5 s → 10 min, or Spotify `retry-after`) recorded in `throttled_until`; `AuthError`/Google/Spotify 401 → `fail('auth_expired')`; anything else retries 8× then `fail('provider_error')`. Paused jobs and jobs older than 24 h expire.
-- Verify (D15): after writes, read the playlist (and liked songs for `liked`) back; mark missing tracks `redo` and re-drive; up to `MAX_VERIFY_PASSES = 3`, then `write_failed` review items.
+- Errors: `ThrottleError` / Spotify 429 → exponential backoff (5 s → 10 min, or the provider's own `retryAfterMs` / `retry-after`: a Data API quota hit parks the job until midnight Pacific) recorded in `throttled_until`; `AuthError`/Google/Spotify 401 → `fail('auth_expired')`; anything else retries 8× then `fail('provider_error')`. Paused jobs and jobs older than 24 h expire.
+- Verify (D15): after writes, read the playlist (and `LL` for `liked`) back through the Data API; mark missing tracks `redo` and re-drive; up to `MAX_VERIFY_PASSES = 3`, then `write_failed` review items.
 - Collapsed matches (D16): if a track's best video is already used by another track in the same item, it becomes a `duplicate_match` review item with a suggestion, never silently merged.
 - Liked songs (D18): a private "Liked Songs" mirror playlist plus individual likes (oldest first).
 - Tokens: sealed with `TOKEN_SECRET`; Spotify tokens wiped at finish, YouTube token kept 24 h for review actions (`disconnect()` wipes early), storage deleted 7 days after finish.
@@ -48,13 +48,13 @@ Logs are single-line JSON with `evt`: `throttle`, `verify`, `job_done`, `job_fai
 - KV/DO storage is **not** isolated between tests in this pool version: call `await reset()` (from `cloudflare:test`) in `beforeEach` of any test that touches `MATCH_CACHE` (JobDO tests do).
 - workerd fires due alarms natively: after `start()`/`resume()` the DO is already ticking. Poll with `vi.waitFor` (`settle()` helper) and use `runDurableObjectAlarm` only to fast-forward an alarm scheduled in the future while nothing is in flight (backoff, expiry). Calling it while a tick runs returns `false`.
 - Every test that moves ≥ 1 track needs a read-back (`READBACK`) interceptor, or the verify pass hangs on an un-mocked fetch and the job backs off.
-- Fixtures in `test/fixtures/*.json` carry a `_synthetic` note: they were hand-written from API docs / ytmusicapi shapes. Replace them with real recordings by running the spike scripts, then redact:
-  `cd worker/test/fixtures && sed -i '' -E 's/"(SAPISID|HSID|SSID|SID|email|onBehalfOfUser|datasyncId)":"[^"]*"/"\1":"REDACTED"/g' innertube-*.json && sed -i '' -E 's/"(email|display_name|id)":"[^"]*"/"\1":"REDACTED"/g' spotify-me.json && grep -l "@gmail" *.json || echo clean`.
+- YouTube fixtures (`innertube-*.json`, `data-*.json`) are recorded (`_recorded` note) by `pnpm spike:innertube`, which redacts `visitorData`/`consistencyTokenJar` itself. Spotify fixtures (`spotify-*.json`) still carry a `_synthetic` note until `pnpm spike:spotify` runs; then redact:
+  `cd worker/test/fixtures && sed -i '' -E 's/"(email|display_name|id)":"[^"]*"/"\1":"REDACTED"/g' spotify-me.json && grep -l "@gmail" *.json || echo clean`.
   If a parser test fails on a real fixture, fix the parser to the fixture, never the fixture to the parser.
 
 ## Provider gotchas (measured on a 3,000-track migration)
 
-- InnerTube rejects OAuth tokens from Web clients; only "TVs and Limited Input devices" tokens work (D3). Searches are authenticated with the user's token so throttling is per account, not per shared egress IP (D8).
+- A TV-client OAuth token is accepted only with a `TVHTML5` context on www.youtube.com; `WEB_REMIX`/`WEB`/`ANDROID*` answer `400 INVALID_ARGUMENT`, and `TVHTML5` cannot create playlists (`Precondition check failed`) → Data API `playlists.insert` (D3). Searches are anonymous, so throttling is per egress IP (D8): the abuse page (403 HTML "Sorry…") is a throttle, handled by backoff + the KV cache.
 - Writes can return 200 and do nothing (346 of 2,585 likes did) → always read back (D15). A hung request never times out on its own → 30 s `AbortSignal.timeout` everywhere (D17). Throttled responses can be HTML with status 200.
 - Different Spotify tracks collapse onto the same video (451 of 3,036) → review, not merge (D16).
 - Spotify: `/playlists/{id}/items` entries use `item` (not `track`); `/me/playlists` exposes `items.total` (`tracks` is legacy); local files have `is_local` and no id; podcasts arrive as `episode` and are skipped.

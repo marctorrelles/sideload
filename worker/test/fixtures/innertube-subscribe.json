@@ -1,0 +1,87 @@
+{
+ "_recorded": "recorded 2026-09-02 with worker/scripts/spike-innertube.ts; visitorData/consistencyTokenJar redacted",
+ "responseContext": {
+  "visitorData": "REDACTED",
+  "serviceTrackingParams": [
+   {
+    "service": "GFEEDBACK",
+    "params": [
+     {
+      "key": "logged_in",
+      "value": "1"
+     }
+    ]
+   }
+  ],
+  "consistencyTokenJar": "REDACTED",
+  "responseId": "IhMIrPfb5ajQlgMVW62xAx1gZSL8"
+ },
+ "newNotificationButton": {
+  "subscriptionNotificationToggleButtonRenderer": {
+   "states": [
+    {
+     "stateId": 0,
+     "nextStateId": 0,
+     "state": {
+      "buttonRenderer": {
+       "style": "STYLE_TEXT",
+       "size": "SIZE_DEFAULT",
+       "isDisabled": false,
+       "icon": {
+        "iconType": "NOTIFICATIONS_OFF"
+       },
+       "accessibility": {
+        "label": "Current setting is receive no notifications. Action is currently disabled."
+       },
+       "trackingParams": "CAIQ8FsiEwis99vlqNCWAxVbrbEDHWBlIvw=",
+       "accessibilityData": {
+        "accessibilityData": {
+         "label": "Current setting is receive no notifications. Action is currently disabled."
+        }
+       },
+       "command": {
+        "clickTrackingParams": "CAIQ8FsiEwis99vlqNCWAxVbrbEDHWBlIvzKAQRaD8qM"
+       }
+      }
+     },
+     "notificationState": "SUBSCRIPTION_NOTIFICATION_STATE_OFF"
+    }
+   ],
+   "currentStateId": 0,
+   "trackingParams": "CAEQl_kBIhMIrPfb5ajQlgMVW62xAx1gZSL8",
+   "targetId": "notification-bell",
+   "notificationStateEntityKey": "EhhVQ1dtbmtZVXpvT2lPenRtUEJoSWxaamcgjAEoAQ%3D%3D"
+  }
+ },
+ "trackingParams": "CAAQ2YYDIhMIrPfb5ajQlgMVW62xAx1gZSL8ygEEWg_KjA==",
+ "frameworkUpdates": {
+  "entityBatchUpdate": {
+   "mutations": [
+    {
+     "entityKey": "EhhVQ1dtbmtZVXpvT2lPenRtUEJoSWxaamcgMygB",
+     "type": "ENTITY_MUTATION_TYPE_REPLACE",
+     "payload": {
+      "subscriptionStateEntity": {
+       "key": "EhhVQ1dtbmtZVXpvT2lPenRtUEJoSWxaamcgMygB",
+       "subscribed": true
+      }
+     }
+    },
+    {
+     "entityKey": "EhhVQ1dtbmtZVXpvT2lPenRtUEJoSWxaamcgjAEoAQ%3D%3D",
+     "type": "ENTITY_MUTATION_TYPE_REPLACE",
+     "payload": {
+      "subscriptionNotificationStateEntity": {
+       "key": "EhhVQ1dtbmtZVXpvT2lPenRtUEJoSWxaamcgjAEoAQ%3D%3D",
+       "state": "SUBSCRIPTION_NOTIFICATION_STATE_OFF"
+      }
+     }
+    }
+   ],
+   "timestamp": {
+    "seconds": "1788366613",
+    "nanos": 545853219
+   }
+  }
+ }
+}

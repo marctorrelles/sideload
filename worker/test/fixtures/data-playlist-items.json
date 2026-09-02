@@ -1,0 +1,20 @@
+{
+ "_recorded": "recorded 2026-09-02 with worker/scripts/spike-innertube.ts; visitorData/consistencyTokenJar redacted",
+ "kind": "youtube#playlistItemListResponse",
+ "etag": "2mlNnnedmZrVNbrcFdobvEuPRyU",
+ "items": [
+  {
+   "kind": "youtube#playlistItem",
+   "etag": "PfWHGlnKJRt6vPDcVNpd9sXfhqM",
+   "id": "UExZb0hRcTdoTE1HZy41NkI0NEY2RDEwNTU3Q0M2",
+   "contentDetails": {
+    "videoId": "sWcLccMuCA8",
+    "videoPublishedAt": "2016-04-29T23:46:03Z"
+   }
+  }
+ ],
+ "pageInfo": {
+  "totalResults": 1,
+  "resultsPerPage": 50
+ }
+}

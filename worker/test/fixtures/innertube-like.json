@@ -14,27 +14,25 @@
    }
   ],
   "consistencyTokenJar": "REDACTED",
-  "responseId": "IhMIpfHZ4KjQlgMVbelJBx0Q_xIe"
+  "responseId": "IhMIsIq44qjQlgMVb1pPBB1Pujzd"
  },
- "status": "STATUS_SUCCEEDED",
- "trackingParams": "CAAQ2s0EIhMIpfHZ4KjQlgMVbelJBx0Q_xIeygEEWg_KjA==",
  "frameworkUpdates": {
   "entityBatchUpdate": {
    "mutations": [
     {
-     "entityKey": "Eh5HQVRQX1BMWW9IUXE3aExNR2dfc1djTGNjTXVDQTggswIoAQ%3D%3D",
+     "entityKey": "EgtzV2NMY2NNdUNBOCA-KAE%3D",
      "type": "ENTITY_MUTATION_TYPE_REPLACE",
      "payload": {
-      "booleanEntity": {
-       "key": "Eh5HQVRQX1BMWW9IUXE3aExNR2dfc1djTGNjTXVDQTggswIoAQ%3D%3D",
-       "value": true
+      "likeStatusEntity": {
+       "key": "EgtzV2NMY2NNdUNBOCA-KAE%3D",
+       "likeStatus": "LIKE"
       }
      }
     }
    ],
    "timestamp": {
-    "seconds": "1788366603",
-    "nanos": 352248550
+    "seconds": "1788366606",
+    "nanos": 897870508
    }
   }
  }

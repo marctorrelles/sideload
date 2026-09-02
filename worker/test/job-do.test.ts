@@ -8,15 +8,16 @@ import type { JobView } from '@shared/types';
 
 beforeAll(() => { fetchMock.activate(); fetchMock.disableNetConnect(); });
 afterEach(() => fetchMock.assertNoPendingInterceptors());
-const yt = () => fetchMock.get('https://music.youtube.com');
+const music = () => fetchMock.get('https://music.youtube.com'); // anonymous search
+const tv = () => fetchMock.get('https://www.youtube.com');        // TVHTML5 writes
+const data = () => fetchMock.get('https://www.googleapis.com');   // Data API: create + read-back
 const sp = () => fetchMock.get('https://api.spotify.com');
 const SEARCH = { path: (p: string) => p.startsWith('/youtubei/v1/search'), method: 'POST' as const };
-const CREATE = { path: (p: string) => p.startsWith('/youtubei/v1/playlist/create'), method: 'POST' as const };
+const CREATE = { path: (p: string) => p.startsWith('/youtube/v3/playlists?'), method: 'POST' as const };
 const EDIT = { path: (p: string) => p.startsWith('/youtubei/v1/browse/edit_playlist'), method: 'POST' as const };
 const q = (needle: string) => (b: unknown) => String(JSON.parse(String(b)).query ?? '').includes(needle); // match a search by its query (t1/t2 run in parallel)
-const READBACK = { path: (p: string) => p.startsWith('/youtubei/v1/browse?'), method: 'POST' as const, body: (b: unknown) => String(JSON.parse(String(b)).browseId ?? '').startsWith('VL') };
-const row = (v: string) => ({ musicResponsiveListItemRenderer: { playlistItemData: { videoId: v } } });
-const pageOf = (vids: string[]) => ({ contents: { x: { musicPlaylistShelfRenderer: { contents: vids.map(row) } } } });
+const READBACK = { path: (p: string) => p.startsWith('/youtube/v3/playlistItems?'), method: 'GET' as const };
+const pageOf = (vids: string[]) => ({ items: vids.map(videoId => ({ contentDetails: { videoId } })) });
 let added: string[] = []; // videoIds the job sent to browse/edit_playlist — the read-back mock echoes them (D15)
 const captureAdds = (opts: { body?: unknown }) => { added.push(...JSON.parse(String(opts.body)).actions.map((a: { addedVideoId: string }) => a.addedVideoId)); return { status: 'STATUS_SUCCEEDED' }; };
 const entry = (id: string, name: string, extra: object = {}) => ({ added_at: '2024-01-01T00:00:00Z', is_local: false, item: { id, name, type: 'track', duration_ms: 293000, artists: [{ name: 'Aphex Twin' }], album: { name: 'SAW' }, ...extra } });
@@ -38,11 +39,11 @@ describe('JobDO', () => {
 
   it('moves a playlist end to end, lists review items, wipes spotify tokens on finish', async () => {
     sp().intercept({ path: p => p.startsWith(`/v1/playlists/${'P'.repeat(22)}/items`) }).reply(200, { total: 3, next: null, items: [entry('t1', 'Xtal'), entry('t2', 'Nothing Will Match This Zzz'), { added_at: null, is_local: true, item: { id: null, name: 'demo_v3.mp3', type: 'track', duration_ms: 1000, artists: [{ name: 'me' }], is_local: true } }] });
-    yt().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
-    yt().intercept({ ...SEARCH, body: q('Zzz') }).reply(200, { contents: {} }).times(2); // songs, then the videos fallback → nothing
-    yt().intercept(CREATE).reply(200, { playlistId: 'PLnew' });
-    yt().intercept(EDIT).reply(200, captureAdds);
-    yt().intercept(READBACK).reply(200, () => pageOf(added)); // verify pass sees everything → done
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
+    music().intercept({ ...SEARCH, body: q('Zzz') }).reply(200, { contents: {} }).times(2); // songs, then the videos fallback → nothing
+    data().intercept(CREATE).reply(200, { id: 'PLnew' });
+    tv().intercept(EDIT).reply(200, captureAdds);
+    data().intercept(READBACK).reply(200, () => pageOf(added)); // verify pass sees everything → done
     await stub.start(payload(id));
     await settle(stub);
     const v = (await stub.view())!;
@@ -57,14 +58,14 @@ describe('JobDO', () => {
 
   it('backs off on throttling and resumes where it stopped', async () => {
     sp().intercept({ path: p => p.startsWith('/v1/playlists/') }).reply(200, { total: 1, next: null, items: [entry('t1', 'Xtal')] });
-    yt().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, '<html>throttled</html>');
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, '<html>throttled</html>');
     await stub.start(payload(id));
     await until(stub, v => v.throttledUntil !== null); // one tick did fetch + first search → throttled → backoff alarm armed for +5 s
     expect((await stub.view())!.status).toBe('running');
-    yt().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
-    yt().intercept(CREATE).reply(200, { playlistId: 'PLnew' });
-    yt().intercept(EDIT).reply(200, captureAdds);
-    yt().intercept(READBACK).reply(200, () => pageOf(added));
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
+    data().intercept(CREATE).reply(200, { id: 'PLnew' });
+    tv().intercept(EDIT).reply(200, captureAdds);
+    data().intercept(READBACK).reply(200, () => pageOf(added));
     await runInDurableObject(stub, (_, state) => state.storage.sql.exec('UPDATE job SET throttled_until = 0'));
     expect(await runDurableObjectAlarm(stub)).toBe(true); // fast-forward the backoff alarm (nothing in flight while throttled)
     await settle(stub);
@@ -80,13 +81,13 @@ describe('JobDO', () => {
     expect((await stub.view())!.status).toBe('paused');
     expect((await stub.view())!.items[0]!.status).toBe('queued');
     sp().intercept({ path: p => p.startsWith('/v1/playlists/') }).reply(200, { total: 1, next: null, items: [entry('t1', 'Nothing Will Match This Zzz')] });
-    yt().intercept({ ...SEARCH, body: q('Zzz') }).reply(200, { contents: {} }).times(2);
-    yt().intercept(CREATE).reply(200, { playlistId: 'PLnew' }); // nothing matched → verify has nothing to read back → no READBACK mock needed
+    music().intercept({ ...SEARCH, body: q('Zzz') }).reply(200, { contents: {} }).times(2);
+    data().intercept(CREATE).reply(200, { id: 'PLnew' }); // nothing matched → verify has nothing to read back → no READBACK mock needed
     await stub.resume();
     await settle(stub);
     const v = (await stub.view())!;
     expect(v.status).toBe('done'); expect(v.review.length).toBe(1);
-    yt().intercept({ ...EDIT, body: b => JSON.parse(String(b)).actions[0].addedVideoId === 'abcdefghijk' }).reply(200, { status: 'STATUS_SUCCEEDED' });
+    tv().intercept({ ...EDIT, body: b => JSON.parse(String(b)).actions[0].addedVideoId === 'abcdefghijk' }).reply(200, { status: 'STATUS_SUCCEEDED' });
     expect(await stub.resolve(v.review[0]!.id, { action: 'manual', videoId: 'abcdefghijk' })).toEqual({ ok: true });
     expect((await stub.view())!.totals.moved).toBe(1);
     await stub.disconnect();
@@ -96,11 +97,11 @@ describe('JobDO', () => {
 
   it('reads back after writing and re-drives a silent no-op until it converges (D15)', async () => {
     sp().intercept({ path: p => p.startsWith('/v1/playlists/') }).reply(200, { total: 1, next: null, items: [entry('t1', 'Xtal')] });
-    yt().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
-    yt().intercept(CREATE).reply(200, { playlistId: 'PLnew' });
-    yt().intercept(EDIT).reply(200, captureAdds).times(2);              // first add "succeeds" but…
-    yt().intercept(READBACK).reply(200, pageOf([]));                     // …the read-back shows nothing (the measured failure mode)
-    yt().intercept(READBACK).reply(200, () => pageOf(added));            // after the re-drive it is there
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
+    data().intercept(CREATE).reply(200, { id: 'PLnew' });
+    tv().intercept(EDIT).reply(200, captureAdds).times(2);              // first add "succeeds" but…
+    data().intercept(READBACK).reply(200, pageOf([]));                     // …the read-back shows nothing (the measured failure mode)
+    data().intercept(READBACK).reply(200, () => pageOf(added));            // after the re-drive it is there
     await stub.start(payload(id));
     await settle(stub);
     const v = (await stub.view())!;
@@ -111,10 +112,10 @@ describe('JobDO', () => {
 
   it('gives up after MAX_VERIFY_PASSES and lists the song as write_failed', async () => {
     sp().intercept({ path: p => p.startsWith('/v1/playlists/') }).reply(200, { total: 1, next: null, items: [entry('t1', 'Xtal')] });
-    yt().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
-    yt().intercept(CREATE).reply(200, { playlistId: 'PLnew' });
-    yt().intercept(EDIT).reply(200, captureAdds).times(4);
-    yt().intercept(READBACK).reply(200, pageOf([])).times(4);            // never shows up
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
+    data().intercept(CREATE).reply(200, { id: 'PLnew' });
+    tv().intercept(EDIT).reply(200, captureAdds).times(4);
+    data().intercept(READBACK).reply(200, pageOf([])).times(4);            // never shows up
     await stub.start(payload(id));
     await settle(stub);
     const v = (await stub.view())!;
@@ -126,10 +127,10 @@ describe('JobDO', () => {
   it('sends a collapsed match to review instead of silently merging it (D16)', async () => {
     // the measured case: the same song on two albums (two Spotify ids) → one YouTube video
     sp().intercept({ path: p => p.startsWith('/v1/playlists/') }).reply(200, { total: 2, next: null, items: [entry('t1', 'Xtal'), entry('t2', 'Xtal', { album: { name: 'Some Compilation' } })] });
-    yt().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs).times(2); // both miss the cache at the same moment (parallel) and land on the same best video
-    yt().intercept(CREATE).reply(200, { playlistId: 'PLnew' });
-    yt().intercept(EDIT).reply(200, captureAdds);
-    yt().intercept(READBACK).reply(200, () => pageOf(added));
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs).times(2); // both miss the cache at the same moment (parallel) and land on the same best video
+    data().intercept(CREATE).reply(200, { id: 'PLnew' });
+    tv().intercept(EDIT).reply(200, captureAdds);
+    data().intercept(READBACK).reply(200, () => pageOf(added));
     await stub.start(payload(id));
     await settle(stub);
     const v = (await stub.view())!;
@@ -140,7 +141,8 @@ describe('JobDO', () => {
 
   it('fails cleanly on expired YouTube auth and wipes both tokens', async () => {
     sp().intercept({ path: p => p.startsWith('/v1/playlists/') }).reply(200, { total: 1, next: null, items: [entry('t1', 'Xtal')] });
-    yt().intercept({ ...SEARCH, body: q('Xtal') }).reply(401, {});
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
+    data().intercept(CREATE).reply(401, { error: { code: 401, message: 'Invalid Credentials' } }); // token revoked: the first authenticated call fails
     await stub.start(payload(id));
     await settle(stub);
     const v = (await stub.view())!;

@@ -4,7 +4,7 @@
 import { vi } from 'vitest';
 
 type Matcher = string | RegExp | ((v: string) => boolean);
-export interface InterceptOptions { path: Matcher; method?: Matcher; headers?: Record<string, Matcher>; body?: Matcher }
+export interface InterceptOptions { path: Matcher; method?: Matcher; headers?: Record<string, Matcher> | ((h: Record<string, string>) => boolean); body?: Matcher }
 type Data = object | string;
 export interface CallbackOptions { path: string; origin: string; method: string; body?: string; headers: Record<string, string> }
 type DataFn = (o: CallbackOptions) => Data;
@@ -52,7 +52,7 @@ class FetchMock {
     const headers = Object.fromEntries(req.headers);
     const body = req.method === 'GET' || req.method === 'HEAD' ? undefined : new TextDecoder().decode(await req.arrayBuffer()); // arrayBuffer: workerd warns on .text() for form bodies
     const i = this.list.find(i => i.times > 0 && i.origin === url.origin && match(i.opts.path, path) && match(i.opts.method ?? 'GET', req.method)
-      && (!i.opts.headers || Object.entries(i.opts.headers).every(([k, m]) => match(m, headers[k.toLowerCase()] ?? '')))
+      && (!i.opts.headers || (typeof i.opts.headers === 'function' ? i.opts.headers(headers) : Object.entries(i.opts.headers).every(([k, m]) => match(m, headers[k.toLowerCase()] ?? ''))))
       && match(i.opts.body, body ?? ''));
     if (!i) {
       if (this.netConnect) return this.real(input, init);

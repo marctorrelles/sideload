@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /t/
+Disallow: /connect
+Disallow: /select
+Disallow: /api/
+Disallow: /auth/
+Sitemap: https://sideload.marctorrelles.com/sitemap-index.xml

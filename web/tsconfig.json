@@ -1,0 +1,5 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact", "paths": { "@shared/*": ["../shared/*"] }, "baseUrl": "." },
+  "include": ["src", "test", "../shared", ".astro/types.d.ts"]
+}

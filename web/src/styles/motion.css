@@ -1,0 +1,7 @@
+/* web/src/styles/motion.css */
+@keyframes blink { to { visibility: hidden; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.reveal > * { animation: fade-up .35s var(--ease) both; animation-delay: calc(var(--i, 0) * 40ms); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; }
+}

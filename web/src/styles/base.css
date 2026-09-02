@@ -1,0 +1,34 @@
+/* web/src/styles/base.css — reset, fonts, type roles */
+@import '@fontsource-variable/archivo';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--bg); color: var(--fg); font-family: var(--font-ui); -webkit-font-smoothing: antialiased; text-size-adjust: 100%; }
+body { margin: 0; min-height: 100dvh; display: flex; flex-direction: column; font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+main { flex: 1; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button, input, select { font: inherit; color: inherit; border-radius: 0; }
+img { max-width: 100%; display: block; }
+code { font-family: var(--font-mono); }
+.container { max-width: 1120px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+.h1 { font: 600 58px/1.02 var(--font-ui); letter-spacing: -.038em; margin: 0; }
+.h2 { font: 600 36px/1.1 var(--font-ui); letter-spacing: -.03em; margin: 0; }
+.h2-done { font: 600 46px/1.05 var(--font-ui); letter-spacing: -.035em; margin: 0; }
+.lede { font: 400 16px/1.6 var(--font-ui); color: var(--fg-2); max-width: 56ch; margin: 22px 0 0; }
+.eyebrow { font: 500 10px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+.mono { font-family: var(--font-mono); }
+.meta { font: 400 11.5px/1.4 var(--font-mono); color: var(--fg-3); }
+.stat { font: 600 22px/1 var(--font-mono); letter-spacing: -.03em; }
+.pct { font: 600 44px/1 var(--font-mono); letter-spacing: -.04em; color: var(--accent); }
+.fg2 { color: var(--fg-2); }
+.is-ok { color: var(--success); } .is-warn { color: var(--accent-soft); }
+.error { font: 400 12.5px/1.5 var(--font-ui); color: var(--accent-soft); margin: 10px 0 0; }
+.error--hard { color: var(--danger); }
+.note { font: 400 11.5px/1.5 var(--font-ui); color: rgba(255,255,255,.42); margin: 12px 0 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 900px) {
+  .h1 { font-size: 38px; letter-spacing: -.035em; } .h2 { font-size: 26px; line-height: 1.12; letter-spacing: -.028em; } .h2-done { font-size: 30px; }
+  .lede { font-size: 14px; } .pct { font-size: 34px; }
+}

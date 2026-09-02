@@ -10,3 +10,6 @@ minimumReleaseAgeExclude:
   - '@cloudflare/workers-types@5.20260902.1'
   - miniflare@5.20260831.0-alpha
   - wrangler@4.128.0
+  - framer-motion@13.2.0
+  - motion-dom@13.2.0
+  - motion@13.2.0

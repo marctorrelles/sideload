@@ -1,113 +1,2041 @@
 {
- "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
- "href": "https://api.spotify.com/v1/me/playlists?offset=0&limit=50",
+ "_recorded": "2026-09-02 with worker/scripts/spike-spotify.ts; identity fields redacted, owner ids replaced",
+ "href": "REDACTED",
  "limit": 50,
- "next": null,
+ "next": "https://api.spotify.com/v1/me/playlists?offset=50&limit=50&locale=*",
  "offset": 0,
  "previous": null,
- "total": 3,
+ "total": 70,
  "items": [
   {
    "collaborative": false,
-   "description": "late nights",
+   "description": "",
    "external_urls": {
-    "spotify": "https://open.spotify.com/playlist/x"
+    "spotify": "REDACTED"
    },
-   "href": "https://api.spotify.com/v1/playlists/x",
-   "id": "iG7iYF2Ro3EbaEBsivt0aU",
+   "href": "REDACTED",
+   "id": "6lcCG3h3s8C5rX5HfOatsa",
    "images": [
     {
-     "url": "https://i.scdn.co/image/y",
      "height": null,
+     "url": "https://i.scdn.co/image/ab67616d00001e02d61bcbfe780790ca9f4c5dfe",
      "width": null
     }
    ],
-   "name": "Deep Focus",
+   "name": "urban 🤙",
    "owner": {
-    "id": "REDACTED",
     "display_name": "REDACTED",
-    "type": "user"
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
    },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 3
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "3m2HXpzOrzD1sqW2PaIiht",
+   "images": [
+    {
+     "height": null,
+     "url": "https://i.scdn.co/image/ab67616d00001e020c4dfae514216627cb0643ca",
+     "width": null
+    }
+   ],
+   "name": "poesia 📝",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 2
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "6JUSl91TlGvswgXClboIQ4",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e021be92a146cb0b49b0b2222f0ab67616d00001e02226e702d1878d4a44b273980ab67616d00001e0238906032688bb13b135ce19aab67616d00001e02828bce7eb680bb414ae682a5",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e021be92a146cb0b49b0b2222f0ab67616d00001e02226e702d1878d4a44b273980ab67616d00001e0238906032688bb13b135ce19aab67616d00001e02828bce7eb680bb414ae682a5",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e021be92a146cb0b49b0b2222f0ab67616d00001e02226e702d1878d4a44b273980ab67616d00001e0238906032688bb13b135ce19aab67616d00001e02828bce7eb680bb414ae682a5",
+     "width": 60
+    }
+   ],
+   "name": "CRYStal  (x)",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_1",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 75
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Electronic, indie, jazz + vibey beats (REAL ARTISTS &amp; real human curation)  &#x2F;&#x2F; to  keep you moving and in-flow.  hit shuffle + get to work!  &#x2F;&#x2F;  reach out: @mixmason",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "0Oh5cKhBCJ8KjR4mDvBYCU",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84f3c1e45e119347fa43c89366",
+     "width": null
+    }
+   ],
+   "name": "CAFFEINE FLOW // high energy eclectic focus music (instrumentals) for working, studying, coding, etc",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_2",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 522
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Experimental, ambient, minimal, techno. I curate these musics on their ability to help work flow.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "7CraD6gr9I0bJfPt2tQ1mL",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da840c7f1465a1247414e3943314",
+     "width": null
+    }
+   ],
+   "name": "Focus Work Electronic",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_3",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 281
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "1RACzUVKRN9RLnC6YgPIJM",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da842aec1f2481d9a97babfdf7a3",
+     "width": null
+    }
+   ],
+   "name": "Reading Electronic",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_4",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 153
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "The best new down-tempo Electronica, curated by Enhanced. Lose yourself in these sonic gems for study, focus, reading, relaxing and meditation 🌱 <a href=\"https://ffm.link/m1jwbqo/\">Instagram</a>, <a href=\"https://ffm.link/db6jmde\">YouTube</a>",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4sjsye4xyuVeYFQh0MJlMG",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da847dc5d3d006cc1d6fb3d382b6",
+     "width": null
+    }
+   ],
+   "name": "Electronic Chill",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_5",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 192
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "6MDMlxhZjn99KwFo68NHZq",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e023b49d628e5129bbba8e75420ab67616d00001e0256be8f9dab23937870ac6684ab67616d00001e0276091043d7d3e66afc925998ab67616d00001e02b7f7f971d9d28f0565c8d76e",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e023b49d628e5129bbba8e75420ab67616d00001e0256be8f9dab23937870ac6684ab67616d00001e0276091043d7d3e66afc925998ab67616d00001e02b7f7f971d9d28f0565c8d76e",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e023b49d628e5129bbba8e75420ab67616d00001e0256be8f9dab23937870ac6684ab67616d00001e0276091043d7d3e66afc925998ab67616d00001e02b7f7f971d9d28f0565c8d76e",
+     "width": 60
+    }
+   ],
+   "name": "bodorrio",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_6",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 231
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "1P0sTyonEV0YzajstOR7nd",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e023ed52339ae78ac1b695e8d80ab67616d00001e02471b1371438f4e9183aabbc8ab67616d00001e02607d37e6ad990ee79dcadc7fab67616d00001e028e973e19449d0883b373d158",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e023ed52339ae78ac1b695e8d80ab67616d00001e02471b1371438f4e9183aabbc8ab67616d00001e02607d37e6ad990ee79dcadc7fab67616d00001e028e973e19449d0883b373d158",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e023ed52339ae78ac1b695e8d80ab67616d00001e02471b1371438f4e9183aabbc8ab67616d00001e02607d37e6ad990ee79dcadc7fab67616d00001e028e973e19449d0883b373d158",
+     "width": 60
+    }
+   ],
+   "name": "bodorrio · de tranquis",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_6",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 195
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "09nsa1tHbxS7TCzcszPomN",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e02152443b022577e51d15f8ec5ab67616d00001e023b49d628e5129bbba8e75420ab67616d00001e02aba3d3b5fdc0a1045c5ae9ccab67616d00001e02afbc6bea5069a086b927e339",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e02152443b022577e51d15f8ec5ab67616d00001e023b49d628e5129bbba8e75420ab67616d00001e02aba3d3b5fdc0a1045c5ae9ccab67616d00001e02afbc6bea5069a086b927e339",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e02152443b022577e51d15f8ec5ab67616d00001e023b49d628e5129bbba8e75420ab67616d00001e02aba3d3b5fdc0a1045c5ae9ccab67616d00001e02afbc6bea5069a086b927e339",
+     "width": 60
+    }
+   ],
+   "name": "ARRIBADA",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_6",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 8
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "5LmvSilLGDIkUNTdP693jv",
+   "images": [
+    {
+     "height": null,
+     "url": "https://i.scdn.co/image/ab67616d00001e024495ce1c0c098c94ed89a0e2",
+     "width": null
+    }
+   ],
+   "name": "popish 🍿",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
    "public": false,
-   "snapshot_id": "abc",
+   "snapshot_id": "REDACTED",
    "items": {
-    "href": "https://api.spotify.com/v1/playlists/x/items",
-    "total": 124
-   },
-   "tracks": {
-    "href": "https://api.spotify.com/v1/playlists/x/tracks",
-    "total": 124
+    "href": "REDACTED",
+    "total": 3
    },
    "type": "playlist",
-   "uri": "spotify:playlist:x"
+   "uri": "REDACTED"
   },
   {
    "collaborative": false,
-   "description": "",
+   "description": "House &amp; Bass, festival to warehouse. lets rave where light meets dark &amp; its PLUR!",
    "external_urls": {
-    "spotify": "https://open.spotify.com/playlist/x"
+    "spotify": "REDACTED"
    },
-   "href": "https://api.spotify.com/v1/playlists/x",
-   "id": "0h5S3rxy9KwArcgZr6pqFl",
+   "href": "REDACTED",
+   "id": "0H5AE1kgWuwkdwTH6R4OOJ",
    "images": [
     {
-     "url": "https://i.scdn.co/image/y",
      "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84b8dabeaa63c3be75814771c1",
      "width": null
     }
    ],
-   "name": "Running 2024",
+   "name": "Underground Dance Music 2026 | Renegades and Afters",
    "owner": {
-    "id": "REDACTED",
     "display_name": "REDACTED",
-    "type": "user"
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_7",
+    "type": "user",
+    "uri": "REDACTED"
    },
+   "primary_color": null,
    "public": true,
-   "snapshot_id": "abc",
+   "snapshot_id": "REDACTED",
    "items": {
-    "href": "https://api.spotify.com/v1/playlists/x/items",
-    "total": 58
-   },
-   "tracks": {
-    "href": "https://api.spotify.com/v1/playlists/x/tracks",
-    "total": 58
+    "href": "REDACTED",
+    "total": 161
    },
    "type": "playlist",
-   "uri": "spotify:playlist:x"
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "A killer mix of tech house, house and minimal/deep tech bangers that are always fire on the dance floor. Updated regularly by Loco Dice!",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4I3H3mSxQygQOsMJKhGUMP",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84bd94f402e1189d03dc2cadcc",
+     "width": null
+    }
+   ],
+   "name": "Floor Love by Loco Dice | House & Tech House Essentials",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_8",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 88
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
   },
   {
    "collaborative": false,
    "description": "",
    "external_urls": {
-    "spotify": "https://open.spotify.com/playlist/x"
+    "spotify": "REDACTED"
    },
-   "href": "https://api.spotify.com/v1/playlists/x",
-   "id": "x72YN46ISdTBUNrd5hDvsT",
+   "href": "REDACTED",
+   "id": "1cuHJXAWfrhqrZasRuRfAe",
    "images": [
     {
-     "url": "https://i.scdn.co/image/y",
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e020f3cb496c7d40da406f41d4cab67616d00001e02f454aa96e81265bc61b8d4edab67616d00001e02f9ef39657ba18c612641ee6dab67616d00001e02fc4c4c07ecff1b80aea01b80",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e020f3cb496c7d40da406f41d4cab67616d00001e02f454aa96e81265bc61b8d4edab67616d00001e02f9ef39657ba18c612641ee6dab67616d00001e02fc4c4c07ecff1b80aea01b80",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e020f3cb496c7d40da406f41d4cab67616d00001e02f454aa96e81265bc61b8d4edab67616d00001e02f9ef39657ba18c612641ee6dab67616d00001e02fc4c4c07ecff1b80aea01b80",
+     "width": 60
+    }
+   ],
+   "name": "Boda Joel i Sara",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 245
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "1cpY37yTWWQm3ZjqmyIl4K",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e02530ec902de03900e725f056dab67616d00001e0267b67132c185684148c5ffdcab67616d00001e0269d911b9991ca77bc60f7c81ab67616d00001e02c1ed028d0b71ab595d3487f9",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e02530ec902de03900e725f056dab67616d00001e0267b67132c185684148c5ffdcab67616d00001e0269d911b9991ca77bc60f7c81ab67616d00001e02c1ed028d0b71ab595d3487f9",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e02530ec902de03900e725f056dab67616d00001e0267b67132c185684148c5ffdcab67616d00001e0269d911b9991ca77bc60f7c81ab67616d00001e02c1ed028d0b71ab595d3487f9",
+     "width": 60
+    }
+   ],
+   "name": "focus 🧑‍💻",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 22
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "0oyyiXVdfy3EZWATP6KiZK",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e020827c031f271b85179a28ca1ab67616d00001e022b1c74dc71fef0d9e8410992ab67616d00001e02e3c1235902c99f477fbe52d2ab67616d00001e02e83c0b0a364ba8f523ce3899",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e020827c031f271b85179a28ca1ab67616d00001e022b1c74dc71fef0d9e8410992ab67616d00001e02e3c1235902c99f477fbe52d2ab67616d00001e02e83c0b0a364ba8f523ce3899",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e020827c031f271b85179a28ca1ab67616d00001e022b1c74dc71fef0d9e8410992ab67616d00001e02e3c1235902c99f477fbe52d2ab67616d00001e02e83c0b0a364ba8f523ce3899",
+     "width": 60
+    }
+   ],
+   "name": "progressive 💨",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 4
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "0uYKxgdnnUBB7gDrQWhUbx",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e023b8689717d3fca6630462a9fab67616d00001e028e593959b5d90f5b5c0c523dab67616d00001e02b2d1913c9923004aad0b3b52ab67616d00001e02ba70af0e52477537a03766f2",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e023b8689717d3fca6630462a9fab67616d00001e028e593959b5d90f5b5c0c523dab67616d00001e02b2d1913c9923004aad0b3b52ab67616d00001e02ba70af0e52477537a03766f2",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e023b8689717d3fca6630462a9fab67616d00001e028e593959b5d90f5b5c0c523dab67616d00001e02b2d1913c9923004aad0b3b52ab67616d00001e02ba70af0e52477537a03766f2",
+     "width": 60
+    }
+   ],
+   "name": "sunset 🌴",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 74
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "1pQYSx4huUzQVODnMDx2vt",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e025d8fe8628f8a89e828124ce7ab67616d00001e02760d36355ece09919273a8e7ab67616d00001e02920be7f54279026a7727d20dab67616d00001e02da9442d8937d1ef6f62a2a80",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e025d8fe8628f8a89e828124ce7ab67616d00001e02760d36355ece09919273a8e7ab67616d00001e02920be7f54279026a7727d20dab67616d00001e02da9442d8937d1ef6f62a2a80",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e025d8fe8628f8a89e828124ce7ab67616d00001e02760d36355ece09919273a8e7ab67616d00001e02920be7f54279026a7727d20dab67616d00001e02da9442d8937d1ef6f62a2a80",
+     "width": 60
+    }
+   ],
+   "name": "rave 💣",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 53
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "5nKCfQs7nI0RjR837qOH1D",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e0236742970f1d39507d543eae7ab67616d00001e0249b85967215d536f5e41f875ab67616d00001e025cb6b65d06b7c9dccb04313eab67616d00001e02e5b73af65c1aeeca0bdc54a0",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e0236742970f1d39507d543eae7ab67616d00001e0249b85967215d536f5e41f875ab67616d00001e025cb6b65d06b7c9dccb04313eab67616d00001e02e5b73af65c1aeeca0bdc54a0",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e0236742970f1d39507d543eae7ab67616d00001e0249b85967215d536f5e41f875ab67616d00001e025cb6b65d06b7c9dccb04313eab67616d00001e02e5b73af65c1aeeca0bdc54a0",
+     "width": 60
+    }
+   ],
+   "name": "disco party 🪩",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 129
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "0e1lCtFdwHJs5136dUqju8",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e021637ab68b36e0647c30bc338ab67616d00001e022d66a4b6f07a9c76f412aa72ab67616d00001e022fe972b2c6b86fe52040819bab67616d00001e02eaf28605888308cb43265afe",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e021637ab68b36e0647c30bc338ab67616d00001e022d66a4b6f07a9c76f412aa72ab67616d00001e022fe972b2c6b86fe52040819bab67616d00001e02eaf28605888308cb43265afe",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e021637ab68b36e0647c30bc338ab67616d00001e022d66a4b6f07a9c76f412aa72ab67616d00001e022fe972b2c6b86fe52040819bab67616d00001e02eaf28605888308cb43265afe",
+     "width": 60
+    }
+   ],
+   "name": "melodic 🌊",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 29
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "3VN4kyOKEbw5FyEikondxE",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e02199aa5ec1e066eeca88b5850ab67616d00001e0226c5ed9581d19f1999b22546ab67616d00001e02afd7387435c9a473bbf9e8f9ab67616d00001e02dadb102d3322129c28a50465",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e02199aa5ec1e066eeca88b5850ab67616d00001e0226c5ed9581d19f1999b22546ab67616d00001e02afd7387435c9a473bbf9e8f9ab67616d00001e02dadb102d3322129c28a50465",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e02199aa5ec1e066eeca88b5850ab67616d00001e0226c5ed9581d19f1999b22546ab67616d00001e02afd7387435c9a473bbf9e8f9ab67616d00001e02dadb102d3322129c28a50465",
+     "width": 60
+    }
+   ],
+   "name": "sunraise ☀️",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 8
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4GXrZ7qoSpGsGFqTJ81NY9",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e021c04fa01e71e1c022ae5f74cab67616d00001e02251d864cc33bf9cb73f14199ab67616d00001e025b00999630bd8bf06a1891c3ab67616d00001e02e2777c4746776acc3e480f6f",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e021c04fa01e71e1c022ae5f74cab67616d00001e02251d864cc33bf9cb73f14199ab67616d00001e025b00999630bd8bf06a1891c3ab67616d00001e02e2777c4746776acc3e480f6f",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e021c04fa01e71e1c022ae5f74cab67616d00001e02251d864cc33bf9cb73f14199ab67616d00001e025b00999630bd8bf06a1891c3ab67616d00001e02e2777c4746776acc3e480f6f",
+     "width": 60
+    }
+   ],
+   "name": "_inspiration",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_9",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 795
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Created by Shazam. Made for you. Songs are automatically added to this playlist each time you Shazam.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "3Ecu3z4vjc7bJXZL9rDQEZ",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e0207d6685c586230b6b9e42e6bab67616d00001e0212aafaf7f63fdeb520c51e11ab67616d00001e0258f0114aac9ccd57f9973974ab67616d00001e02c1f9ec1d4dbb90d40ac89683",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e0207d6685c586230b6b9e42e6bab67616d00001e0212aafaf7f63fdeb520c51e11ab67616d00001e0258f0114aac9ccd57f9973974ab67616d00001e02c1f9ec1d4dbb90d40ac89683",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e0207d6685c586230b6b9e42e6bab67616d00001e0212aafaf7f63fdeb520c51e11ab67616d00001e0258f0114aac9ccd57f9973974ab67616d00001e02c1f9ec1d4dbb90d40ac89683",
+     "width": 60
+    }
+   ],
+   "name": "My Shazam Tracks",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 9
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "14R5aadg867v1oJjFb6qmW",
+   "images": [
+    {
      "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da840f0793bfc5ce942f68403ed8",
      "width": null
     }
    ],
-   "name": "Discover Weekly",
+   "name": "Sònar 2021 CCCB (Sat)",
    "owner": {
-    "id": "spotify",
-    "display_name": "Spotify",
-    "type": "user"
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_10",
+    "type": "user",
+    "uri": "REDACTED"
    },
+   "primary_color": null,
    "public": true,
-   "snapshot_id": "abc",
+   "snapshot_id": "REDACTED",
    "items": {
-    "href": "https://api.spotify.com/v1/playlists/x/items",
-    "total": 30
-   },
-   "tracks": {
-    "href": "https://api.spotify.com/v1/playlists/x/tracks",
-    "total": 30
+    "href": "REDACTED",
+    "total": 24
    },
    "type": "playlist",
-   "uri": "spotify:playlist:x"
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "The first 10 tracks are selected by Joyce Muniz.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "6ofrQDcncLDKyDaznZGx4B",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da847d0d0075cc8dae37af4efea3",
+     "width": null
+    }
+   ],
+   "name": "PERMANENT VACATION - HOTLIST",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_11",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 168
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "3J3Mjfm4OwupJ1oBRV0hSD",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e024534e482983581d1f0b5af1bab67616d00001e0295e64f78f11f76997b0d9b30ab67616d00001e02bc2937d70dd373deacf33a53ab67616d00001e02e0d60298d0e281880586e543",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e024534e482983581d1f0b5af1bab67616d00001e0295e64f78f11f76997b0d9b30ab67616d00001e02bc2937d70dd373deacf33a53ab67616d00001e02e0d60298d0e281880586e543",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e024534e482983581d1f0b5af1bab67616d00001e0295e64f78f11f76997b0d9b30ab67616d00001e02bc2937d70dd373deacf33a53ab67616d00001e02e0d60298d0e281880586e543",
+     "width": 60
+    }
+   ],
+   "name": "Mediterranean mix",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": false,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 22
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "2hJRSOPSxRohJc45fnrrWT",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e026fe6feb47fe67c22e0b4e6e4ab67616d00001e028ba2cc7e1ea9a8269f5f7dffab67616d00001e02cc1f6bc6fd1cb1dd25ce2891ab67616d00001e02fb91e90c026d1af1decf54f4",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e026fe6feb47fe67c22e0b4e6e4ab67616d00001e028ba2cc7e1ea9a8269f5f7dffab67616d00001e02cc1f6bc6fd1cb1dd25ce2891ab67616d00001e02fb91e90c026d1af1decf54f4",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e026fe6feb47fe67c22e0b4e6e4ab67616d00001e028ba2cc7e1ea9a8269f5f7dffab67616d00001e02cc1f6bc6fd1cb1dd25ce2891ab67616d00001e02fb91e90c026d1af1decf54f4",
+     "width": 60
+    }
+   ],
+   "name": "Fortuna Records",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_12",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 125
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Fortuna Records is a reissue label and a DJ crew from Tel-Aviv, championing the obscure forgotten sounds of the Middle East with a string of top quality vinyl reissues accompanied by notoriously wild parties.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "3i9LL7E8obRqU8HfETn1tD",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da840c971ad26a923dfadfdbac7b",
+     "width": null
+    }
+   ],
+   "name": "Fortuna Records",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_13",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 92
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "A rollin playlist from Fortuna Records. Sunny uplifting vibes. Enjoy! x",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "70xCtNxIXKkjXjKb5Ty0eW",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84ecd53c8f6d5b5d2abf6c3406",
+     "width": null
+    }
+   ],
+   "name": "It's Almost Summer – by Fortuna Records",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_14",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 34
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Every week Harvard Bass shares his favorite Dope Sh*t strictly for the Club.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "5xtW4UcALiZZ2pxlviqL03",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000d72c69f52b620013296eba05541d",
+     "width": null
+    }
+   ],
+   "name": "DOPE CLUB SH*T",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_15",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 461
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Discover some techno tracks i play live, from House to Techno — Weekly Updated!",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4JQRy32vbVUa9r26jIzrXl",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84fd2d326dd152ba72514ec69c",
+     "width": null
+    }
+   ],
+   "name": "Marco Faraone’s “RECORD BOX” — updated weekly",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_16",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 18
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Here is a list of tracks and artists that I have been listening to a lot this year. Music is a healer, mentally at least. Thank you, Music. Thank you, Artists!",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "2sU4ARHd2gDC1KLkW3tsZn",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da847f2a3bf3c79765e3da39c59a",
+     "width": null
+    }
+   ],
+   "name": "ESCAPING 2020",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_17",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 16
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "5NcyrYROWbPEDk8HYa1Jug",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e023d5c8a3c03712ef3452767c5ab67616d00001e024200ad0c96a4cbd49bc88415ab67616d00001e0253d0e56d27da3648c4a1904aab67616d00001e02a62790014564cf68110e986d",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e023d5c8a3c03712ef3452767c5ab67616d00001e024200ad0c96a4cbd49bc88415ab67616d00001e0253d0e56d27da3648c4a1904aab67616d00001e02a62790014564cf68110e986d",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e023d5c8a3c03712ef3452767c5ab67616d00001e024200ad0c96a4cbd49bc88415ab67616d00001e0253d0e56d27da3648c4a1904aab67616d00001e02a62790014564cf68110e986d",
+     "width": 60
+    }
+   ],
+   "name": "code",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 11
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": true,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "6sOXpwLu8vxscChgu4wnMs",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e02502ea1102ea7d1edab1495aeab67616d00001e0270e35da4dbed94288eaf3bccab67616d00001e02e303ffa4b2643db3e46656a7ab67616d00001e02fa6294475152f6d5a21a7f45",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e02502ea1102ea7d1edab1495aeab67616d00001e0270e35da4dbed94288eaf3bccab67616d00001e02e303ffa4b2643db3e46656a7ab67616d00001e02fa6294475152f6d5a21a7f45",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e02502ea1102ea7d1edab1495aeab67616d00001e0270e35da4dbed94288eaf3bccab67616d00001e02e303ffa4b2643db3e46656a7ab67616d00001e02fa6294475152f6d5a21a7f45",
+     "width": 60
+    }
+   ],
+   "name": "Mama 60",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_18",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 60
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "27jVdQEa2puF7yhFMkO2uV",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e022c38140c15a1dc583c428f30ab67616d00001e028409319a9739a22fcd941126ab67616d00001e02c080c36b555bfd14bb00fdbeab67616d00001e02cff287326bef5a7ae863d879",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e022c38140c15a1dc583c428f30ab67616d00001e028409319a9739a22fcd941126ab67616d00001e02c080c36b555bfd14bb00fdbeab67616d00001e02cff287326bef5a7ae863d879",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e022c38140c15a1dc583c428f30ab67616d00001e028409319a9739a22fcd941126ab67616d00001e02c080c36b555bfd14bb00fdbeab67616d00001e02cff287326bef5a7ae863d879",
+     "width": 60
+    }
+   ],
+   "name": "Music for coding - classify",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_19",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 205
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "New Arrivals keeps you posted on the latest records arriving in our record store and online shop &#x2F; kompakt.fm",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "7nU5hYoDxu0DmdRm2DQRUt",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84a83944d9049a6632279f88d2",
+     "width": null
+    }
+   ],
+   "name": "KOMPAKT: New Arrivals",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_20",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 239
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "large. contains multitudes. updated continuously.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "03EjG4ZQVtA2c7bW8Qj1Sv",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000d72ca49c9164e55c0347a1896f76",
+     "width": null
+    }
+   ],
+   "name": "🐁 avalon emerson's 9000 dreams in the Perpetual Emotional Machine✨",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_21",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 1702
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Follow our weekly favorites. Every Monday we update this list with music we play and love. For videos, clothes and other andhim stuff go here: https://linktr.ee/andhim",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "1oFPILLPGdeMXdpSTik5U5",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84c85ac3b392f4aafc9abe613c",
+     "width": null
+    }
+   ],
+   "name": "andhim's favorites",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_22",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 48
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": true,
+   "description": "Factorial&#x27;s super Freshyyyy colaborative playlist!",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4onOODIzk2WDCRuNTjDGpk",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8463fc75c2403787c986b9a92d",
+     "width": null
+    }
+   ],
+   "name": "☀️ Factorial summer 2020",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_23",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 64
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Extrasolar broadcasts from Oneiri Station. Instrumental w&#x2F;a mix of driven, rhythmic, and flow state inducing synthwave &#x2F; retrowave &#x2F; cyberpunk. Curated regularly by PatternShift.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "09WLAUKLVP5bdMygyxgPwY",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84c2abb1c099c5146d0daf470e",
+     "width": null
+    }
+   ],
+   "name": "Cinematic Sci-Fi Synthwave",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_24",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 201
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "<a href=\"http://randsrecords.com/\">R&amp;S Records</a> office favourites playlist curated by label boss &amp; founder Renaat Vandepapeliere. Find us on <a href=\"http://www.facebook.com/randsrecords\">Facebook</a> and <a href=\"https://www.instagram.com/randsrecords/\">Instagram</a>",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4X5Xw4erz4ZEkObL9vUTCE",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000d72ccd3cbfdfbeb41b49bf9568f4",
+     "width": null
+    }
+   ],
+   "name": "R&S - listening favourites",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_25",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 40
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "6Im7lnEDEx3TMAHpxj5W0I",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e0208e7d8b9fcad409958337181ab67616d00001e0218a52a8f23d1246a73df4798ab67616d00001e0232d12e4e5cf42e77798b11b4ab67616d00001e02d97bbf9382de1dc881e61598",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e0208e7d8b9fcad409958337181ab67616d00001e0218a52a8f23d1246a73df4798ab67616d00001e0232d12e4e5cf42e77798b11b4ab67616d00001e02d97bbf9382de1dc881e61598",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e0208e7d8b9fcad409958337181ab67616d00001e0218a52a8f23d1246a73df4798ab67616d00001e0232d12e4e5cf42e77798b11b4ab67616d00001e02d97bbf9382de1dc881e61598",
+     "width": 60
+    }
+   ],
+   "name": "mix",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 17
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": true,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4pTKIEaHVt8U8IEjaRTGvX",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e02c009d53d60d0c6618993688fab67616d00001e02d427569f6bae48ce8a5bcac5ab67616d00001e02e226488b7af9f296c95be551ab67616d00001e02fb40b09370788a1c2e74c5b0",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e02c009d53d60d0c6618993688fab67616d00001e02d427569f6bae48ce8a5bcac5ab67616d00001e02e226488b7af9f296c95be551ab67616d00001e02fb40b09370788a1c2e74c5b0",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e02c009d53d60d0c6618993688fab67616d00001e02d427569f6bae48ce8a5bcac5ab67616d00001e02e226488b7af9f296c95be551ab67616d00001e02fb40b09370788a1c2e74c5b0",
+     "width": 60
+    }
+   ],
+   "name": "Piset 💘",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 13
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": true,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "1iYII6lyopr8SF7Dq0AEg0",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e02abe203531eac29d17260966fab67616d00001e02c46794640f6860a8c287f779ab67616d00001e02c99f58d4685a5f438e6c9167ab67616d00001e02d069c2082b0a7645928f233a",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e02abe203531eac29d17260966fab67616d00001e02c46794640f6860a8c287f779ab67616d00001e02c99f58d4685a5f438e6c9167ab67616d00001e02d069c2082b0a7645928f233a",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e02abe203531eac29d17260966fab67616d00001e02c46794640f6860a8c287f779ab67616d00001e02c99f58d4685a5f438e6c9167ab67616d00001e02d069c2082b0a7645928f233a",
+     "width": 60
+    }
+   ],
+   "name": "New Happy New Year '19",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_26",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 474
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Spotlight: Eli Feier&#x27;s newest single &quot;Overwhelmed&quot;",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "7xRVn4q3S4bsOc4G5x36Ci",
+   "images": [
+    {
+     "height": 640,
+     "url": "https://mosaic.scdn.co/640/ab67616d00001e0278014475a754c25a4c77feb7ab67616d00001e028cd638ee370c74fc71f9efb8ab67616d00001e02d1e8651829acf90243551cb7ab67616d00001e02f134627717972f005c834b69",
+     "width": 640
+    },
+    {
+     "height": 300,
+     "url": "https://mosaic.scdn.co/300/ab67616d00001e0278014475a754c25a4c77feb7ab67616d00001e028cd638ee370c74fc71f9efb8ab67616d00001e02d1e8651829acf90243551cb7ab67616d00001e02f134627717972f005c834b69",
+     "width": 300
+    },
+    {
+     "height": 60,
+     "url": "https://mosaic.scdn.co/60/ab67616d00001e0278014475a754c25a4c77feb7ab67616d00001e028cd638ee370c74fc71f9efb8ab67616d00001e02d1e8651829acf90243551cb7ab67616d00001e02f134627717972f005c834b69",
+     "width": 60
+    }
+   ],
+   "name": "The Artists Union",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_27",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 47
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": " A selection of music from our in-house labels  + the labels we <a href=\"http://distribution.manual-music.com/#how-we-work\">distribute</a>. Related playlist: <a href=\"http://spoti.fi/2oDmCH4\">Dial P for Progressive</a>.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "0W9gIh9oolYcMyMRbcGzv6",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da842a7d8f9eec971f765ec4c1ec",
+     "width": null
+    }
+   ],
+   "name": "Manual Distribution : Selected",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_28",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 150
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": true,
+   "description": "",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "2B5cp9oHagWg7PSNHNdhWU",
+   "images": [
+    {
+     "height": null,
+     "url": "https://i.scdn.co/image/ab67616d00001e02b80b8af9bf8ecce1f51dffa0",
+     "width": null
+    }
+   ],
+   "name": "FORNFEST!🔥",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "me",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 4
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Best tribal Melodic and Deep House tracks inspired by the nights. Music by &amp;ME, Guy Gerber, Tebra, Teho, Solomun, Iman Hanzo, Adana Twins, Ame, Howling, Super Flu, Rampa, Adam Port and many more!",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "4UuqRJp94UN5qavfknQvZD",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da849d25b752f1ae4a953afb89a0",
+     "width": null
+    }
+   ],
+   "name": "Melodic & Deep House 2026 🥁 ",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_29",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 81
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Best tribal tracks inspired by AFRIKABURN. Music by Oliver Koletzki, Sabo, Dandara, Stefan Obermaier, Omerar Nanda, PAAX (Tulum), Mark Alow, UNER, Madmotormiquel, Shkoon, Tebra, Zuma Dionys, Hot Oasis and many more.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "57UyjRhVtwlbsdA4GWE5Hm",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84efb1df41ebb550ede7366c40",
+     "width": null
+    }
+   ],
+   "name": "AfrikaBurn 2026 🛕",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_29",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 75
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
+  },
+  {
+   "collaborative": false,
+   "description": "Every week, various artists, new essential tracks. Check out <a href=\"http://www.trndmsk.de\">www.trndmsk.de</a>. Do you like our playlist? Feel free to contact us via email to <a href=\"http://benny@trndmsk.de\">benny@trndmsk.de</a>.",
+   "external_urls": {
+    "spotify": "REDACTED"
+   },
+   "href": "REDACTED",
+   "id": "6W6ji4jFVk4ox7g28CTYlV",
+   "images": [
+    {
+     "height": null,
+     "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84fdf47787a1015157bfd68907",
+     "width": null
+    }
+   ],
+   "name": "trndmsk's weekly charts - Luca Musto",
+   "owner": {
+    "display_name": "REDACTED",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "owner_29",
+    "type": "user",
+    "uri": "REDACTED"
+   },
+   "primary_color": null,
+   "public": true,
+   "snapshot_id": "REDACTED",
+   "items": {
+    "href": "REDACTED",
+    "total": 11
+   },
+   "type": "playlist",
+   "uri": "REDACTED"
   }
  ]
 }

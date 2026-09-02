@@ -1,108 +1,4221 @@
 {
- "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
- "href": "https://api.spotify.com/v1/me/tracks?offset=0&limit=50",
- "limit": 50,
- "next": null,
- "offset": 0,
- "previous": null,
- "total": 3036,
+ "_recorded": "2026-09-02 with worker/scripts/spike-spotify.ts; identity fields redacted, owner ids replaced",
+ "href": "REDACTED",
  "items": [
   {
-   "added_at": "2024-03-01T10:00:00Z",
-   "added_by": {
-    "id": "REDACTED",
-    "type": "user"
-   },
-   "is_local": false,
-   "item": {
+   "added_at": "2026-08-31T15:17:59Z",
+   "track": {
     "album": {
-     "id": "f1e1CvI5qiGogkdmtsVrFl",
-     "name": "Selected Ambient Works 85-92",
-     "images": [
+     "album_type": "single",
+     "artists": [
       {
-       "url": "https://i.scdn.co/image/x",
-       "height": 640,
-       "width": 640
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0sIB3PokRCqqllNuzZ38NO",
+       "name": "S3PPA",
+       "type": "artist",
+       "uri": "REDACTED"
       }
      ],
-     "album_type": "album"
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "2R9ZhZF3MXjKDW4RTFNN7G",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2738975e16dc765210952aba8ec"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e028975e16dc765210952aba8ec"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048518975e16dc765210952aba8ec"
+      }
+     ],
+     "is_playable": true,
+     "name": "It's All I Dream About",
+     "release_date": "2025-10-31",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
     },
     "artists": [
      {
-      "id": "vbpaTIlD5gYAEZyFQ8vZRN",
-      "name": "Aphex Twin",
-      "type": "artist"
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0sIB3PokRCqqllNuzZ38NO",
+      "name": "S3PPA",
+      "type": "artist",
+      "uri": "REDACTED"
      }
     ],
-    "duration_ms": 293000,
+    "disc_number": 1,
+    "duration_ms": 339130,
     "explicit": false,
-    "id": "zvdieTpkf01PrpsCjBq78H",
-    "name": "Xtal",
-    "type": "track",
+    "external_ids": {
+     "isrc": "CBF8B2502421"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "765dVsWhSJZrQkCbc0uJHG",
     "is_local": false,
-    "uri": "spotify:track:x"
+    "is_playable": true,
+    "name": "It's All I Dream About",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
    }
   },
   {
-   "added_at": "2024-03-01T10:00:00Z",
-   "added_by": {
-    "id": "REDACTED",
-    "type": "user"
-   },
-   "is_local": false,
-   "item": {
+   "added_at": "2026-08-27T21:21:58Z",
+   "track": {
     "album": {
-     "id": "p7twaxDFmFaqfycbsoKGUO",
-     "name": "Music Has the Right to Children",
-     "images": [
+     "album_type": "single",
+     "artists": [
       {
-       "url": "https://i.scdn.co/image/x",
-       "height": 640,
-       "width": 640
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7bi8ABpXgK2DpE5nRaWdZ5",
+       "name": "BURNR",
+       "type": "artist",
+       "uri": "REDACTED"
       }
      ],
-     "album_type": "album"
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "6Rjwk9ltve8QF3I7gBcc9A",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273389800ca1097fc197775ff16"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02389800ca1097fc197775ff16"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851389800ca1097fc197775ff16"
+      }
+     ],
+     "is_playable": true,
+     "name": "Rockin' Steady",
+     "release_date": "2026-02-27",
+     "release_date_precision": "day",
+     "total_tracks": 2,
+     "type": "album",
+     "uri": "REDACTED"
     },
     "artists": [
      {
-      "id": "S2yu9jSNcZ3MTYiGFZXZK3",
-      "name": "Boards of Canada",
-      "type": "artist"
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7bi8ABpXgK2DpE5nRaWdZ5",
+      "name": "BURNR",
+      "type": "artist",
+      "uri": "REDACTED"
      }
     ],
-    "duration_ms": 146000,
+    "disc_number": 1,
+    "duration_ms": 314366,
     "explicit": false,
-    "id": "QQobiwgZIMMQEaXUFHOeTp",
-    "name": "Roygbiv",
-    "type": "track",
+    "external_ids": {
+     "isrc": "QZHNC2696863"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2Ld5vsmkp5IQwT8OaIejSL",
     "is_local": false,
-    "uri": "spotify:track:x"
+    "is_playable": true,
+    "name": "Rockin' Steady",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
    }
   },
   {
-   "added_at": "2024-03-01T10:00:00Z",
-   "added_by": {
-    "id": "REDACTED",
-    "type": "user"
-   },
-   "is_local": true,
-   "item": {
-    "album": null,
+   "added_at": "2026-08-27T16:30:03Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6TPtmX8rRaOXQgN6WFFTlo",
+       "name": "Parbleu",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2Rm5Fw56mWmB0Pz0JPcOyb",
+       "name": "Arp Frique",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4NpjgUQeUuS53qL3lQ9ayW",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273e1041a4229426057be5c8223"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02e1041a4229426057be5c8223"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851e1041a4229426057be5c8223"
+      }
+     ],
+     "is_playable": true,
+     "name": "Flash Solaire",
+     "release_date": "2024-07-18",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
     "artists": [
      {
-      "id": "eqTmT8ExDQVMNejpUsJadq",
-      "name": "Rob Reynolds",
-      "type": "artist"
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6TPtmX8rRaOXQgN6WFFTlo",
+      "name": "Parbleu",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2Rm5Fw56mWmB0Pz0JPcOyb",
+      "name": "Arp Frique",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1CnZzVzkshVxUcV0eRjD9m",
+      "name": "Marissa Nyamekye",
+      "type": "artist",
+      "uri": "REDACTED"
      }
     ],
-    "duration_ms": 200000,
+    "disc_number": 1,
+    "duration_ms": 249000,
     "explicit": false,
-    "id": "PQPsGCCh3m86bCY8Bqn6nK",
-    "name": "Sing Sing",
+    "external_ids": {
+     "isrc": "ITP842400127"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5pxXNfEe0O6z1wcI2vCP9l",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Flash Solaire",
+    "track_number": 1,
     "type": "track",
-    "is_local": true,
-    "uri": "spotify:track:x"
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-27T11:50:03Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "07b9qW7pabKGO29JPWXn9m",
+       "name": "Los Bitchos",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "0277ls6sMug6oLmLGmM8q6",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27324498d075e3f59ad25b91762"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0224498d075e3f59ad25b91762"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485124498d075e3f59ad25b91762"
+      }
+     ],
+     "is_playable": true,
+     "name": "Talkie Talkie",
+     "release_date": "2024-08-30",
+     "release_date_precision": "day",
+     "total_tracks": 12,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "07b9qW7pabKGO29JPWXn9m",
+      "name": "Los Bitchos",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 134720,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "DED622400096"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4vz42hFeIlWdx0r0gK1lZh",
+    "is_local": false,
+    "is_playable": true,
+    "name": "La Bomba",
+    "track_number": 7,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-25T12:42:00Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5KFEhzBYzfSOOWM6wpBSfK",
+       "name": "Nadeem Khan",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6tOqXU5tewaxqFtYCw9NlI",
+       "name": "Elado",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1HMbFHVWB7bjYEVfChLbVI",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273fc4c4c07ecff1b80aea01b80"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02fc4c4c07ecff1b80aea01b80"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851fc4c4c07ecff1b80aea01b80"
+      }
+     ],
+     "is_playable": true,
+     "name": "Tu Tak Tu Tak Tutiyan (Elado Remixes)",
+     "release_date": "2023-10-27",
+     "release_date_precision": "day",
+     "total_tracks": 2,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5KFEhzBYzfSOOWM6wpBSfK",
+      "name": "Nadeem Khan",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6tOqXU5tewaxqFtYCw9NlI",
+      "name": "Elado",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 247647,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "QMXZD1100628"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6z1MlTChaYJJ3fPTFrse4S",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Tu Tak Tu Tak Tutiyan - Elado’s Gulab Jamun Rework",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-25T12:30:58Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7C0HZ7s8NNv8OCx1vtPLTD",
+       "name": "Tim Lucent",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "23n0Uf0blk1iwPWwERl5wR",
+       "name": "Kristos",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "3TSCWDqniTlt2dREiDwwMh",
+       "name": "Mona Matsuoka",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "3MwsQeYg8tCGUlcO08tLBx",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2737489cdc557d090920a25282b"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e027489cdc557d090920a25282b"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048517489cdc557d090920a25282b"
+      }
+     ],
+     "is_playable": true,
+     "name": "Hakyō No Kiki",
+     "release_date": "2026-03-20",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7C0HZ7s8NNv8OCx1vtPLTD",
+      "name": "Tim Lucent",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "23n0Uf0blk1iwPWwERl5wR",
+      "name": "Kristos",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3TSCWDqniTlt2dREiDwwMh",
+      "name": "Mona Matsuoka",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 276060,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "AUXN22609084"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2Gg65wMMLXITck0FHQ6D7h",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Hakyō No Kiki",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-25T12:21:25Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7mUEGrKLGWDJFXX9odcxMM",
+       "name": "Il Est Vilaine",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "2fHUTSAbxz6sGfHB4Gry8j",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2732ac7858c41a84e7d931bec0d"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e022ac7858c41a84e7d931bec0d"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048512ac7858c41a84e7d931bec0d"
+      }
+     ],
+     "is_playable": true,
+     "name": "SURF RIDER (Edit)",
+     "release_date": "2025-05-23",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7mUEGrKLGWDJFXX9odcxMM",
+      "name": "Il Est Vilaine",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 153103,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "FR89W2500272"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1PFihh7oG0dEloberNGtVP",
+    "is_local": false,
+    "is_playable": true,
+    "name": "SURF RIDER - Edit",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-25T10:20:11Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1TuDUmw1jUuY1V5s78TNHd",
+       "name": "Cousin Kula",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "5lqWeWVQM7AQg4ySUMdoSF",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273059765aade7e11f5c2e78349"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02059765aade7e11f5c2e78349"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851059765aade7e11f5c2e78349"
+      }
+     ],
+     "is_playable": true,
+     "name": "I Feel Love",
+     "release_date": "2025-04-23",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1TuDUmw1jUuY1V5s78TNHd",
+      "name": "Cousin Kula",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 190760,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "DEG932500191"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5UbSGpdwUbX8jFC4viwi55",
+    "is_local": false,
+    "is_playable": true,
+    "name": "I Feel Love",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-24T16:58:03Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5Kv477c3fjT3ifEOm1Kh0A",
+       "name": "Cochemea",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "6nAsIGnrUrYrOojbveDfH9",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2730a944aff7765f61ba8fb211e"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e020a944aff7765f61ba8fb211e"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048510a944aff7765f61ba8fb211e"
+      }
+     ],
+     "is_playable": true,
+     "name": "All My Relations",
+     "release_date": "2019-02-22",
+     "release_date_precision": "day",
+     "total_tracks": 10,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5Kv477c3fjT3ifEOm1Kh0A",
+      "name": "Cochemea",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 213346,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "US4GZ1805503"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "29gMQnQMV6Q2rVS6rgjjRh",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Mitote",
+    "track_number": 3,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-22T17:12:50Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7J7wDWLxbvVQdozTVeNWdp",
+       "name": "You Man",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "50rgN4NAnnRqFzl7TTtnQv",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27339ae80f349c42cce471b0319"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0239ae80f349c42cce471b0319"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485139ae80f349c42cce471b0319"
+      }
+     ],
+     "is_playable": true,
+     "name": "Spectrum of Love",
+     "release_date": "2016-11-18",
+     "release_date_precision": "day",
+     "total_tracks": 11,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7J7wDWLxbvVQdozTVeNWdp",
+      "name": "You Man",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 226285,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "FR59R1686696"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0D4JFdUDUVh3zYT1HFMd1K",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Birdcage",
+    "track_number": 6,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-22T10:39:54Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2sLMYvxNmHIYNx6re1WUM2",
+       "name": "Yin Yin",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4jH5VMBiLa3LqYASv9QQWK",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273ebffff55434e27ad246eac95"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02ebffff55434e27ad246eac95"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851ebffff55434e27ad246eac95"
+      }
+     ],
+     "is_playable": true,
+     "name": "The Rabbit That Hunts Tigers",
+     "release_date": "2019-10-18",
+     "release_date_precision": "day",
+     "total_tracks": 13,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2sLMYvxNmHIYNx6re1WUM2",
+      "name": "Yin Yin",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 348148,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "CHA831994610"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "13rx5XnSVYoN2IhPnERw24",
+    "is_local": false,
+    "is_playable": true,
+    "name": "The Rabbit That Hunts Tigers",
+    "track_number": 10,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-22T09:40:45Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1lsJmnN90u3KBvF3tGEWr3",
+       "name": "Mildlife",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4l8HTiPwY1GrY3WNUNOZ8q",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27337d240e0ca64a74ab3ad1284"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0237d240e0ca64a74ab3ad1284"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485137d240e0ca64a74ab3ad1284"
+      }
+     ],
+     "is_playable": true,
+     "name": "Automatic",
+     "release_date": "2020-09-18",
+     "release_date_precision": "day",
+     "total_tracks": 6,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1lsJmnN90u3KBvF3tGEWr3",
+      "name": "Mildlife",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 401626,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBPVV2003122"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1FnxDnuiG7WJAFmtFTlejT",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Memory Palace",
+    "track_number": 5,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-22T08:54:09Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0hrb5WRiNlj8vh3WnCgXFq",
+       "name": "Kikagaku Moyo",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "5g5l9entA4bTztfpLJd1kS",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273a765313b610423c0f13aa59e"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02a765313b610423c0f13aa59e"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851a765313b610423c0f13aa59e"
+      }
+     ],
+     "is_playable": true,
+     "name": "Masana Temples",
+     "release_date": "2018-10-05",
+     "release_date_precision": "day",
+     "total_tracks": 10,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0hrb5WRiNlj8vh3WnCgXFq",
+      "name": "Kikagaku Moyo",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 193530,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "TCADT1851284"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0thTo7umyVGvfnaQmQUuZX",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Nana",
+    "track_number": 6,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-16T15:32:20Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1cBpduQulXQHJaj9m0RYS8",
+       "name": "The Paradise Bangkok Molam International Band",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4Qys4Ki8u7DSB6avssxGEl",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273931b0feb7cd32887695501d1"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02931b0feb7cd32887695501d1"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851931b0feb7cd32887695501d1"
+      }
+     ],
+     "is_playable": true,
+     "name": "21st Century Molam",
+     "release_date": "2014-12-01",
+     "release_date_precision": "day",
+     "total_tracks": 12,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1cBpduQulXQHJaj9m0RYS8",
+      "name": "The Paradise Bangkok Molam International Band",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 272645,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBGLW1400034"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1cDQiBpLuCAqWR6U0ILs3g",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Lam San Disco",
+    "track_number": 6,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-15T17:08:49Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "28k8arToA1cflcvaH5T4Zv",
+       "name": "Błoto",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4ifNAcgkbn2z3hFIJsgjEr",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2732310419f392394bf74c5cb47"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e022310419f392394bf74c5cb47"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048512310419f392394bf74c5cb47"
+      }
+     ],
+     "is_playable": true,
+     "name": "Kwasy i zasady",
+     "release_date": "2021-04-30",
+     "release_date_precision": "day",
+     "total_tracks": 11,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "28k8arToA1cflcvaH5T4Zv",
+      "name": "Błoto",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 259053,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "PLU242100023"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7siaW2AaizvdExefz6W0yW",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Prostactwo",
+    "track_number": 2,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-15T16:13:59Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "066X20Nz7iquqkkCW6Jxy6",
+       "name": "LCD Soundsystem",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1R8kkopLT4IAxzMMkjic6X",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273e6272ad26e7a55bc342a6dd0"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02e6272ad26e7a55bc342a6dd0"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851e6272ad26e7a55bc342a6dd0"
+      }
+     ],
+     "is_playable": true,
+     "name": "Sound of Silver",
+     "release_date": "2007-03-12",
+     "release_date_precision": "day",
+     "total_tracks": 9,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "066X20Nz7iquqkkCW6Jxy6",
+      "name": "LCD Soundsystem",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 328706,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "US4GE0600023"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "29ufIwomYfLbWBxPMdaUZm",
+    "is_local": false,
+    "is_playable": true,
+    "name": "North American Scum",
+    "track_number": 3,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-15T15:25:07Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "320TrJub4arztwXRm7kqVO",
+       "name": "Dr. John",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1b1ljTXAkcugOLAHkIi7Eq",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273a1ae61997ddf171fc5353408"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02a1ae61997ddf171fc5353408"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851a1ae61997ddf171fc5353408"
+      }
+     ],
+     "is_playable": true,
+     "name": "In The Right Place",
+     "release_date": "1973",
+     "release_date_precision": "year",
+     "total_tracks": 11,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "320TrJub4arztwXRm7kqVO",
+      "name": "Dr. John",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 175240,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "USAT20001805"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0I2ELF6uHlL4ABu9aFiou7",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Right Place Wrong Time",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-13T09:49:21Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6APnwoSgygJU8HR7EHVSyK",
+       "name": "Califato ¾",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1tVhgN9feZ8I31AC7yKOSp",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273c954a994f6b22246a6733ffd"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02c954a994f6b22246a6733ffd"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851c954a994f6b22246a6733ffd"
+      }
+     ],
+     "is_playable": true,
+     "name": "ÊCCLABÔ DE LIBERTÁ",
+     "release_date": "2024-02-29",
+     "release_date_precision": "day",
+     "total_tracks": 14,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6APnwoSgygJU8HR7EHVSyK",
+      "name": "Califato ¾",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5uosMg0bUbmZIlQpzTAPc7",
+      "name": "Sebastián Orellana",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3qWEWBaboJlhjWv3WwYiCR",
+      "name": "María José Luna",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 237584,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "BK4DA2402133"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7adnn3taCcWDNfFGI8Zfbt",
+    "is_local": false,
+    "is_playable": true,
+    "name": "DIME DÓNDE BÂ —A BENDÊH TOMATÊH—",
+    "track_number": 5,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-12T11:43:25Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2sLMYvxNmHIYNx6re1WUM2",
+       "name": "Yin Yin",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "14miHHQBXPPlt61Ax0SK2W",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2739de2f98369ae09423aafbd06"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e029de2f98369ae09423aafbd06"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048519de2f98369ae09423aafbd06"
+      }
+     ],
+     "is_playable": true,
+     "name": "Yatta!",
+     "release_date": "2026-01-23",
+     "release_date_precision": "day",
+     "total_tracks": 11,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2sLMYvxNmHIYNx6re1WUM2",
+      "name": "Yin Yin",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 271247,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "DETP62500121"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6FR6o5mqPEVRffn9Jxsnqr",
+    "is_local": false,
+    "is_playable": true,
+    "name": "In Search of Yang",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-09T19:24:37Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1ixqGowpDM21RwyJmJ7hpv",
+       "name": "Skales",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "5xJdeEZGQxF8KXVOlEQHj2",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2734a2d6cfc6ce8e573f1a0e5e1"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e024a2d6cfc6ce8e573f1a0e5e1"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048514a2d6cfc6ce8e573f1a0e5e1"
+      }
+     ],
+     "is_playable": true,
+     "name": "Man of the Year",
+     "release_date": "2015-05-18",
+     "release_date_precision": "day",
+     "total_tracks": 22,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1ixqGowpDM21RwyJmJ7hpv",
+      "name": "Skales",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 208979,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "TCACF1586386"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1agLiWjSBYSTsKZLudOunC",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Shake Body",
+    "track_number": 21,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-09T18:06:20Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5Kd7e5lauV4CDdTHm5uiJH",
+       "name": "corto.alto",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "6xQzdxhFSXzY43USc4EmJJ",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2730b8d7f2fd47c61a0bba0af60"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e020b8d7f2fd47c61a0bba0af60"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048510b8d7f2fd47c61a0bba0af60"
+      }
+     ],
+     "is_playable": true,
+     "name": "THIEF",
+     "release_date": "2026-05-12",
+     "release_date_precision": "day",
+     "total_tracks": 4,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5Kd7e5lauV4CDdTHm5uiJH",
+      "name": "corto.alto",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 182248,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBCFB2600030"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4LtWEmxk2fW2tPiTUh2YII",
+    "is_local": false,
+    "is_playable": true,
+    "name": "THIEF",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-07T19:00:17Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "3eEAELTLLkQc0PD2S2xAhN",
+       "name": "Tshegue",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "5xDLYzzH97dqGwGXjC7jtm",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27344744e51fbea956e1df4449e"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0244744e51fbea956e1df4449e"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485144744e51fbea956e1df4449e"
+      }
+     ],
+     "is_playable": true,
+     "name": "Shuffle",
+     "release_date": "2024-09-13",
+     "release_date_precision": "day",
+     "total_tracks": 3,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3eEAELTLLkQc0PD2S2xAhN",
+      "name": "Tshegue",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 140893,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "FR9W12359866"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2EYde8YgCxW4yYtzdgvN7y",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Shuffle",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-07T18:56:51Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6l5dAUNRhHnRSPPmRJSKQr",
+       "name": "Marcus Marr",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "29YdnnNdn4wYuCqz9FQqA5",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273d7ee6caf42a3d55976b5b4b2"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02d7ee6caf42a3d55976b5b4b2"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851d7ee6caf42a3d55976b5b4b2"
+      }
+     ],
+     "is_playable": true,
+     "name": "Familiar Five",
+     "release_date": "2018-01-10",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6l5dAUNRhHnRSPPmRJSKQr",
+      "name": "Marcus Marr",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 224271,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "US4GE1700075"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5Yjn9kt00mOHg8CfNqMNmc",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Familiar Five",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-07T17:37:09Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5CGnQOjeOoZW4a4FoPhUxW",
+       "name": "BCUC",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "2mxtmcQNiEczuP1trMkKg5",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273b7fff22f807bb7b24311e0e4"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02b7fff22f807bb7b24311e0e4"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851b7fff22f807bb7b24311e0e4"
+      }
+     ],
+     "is_playable": true,
+     "name": "Our Truth",
+     "release_date": "2016-11-04",
+     "release_date_precision": "day",
+     "total_tracks": 4,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5CGnQOjeOoZW4a4FoPhUxW",
+      "name": "BCUC",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 316563,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "FR9W11614929"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1N7v6NMPwwxR3q4gGK8ztR",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Yinde - Short Version",
+    "track_number": 4,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-05T21:47:03Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2sLMYvxNmHIYNx6re1WUM2",
+       "name": "Yin Yin",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "0GDAHjY8oKJKWZChGxr9Oc",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273c40fa5ace06698d62ce74b9a"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02c40fa5ace06698d62ce74b9a"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851c40fa5ace06698d62ce74b9a"
+      }
+     ],
+     "is_playable": true,
+     "name": "Haw Phin",
+     "release_date": "2020-06-18",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2sLMYvxNmHIYNx6re1WUM2",
+      "name": "Yin Yin",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 201933,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "CHA832071701"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0Lw6KTfSjNmuzMf4B0Ldoj",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Haw Phin",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-05T21:07:35Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4FKI84FE62a5BxfrKtB1HF",
+       "name": "Goblyns",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1NTS2xRjqeVm4SriQYqnrJ",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273b1f113490990f1202b1ac5ec"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02b1f113490990f1202b1ac5ec"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851b1f113490990f1202b1ac5ec"
+      }
+     ],
+     "is_playable": true,
+     "name": "This is Spaghettification",
+     "release_date": "2023-04-28",
+     "release_date_precision": "day",
+     "total_tracks": 5,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4FKI84FE62a5BxfrKtB1HF",
+      "name": "Goblyns",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 265250,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "USDY42371344"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7hcSzSCFO6kNIMhm0wqj9N",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Nebula",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-01T16:05:28Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4idG41ELGGRKuiHLc3VLc5",
+       "name": "Vanishing Twin",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "415aJSNYQzadqE4p5l51NE",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2733bdd66b6625eb058c3e47e37"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e023bdd66b6625eb058c3e47e37"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048513bdd66b6625eb058c3e47e37"
+      }
+     ],
+     "is_playable": true,
+     "name": "The Age of Immunology",
+     "release_date": "2019-06-07",
+     "release_date_precision": "day",
+     "total_tracks": 10,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4idG41ELGGRKuiHLc3VLc5",
+      "name": "Vanishing Twin",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 265292,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBCKK1956201"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2OTahVymzniNYXgXXe4diT",
+    "is_local": false,
+    "is_playable": true,
+    "name": "KRK (At Home in Strange Places)",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-08-01T15:58:18Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "69SzexVRRKFGpliMowL7ZZ",
+       "name": "Garrett David",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "2wr6LbnQrX6ebyTC89Jy6N",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2731173ff8048d73fc11655865d"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e021173ff8048d73fc11655865d"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048511173ff8048d73fc11655865d"
+      }
+     ],
+     "is_playable": true,
+     "name": "Gary's Dreamland",
+     "release_date": "2023-09-29",
+     "release_date_precision": "day",
+     "total_tracks": 4,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "69SzexVRRKFGpliMowL7ZZ",
+      "name": "Garrett David",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4ScsqhrNrPSZaDQGV5FNer",
+      "name": "Maudi",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 387138,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "UKWNJ2300122"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "796Zlc0GE1oJ1vwI8GOTIl",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Mi Casa",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-07-29T15:37:27Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6sP8BgPjledPTxx2YJkliQ",
+       "name": "240 KM/H",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "06TQLaZ38pZ7LimhVcZ6xD",
+       "name": "HUMAN ERROR",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "3nQrcW8adztcYtRg9eSLGs",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2735a91fb8232b69cc6a9fb240c"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e025a91fb8232b69cc6a9fb240c"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048515a91fb8232b69cc6a9fb240c"
+      }
+     ],
+     "is_playable": true,
+     "name": "SMOKIN'AH",
+     "release_date": "2025-11-28",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6sP8BgPjledPTxx2YJkliQ",
+      "name": "240 KM/H",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "06TQLaZ38pZ7LimhVcZ6xD",
+      "name": "HUMAN ERROR",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 266308,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "NLCK42520259"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3P7XskIXq2Fj80h3CcuMaG",
+    "is_local": false,
+    "is_playable": true,
+    "name": "SMOKIN'AH",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-07-26T09:04:25Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "78RN1WqtyKDr7K91HMGghE",
+       "name": "UN*DEUX",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1opNvoQcCR3CaNuNhFgUFO",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2737d6ec6586b8222befdda448f"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e027d6ec6586b8222befdda448f"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048517d6ec6586b8222befdda448f"
+      }
+     ],
+     "is_playable": true,
+     "name": "Upgrade Yourself",
+     "release_date": "2022-03-25",
+     "release_date_precision": "day",
+     "total_tracks": 12,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "78RN1WqtyKDr7K91HMGghE",
+      "name": "UN*DEUX",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "71iMSLZ7GvIpnYKyL5pC1o",
+      "name": "Keilimei",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 197540,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "FRPGV2100059"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "36bzGBcqcoY9NeK6W1tZ2I",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Ganapataye",
+    "track_number": 3,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-07-26T08:54:27Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0cmWgDlu9CwTgxPhf403hb",
+       "name": "Bonobo",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "0WzQlsyq2abojuavi9W9kD",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273924f44b19ee7d1f06bd009bc"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02924f44b19ee7d1f06bd009bc"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851924f44b19ee7d1f06bd009bc"
+      }
+     ],
+     "is_playable": true,
+     "name": "Me and You",
+     "release_date": "2026-06-09",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0cmWgDlu9CwTgxPhf403hb",
+      "name": "Bonobo",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 229475,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBCFB2600152"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3K3yAN6QVsLNM3tNkn8zuo",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Me and You",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-07-25T18:20:44Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2BQ03tTneAqHqm6qWjFKBU",
+       "name": "Pigeon",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "7tWb0AVdGiPIYGvJ1iC8Yq",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2734e1e9489e5111b0106e3d4d8"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e024e1e9489e5111b0106e3d4d8"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048514e1e9489e5111b0106e3d4d8"
+      }
+     ],
+     "is_playable": true,
+     "name": "OUTTANATIONAL",
+     "release_date": "2026-05-01",
+     "release_date_precision": "day",
+     "total_tracks": 10,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2BQ03tTneAqHqm6qWjFKBU",
+      "name": "Pigeon",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 336760,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBCSG2500063"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "77ea9nfDN1ayGEtMZdmBlr",
+    "is_local": false,
+    "is_playable": true,
+    "name": "NRG",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-07-25T09:03:29Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "76XmPFcaeZruNWCbMhMAE2",
+       "name": "Earthtones",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1ah0QMzlKN8IKTcKhEn0aD",
+       "name": "Oliwa",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2YsE3hlZjfr72zfQnVEEjI",
+       "name": "Numu",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1WfWKF1hFimJLzz6ix6aRi",
+       "name": "Captain Planet",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "2OLcBhTRMlrs7ulPs8NPrL",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2731e35d1db4fd383744c1e8a59"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e021e35d1db4fd383744c1e8a59"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048511e35d1db4fd383744c1e8a59"
+      }
+     ],
+     "is_playable": true,
+     "name": "Limones (Captain Planet Remix)",
+     "release_date": "2026-06-02",
+     "release_date_precision": "day",
+     "total_tracks": 2,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "76XmPFcaeZruNWCbMhMAE2",
+      "name": "Earthtones",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1ah0QMzlKN8IKTcKhEn0aD",
+      "name": "Oliwa",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2YsE3hlZjfr72zfQnVEEjI",
+      "name": "Numu",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1WfWKF1hFimJLzz6ix6aRi",
+      "name": "Captain Planet",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5z2De8UDjNsituyyJOXh8H",
+      "name": "Semblanzas del Rio Guapi",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 265141,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "USCCW1611411"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "69IXjbRnKrC4VphO0GwqIz",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Limones - Captain Planet Remix",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-07-12T00:06:18Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0FvSMtCS6UPO4dfsvFT4Vm",
+       "name": "Africa Express",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "6XOtavVWhCDQTn6o10QeUB",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2734adb05f19d4d0f088519b06a"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e024adb05f19d4d0f088519b06a"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048514adb05f19d4d0f088519b06a"
+      }
+     ],
+     "is_playable": true,
+     "name": "EGOLI",
+     "release_date": "2019-07-12",
+     "release_date_precision": "day",
+     "total_tracks": 18,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0FvSMtCS6UPO4dfsvFT4Vm",
+      "name": "Africa Express",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1y71H4hNtnHG7LeU1Y47FO",
+      "name": "Mr Jukes",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4fd3n8zcAmsG2up1QWDNj5",
+      "name": "Muzi",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2IUmEbKT6wvT8Jv7AEaMIA",
+      "name": "Mahotella Queens",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6aDX1jzNVAI9enlQzW0Pgw",
+      "name": "Moonchild Sanelly",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 193533,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "DEG931901756"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3O4Sat36FCmPW0KmbuPx5G",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Morals",
+    "track_number": 12,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-24T18:39:48Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7FpOGzPK8QgIpFOky6PnGk",
+       "name": "Sporto Kantès",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "5kFr5d7eL4xGr6S5Zd3Xex",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2736fc33b556913ee6d4ed1c2d6"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e026fc33b556913ee6d4ed1c2d6"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048516fc33b556913ee6d4ed1c2d6"
+      }
+     ],
+     "is_playable": true,
+     "name": "Act.1",
+     "release_date": "2003-07-08",
+     "release_date_precision": "day",
+     "total_tracks": 13,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7FpOGzPK8QgIpFOky6PnGk",
+      "name": "Sporto Kantès",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 293493,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "FR06S0000480"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3RHF3t0GD7N6H0N1s4FKio",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Never Trust A Guy... Who's Never Been A Punk",
+    "track_number": 9,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-23T12:50:16Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0Vv0Cc8LAnIhUsYI4d5wBg",
+       "name": "Miso Extra",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4SQKEa9QHTVXgEXWuKxaD7",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2737a32af069ebaeb8d48dd919a"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e027a32af069ebaeb8d48dd919a"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048517a32af069ebaeb8d48dd919a"
+      }
+     ],
+     "is_playable": true,
+     "name": "1013",
+     "release_date": "2021-09-21",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0Vv0Cc8LAnIhUsYI4d5wBg",
+      "name": "Miso Extra",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 154833,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBLVL1900243"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3oyBAaIYPangSdBZKzR4oh",
+    "is_local": false,
+    "is_playable": true,
+    "name": "1013",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-23T12:30:34Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6jP9Z7o6WlbYvKUOeO5SbP",
+       "name": "Goat",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "2zwO3ZFEs3woCJKebk8rln",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2739a817acd8a008a5bf6fe3328"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e029a817acd8a008a5bf6fe3328"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048519a817acd8a008a5bf6fe3328"
+      }
+     ],
+     "is_playable": true,
+     "name": "World Music",
+     "release_date": "2012-08-20",
+     "release_date_precision": "day",
+     "total_tracks": 9,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6jP9Z7o6WlbYvKUOeO5SbP",
+      "name": "Goat",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 142480,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "GBHLW1210694"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "38xEgHRR8wRyvTZ1YSZpvM",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Run To Your Mama",
+    "track_number": 7,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-23T12:28:18Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1hOq1XeQ3Zj7rX0jfzusmb",
+       "name": "Red Astaire",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "7v6BA3ieH8ObGhaYxpGNJI",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273307b138f366df5e9c9192056"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02307b138f366df5e9c9192056"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851307b138f366df5e9c9192056"
+      }
+     ],
+     "is_playable": true,
+     "name": "Nuggets for the Needy",
+     "release_date": "2007",
+     "release_date_precision": "year",
+     "total_tracks": 16,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1hOq1XeQ3Zj7rX0jfzusmb",
+      "name": "Red Astaire",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 289973,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "USQGN0910020"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "49ib2aR6sI5vzTBfSRR8yd",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Rollin' Stone",
+    "track_number": 5,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-20T00:54:39Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7m6dhfApYjqOgLWODJt2m5",
+       "name": "LOS HERMANOS",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "7E2TkfHfw5TqeIxykd4PWK",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2736ff1e78c3a91614f3d23c1ca"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e026ff1e78c3a91614f3d23c1ca"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048516ff1e78c3a91614f3d23c1ca"
+      }
+     ],
+     "is_playable": true,
+     "name": "On Another Level",
+     "release_date": "2005",
+     "release_date_precision": "year",
+     "total_tracks": 15,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7m6dhfApYjqOgLWODJt2m5",
+      "name": "LOS HERMANOS",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 398013,
+    "explicit": false,
+    "external_ids": {
+     "isrc": "USGUM0710006"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2VF9PsqfowQq4UncQcha7U",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Queztal",
+    "track_number": 6,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-14T15:45:02Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2Sr0UVpJdu6joEkH10koQ9",
+       "name": "Harry Nathan",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "6CfavdYa8zjgVuOF4f1Nvm",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27362dbb913ce4a175bdd9b41a1"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0262dbb913ce4a175bdd9b41a1"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485162dbb913ce4a175bdd9b41a1"
+      }
+     ],
+     "is_playable": true,
+     "name": "Sweet Release",
+     "release_date": "2020-04-08",
+     "release_date_precision": "day",
+     "total_tracks": 4,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2Sr0UVpJdu6joEkH10koQ9",
+      "name": "Harry Nathan",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6nN9lW8mZaMGCTv9FW91uu",
+      "name": "you",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 199993,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "GBKPL2089887"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5N6BhjTwtWa4keibdHs45q",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Harriet Tubman?",
+    "track_number": 3,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-13T19:32:14Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1q4618qKswelCGLoanFKQh",
+       "name": "Joey Valence & Brae",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4QzLpl3oZx1P1BnhvkkAYW",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273d61bcbfe780790ca9f4c5dfe"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02d61bcbfe780790ca9f4c5dfe"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851d61bcbfe780790ca9f4c5dfe"
+      }
+     ],
+     "is_playable": true,
+     "name": "HYPERYOUTH",
+     "release_date": "2025-08-15",
+     "release_date_precision": "day",
+     "total_tracks": 14,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1q4618qKswelCGLoanFKQh",
+      "name": "Joey Valence & Brae",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 297360,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "USRC12501315"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0BLAbNPYQspTAF7mKmS4Kb",
+    "is_local": false,
+    "is_playable": true,
+    "name": "DISCO TOMORROW",
+    "track_number": 14,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-13T18:09:02Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1ZVACPeq7ccGCoUXwtafUU",
+       "name": "KNEECAP",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "6Wt3uI8G0yhXSvC0jAl9Cg",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273385bd4740ec9be7ec79d6851"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02385bd4740ec9be7ec79d6851"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851385bd4740ec9be7ec79d6851"
+      }
+     ],
+     "is_playable": true,
+     "name": "Fine Art",
+     "release_date": "2024-06-14",
+     "release_date_precision": "day",
+     "total_tracks": 18,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1ZVACPeq7ccGCoUXwtafUU",
+      "name": "KNEECAP",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 139283,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "GBPVV2300664"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3RFpr9aR7pBAFJ1XQnuThq",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Fine Art",
+    "track_number": 2,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-13T17:56:57Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1ZVACPeq7ccGCoUXwtafUU",
+       "name": "KNEECAP",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1l62iJnLdPwKmhymytu6zT",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2736f15d246cee858014675c75c"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e026f15d246cee858014675c75c"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048516f15d246cee858014675c75c"
+      }
+     ],
+     "is_playable": true,
+     "name": "Thart Agus Thart",
+     "release_date": "2021-10-22",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1ZVACPeq7ccGCoUXwtafUU",
+      "name": "KNEECAP",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 133740,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "QZNWU2153584"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3IFjCG1QB5a6GsSNqIAR2o",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Thart Agus Thart",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-13T17:55:26Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1ZVACPeq7ccGCoUXwtafUU",
+       "name": "KNEECAP",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "5jMW8JRRvthPDR7qQLNMqb",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273135dd6564c51533cfaec3eaa"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02135dd6564c51533cfaec3eaa"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851135dd6564c51533cfaec3eaa"
+      }
+     ],
+     "is_playable": true,
+     "name": "No Comment",
+     "release_date": "2025-11-18",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1ZVACPeq7ccGCoUXwtafUU",
+      "name": "KNEECAP",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0QaSiI5TLA4N7mcsdxShDO",
+      "name": "Sub Focus",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 124137,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "GBPVV2500074"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3VkA16jPKWOs7BIU5AWjyb",
+    "is_local": false,
+    "is_playable": true,
+    "name": "No Comment",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-12T15:15:15Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4OTD2AbOu5iBqSWk3NfwG5",
+       "name": "Getdown Services",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "4V4EexnVzsOU4nPFvfst23",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27356e0d11ec60439f79a39e731"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0256e0d11ec60439f79a39e731"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485156e0d11ec60439f79a39e731"
+      }
+     ],
+     "is_playable": true,
+     "name": "Dog Dribble",
+     "release_date": "2024-11-01",
+     "release_date_precision": "day",
+     "total_tracks": 2,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4OTD2AbOu5iBqSWk3NfwG5",
+      "name": "Getdown Services",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 255000,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "GXED32400005"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6skfouZ5bFFU3vxWaBla3B",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Dog Dribble",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-12T13:16:25Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0otAqZw8htTsGHfqR491Yh",
+       "name": "Sleaford Mods",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4k1ELeJKT1ISyDv8JivPpB",
+       "name": "The Prodigy",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "6DrgOf29JN39Qgg26erY75",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273066021caa0f85c2a91b3e052"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02066021caa0f85c2a91b3e052"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851066021caa0f85c2a91b3e052"
+      }
+     ],
+     "is_playable": true,
+     "name": "Elitest G.O.A.T. (The Prodigy Acid Thunder Mix)",
+     "release_date": "2026-04-08",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0otAqZw8htTsGHfqR491Yh",
+      "name": "Sleaford Mods",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4k1ELeJKT1ISyDv8JivPpB",
+      "name": "The Prodigy",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3lmR0qMiGuoIF9UC54egcG",
+      "name": "Aldous Harding",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 270289,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "GBCVZ2600014"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0mLrJsaUVhW5iPq59L4otG",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Elitest G.O.A.T. - The Prodigy Acid Thunder Mix",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-12T09:05:31Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4OTD2AbOu5iBqSWk3NfwG5",
+       "name": "Getdown Services",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "3bVyAHsbBLE7QetQnl0EE9",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27397317b4f3528472fc71d522a"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0297317b4f3528472fc71d522a"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485197317b4f3528472fc71d522a"
+      }
+     ],
+     "is_playable": true,
+     "name": "Crumbs 2",
+     "release_date": "2025-11-05",
+     "release_date_precision": "day",
+     "total_tracks": 8,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4OTD2AbOu5iBqSWk3NfwG5",
+      "name": "Getdown Services",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 107000,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "GXED32500080"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "27uWMEs9zo3Yc2ZfgNvRKR",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Don't Cheese Me Off",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-12T09:03:19Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4OTD2AbOu5iBqSWk3NfwG5",
+       "name": "Getdown Services",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "2S6TrWfjwEl2a47o5TMtqi",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2737a557f122c6c05e424c15b20"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e027a557f122c6c05e424c15b20"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048517a557f122c6c05e424c15b20"
+      }
+     ],
+     "is_playable": true,
+     "name": "Eat Quiche, Sleep, Repeat",
+     "release_date": "2025-04-29",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4OTD2AbOu5iBqSWk3NfwG5",
+      "name": "Getdown Services",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 233500,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "GXED32500028"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7fDiApidJ0QXtwH8cvozlj",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Eat Quiche, Sleep, Repeat",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-11T18:13:52Z",
+   "track": {
+    "album": {
+     "album_type": "single",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1ZVACPeq7ccGCoUXwtafUU",
+       "name": "KNEECAP",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "1RP7NjlhAXn6fZIrOyg8BL",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2737c38d08447b183eeec238de4"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e027c38d08447b183eeec238de4"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048517c38d08447b183eeec238de4"
+      }
+     ],
+     "is_playable": true,
+     "name": "Guilty Conscience",
+     "release_date": "2021-10-14",
+     "release_date_precision": "day",
+     "total_tracks": 1,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1ZVACPeq7ccGCoUXwtafUU",
+      "name": "KNEECAP",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 173793,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "QZNWS2159991"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "559wXxr2rb04rn7t3M3HPx",
+    "is_local": false,
+    "is_playable": true,
+    "name": "Guilty Conscience",
+    "track_number": 1,
+    "type": "track",
+    "uri": "REDACTED"
+   }
+  },
+  {
+   "added_at": "2026-06-10T13:29:07Z",
+   "track": {
+    "album": {
+     "album_type": "album",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4E2rKHVDssGJm2SCDOMMJB",
+       "name": "Doechii",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "href": "REDACTED",
+     "id": "60UzB8mOCMpc7xkuJE6Bwc",
+     "images": [
+      {
+       "height": 640,
+       "width": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273b245099fe26319344ddf6054"
+      },
+      {
+       "height": 300,
+       "width": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02b245099fe26319344ddf6054"
+      },
+      {
+       "height": 64,
+       "width": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851b245099fe26319344ddf6054"
+      }
+     ],
+     "is_playable": true,
+     "name": "Alligator Bites Never Heal",
+     "release_date": "2024-08-30",
+     "release_date_precision": "day",
+     "total_tracks": 19,
+     "type": "album",
+     "uri": "REDACTED"
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4E2rKHVDssGJm2SCDOMMJB",
+      "name": "Doechii",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "duration_ms": 159586,
+    "explicit": true,
+    "external_ids": {
+     "isrc": "USUG12405664"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1eTaznNW4Xxtx9za2SMTXB",
+    "is_local": false,
+    "is_playable": true,
+    "name": "DENIAL IS A RIVER",
+    "track_number": 4,
+    "type": "track",
+    "uri": "REDACTED"
    }
   }
- ]
+ ],
+ "limit": 50,
+ "next": "https://api.spotify.com/v1/me/tracks?offset=50&limit=50&locale=*",
+ "offset": 0,
+ "previous": null,
+ "total": 3036
 }

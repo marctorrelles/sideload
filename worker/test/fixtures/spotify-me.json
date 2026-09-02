@@ -1,10 +1,18 @@
 {
- "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
- "country": "ES",
+ "_recorded": "2026-09-02 with worker/scripts/spike-spotify.ts; identity fields redacted, owner ids replaced",
+ "account_id": "xyqFqIQNjs",
  "display_name": "REDACTED",
  "email": "REDACTED",
- "id": "REDACTED",
- "product": "premium",
+ "external_urls": {
+  "spotify": "REDACTED"
+ },
+ "followers": {
+  "href": null,
+  "total": 36
+ },
+ "href": "REDACTED",
+ "id": "me",
+ "images": [],
  "type": "user",
- "uri": "spotify:user:REDACTED"
+ "uri": "REDACTED"
 }

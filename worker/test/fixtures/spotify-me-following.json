@@ -1,29 +1,796 @@
 {
- "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "_recorded": "2026-09-02 with worker/scripts/spike-spotify.ts; identity fields redacted, owner ids replaced",
  "artists": {
-  "href": "https://api.spotify.com/v1/me/following?type=artist&limit=50",
+  "href": "REDACTED",
   "limit": 50,
   "next": null,
   "cursors": {
    "after": null
   },
-  "total": 2,
+  "total": 29,
   "items": [
    {
-    "id": "7N2Dop7RtbEPApP5ocuAQm",
-    "name": "Aphex Twin",
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2wPDbhaGXCqROrVmwDdCrK",
     "images": [
      {
-      "url": "https://i.scdn.co/image/c"
+      "url": "https://i.scdn.co/image/ab6761610000e5eb479c5d1829178f3c53a7e5e9",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174479c5d1829178f3c53a7e5e9",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178479c5d1829178f3c53a7e5e9",
+      "height": 160,
+      "width": 160
      }
     ],
-    "type": "artist"
+    "name": "Oneohtrix Point Never",
+    "type": "artist",
+    "uri": "REDACTED"
    },
    {
-    "id": "XTFm8tYonVs7ElnzP6jyn8",
-    "name": "Boards of Canada",
-    "images": [],
-    "type": "artist"
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5zJUDjV6daKYTo1H7OoFAY",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebe3c12dd0502ae4b1669746ae",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174e3c12dd0502ae4b1669746ae",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178e3c12dd0502ae4b1669746ae",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Zora Jones",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2rgFqpsqtoEJGOr0JzFxtG",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb5c2a113a704e1dd5ca7cfdc7",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab676161000051745c2a113a704e1dd5ca7cfdc7",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f1785c2a113a704e1dd5ca7cfdc7",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Montee",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3eReTIjhrje1sk2hFQgwhI",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebdcb59236df2e567efaae10bf",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174dcb59236df2e567efaae10bf",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178dcb59236df2e567efaae10bf",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Carlos Ares",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4OTD2AbOu5iBqSWk3NfwG5",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb765b0ea4fd7e0629bff44cd2",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174765b0ea4fd7e0629bff44cd2",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178765b0ea4fd7e0629bff44cd2",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Getdown Services",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1q4618qKswelCGLoanFKQh",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebb36775ce5aa573ca9b33859f",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174b36775ce5aa573ca9b33859f",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178b36775ce5aa573ca9b33859f",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Joey Valence & Brae",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1ZVACPeq7ccGCoUXwtafUU",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb89e7c69a7d827bcede0f4bad",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000517489e7c69a7d827bcede0f4bad",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f17889e7c69a7d827bcede0f4bad",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "KNEECAP",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7cCi9XoRu8Y1SyJ9c94fhc",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebec027dfac530dfcb741154fd",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174ec027dfac530dfcb741154fd",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178ec027dfac530dfcb741154fd",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Working Men's Club",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5BRAUN0yN8557PLRZIr02W",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb74f17b856692fa4d1ed38a06",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000517474f17b856692fa4d1ed38a06",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f17874f17b856692fa4d1ed38a06",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Ezra Collective",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3OsRAKCvk37zwYcnzRf5XF",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb51998989b51d8bda6a7486f2",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000517451998989b51d8bda6a7486f2",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f17851998989b51d8bda6a7486f2",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Moby",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7aneT6uyunFAB2UMtUQ6Iu",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb0106da751bb078f32b8a3eed",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab676161000051740106da751bb078f32b8a3eed",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f1780106da751bb078f32b8a3eed",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Blende",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3nAumcukmBxn8y7Su8RagW",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebf294f387681ad86888516b78",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174f294f387681ad86888516b78",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178f294f387681ad86888516b78",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Aquarium",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2GSXsSy3YzWsp4BXfSGucS",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb388ee1d5dc07be1c7a60c66a",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174388ee1d5dc07be1c7a60c66a",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178388ee1d5dc07be1c7a60c66a",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Baiuca",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2bHlsPAFomlKfBno7KQP9f",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab67616d0000b273ba65d58d553d7a4d0cafb109",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616d00001e02ba65d58d553d7a4d0cafb109",
+      "height": 300,
+      "width": 300
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616d00004851ba65d58d553d7a4d0cafb109",
+      "height": 64,
+      "width": 64
+     }
+    ],
+    "name": "Juan Antonio Canta",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4AMFwj85joZJusmm6uK6AW",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebe891f2e97db0c29594c38ec5",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174e891f2e97db0c29594c38ec5",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178e891f2e97db0c29594c38ec5",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "BERNARDA",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6mopaAcodk04EGM8lJ2AnW",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebcc02fae236268405382a1b4f",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174cc02fae236268405382a1b4f",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178cc02fae236268405382a1b4f",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Ciutat",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4ZG4S6skttdVhHz08AjMhR",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebc1bdf2d05ce8043d65a7841b",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174c1bdf2d05ce8043d65a7841b",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178c1bdf2d05ce8043d65a7841b",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Marina Herlop",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2JYMUWD8r1jFFjD1V3WcCX",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebfeb2e1d567fc220aae7fd76c",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174feb2e1d567fc220aae7fd76c",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178feb2e1d567fc220aae7fd76c",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "LA Priest",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0BwjxWHTct80Qp5Xk7pxZj",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb3232d0f3bf7ca8a2538866e2",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab676161000051743232d0f3bf7ca8a2538866e2",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f1783232d0f3bf7ca8a2538866e2",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Miguel Poveda",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1Ix5ads4niaRP9TnT08gqI",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb7d4c90ab02da67cef3af8969",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab676161000051747d4c90ab02da67cef3af8969",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f1787d4c90ab02da67cef3af8969",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Israel Fernández",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1KML3dPprByep3tRnYSJDj",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb01e3df05da02803c1f9f8d76",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000517401e3df05da02803c1f9f8d76",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f17801e3df05da02803c1f9f8d76",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Rose Ringed",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2YNwQC3xynl1m1fK4tr8Gj",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab67616d0000b27395b1b21e15ef3e0b872ec834",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616d00001e0295b1b21e15ef3e0b872ec834",
+      "height": 300,
+      "width": 300
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616d0000485195b1b21e15ef3e0b872ec834",
+      "height": 64,
+      "width": 64
+     }
+    ],
+    "name": "DeBear",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4leH37QH7NYQAAGmeRPnZC",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb42464ec0c610ca091c8d19d5",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000517442464ec0c610ca091c8d19d5",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f17842464ec0c610ca091c8d19d5",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Fabian Krooss",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "43QchWzol8d0uyKcpTZj0y",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb56ccca3480e3b9339397c3fe",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000517456ccca3480e3b9339397c3fe",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f17856ccca3480e3b9339397c3fe",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Xenia Beliayeva",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "47voWJIemuwrd97myov8rs",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb3cf5a54939487517018c58cb",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab676161000051743cf5a54939487517018c58cb",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f1783cf5a54939487517018c58cb",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "trndmsk",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4pAYkltTzVhqBZuDekCHa3",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb122135e81ccdccd727b34d26",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174122135e81ccdccd727b34d26",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178122135e81ccdccd727b34d26",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Deep Forest",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7su1fG75ZwXHA6ei9Zcy7T",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb3d8491154d3aa2543b20344e",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab676161000051743d8491154d3aa2543b20344e",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f1783d8491154d3aa2543b20344e",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Stavroz",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2mLA48B366zkELXYx7hcDN",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebffbd43b1e54eb09a8c824f53",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab67616100005174ffbd43b1e54eb09a8c824f53",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f178ffbd43b1e54eb09a8c824f53",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Peggy Gou",
+    "type": "artist",
+    "uri": "REDACTED"
+   },
+   {
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5Owm9QgL9BSCRQKTX6T08G",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/ab6761610000e5eb85b7dd9e01618c680d32a5d2",
+      "height": 640,
+      "width": 640
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000517485b7dd9e01618c680d32a5d2",
+      "height": 320,
+      "width": 320
+     },
+     {
+      "url": "https://i.scdn.co/image/ab6761610000f17885b7dd9e01618c680d32a5d2",
+      "height": 160,
+      "width": 160
+     }
+    ],
+    "name": "Red Axes",
+    "type": "artist",
+    "uri": "REDACTED"
    }
   ]
  }

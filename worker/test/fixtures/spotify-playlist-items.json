@@ -1,202 +1,4824 @@
 {
- "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
- "href": "https://api.spotify.com/v1/playlists/x/items?offset=0&limit=50&additional_types=track,episode",
- "limit": 50,
- "next": null,
- "offset": 0,
- "previous": null,
- "total": 6,
+ "_recorded": "2026-09-02 with worker/scripts/spike-spotify.ts; identity fields redacted, owner ids replaced",
+ "href": "REDACTED",
  "items": [
   {
-   "added_at": "2024-03-01T10:00:00Z",
+   "added_at": "2024-11-07T11:13:59Z",
    "added_by": {
-    "id": "REDACTED",
-    "type": "user"
+    "id": "REDACTED"
    },
    "is_local": false,
+   "primary_color": null,
    "item": {
-    "album": {
-     "id": "ujOeHwdFcAefAZhnM6Jy8c",
-     "name": "Selected Ambient Works 85-92",
-     "images": [
-      {
-       "url": "https://i.scdn.co/image/x",
-       "height": 640,
-       "width": 640
-      }
-     ],
-     "album_type": "album"
-    },
-    "artists": [
-     {
-      "id": "1rihtYlKNxHddmQAtKCsXR",
-      "name": "Aphex Twin",
-      "type": "artist"
-     }
-    ],
-    "duration_ms": 293000,
+    "is_playable": true,
     "explicit": false,
-    "id": "pJG2Tr8hzUjEcPVJ2tRKJC",
-    "name": "Xtal",
     "type": "track",
-    "is_local": false,
-    "uri": "spotify:track:x"
-   }
-  },
-  {
-   "added_at": "2024-03-01T10:00:00Z",
-   "added_by": {
-    "id": "REDACTED",
-    "type": "user"
-   },
-   "is_local": false,
-   "item": {
+    "episode": false,
+    "track": true,
     "album": {
-     "id": "06DPdRO9YrxPbCkhdVipy2",
-     "name": "Selected Ambient Works 85-92",
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "0bs6BiBkRGI2issxUrBMsy",
      "images": [
       {
-       "url": "https://i.scdn.co/image/x",
        "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2734fc83d86a085106cca53a1e3",
        "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e024fc83d86a085106cca53a1e3",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048514fc83d86a085106cca53a1e3",
+       "width": 64
       }
      ],
-     "album_type": "album"
+     "name": "Tu Tak Tu Tak Tutiyan (Elado's Gulab Jamum Rework)",
+     "release_date": "2023-09-29",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5KFEhzBYzfSOOWM6wpBSfK",
+       "name": "Nadeem Khan",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6tOqXU5tewaxqFtYCw9NlI",
+       "name": "Elado",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
     },
     "artists": [
      {
-      "id": "eBI2Y1rzw27jkooEKqazwJ",
-      "name": "Aphex Twin",
-      "type": "artist"
-     }
-    ],
-    "duration_ms": 322000,
-    "explicit": false,
-    "id": "7QFMPd3W2XyygNdemkvdaj",
-    "name": "Ageispolis",
-    "type": "track",
-    "is_local": false,
-    "uri": "spotify:track:x"
-   }
-  },
-  {
-   "added_at": "2024-03-01T10:00:00Z",
-   "added_by": {
-    "id": "REDACTED",
-    "type": "user"
-   },
-   "is_local": false,
-   "item": {
-    "album": {
-     "id": "gwb2Mjpvwh09CDfgvqZkb6",
-     "name": "Mezzanine",
-     "images": [
-      {
-       "url": "https://i.scdn.co/image/x",
-       "height": 640,
-       "width": 640
-      }
-     ],
-     "album_type": "album"
-    },
-    "artists": [
-     {
-      "id": "GjHbG81RqwkVHWunY90XYT",
-      "name": "Massive Attack",
-      "type": "artist"
-     }
-    ],
-    "duration_ms": 331000,
-    "explicit": false,
-    "id": "oGwbbrqQ7B697wnommM30D",
-    "name": "Teardrop",
-    "type": "track",
-    "is_local": false,
-    "uri": "spotify:track:x"
-   }
-  },
-  {
-   "added_at": "2024-03-01T10:00:00Z",
-   "added_by": {
-    "id": "REDACTED",
-    "type": "user"
-   },
-   "is_local": false,
-   "item": {
-    "album": {
-     "id": "OXfO4WUDlWuX8yy6Skhj4Y",
-     "name": "DeB\u00cd TiRAR M\u00e1S FOToS",
-     "images": [
-      {
-       "url": "https://i.scdn.co/image/x",
-       "height": 640,
-       "width": 640
-      }
-     ],
-     "album_type": "album"
-    },
-    "artists": [
-     {
-      "id": "jZ8OvIia8OG5A2ZnpsoKqz",
-      "name": "Bad Bunny",
-      "type": "artist"
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5KFEhzBYzfSOOWM6wpBSfK",
+      "name": "Nadeem Khan",
+      "type": "artist",
+      "uri": "REDACTED"
      },
      {
-      "id": "i4vCK4A4FGGbBlaXkDSIuG",
-      "name": "X",
-      "type": "artist"
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6tOqXU5tewaxqFtYCw9NlI",
+      "name": "Elado",
+      "type": "artist",
+      "uri": "REDACTED"
      }
     ],
-    "duration_ms": 218000,
-    "explicit": false,
-    "id": "IWgIprVFIV4BLFFQCHD6R2",
-    "name": "DtMF (feat. X)",
-    "type": "track",
-    "is_local": false,
-    "uri": "spotify:track:x"
-   }
-  },
-  {
-   "added_at": "2024-03-01T10:00:00Z",
-   "added_by": {
-    "id": "REDACTED",
-    "type": "user"
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 247647,
+    "external_ids": {
+     "isrc": "QMXZD1100628"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5mhyXRdaxcfSZS6RgghJom",
+    "name": "Tu Tak Tu Tak Tutiyan - Elado’s Gulab Jamun Rework",
+    "uri": "REDACTED",
+    "is_local": false
    },
-   "is_local": true,
-   "item": {
-    "album": null,
-    "artists": [
-     {
-      "id": "6qI60ihBeoePW3jSOi27n7",
-      "name": "me",
-      "type": "artist"
-     }
-    ],
-    "duration_ms": 120000,
-    "explicit": false,
-    "id": "yE9ZkAFvmtSbIBbuMFd9W8",
-    "name": "demo_v3.mp3",
-    "type": "track",
-    "is_local": true,
-    "uri": "spotify:track:x"
+   "video_thumbnail": {
+    "url": null
    }
   },
   {
-   "added_at": "2024-03-01T10:00:00Z",
+   "added_at": "2024-11-07T11:15:40Z",
    "added_by": {
-    "id": "REDACTED",
-    "type": "user"
+    "id": "REDACTED"
    },
    "is_local": false,
+   "primary_color": null,
    "item": {
-    "duration_ms": 3600000,
+    "is_playable": true,
     "explicit": false,
-    "id": "gqcWqiA4Yqj4JRfdQAe6NX",
-    "name": "Episode 12",
-    "type": "episode",
-    "is_local": false,
-    "uri": "spotify:track:x"
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "4tCoNllirh8aoWANFgy32K",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2730f3cb496c7d40da406f41d4c",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e020f3cb496c7d40da406f41d4c",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048510f3cb496c7d40da406f41d4c",
+       "width": 64
+      }
+     ],
+     "name": "Freed from Desire",
+     "release_date": "1996-08-09",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "3OqTvcWgb0xaainosGVvuZ",
+       "name": "Gala",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3OqTvcWgb0xaainosGVvuZ",
+      "name": "Gala",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6PozOimyS8a9OxMddMSBCf",
+      "name": "Molella",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2yUcByiqLsQiJgGKIn1xeb",
+      "name": "Phil Jay",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 258359,
+    "external_ids": {
+     "isrc": "ITA179600049"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2kjo7l14PikJ88qMP0nPv8",
+    "name": "Freed from Desire (Full Vocals Mixx)",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:27:09Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "0Xks5v0dve8Gh2tRHIekjo",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273f9ef39657ba18c612641ee6d",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02f9ef39657ba18c612641ee6d",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851f9ef39657ba18c612641ee6d",
+       "width": 64
+      }
+     ],
+     "name": "Before the Storm, Special Edition",
+     "release_date": "2001-01-01",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0LhHRmSd1EYM5QdNeNnCoQ",
+       "name": "Darude",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 20
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0LhHRmSd1EYM5QdNeNnCoQ",
+      "name": "Darude",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 4,
+    "duration_ms": 225493,
+    "external_ids": {
+     "isrc": "FISGC9900001"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6Sy9BUbgFse0n0LPA5lwy5",
+    "name": "Sandstorm",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:27:58Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "2xpjgSvZVYjzdlWxeAJFy8",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273f454aa96e81265bc61b8d4ed",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02f454aa96e81265bc61b8d4ed",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851f454aa96e81265bc61b8d4ed",
+       "width": 64
+      }
+     ],
+     "name": "Show Me Love",
+     "release_date": "1993",
+     "release_date_precision": "year",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2WvLeseDGPX1slhmxI59G3",
+       "name": "Robin S",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 14
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2WvLeseDGPX1slhmxI59G3",
+      "name": "Robin S",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 252106,
+    "external_ids": {
+     "isrc": "USAT29300075"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4t0UsYzmmmZRMTWn77jiGF",
+    "name": "Show Me Love",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:33:11Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "6iHuSGy6pq4tNGFV3ZVPtl",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273408739ba1ad5bccbfeda5ae1",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02408739ba1ad5bccbfeda5ae1",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851408739ba1ad5bccbfeda5ae1",
+       "width": 64
+      }
+     ],
+     "name": "Substance",
+     "release_date": "1987-08-17",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0yNLKJebCb8Aueb54LYya3",
+       "name": "New Order",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 24
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0yNLKJebCb8Aueb54LYya3",
+      "name": "New Order",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 4,
+    "duration_ms": 449160,
+    "external_ids": {
+     "isrc": "GBAAP0001115"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6hHc7Pks7wtBIW8Z6A0iFq",
+    "name": "Blue Monday",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:39:29Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "4WzTXHp8bVKkKNu3UQ2Fqu",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2735d6121285c42ea4535e59048",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e025d6121285c42ea4535e59048",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048515d6121285c42ea4535e59048",
+       "width": 64
+      }
+     ],
+     "name": "Fever",
+     "release_date": "2002-11-19",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4RVnAU35WRWra6OZ3CbbMA",
+       "name": "Kylie Minogue",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 19
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4RVnAU35WRWra6OZ3CbbMA",
+      "name": "Kylie Minogue",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 3,
+    "duration_ms": 230640,
+    "external_ids": {
+     "isrc": "GBAYE0100913"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3E7ZwUMJFqpsDOJzEkBrQ7",
+    "name": "Can't Get You out of My Head",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:46:47Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "61hGQNFwmqGHXm5eeMkd4d",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27395c70cc04573417548b47199",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0295c70cc04573417548b47199",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485195c70cc04573417548b47199",
+       "width": 64
+      }
+     ],
+     "name": "L'Amour Toujours",
+     "release_date": "2001-05-23",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1OAjDaKgg00KCUYqDe68un",
+       "name": "GIGI D'AGOSTINO",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1OAjDaKgg00KCUYqDe68un",
+      "name": "GIGI D'AGOSTINO",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 242053,
+    "external_ids": {
+     "isrc": "NLS241000174"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "52LJ3hyknOijCrE5gCD0rE",
+    "name": "L'Amour Toujours",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:47:12Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "7iLuHJkrb9KHPkMgddYigh",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273aa22899360d8ba6704732dec",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02aa22899360d8ba6704732dec",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851aa22899360d8ba6704732dec",
+       "width": 64
+      }
+     ],
+     "name": "Voulez-Vous",
+     "release_date": "1979",
+     "release_date_precision": "year",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0LcJLqbBmaGUft1e9Mm8HV",
+       "name": "ABBA",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 13
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0LcJLqbBmaGUft1e9Mm8HV",
+      "name": "ABBA",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 13,
+    "duration_ms": 292613,
+    "external_ids": {
+     "isrc": "SEAYD7901120"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3vkQ5DAB1qQMYO4Mr9zJN6",
+    "name": "Gimme! Gimme! Gimme! (A Man After Midnight)",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:53:56Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "5UwIyIyFzkM7wKeGtRJPgB",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273fda5556cb6981c3113df6175",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02fda5556cb6981c3113df6175",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851fda5556cb6981c3113df6175",
+       "width": 64
+      }
+     ],
+     "name": "The Sign",
+     "release_date": "1993-12-24",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5ksRONqssB7BR161NTtJAm",
+       "name": "Ace of Base",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 13
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5ksRONqssB7BR161NTtJAm",
+      "name": "Ace of Base",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 211213,
+    "external_ids": {
+     "isrc": "SEVJH0803401"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6kWJvPfC4DgUpRsXKNa9z9",
+    "name": "All That She Wants",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:54:57Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "2CKPXtlwXJ38lXODJJwN9v",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273d48e2a695cb58a520c78581c",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02d48e2a695cb58a520c78581c",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851d48e2a695cb58a520c78581c",
+       "width": 64
+      }
+     ],
+     "name": "Rasputin - Lover Of The Russian Queen",
+     "release_date": "2021-05-14",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "54R6Y0I7jGUCveDTtI21nb",
+       "name": "Boney M.",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 14
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "54R6Y0I7jGUCveDTtI21nb",
+      "name": "Boney M.",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 208640,
+    "external_ids": {
+     "isrc": "DEC737600002"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2Pdf0RyQ6z3XidS1opzZBC",
+    "name": "Daddy Cool",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-07T15:55:17Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "5pmFI5q0ob82elppBCel0W",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273fc7ce3acfa2e8c2479bcf621",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02fc7ce3acfa2e8c2479bcf621",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851fc7ce3acfa2e8c2479bcf621",
+       "width": 64
+      }
+     ],
+     "name": "The Ringmaster",
+     "release_date": "2020-10-09",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "3MyFDtqB80WZvbtCZRsekM",
+       "name": "Bakermat",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 10
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3MyFDtqB80WZvbtCZRsekM",
+      "name": "Bakermat",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 4,
+    "duration_ms": 180842,
+    "external_ids": {
+     "isrc": "NLE801900440"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "780be5fB7823aHG06mwTat",
+    "name": "Baianá",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T17:46:16Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "13nZY4NP0qPSPnvGfnIbEt",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273544e5b9c9cc975b059072ab9",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02544e5b9c9cc975b059072ab9",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851544e5b9c9cc975b059072ab9",
+       "width": 64
+      }
+     ],
+     "name": "Pedro & Nina",
+     "release_date": "2021-02-18",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5Uy8Skuxzxf38jMDTndKIU",
+       "name": "Populous",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1jytK5ClI5ABX2Zgd7HQ54",
+       "name": "Protopapa",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 2
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1jytK5ClI5ABX2Zgd7HQ54",
+      "name": "Protopapa",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5Uy8Skuxzxf38jMDTndKIU",
+      "name": "Populous",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 277595,
+    "external_ids": {
+     "isrc": "DECY52100185"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0mTJRVA2tIUipQvhimswhi",
+    "name": "Nina - Populous Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T17:50:57Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "7cKK6BSZIUthRgPe8NSfFW",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27352ef923e78ff0d7f7140a83f",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0252ef923e78ff0d7f7140a83f",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485152ef923e78ff0d7f7140a83f",
+       "width": 64
+      }
+     ],
+     "name": "Mangüeiro",
+     "release_date": "2019-03-08",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2GSXsSy3YzWsp4BXfSGucS",
+       "name": "Baiuca",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2GSXsSy3YzWsp4BXfSGucS",
+      "name": "Baiuca",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7snXGTX2QLVH8buiuH8t2L",
+      "name": "Aliboria",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 288308,
+    "external_ids": {
+     "isrc": "ES71G1904645"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4M1PEj1XAR5S1hJBUUDE23",
+    "name": "Mangüeiro",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T17:52:28Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "2rQLjfLvGU79IAD4eRBNhL",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273e5e55cb112d55ddbe6bf9efd",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02e5e55cb112d55ddbe6bf9efd",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851e5e55cb112d55ddbe6bf9efd",
+       "width": 64
+      }
+     ],
+     "name": "Thonga Lami (Gaudi Remix)",
+     "release_date": "2023-11-15",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5CGnQOjeOoZW4a4FoPhUxW",
+       "name": "BCUC",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4VPauFDuyMnoakRnCPmcgP",
+       "name": "Gaudi",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5CGnQOjeOoZW4a4FoPhUxW",
+      "name": "BCUC",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4VPauFDuyMnoakRnCPmcgP",
+      "name": "Gaudi",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 351124,
+    "external_ids": {
+     "isrc": "DEG932304298"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5GR8F9LBYWOLbSe5eBTP5Y",
+    "name": "Thonga Lami - Gaudi Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T17:59:41Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "43o3usULjp3ZJFwZkfRvoN",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273ba8f7d2a1bbb322c00f937bb",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02ba8f7d2a1bbb322c00f937bb",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851ba8f7d2a1bbb322c00f937bb",
+       "width": 64
+      }
+     ],
+     "name": "Noche De Berlin",
+     "release_date": "2020-06-26",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6MVmGh11Jf6bh8FfwiLblE",
+       "name": "Alejandro Molinari",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 6
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6MVmGh11Jf6bh8FfwiLblE",
+      "name": "Alejandro Molinari",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 317299,
+    "external_ids": {
+     "isrc": "GBKQU2050145"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1x9752BYv5G6nheT9jJJHU",
+    "name": "Noche De Berlin",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T18:01:07Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "4UTzbszGlQyOv8W1JpXk9K",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273f7ecfe126ce80812bbc8d698",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02f7ecfe126ce80812bbc8d698",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851f7ecfe126ce80812bbc8d698",
+       "width": 64
+      }
+     ],
+     "name": "Toro (Andre VII Remix)",
+     "release_date": "2022-06-10",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7oXqKY12gSK5Q37dWZYWT0",
+       "name": "El Columpio Asesino",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6ydoTVyJn4VEKeRUeTtjFq",
+       "name": "Andre VII",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7oXqKY12gSK5Q37dWZYWT0",
+      "name": "El Columpio Asesino",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6ydoTVyJn4VEKeRUeTtjFq",
+      "name": "Andre VII",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 431673,
+    "external_ids": {
+     "isrc": "ES7002258101"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6YgZCDSAVUhMFnttu5zIiN",
+    "name": "Toro - Andre VII Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T18:09:47Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "1UuhdDsqo6LoGHcBStqIKQ",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273c82d3af78a0c6dd683c9310d",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02c82d3af78a0c6dd683c9310d",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851c82d3af78a0c6dd683c9310d",
+       "width": 64
+      }
+     ],
+     "name": "2712",
+     "release_date": "2020-05-01",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "42ZWiibQTSxTJSBV7oziPy",
+       "name": "Zombies In Miami",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 8
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "42ZWiibQTSxTJSBV7oziPy",
+      "name": "Zombies In Miami",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 5,
+    "duration_ms": 305073,
+    "external_ids": {
+     "isrc": "DECY62000021"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7zlMU9KxNYHrAs4pSCJvmO",
+    "name": "Laser Cat",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T18:29:38Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "6hLIAEBdWIqUcERETkJZHE",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27351541b7c6d0793b87d37290d",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0251541b7c6d0793b87d37290d",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485151541b7c6d0793b87d37290d",
+       "width": 64
+      }
+     ],
+     "name": "YoSoyMatt (feat. Hermanu)",
+     "release_date": "2021-01-22",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0NYE6CFlP7ElQR6r395gbV",
+       "name": "YoSoyMatt",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0NYE6CFlP7ElQR6r395gbV",
+      "name": "YoSoyMatt",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5PfUOQmXofIbEMDTFg1FVl",
+      "name": "Hermanu",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 237600,
+    "external_ids": {
+     "isrc": "ZZOPM2104213"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5T3yTmOJ1hJxnH8boXgm3l",
+    "name": "YoSoyMatt (feat. Hermanu)",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T18:33:36Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "1zLcjR1lJEjXVxZySrEEO3",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2732a670d2d3d0ab7f64c0134a7",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e022a670d2d3d0ab7f64c0134a7",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048512a670d2d3d0ab7f64c0134a7",
+       "width": 64
+      }
+     ],
+     "name": "Mano",
+     "release_date": "2022-05-19",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1KNxS8isGUfOMFXmPNRlIU",
+       "name": "Altoparlante",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1q3j8nVNGJIUXQ0VOnjNIN",
+       "name": "Juan Soto",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1KNxS8isGUfOMFXmPNRlIU",
+      "name": "Altoparlante",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1q3j8nVNGJIUXQ0VOnjNIN",
+      "name": "Juan Soto",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 224070,
+    "external_ids": {
+     "isrc": "GBLFP2234908"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2aoomn9My3mD4DCifkpWYM",
+    "name": "Mano",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T18:34:27Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "1b2AJIAn3HzmjRl3ao4Enr",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27337ead8a90389fce92683f2a5",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0237ead8a90389fce92683f2a5",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485137ead8a90389fce92683f2a5",
+       "width": 64
+      }
+     ],
+     "name": "Ay Ke Emoción (Yung Prado Remix)",
+     "release_date": "2021-10-14",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6jlSEjqfJnED7otnU0lRoy",
+       "name": "Chill Mafia Records",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0U0zpa0tZ4iAV6ypdDUm4I",
+       "name": "YUNG PRADO",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6jlSEjqfJnED7otnU0lRoy",
+      "name": "Chill Mafia Records",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0U0zpa0tZ4iAV6ypdDUm4I",
+      "name": "YUNG PRADO",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 266180,
+    "external_ids": {
+     "isrc": "QMDA62147155"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "28JRMLdI3Y8j0YB9Q1o8ya",
+    "name": "Ay K Emocion - YUNG PRADO Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-17T19:01:21Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "2EUsaebjPC9iv5z4dfoDMc",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27322be04f01d9f6c2f5aec2a66",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0222be04f01d9f6c2f5aec2a66",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485122be04f01d9f6c2f5aec2a66",
+       "width": 64
+      }
+     ],
+     "name": "Sin Resentimiento",
+     "release_date": "2020-06-12",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1q3j8nVNGJIUXQ0VOnjNIN",
+       "name": "Juan Soto",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 2
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1q3j8nVNGJIUXQ0VOnjNIN",
+      "name": "Juan Soto",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 303187,
+    "external_ids": {
+     "isrc": "QM6MZ2092123"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4phAPzn9U8lSVOXAuJbmUh",
+    "name": "Miento Sin Resentimiento",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-19T10:20:29Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "3KUceESHRd5oQ7Yx8fu2Jo",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273d752b6ed7344c8e4aed52c1a",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02d752b6ed7344c8e4aed52c1a",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851d752b6ed7344c8e4aed52c1a",
+       "width": 64
+      }
+     ],
+     "name": "Anaconda",
+     "release_date": "2023-07-28",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "21EtvnD59JJJiUP0qZP7WY",
+       "name": "Los Eclipses",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7E1ZwNnXreZgJpmTNUJva7",
+       "name": "Dan Solo",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1UgwU7ChXfMkwH9t6ivW2E",
+       "name": "Eva de Marce",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "21EtvnD59JJJiUP0qZP7WY",
+      "name": "Los Eclipses",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7E1ZwNnXreZgJpmTNUJva7",
+      "name": "Dan Solo",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1UgwU7ChXfMkwH9t6ivW2E",
+      "name": "Eva de Marce",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1rKRjLWe5rSlbwUMEx5yn2",
+      "name": "Ubaruh",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 3,
+    "duration_ms": 261000,
+    "external_ids": {
+     "isrc": "GBKQU2363069"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1kAzLogdYIkRZKQCks29FS",
+    "name": "Anaconda - Ubaruh Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-19T10:21:16Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "0akbUtRdjbhtYVZTC0wpTu",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273774c641a136c91c0b2d7b66a",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02774c641a136c91c0b2d7b66a",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851774c641a136c91c0b2d7b66a",
+       "width": 64
+      }
+     ],
+     "name": "Romantics",
+     "release_date": "2020-08-07",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6a3p6ZKDkTzrVbloxkD73E",
+       "name": "Coloray",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 2
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6a3p6ZKDkTzrVbloxkD73E",
+      "name": "Coloray",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 234435,
+    "external_ids": {
+     "isrc": "DECY62000066"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3JN6fH8cYmCKCve7dLwdel",
+    "name": "Romantics",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-19T10:53:04Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "4DsoqIEQ5FB4gCaCqbgzvG",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2737484c1199f643e787100d52b",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e027484c1199f643e787100d52b",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048517484c1199f643e787100d52b",
+       "width": 64
+      }
+     ],
+     "name": "Gnawa EP",
+     "release_date": "2020-12-04",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2y9LLMJaR9CvCFeeuLoWjZ",
+       "name": "Polocorp",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2y9LLMJaR9CvCFeeuLoWjZ",
+      "name": "Polocorp",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 3,
+    "duration_ms": 338546,
+    "external_ids": {
+     "isrc": "ZZOPM2003699"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2mtnFpnstHLHVk1yathawS",
+    "name": "Alexandria",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-20T09:17:54Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "00t0zeNG6lLjFxtrwQSfzc",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2732b48ebe9c7b3b0ed0bbb288f",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e022b48ebe9c7b3b0ed0bbb288f",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048512b48ebe9c7b3b0ed0bbb288f",
+       "width": 64
+      }
+     ],
+     "name": "Wait on Me EP",
+     "release_date": "2020-02-21",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7rQKvsWUOJgXmInx2JuaXj",
+       "name": "Felipe Gordon",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 4
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7rQKvsWUOJgXmInx2JuaXj",
+      "name": "Felipe Gordon",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 277834,
+    "external_ids": {
+     "isrc": "DEBY41200467"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5thWMxL5pUmJxoDuUHEvSO",
+    "name": "El Meloncito",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-20T10:01:50Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "6sKIehiL8pUK0DN19xi38J",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27351b3c64a67cee83f8445c0b2",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0251b3c64a67cee83f8445c0b2",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485151b3c64a67cee83f8445c0b2",
+       "width": 64
+      }
+     ],
+     "name": "Cruise (Edit)",
+     "release_date": "2021-04-23",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "3tA0d4G3jC6CXf6MXEZE5T",
+       "name": "Rhode & Brown",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3tA0d4G3jC6CXf6MXEZE5T",
+      "name": "Rhode & Brown",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 255250,
+    "external_ids": {
+     "isrc": "DECY62100031"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2wAM90MBBu9qwNdKyH2NxL",
+    "name": "Cruise - Edit",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-20T10:23:43Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "0HniC8f1NbUKJhVperJtEP",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273a68c0b79e4fa8149c0100965",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02a68c0b79e4fa8149c0100965",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851a68c0b79e4fa8149c0100965",
+       "width": 64
+      }
+     ],
+     "name": "Pixels",
+     "release_date": "2019-05-03",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0ckrHQgGWuXzYxRM0jLOZZ",
+       "name": "Bufi",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 2
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0ckrHQgGWuXzYxRM0jLOZZ",
+      "name": "Bufi",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 290769,
+    "external_ids": {
+     "isrc": "QZ5FN1983486"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5iUqF2kLmWms3FYJgXKLva",
+    "name": "La Cumbia De Las Frecuencias",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-22T10:20:30Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "2fn301Q8yRYw7l41v2kNnA",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27311282b553181f5cbf01ae63c",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0211282b553181f5cbf01ae63c",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485111282b553181f5cbf01ae63c",
+       "width": 64
+      }
+     ],
+     "name": "Winuchi",
+     "release_date": "2023-07-07",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6WkZQmn4zWHJQeOfg9FzG1",
+       "name": "Nile Fee",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6WkZQmn4zWHJQeOfg9FzG1",
+      "name": "Nile Fee",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 235476,
+    "external_ids": {
+     "isrc": "QM6P42329560"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1XzjBZHKe0pfqccX8O4Kie",
+    "name": "Every time I see U ;)",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-22T13:42:57Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "3TmRBALTpwplqDDM4ZRPMr",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273f69fdedbd7d85bee6ac35d77",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02f69fdedbd7d85bee6ac35d77",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851f69fdedbd7d85bee6ac35d77",
+       "width": 64
+      }
+     ],
+     "name": "Moth Love",
+     "release_date": "2023-10-11",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6G01WYFYF91rjG5LtwMhY4",
+       "name": "1tbsp",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 2
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6G01WYFYF91rjG5LtwMhY4",
+      "name": "1tbsp",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 283345,
+    "external_ids": {
+     "isrc": "DGA092377282"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2bTqxZiqOLQC0Mw5OGsL3s",
+    "name": "Mosquito (Extended)",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-22T14:40:53Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "0GA2j7RrV5rBI8xzSQ5dr6",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27347fef22bbf214a48cdc87c83",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0247fef22bbf214a48cdc87c83",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485147fef22bbf214a48cdc87c83",
+       "width": 64
+      }
+     ],
+     "name": "Mutual Pleasure 004",
+     "release_date": "2022-04-04",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6DFxsOAgu5eUepr2Y0lFRp",
+       "name": "Daniel 2000",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 6
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6DFxsOAgu5eUepr2Y0lFRp",
+      "name": "Daniel 2000",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 284000,
+    "external_ids": {
+     "isrc": "GBLFP2213500"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4bTO6szQeUse9yZFlvl8jH",
+    "name": "Otaku Jimmy Jump",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-22T15:13:33Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "2NOiitrhptZhCcTzBx3AHB",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2730649f537b7ae6b98e624be7d",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e020649f537b7ae6b98e624be7d",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048510649f537b7ae6b98e624be7d",
+       "width": 64
+      }
+     ],
+     "name": "DJ-Kicks: Elkka",
+     "release_date": "2023-04-26",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5Ly0z60jjgsY4rkmjRFtPS",
+       "name": "Elkka",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 28
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3VMOCYTorZ6PGOoYDLdeML",
+      "name": "Shake",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 222483,
+    "external_ids": {
+     "isrc": "DEG932300813"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7cAB4235iQNXHzdaTAEawk",
+    "name": "Music Is The Only Way (I Can Communicate) - Mixed",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-25T22:29:47Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "restrictions": {
+     "reason": "market"
+    },
+    "is_playable": false,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "5dlLbcxqRdwT03s3Rcl6CE",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273e8f082d3888ad2eab2c5d3c7",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02e8f082d3888ad2eab2c5d3c7",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851e8f082d3888ad2eab2c5d3c7",
+       "width": 64
+      }
+     ],
+     "name": "Woman In The Window (Red Axes Remixes)",
+     "release_date": "2021-11-19",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2DS5RPK5A2GQTucYlgsQdE",
+       "name": "Perry Farrell",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7pPd37kd71YlBRdcw0vbWR",
+       "name": "Satellite Party",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2DS5RPK5A2GQTucYlgsQdE",
+      "name": "Perry Farrell",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7pPd37kd71YlBRdcw0vbWR",
+      "name": "Satellite Party",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1QB4oo4JbSRdxNyidIuD0W",
+      "name": "Jim Morrison",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5Owm9QgL9BSCRQKTX6T08G",
+      "name": "Red Axes",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 397200,
+    "external_ids": {
+     "isrc": "GBGLW2101747"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6TmGV58cFVWWWT3EVqI7m5",
+    "name": "Woman In The Window - Red Axes Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-25T10:40:39Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "536UIFSzwTulMdDK0svAmL",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27347d4c1b10e1dced27463e424",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0247d4c1b10e1dced27463e424",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485147d4c1b10e1dced27463e424",
+       "width": 64
+      }
+     ],
+     "name": "Pyjama Bazaar",
+     "release_date": "2020-08-14",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0OfuNV93XzkOehHIvyr0OU",
+       "name": "Kabylie Minogue",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 5
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0OfuNV93XzkOehHIvyr0OU",
+      "name": "Kabylie Minogue",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 361874,
+    "external_ids": {
+     "isrc": "QM7282025760"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "0l5JUQjnNEYqug3jvPTy1b",
+    "name": "Pyjama Bazaar",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-11-25T11:47:07Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "1neTGoFDfVqC9IhNcwpMeo",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273c4ed68a26b6bb2fb72cddf7b",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02c4ed68a26b6bb2fb72cddf7b",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851c4ed68a26b6bb2fb72cddf7b",
+       "width": 64
+      }
+     ],
+     "name": "Ordinary Things And Other Problems",
+     "release_date": "2021-02-19",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7vElnPfV9oKuSqfN1Zptbl",
+       "name": "Joe Lewandowski",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 4
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7vElnPfV9oKuSqfN1Zptbl",
+      "name": "Joe Lewandowski",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 211771,
+    "external_ids": {
+     "isrc": "DEG932004279"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7b8oySxeLpyIWVv1Jz0pMt",
+    "name": "Regazzi",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-01T11:00:41Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "6w9NmrvaLpNWOFvr2MUJ2W",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273ff71ebc9db47083ee3f2123b",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02ff71ebc9db47083ee3f2123b",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851ff71ebc9db47083ee3f2123b",
+       "width": 64
+      }
+     ],
+     "name": "Trips #3: India",
+     "release_date": "2020-09-25",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "5Owm9QgL9BSCRQKTX6T08G",
+       "name": "Red Axes",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 4
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5Owm9QgL9BSCRQKTX6T08G",
+      "name": "Red Axes",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 697304,
+    "external_ids": {
+     "isrc": "DEG931913291"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "1tRtP4MFJBXbWk69OmUl8b",
+    "name": "Pad Yoga Raga",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-01T16:02:42Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "7h8agSBS11G518HyE37Qnu",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27320d9b8d36024f01f93331d37",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0220d9b8d36024f01f93331d37",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485120d9b8d36024f01f93331d37",
+       "width": 64
+      }
+     ],
+     "name": "Horizonte Llanero",
+     "release_date": "2020-07-24",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "4AIoRABXF7oeowVHCspvo8",
+       "name": "La Payara",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4AIoRABXF7oeowVHCspvo8",
+      "name": "La Payara",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 251881,
+    "external_ids": {
+     "isrc": "QZHZ52098084"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "59gI2EqQ09qpwi206Rgou5",
+    "name": "Horizonte Llanero",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-02T15:06:08Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "4Z47jFnLrdiLMSJaXMtCvg",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273de190691527c7b157d70e06a",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02de190691527c7b157d70e06a",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851de190691527c7b157d70e06a",
+       "width": 64
+      }
+     ],
+     "name": "The Rite Place (2023 Remaster)",
+     "release_date": "2023-02-17",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6JHHsOBcPw9HdWrkGlEz10",
+       "name": "Blakkat",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6JHHsOBcPw9HdWrkGlEz10",
+      "name": "Blakkat",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "4ygGf4bBLsiIvDX2cec0U5",
+      "name": "Aswan",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3WMncW8wzHWFKmUU1zptCB",
+      "name": "Crazy P",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 228000,
+    "external_ids": {
+     "isrc": "GBGHZ2300634"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2mN5JKXaanj8C38HMXl21m",
+    "name": "The Rite Place - Crazy P Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-02T15:59:00Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "compilation",
+     "href": "REDACTED",
+     "id": "3CAJsDHfjKzzHhpMxjru9H",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2733be02d8a15f09c41faa7aee1",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e023be02d8a15f09c41faa7aee1",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048513be02d8a15f09c41faa7aee1",
+       "width": 64
+      }
+     ],
+     "name": "Wah Friends Electric 2",
+     "release_date": "2014-02-10",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0LyfQWJT6nXafLPZqxe9Of",
+       "name": "Various Artists",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 15
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5W2I7oOQuYEZk4VOEzgp5w",
+      "name": "Henri-Pierre Noel",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6E7SbenCPEit9gDFnMlDUA",
+      "name": "The Reflex",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 12,
+    "duration_ms": 449535,
+    "external_ids": {
+     "isrc": "GBLQT1400003"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "40KaXgxCGPabaQ1lCOGbe2",
+    "name": "A Fifth of Beethoven - The Reflex Re-Vision",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-03T15:43:57Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "6mIywyugyY1GAPWvmTcPv9",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2735fad7bb60e5fb2c0f44fe74b",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e025fad7bb60e5fb2c0f44fe74b",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048515fad7bb60e5fb2c0f44fe74b",
+       "width": 64
+      }
+     ],
+     "name": "I Still Hate Hate",
+     "release_date": "2012-10-22",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7j0u9yPUVMa70NyhpdHfP4",
+       "name": "Razzy Bailey",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 2
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7j0u9yPUVMa70NyhpdHfP4",
+      "name": "Razzy Bailey",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 418106,
+    "external_ids": {
+     "isrc": "DKUCA1200056"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "66cfNUF5BQPVfXJhWmTmC6",
+    "name": "I Still Hate Hate - Santiga Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-04T09:47:47Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "0UEguwdqkKuVCtIXwvRxIE",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273330dd43ea8797d63cdf772c4",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02330dd43ea8797d63cdf772c4",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851330dd43ea8797d63cdf772c4",
+       "width": 64
+      }
+     ],
+     "name": "Harri Poter",
+     "release_date": "2024-03-01",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "05zSozHG9kAvZTCmEo1fFT",
+       "name": "Mainline Magic Orchestra",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 13
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "05zSozHG9kAvZTCmEo1fFT",
+      "name": "Mainline Magic Orchestra",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 6,
+    "duration_ms": 216022,
+    "external_ids": {
+     "isrc": "DEVH21800652"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2M3hdqfgZgRmmnCpQ42MZ0",
+    "name": "Cigarrito",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-04T09:56:54Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "5unAsEl2kJWorffSIIcnuj",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273f791e6db5a120f52a31407d7",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02f791e6db5a120f52a31407d7",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851f791e6db5a120f52a31407d7",
+       "width": 64
+      }
+     ],
+     "name": "How 2 Please Me (YUNG PRADO Un Placer Remix)",
+     "release_date": "2024-10-16",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "05zSozHG9kAvZTCmEo1fFT",
+       "name": "Mainline Magic Orchestra",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6no5okBU3PLAhvonZbi21z",
+       "name": "P.Vanillaboy",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0U0zpa0tZ4iAV6ypdDUm4I",
+       "name": "YUNG PRADO",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 2
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "05zSozHG9kAvZTCmEo1fFT",
+      "name": "Mainline Magic Orchestra",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6no5okBU3PLAhvonZbi21z",
+      "name": "P.Vanillaboy",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0U0zpa0tZ4iAV6ypdDUm4I",
+      "name": "YUNG PRADO",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 222422,
+    "external_ids": {
+     "isrc": "ESA092411214"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "2yiFfH0Gj5W7cmZwZkXsIk",
+    "name": "How 2 Please Me - (YUNG PRADO Un Placer Remix)",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-04T10:18:28Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "3lLrAE85zUgLC2jlV56Vdn",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273f11a00a37b80a51bfa59d214",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02f11a00a37b80a51bfa59d214",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851f11a00a37b80a51bfa59d214",
+       "width": 64
+      }
+     ],
+     "name": "Xtasis",
+     "release_date": "2022-07-29",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "3qOGTt4eTeEkCn3efhAGu2",
+       "name": "Nick León",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 4
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3qOGTt4eTeEkCn3efhAGu2",
+      "name": "Nick León",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2VAqLzkNHs0cre3T6i1PHD",
+      "name": "Dj Babatr",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 295890,
+    "external_ids": {
+     "isrc": "COAB11900109"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5QlaVdriOhDoFpxXFgtcDf",
+    "name": "Xtasis",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-04T10:31:37Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "1D3xbkC6EakLekNYbipEiJ",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273ad1e4302e5e47e1ef86e8733",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02ad1e4302e5e47e1ef86e8733",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851ad1e4302e5e47e1ef86e8733",
+       "width": 64
+      }
+     ],
+     "name": "Steal Chickens From Men And the Future From God",
+     "release_date": "2018-03-23",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6j7oCqripDrP3x226wAF5H",
+       "name": "Shakarchi & Stranéus",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 12
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6j7oCqripDrP3x226wAF5H",
+      "name": "Shakarchi & Stranéus",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 4,
+    "duration_ms": 387401,
+    "external_ids": {
+     "isrc": "SE2WJ1806004"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4lgw73z34KT0lXMkOkhiiz",
+    "name": "Hessingen",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-04T11:07:09Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "0xnDTF4jKpvYtEOZE5kQHm",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2732b1c74dc71fef0d9e8410992",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e022b1c74dc71fef0d9e8410992",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048512b1c74dc71fef0d9e8410992",
+       "width": 64
+      }
+     ],
+     "name": "Narcos.Is",
+     "release_date": "2021-11-05",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "3YY7kS1ZzdHKY7DcQ7KEoB",
+       "name": "Manami",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "3YY7kS1ZzdHKY7DcQ7KEoB",
+      "name": "Manami",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 337716,
+    "external_ids": {
+     "isrc": "GB2XE2100022"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "3fWggU2Bp2qETvK54k103J",
+    "name": "Narcos.Is",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-06T11:45:14Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "4cPF0WDmkBupaQfB4le9iK",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273053e339e29c55bd7f352d8f8",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02053e339e29c55bd7f352d8f8",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851053e339e29c55bd7f352d8f8",
+       "width": 64
+      }
+     ],
+     "name": "Vai Tu",
+     "release_date": "2023-05-10",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2GSXsSy3YzWsp4BXfSGucS",
+       "name": "Baiuca",
+       "type": "artist",
+       "uri": "REDACTED"
+      },
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "1MgkZ7oWVoYhe51HUT905G",
+       "name": "Leilia",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 1
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2GSXsSy3YzWsp4BXfSGucS",
+      "name": "Baiuca",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1MgkZ7oWVoYhe51HUT905G",
+      "name": "Leilia",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 193040,
+    "external_ids": {
+     "isrc": "ES71G2313618"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6lBDf2Qx6SC9WtncLcBFOf",
+    "name": "Vai Tu",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-11T20:12:55Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "0tvS2WALRq80GBN7gfcQmC",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273eb0856a96e6c3b3a7bd060c8",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02eb0856a96e6c3b3a7bd060c8",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851eb0856a96e6c3b3a7bd060c8",
+       "width": 64
+      }
+     ],
+     "name": "Nekogo Lubit",
+     "release_date": "2021-03-18",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "7qqEqY1pR6Uj2Z41HNuszd",
+       "name": "Zuma Dionys",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7qqEqY1pR6Uj2Z41HNuszd",
+      "name": "Zuma Dionys",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "5mxDMD1623WttVkwN4961t",
+      "name": "Sasha Smaga",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 1,
+    "duration_ms": 456945,
+    "external_ids": {
+     "isrc": "US83Z2111425"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "69Y5rjBDhzSxeiVvwWqRdV",
+    "name": "Gorit Dom",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-08T12:51:46Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "6OMYQUITdN6wBaWfEtgooI",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2732ec4aea38b44eba9756767fa",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e022ec4aea38b44eba9756767fa",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048512ec4aea38b44eba9756767fa",
+       "width": 64
+      }
+     ],
+     "name": "The Age of Consent",
+     "release_date": "1984-10-15",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2wpWOzQE5TpA0dVnh5YD08",
+       "name": "Bronski Beat",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 16
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2wpWOzQE5TpA0dVnh5YD08",
+      "name": "Bronski Beat",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 6,
+    "duration_ms": 302413,
+    "external_ids": {
+     "isrc": "GBAAP0200005"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "5vmRQ3zELMLUQPo2FLQ76x",
+    "name": "Smalltown Boy",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-10T14:50:55Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "7z8phh0s1F2jlGCzjTVEcu",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b27321e8f8ef618cf142e7704567",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e0221e8f8ef618cf142e7704567",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d0000485121e8f8ef618cf142e7704567",
+       "width": 64
+      }
+     ],
+     "name": "Les disques du bord de l'eau : Spring EP 2022",
+     "release_date": "2022-03-16",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "0HelIc5UNdohCdMZY6fxWT",
+       "name": "Manu Ela",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 5
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "0HelIc5UNdohCdMZY6fxWT",
+      "name": "Manu Ela",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "7GUHGYZntkO0N2ue3XwfOj",
+      "name": "IRALI",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "32ZH4yTpyZjvaq0QP7Syym",
+      "name": "Macarena Paz",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1OTqGpGQZ4922Oomm7EAEv",
+      "name": "Le Rubrique",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "1E9ev9hZVmtmeFkS3ZAyyw",
+      "name": "Dan Bay",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 2,
+    "duration_ms": 252750,
+    "external_ids": {
+     "isrc": "CHF252200002"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "4kBIOHlUw97Kb68y7zhtuZ",
+    "name": "La Revolución - Dan Bay & Le Rubrique Remix",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-14T19:44:17Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "single",
+     "href": "REDACTED",
+     "id": "1MOLvwNSJND57KUeokSGPY",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b273555d8c2c582c2ecfde2289eb",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e02555d8c2c582c2ecfde2289eb",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d00004851555d8c2c582c2ecfde2289eb",
+       "width": 64
+      }
+     ],
+     "name": "Bananenräuber",
+     "release_date": "2017-05-12",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "2MUENaxB93ZPNclZIDEMMV",
+       "name": "Kalabrese",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 3
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "2MUENaxB93ZPNclZIDEMMV",
+      "name": "Kalabrese",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 3,
+    "duration_ms": 571266,
+    "external_ids": {
+     "isrc": "DEM091700021"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "6kA6dG76boZja6kIBO98aM",
+    "name": "Bananenräuber",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
+   }
+  },
+  {
+   "added_at": "2024-12-12T19:40:54Z",
+   "added_by": {
+    "id": "REDACTED"
+   },
+   "is_local": false,
+   "primary_color": null,
+   "item": {
+    "is_playable": true,
+    "explicit": false,
+    "type": "track",
+    "episode": false,
+    "track": true,
+    "album": {
+     "is_playable": true,
+     "type": "album",
+     "album_type": "album",
+     "href": "REDACTED",
+     "id": "7quHZhPNAMaxImHsjrOkSr",
+     "images": [
+      {
+       "height": 640,
+       "url": "https://i.scdn.co/image/ab67616d0000b2736027d2e9ae8972b09d423410",
+       "width": 640
+      },
+      {
+       "height": 300,
+       "url": "https://i.scdn.co/image/ab67616d00001e026027d2e9ae8972b09d423410",
+       "width": 300
+      },
+      {
+       "height": 64,
+       "url": "https://i.scdn.co/image/ab67616d000048516027d2e9ae8972b09d423410",
+       "width": 64
+      }
+     ],
+     "name": "La Estrella",
+     "release_date": "2022-11-11",
+     "release_date_precision": "day",
+     "uri": "REDACTED",
+     "artists": [
+      {
+       "external_urls": {
+        "spotify": "REDACTED"
+       },
+       "href": "REDACTED",
+       "id": "6E8vZ5lkpXbXlkgHhbVJSl",
+       "name": "Chancha Via Circuito",
+       "type": "artist",
+       "uri": "REDACTED"
+      }
+     ],
+     "external_urls": {
+      "spotify": "REDACTED"
+     },
+     "total_tracks": 11
+    },
+    "artists": [
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "6E8vZ5lkpXbXlkgHhbVJSl",
+      "name": "Chancha Via Circuito",
+      "type": "artist",
+      "uri": "REDACTED"
+     },
+     {
+      "external_urls": {
+       "spotify": "REDACTED"
+      },
+      "href": "REDACTED",
+      "id": "08Y6RNx87Eolrcq1aLM6ow",
+      "name": "Meridian Brothers",
+      "type": "artist",
+      "uri": "REDACTED"
+     }
+    ],
+    "disc_number": 1,
+    "track_number": 5,
+    "duration_ms": 208005,
+    "external_ids": {
+     "isrc": "USCCW1611203"
+    },
+    "external_urls": {
+     "spotify": "REDACTED"
+    },
+    "href": "REDACTED",
+    "id": "7CscQhRVoHs50YioshIbuQ",
+    "name": "El pavo real",
+    "uri": "REDACTED",
+    "is_local": false
+   },
+   "video_thumbnail": {
+    "url": null
    }
   }
- ]
+ ],
+ "limit": 50,
+ "next": "https://api.spotify.com/v1/playlists/1cuHJXAWfrhqrZasRuRfAe/items?offset=50&limit=50&additional_types=track&locale=*",
+ "offset": 0,
+ "previous": null,
+ "total": 245
 }

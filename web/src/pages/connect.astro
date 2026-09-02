@@ -1,0 +1,45 @@
+---
+// web/src/pages/connect.astro — step 01. The island reads `location`, so it is client:only.
+import Base from '../layouts/Base.astro';
+import Connect from '../islands/Connect';
+---
+<Base title="Connect — Sideload" description="Connect Spotify and YouTube Music to start moving your library." step={1} noindex>
+  <section class="container body">
+    <h1 class="h2">Connect the two services</h1>
+    <p class="lede">We read your library from Spotify and write to the destination. Nothing is changed or deleted on the Spotify side.</p>
+    <Connect client:only="preact" />
+  </section>
+</Base>
+<style is:global>
+  .body { padding-top: 52px; padding-bottom: 46px; }
+  .c-accent { color: var(--accent); }
+  .connect__loading { margin-top: 34px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 34px; }
+  .card { padding: 26px; display: flex; flex-direction: column; }
+  .card__head { display: flex; align-items: center; gap: 14px; }
+  .card__head .eyebrow { color: var(--fg-3); margin-bottom: 6px; }
+  .card__title { font: 600 18px/1.2 var(--font-ui); letter-spacing: -.01em; margin: 0; }
+  .card__state { margin-left: auto; font-weight: 500; font-size: 11px; }
+  .card__link { margin-top: 18px; align-self: flex-start; }
+  .card__cta { margin-top: auto; padding-top: 14px; padding-bottom: 14px; font-size: 14px; }
+  .setup { display: flex; flex-direction: column; flex: 1; }
+  .setup .card__cta { margin-top: 20px; }
+  .lede--card { font-size: 13.5px; margin-top: 16px; max-width: none; }
+  .steps { padding-left: 18px; margin: 14px 0 0; font: 400 13px/1.6 var(--font-ui); color: var(--fg-2); }
+  .steps li { margin-bottom: 6px; } .steps b { color: var(--fg); font-weight: 600; }
+  .steps code { font-size: 11.5px; word-break: break-all; color: var(--fg); }
+  .providers { margin-top: 16px; }
+  .providers .row { padding: 13px 14px; }
+  .card__connected { margin: 16px 0 0; }
+  .devcode { margin-top: 16px; }
+  .code { font: 600 26px/1.2 var(--font-mono); letter-spacing: .12em; margin: 14px 0; user-select: all; }
+  .actionbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 34px; padding-top: 20px; }
+  @media (max-width: 900px) {
+    .body { padding-top: 36px; padding-bottom: 0; }
+    .cards { grid-template-columns: 1fr; margin-top: 26px; }
+    .card { padding: 20px; }
+    .actionbar { position: sticky; bottom: 0; flex-direction: column; align-items: stretch; gap: 10px; margin: 26px calc(-1 * var(--gutter)) 0; padding: 14px var(--gutter); background: var(--bg-sunken); border-top: 1px solid var(--hairline); }
+    .actionbar .btn { padding-top: 17px; padding-bottom: 17px; }
+    .actionbar .meta { text-align: center; }
+  }
+</style>

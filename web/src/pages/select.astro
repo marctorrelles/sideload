@@ -1,0 +1,47 @@
+---
+// web/src/pages/select.astro — step 02.
+import Base from '../layouts/Base.astro';
+import Select from '../islands/Select';
+---
+<Base title="Choose what to move — Sideload" description="Pick the playlists, albums and artists to move to YouTube Music." step={2} noindex>
+  <section class="container body">
+    <h1 class="h2">Choose what to move</h1>
+    <p class="lede">Spotify → YouTube Music. Uncheck anything you'd rather leave behind.</p>
+    <Select client:only="preact" />
+  </section>
+</Base>
+<style is:global>
+  .body { padding-top: 52px; padding-bottom: 40px; }
+  .c-fg { color: var(--fg) !important; }
+  .choose { display: grid; grid-template-columns: 1fr 300px; gap: 24px; margin-top: 30px; align-items: start; }
+  .choose__loading { margin-top: 30px; }
+  .toolbar { display: flex; align-items: center; gap: 16px; padding: 10px 16px; background: var(--bg-sunken-2); border: 1px solid var(--hairline-strong); border-top: 0; }
+  .toolbar__all { display: flex; align-items: center; gap: 10px; font: 500 13px/1 var(--font-ui); cursor: pointer; }
+  .toolbar__selected { display: none; }
+  .toolbar__sort { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .choose .list { border-top: 0; }
+  .row__text { min-width: 0; } .row__text .row__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row.is-locked .checkbox { opacity: .35; cursor: not-allowed; }
+  .tab .cap { text-transform: capitalize; }
+  .summary { position: sticky; top: 16px; }
+  .stat--big { font-size: 34px; margin-top: 12px; }
+  .summary__sub { font: 400 12.5px/1.4 var(--font-ui); color: var(--fg-2); margin-top: 6px; }
+  .summary__kv { grid-template-columns: 1fr auto; }
+  .summary__hint { margin-top: 10px; }
+  .summary__bar { display: none; }
+  .summary__cta { margin-top: 20px; padding-top: 15px; padding-bottom: 15px; }
+  .summary__note { margin-top: 12px; }
+  @media (max-width: 900px) {
+    .body { padding-top: 36px; padding-bottom: 0; }
+    .choose { grid-template-columns: 1fr; gap: 0; margin-top: 22px; }
+    .tab .long { display: none; }
+    .toolbar { padding: 10px 14px; } .toolbar__selected { display: inline; margin-left: auto; } .toolbar__sort { margin-left: 0; }
+    .toolbar__sort .select { font-size: 11px; }
+    .choose .row { padding: 13px 14px; }
+    .summary { position: sticky; top: auto; bottom: 0; border: 0; border-top: 1px solid var(--hairline); background: var(--bg-sunken); padding: 14px var(--gutter); margin: 18px calc(-1 * var(--gutter)) 0; }
+    .summary__in { display: none; }
+    .summary__bar { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .summary__cta { margin-top: 0; padding-top: 17px; padding-bottom: 17px; }
+    .summary__note { display: none; }
+  }
+</style>

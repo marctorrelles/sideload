@@ -30,31 +30,42 @@ async function getToken(): Promise<string> {
 }
 
 const d = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-const CTX = { client: { clientName: 'WEB_REMIX', clientVersion: `1.${d}.01.00`, hl: 'en', gl: 'US' }, user: {} };
-const body = JSON.stringify({ query: 'Aphex Twin Xtal', params: 'EgWKAQIIAWoMEA4QChADEAQQCRAF', context: CTX });
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0';
+const P_SONGS = 'EgWKAQIIAWoMEA4QChADEAQQCRAF';
+const H = (token: string, extra: Record<string, string> = {}) => ({ 'content-type': 'application/json', 'user-agent': UA, origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com', authorization: `Bearer ${token}`, ...extra });
+const web = (extra: object = {}) => ({ client: { clientName: 'WEB_REMIX', clientVersion: `1.${d}.01.00`, hl: 'en', gl: 'US', ...extra }, user: {} });
+
+async function visitorData(): Promise<string | null> {
+  const html = await (await fetch('https://music.youtube.com', { headers: { 'user-agent': UA, 'accept-language': 'en' } })).text();
+  return html.match(/"VISITOR_DATA":"([^"]+)"/)?.[1] ?? html.match(/visitorData":"([^"]+)"/)?.[1] ?? null;
+}
 
 (async () => {
   const token = await getToken();
-  const variants: { name: string; url: string; headers: Record<string, string> }[] = [
-    { name: 'A baseline (key + origin + x-goog-request-time)', url: `https://music.youtube.com/youtubei/v1/search?alt=json&key=${KEY}&prettyPrint=false`,
-      headers: { 'content-type': 'application/json', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0', origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com', authorization: `Bearer ${token}`, 'x-goog-request-time': String(Math.floor(Date.now() / 1000)) } },
-    { name: 'B no key param', url: `https://music.youtube.com/youtubei/v1/search?alt=json&prettyPrint=false`,
-      headers: { 'content-type': 'application/json', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0', origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com', authorization: `Bearer ${token}` } },
-    { name: 'C minimal oauth headers (key, no origin/x-goog)', url: `https://music.youtube.com/youtubei/v1/search?alt=json&key=${KEY}&prettyPrint=false`,
-      headers: { 'content-type': 'application/json', authorization: `Bearer ${token}`, accept: '*/*', 'user-agent': 'Mozilla/5.0' } },
-    { name: 'D X-Goog-Api-Format-Version 2', url: `https://music.youtube.com/youtubei/v1/search?alt=json&key=${KEY}&prettyPrint=false`,
-      headers: { 'content-type': 'application/json', authorization: `Bearer ${token}`, 'X-Goog-Api-Format-Version': '2', 'user-agent': 'Mozilla/5.0' } },
-    { name: 'E youtubei on www.youtube.com host', url: `https://www.youtube.com/youtubei/v1/search?alt=json&key=${KEY}&prettyPrint=false`,
-      headers: { 'content-type': 'application/json', authorization: `Bearer ${token}`, 'user-agent': 'Mozilla/5.0', 'X-Goog-Api-Format-Version': '2' } },
+  // 0. Is the token alive at all? (official Data API, 1 quota unit)
+  { const r = await fetch('https://www.googleapis.com/youtube/v3/channels?part=id&mine=true', { headers: { authorization: `Bearer ${token}` } });
+    console.log(`\n=== 0 Data API v3 channels.mine → ${r.status}: ${(await r.text()).slice(0, 200).replace(/\s+/g, ' ')}`); }
+  const vd = await visitorData(); console.log('visitorData:', vd ? vd.slice(0, 16) + '…' : 'NOT FOUND');
+  const M = 'https://music.youtube.com/youtubei/v1/';
+  const variants: { name: string; url: string; headers: Record<string, string>; body: object }[] = [
+    { name: '1 WEB_REMIX search, no params', url: `${M}search?prettyPrint=false`, headers: H(token), body: { query: 'Aphex Twin Xtal', context: web() } },
+    { name: '2 WEB_REMIX browse FEmusic_home (no query)', url: `${M}browse?prettyPrint=false`, headers: H(token), body: { browseId: 'FEmusic_home', context: web() } },
+    { name: '3 WEB_REMIX + visitorData in context + X-Goog-Visitor-Id', url: `${M}search?prettyPrint=false`, headers: H(token, vd ? { 'x-goog-visitor-id': vd } : {}), body: { query: 'Aphex Twin Xtal', params: P_SONGS, context: web(vd ? { visitorData: vd } : {}) } },
+    { name: '4 WEB_REMIX older clientVersion 1.20250101', url: `${M}search?prettyPrint=false`, headers: H(token), body: { query: 'Aphex Twin Xtal', params: P_SONGS, context: { client: { clientName: 'WEB_REMIX', clientVersion: '1.20250101.01.00', hl: 'en', gl: 'US' }, user: {} } } },
+    { name: '5 WEB_REMIX + X-Goog-AuthUser + X-Goog-Request-Time', url: `${M}search?prettyPrint=false`, headers: H(token, { 'x-goog-authuser': '0', 'x-goog-request-time': String(Math.floor(Date.now() / 1000)) }), body: { query: 'Aphex Twin Xtal', params: P_SONGS, context: web() } },
+    { name: '6 TVHTML5 context on www.youtube.com', url: `https://www.youtube.com/youtubei/v1/search?prettyPrint=false`, headers: { 'content-type': 'application/json', 'user-agent': 'Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Version/2.2 Chrome/63.0.3239.84 TV Safari/537.36', authorization: `Bearer ${token}` }, body: { query: 'Aphex Twin Xtal', context: { client: { clientName: 'TVHTML5', clientVersion: '7.20250120.19.00', hl: 'en', gl: 'US' }, user: {} } } },
+    { name: '7 ANDROID_MUSIC context', url: `${M}search?prettyPrint=false`, headers: { 'content-type': 'application/json', 'user-agent': 'com.google.android.apps.youtube.music/7.27.52 (Linux; U; Android 11) gzip', authorization: `Bearer ${token}`, 'x-goog-api-format-version': '2' }, body: { query: 'Aphex Twin Xtal', params: P_SONGS, context: { client: { clientName: 'ANDROID_MUSIC', clientVersion: '7.27.52', androidSdkVersion: 30, hl: 'en', gl: 'US' }, user: {} } } },
+    { name: '8 WEB_REMIX anonymous (no auth header) — control', url: `${M}search?prettyPrint=false`, headers: { 'content-type': 'application/json', 'user-agent': UA, origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com' }, body: { query: 'Aphex Twin Xtal', params: P_SONGS, context: web() } },
   ];
   for (const v of variants) {
     try {
-      const r = await fetch(v.url, { method: 'POST', headers: v.headers, body });
+      const r = await fetch(v.url, { method: 'POST', headers: v.headers, body: JSON.stringify(v.body) });
       const text = await r.text();
       const ok = r.status === 200 && text.trimStart().startsWith('{') && !text.includes('"error"');
       console.log(`\n=== ${v.name}\n  status ${r.status}, ${text.length} bytes ${ok ? '✅ OK' : '❌'}`);
-      console.log('  body:', text.slice(0, 400).replace(/\s+/g, ' '));
+      if (!ok) console.log('  body:', text.slice(0, 300).replace(/\s+/g, ' '));
+      else console.log('  first videoId:', text.match(/"videoId":"([\w-]{11})"/)?.[1]);
     } catch (e) { console.log(`\n=== ${v.name}\n  threw ${String(e).slice(0, 200)}`); }
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 2000));
   }
 })();

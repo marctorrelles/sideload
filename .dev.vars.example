@@ -3,3 +3,5 @@ GOOGLE_CLIENT_SECRET=
 COOKIE_SECRET=
 TOKEN_SECRET=
 PUBLIC_ORIGIN=http://127.0.0.1:4321
+# only for worker/scripts/spike-spotify.ts (users bring their own id in the product)
+SPOTIFY_CLIENT_ID=

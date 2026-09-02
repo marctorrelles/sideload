@@ -1,19 +1,23 @@
 {
   "name": "sideload",
   "private": true,
-  "workspaces": ["worker", "web"],
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
   "scripts": {
-    "dev": "concurrently -k \"npm:dev:*\"",
+    "dev": "concurrently -k \"pnpm:dev:*\"",
     "dev:worker": "wrangler dev --ip 127.0.0.1 --port 8787",
-    "dev:web": "npm run dev -w web",
-    "build": "npm run build -w web",
-    "test": "npm test -w worker && npm test -w web",
-    "deploy": "npm run build && wrangler deploy"
+    "dev:web": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "deploy": "pnpm build && wrangler deploy"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
     "typescript": "^5.6.0",
     "wrangler": "^4.128.0"
-  }
+  },
+  "packageManager": "pnpm@11.5.1"
 }

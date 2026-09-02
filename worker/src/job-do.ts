@@ -97,7 +97,7 @@ export class JobDO extends DurableObject<Env> {
   // ---------- RPC: reads ----------
   async view(): Promise<JobView | null> {
     const j = this.job(); if (!j) return null;
-    const items = (this.sql.exec('SELECT * FROM item ORDER BY ord').toArray() as ItemRow[]);
+    const items = (this.sql.exec('SELECT * FROM item ORDER BY ord').toArray() as unknown as ItemRow[]);
     const counts = new Map<string, { moved: number; review: number; matched: number; skipped: number }>();
     for (const r of this.sql.exec("SELECT item_id, status, COUNT(*) AS n FROM track GROUP BY item_id, status").toArray() as { item_id: string; status: string; n: number }[]) {
       const c = counts.get(r.item_id) ?? { moved: 0, review: 0, matched: 0, skipped: 0 };
@@ -125,9 +125,9 @@ export class JobDO extends DurableObject<Env> {
   }
   async review(offset: number): Promise<ReviewItemView[]> { return this.reviewPage(Math.max(0, offset | 0)); }
   private reviewPage(offset: number): ReviewItemView[] {
-    const tracks = this.sql.exec(`SELECT t.*, i.name AS item_name, i.kind AS item_kind FROM track t JOIN item i ON i.id = t.item_id WHERE t.status = 'review' ORDER BY i.ord, t.pos LIMIT ? OFFSET ?`, REVIEW_PAGE, offset).toArray() as (TrackRow & { item_name: string; item_kind: ItemKind })[];
+    const tracks = this.sql.exec(`SELECT t.*, i.name AS item_name, i.kind AS item_kind FROM track t JOIN item i ON i.id = t.item_id WHERE t.status = 'review' ORDER BY i.ord, t.pos LIMIT ? OFFSET ?`, REVIEW_PAGE, offset).toArray() as unknown as (TrackRow & { item_name: string; item_kind: ItemKind })[];
     const out: ReviewItemView[] = tracks.map(t => ({ id: t.id, kind: t.item_kind, title: t.name, artist: (JSON.parse(t.artists) as string[]).join(', '), itemName: t.item_name, reason: t.reason ?? 'no_match', suggestion: t.suggestion ? JSON.parse(t.suggestion) : null, collidesWith: t.collides_with, actionable: t.reason !== 'local_file' }));
-    if (offset === 0) for (const i of this.sql.exec("SELECT * FROM item WHERE status = 'failed' ORDER BY ord").toArray() as ItemRow[])
+    if (offset === 0) for (const i of this.sql.exec("SELECT * FROM item WHERE status = 'failed' ORDER BY ord").toArray() as unknown as ItemRow[])
       out.push({ id: -i.ord - 1, kind: i.kind, title: i.name, artist: i.artist ?? '', itemName: i.kind === 'album' ? 'Saved albums' : 'Followed artists', reason: 'no_match', suggestion: null, collidesWith: null, actionable: false });
     return out;
   }
@@ -149,7 +149,7 @@ export class JobDO extends DurableObject<Env> {
     const videoId = a.action === 'closest' ? (t.suggestion ? (JSON.parse(t.suggestion) as { videoId: string }).videoId : null) : a.videoId;
     if (!videoId) return { ok: false, error: 'no_suggestion' };
     if (!VIDEO_ID.test(videoId)) return { ok: false, error: 'bad_video' };
-    const item = this.sql.exec('SELECT * FROM item WHERE id = ?', t.item_id).toArray()[0] as ItemRow;
+    const item = this.sql.exec('SELECT * FROM item WHERE id = ?', t.item_id).toArray()[0] as unknown as ItemRow;
     const job = this.job()!;
     if (!job.yt_tokens) return { ok: false, error: 'disconnected' };
     if (item.status === 'done' || item.status === 'writing') {
@@ -202,7 +202,7 @@ export class JobDO extends DurableObject<Env> {
     if (!item) return true;
     if (item.kind === 'album' || item.kind === 'artist') { await this.moveEntity(item, yt); return false; }
     if (!item.fetched) { await this.fetchPage(item, sp); return false; }
-    const pending = this.sql.exec("SELECT * FROM track WHERE item_id = ? AND status = 'pending' ORDER BY pos LIMIT ?", item.id, CONCURRENCY).toArray() as TrackRow[];
+    const pending = this.sql.exec("SELECT * FROM track WHERE item_id = ? AND status = 'pending' ORDER BY pos LIMIT ?", item.id, CONCURRENCY).toArray() as unknown as TrackRow[];
     if (pending.length) { await this.matchBatch(pending, yt); return false; }
     if (item.status === 'verifying') { await (this.hasRedo(item) ? this.redrive(item, yt) : this.verifyItem(item, yt)); return false; }
     await this.writeBatch(item, yt);

@@ -47,6 +47,11 @@ describe('routes', () => {
     expect((await SELF.fetch('http://127.0.0.1/api/jobs/zzz')).status).toBe(404);
     expect((await SELF.fetch('http://127.0.0.1/api/jobs/0123456789abcdefghjkmnpqrs')).status).toBe(404);
   });
+  it('transfer shell is served for any well-formed id and is never indexed', async () => {
+    const r = await SELF.fetch('http://127.0.0.1/t/0123456789abcdefghjkmnpqrs');
+    expect(r.headers.get('x-robots-tag')).toBe('noindex');
+    expect((await SELF.fetch('http://127.0.0.1/t/short')).headers.get('x-robots-tag')).toBeNull();
+  });
   it('security headers on every response', async () => {
     const r = await SELF.fetch('http://127.0.0.1/api/stats');
     expect(r.headers.get('x-content-type-options')).toBe('nosniff');

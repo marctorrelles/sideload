@@ -5,5 +5,7 @@
   "main": "worker/src/index.ts",
   "compatibility_date": "2026-08-01",
   "assets": { "directory": "./web/dist", "binding": "ASSETS" },
+  "durable_objects": { "bindings": [{ "name": "STATS", "class_name": "StatsDO" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["StatsDO"] }],
   "kv_namespaces": [{ "binding": "MATCH_CACHE", "id": "REPLACE_ME" }]
 }

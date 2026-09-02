@@ -4,7 +4,7 @@ const KEY = 'AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30'; // public web client key,
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0';
 export const SEARCH_PARAMS = { songs: 'EgWKAQIIAWoMEA4QChADEAQQCRAF', videos: 'EgWKAQIQAWoMEA4QChADEAQQCRAF', albums: 'EgWKAQIYAWoMEA4QChADEAQQCRAF', artists: 'EgWKAQIgAWoMEA4QChADEAQQCRAF' } as const;
 
-export class ThrottleError extends Error { constructor(public status: number) { super(`youtube throttled (${status})`); } }
+export class ThrottleError extends Error { constructor(public status: number, detail = '') { super(`youtube throttled (${status})${detail ? `: ${detail}` : ''}`); } }
 export class AuthError extends Error { constructor() { super('youtube auth rejected'); } }
 
 export interface SearchSong { videoId: string; title: string; artists: string[]; album: string | null; durationSec: number | null; isSong: boolean; unavailable: boolean }
@@ -81,7 +81,7 @@ export class InnerTube {
         body: JSON.stringify({ ...body, context: { client: { clientName: 'WEB_REMIX', clientVersion: `1.${d}.01.00`, hl: 'en', gl: 'US' }, user: {} } }),
         signal: AbortSignal.timeout(this.timeoutMs),
       });
-    } catch { throw new ThrottleError(-1); } // D17: measured hangs of 4.5+ min with no response — a hang is a retryable failure, never a wait
+    } catch (e) { throw new ThrottleError(-1, String(e).slice(0, 120)); } // D17: measured hangs of 4.5+ min with no response — a hang is a retryable failure, never a wait
     if (r.status === 401 || r.status === 403) throw new AuthError();
     if (r.status === 429 || r.status >= 500) throw new ThrottleError(r.status);
     const text = await r.text();

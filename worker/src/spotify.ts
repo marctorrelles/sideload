@@ -46,7 +46,7 @@ export class Spotify {
     }
     let r: Response;
     try { r = await fetch(path.startsWith('http') ? path : `${API}${path}`, { headers: { authorization: `Bearer ${this.t.access}` }, signal: AbortSignal.timeout(30_000) }); }
-    catch { throw new SpotifyError(429, 'timeout', 'Spotify did not answer in 30 s', 10); } // D17: a hang is a retryable failure
+    catch (e) { throw new SpotifyError(429, 'timeout', `Spotify did not answer: ${String(e).slice(0, 120)}`, 10); } // D17: a hang is a retryable failure
     if (r.status === 429) throw new SpotifyError(429, 'rate_limited', 'Spotify rate limit', Number(r.headers.get('retry-after') ?? 5));
     if (r.status === 401) throw new SpotifyError(401, 'auth_expired');
     if (!r.ok) throw new SpotifyError(r.status, 'http_error', (await r.text()).slice(0, 300));

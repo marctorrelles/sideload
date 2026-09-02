@@ -1,0 +1,108 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "href": "https://api.spotify.com/v1/me/tracks?offset=0&limit=50",
+ "limit": 50,
+ "next": null,
+ "offset": 0,
+ "previous": null,
+ "total": 3036,
+ "items": [
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": false,
+   "item": {
+    "album": {
+     "id": "f1e1CvI5qiGogkdmtsVrFl",
+     "name": "Selected Ambient Works 85-92",
+     "images": [
+      {
+       "url": "https://i.scdn.co/image/x",
+       "height": 640,
+       "width": 640
+      }
+     ],
+     "album_type": "album"
+    },
+    "artists": [
+     {
+      "id": "vbpaTIlD5gYAEZyFQ8vZRN",
+      "name": "Aphex Twin",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 293000,
+    "explicit": false,
+    "id": "zvdieTpkf01PrpsCjBq78H",
+    "name": "Xtal",
+    "type": "track",
+    "is_local": false,
+    "uri": "spotify:track:x"
+   }
+  },
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": false,
+   "item": {
+    "album": {
+     "id": "p7twaxDFmFaqfycbsoKGUO",
+     "name": "Music Has the Right to Children",
+     "images": [
+      {
+       "url": "https://i.scdn.co/image/x",
+       "height": 640,
+       "width": 640
+      }
+     ],
+     "album_type": "album"
+    },
+    "artists": [
+     {
+      "id": "S2yu9jSNcZ3MTYiGFZXZK3",
+      "name": "Boards of Canada",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 146000,
+    "explicit": false,
+    "id": "QQobiwgZIMMQEaXUFHOeTp",
+    "name": "Roygbiv",
+    "type": "track",
+    "is_local": false,
+    "uri": "spotify:track:x"
+   }
+  },
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": true,
+   "item": {
+    "album": null,
+    "artists": [
+     {
+      "id": "eqTmT8ExDQVMNejpUsJadq",
+      "name": "Rob Reynolds",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 200000,
+    "explicit": false,
+    "id": "PQPsGCCh3m86bCY8Bqn6nK",
+    "name": "Sing Sing",
+    "type": "track",
+    "is_local": true,
+    "uri": "spotify:track:x"
+   }
+  }
+ ]
+}

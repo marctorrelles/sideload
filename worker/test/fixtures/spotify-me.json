@@ -1,0 +1,10 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "country": "ES",
+ "display_name": "REDACTED",
+ "email": "REDACTED",
+ "id": "REDACTED",
+ "product": "premium",
+ "type": "user",
+ "uri": "spotify:user:REDACTED"
+}

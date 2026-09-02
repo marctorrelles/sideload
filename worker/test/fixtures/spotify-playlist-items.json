@@ -1,0 +1,202 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "href": "https://api.spotify.com/v1/playlists/x/items?offset=0&limit=50&additional_types=track,episode",
+ "limit": 50,
+ "next": null,
+ "offset": 0,
+ "previous": null,
+ "total": 6,
+ "items": [
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": false,
+   "item": {
+    "album": {
+     "id": "ujOeHwdFcAefAZhnM6Jy8c",
+     "name": "Selected Ambient Works 85-92",
+     "images": [
+      {
+       "url": "https://i.scdn.co/image/x",
+       "height": 640,
+       "width": 640
+      }
+     ],
+     "album_type": "album"
+    },
+    "artists": [
+     {
+      "id": "1rihtYlKNxHddmQAtKCsXR",
+      "name": "Aphex Twin",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 293000,
+    "explicit": false,
+    "id": "pJG2Tr8hzUjEcPVJ2tRKJC",
+    "name": "Xtal",
+    "type": "track",
+    "is_local": false,
+    "uri": "spotify:track:x"
+   }
+  },
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": false,
+   "item": {
+    "album": {
+     "id": "06DPdRO9YrxPbCkhdVipy2",
+     "name": "Selected Ambient Works 85-92",
+     "images": [
+      {
+       "url": "https://i.scdn.co/image/x",
+       "height": 640,
+       "width": 640
+      }
+     ],
+     "album_type": "album"
+    },
+    "artists": [
+     {
+      "id": "eBI2Y1rzw27jkooEKqazwJ",
+      "name": "Aphex Twin",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 322000,
+    "explicit": false,
+    "id": "7QFMPd3W2XyygNdemkvdaj",
+    "name": "Ageispolis",
+    "type": "track",
+    "is_local": false,
+    "uri": "spotify:track:x"
+   }
+  },
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": false,
+   "item": {
+    "album": {
+     "id": "gwb2Mjpvwh09CDfgvqZkb6",
+     "name": "Mezzanine",
+     "images": [
+      {
+       "url": "https://i.scdn.co/image/x",
+       "height": 640,
+       "width": 640
+      }
+     ],
+     "album_type": "album"
+    },
+    "artists": [
+     {
+      "id": "GjHbG81RqwkVHWunY90XYT",
+      "name": "Massive Attack",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 331000,
+    "explicit": false,
+    "id": "oGwbbrqQ7B697wnommM30D",
+    "name": "Teardrop",
+    "type": "track",
+    "is_local": false,
+    "uri": "spotify:track:x"
+   }
+  },
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": false,
+   "item": {
+    "album": {
+     "id": "OXfO4WUDlWuX8yy6Skhj4Y",
+     "name": "DeB\u00cd TiRAR M\u00e1S FOToS",
+     "images": [
+      {
+       "url": "https://i.scdn.co/image/x",
+       "height": 640,
+       "width": 640
+      }
+     ],
+     "album_type": "album"
+    },
+    "artists": [
+     {
+      "id": "jZ8OvIia8OG5A2ZnpsoKqz",
+      "name": "Bad Bunny",
+      "type": "artist"
+     },
+     {
+      "id": "i4vCK4A4FGGbBlaXkDSIuG",
+      "name": "X",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 218000,
+    "explicit": false,
+    "id": "IWgIprVFIV4BLFFQCHD6R2",
+    "name": "DtMF (feat. X)",
+    "type": "track",
+    "is_local": false,
+    "uri": "spotify:track:x"
+   }
+  },
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": true,
+   "item": {
+    "album": null,
+    "artists": [
+     {
+      "id": "6qI60ihBeoePW3jSOi27n7",
+      "name": "me",
+      "type": "artist"
+     }
+    ],
+    "duration_ms": 120000,
+    "explicit": false,
+    "id": "yE9ZkAFvmtSbIBbuMFd9W8",
+    "name": "demo_v3.mp3",
+    "type": "track",
+    "is_local": true,
+    "uri": "spotify:track:x"
+   }
+  },
+  {
+   "added_at": "2024-03-01T10:00:00Z",
+   "added_by": {
+    "id": "REDACTED",
+    "type": "user"
+   },
+   "is_local": false,
+   "item": {
+    "duration_ms": 3600000,
+    "explicit": false,
+    "id": "gqcWqiA4Yqj4JRfdQAe6NX",
+    "name": "Episode 12",
+    "type": "episode",
+    "is_local": false,
+    "uri": "spotify:track:x"
+   }
+  }
+ ]
+}

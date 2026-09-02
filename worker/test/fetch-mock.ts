@@ -50,7 +50,7 @@ class FetchMock {
     const url = new URL(req.url);
     const path = url.pathname + url.search;
     const headers = Object.fromEntries(req.headers);
-    const body = req.method === 'GET' || req.method === 'HEAD' ? undefined : await req.text();
+    const body = req.method === 'GET' || req.method === 'HEAD' ? undefined : new TextDecoder().decode(await req.arrayBuffer()); // arrayBuffer: workerd warns on .text() for form bodies
     const i = this.list.find(i => i.times > 0 && i.origin === url.origin && match(i.opts.path, path) && match(i.opts.method ?? 'GET', req.method)
       && (!i.opts.headers || Object.entries(i.opts.headers).every(([k, m]) => match(m, headers[k.toLowerCase()] ?? '')))
       && match(i.opts.body, body ?? ''));

@@ -1,0 +1,113 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "href": "https://api.spotify.com/v1/me/playlists?offset=0&limit=50",
+ "limit": 50,
+ "next": null,
+ "offset": 0,
+ "previous": null,
+ "total": 3,
+ "items": [
+  {
+   "collaborative": false,
+   "description": "late nights",
+   "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/x"
+   },
+   "href": "https://api.spotify.com/v1/playlists/x",
+   "id": "iG7iYF2Ro3EbaEBsivt0aU",
+   "images": [
+    {
+     "url": "https://i.scdn.co/image/y",
+     "height": null,
+     "width": null
+    }
+   ],
+   "name": "Deep Focus",
+   "owner": {
+    "id": "REDACTED",
+    "display_name": "REDACTED",
+    "type": "user"
+   },
+   "public": false,
+   "snapshot_id": "abc",
+   "items": {
+    "href": "https://api.spotify.com/v1/playlists/x/items",
+    "total": 124
+   },
+   "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/x/tracks",
+    "total": 124
+   },
+   "type": "playlist",
+   "uri": "spotify:playlist:x"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/x"
+   },
+   "href": "https://api.spotify.com/v1/playlists/x",
+   "id": "0h5S3rxy9KwArcgZr6pqFl",
+   "images": [
+    {
+     "url": "https://i.scdn.co/image/y",
+     "height": null,
+     "width": null
+    }
+   ],
+   "name": "Running 2024",
+   "owner": {
+    "id": "REDACTED",
+    "display_name": "REDACTED",
+    "type": "user"
+   },
+   "public": true,
+   "snapshot_id": "abc",
+   "items": {
+    "href": "https://api.spotify.com/v1/playlists/x/items",
+    "total": 58
+   },
+   "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/x/tracks",
+    "total": 58
+   },
+   "type": "playlist",
+   "uri": "spotify:playlist:x"
+  },
+  {
+   "collaborative": false,
+   "description": "",
+   "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/x"
+   },
+   "href": "https://api.spotify.com/v1/playlists/x",
+   "id": "x72YN46ISdTBUNrd5hDvsT",
+   "images": [
+    {
+     "url": "https://i.scdn.co/image/y",
+     "height": null,
+     "width": null
+    }
+   ],
+   "name": "Discover Weekly",
+   "owner": {
+    "id": "spotify",
+    "display_name": "Spotify",
+    "type": "user"
+   },
+   "public": true,
+   "snapshot_id": "abc",
+   "items": {
+    "href": "https://api.spotify.com/v1/playlists/x/items",
+    "total": 30
+   },
+   "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/x/tracks",
+    "total": 30
+   },
+   "type": "playlist",
+   "uri": "spotify:playlist:x"
+  }
+ ]
+}

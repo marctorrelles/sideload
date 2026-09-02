@@ -1,0 +1,51 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "href": "https://api.spotify.com/v1/me/albums?offset=0&limit=50",
+ "limit": 50,
+ "next": null,
+ "offset": 0,
+ "previous": null,
+ "total": 2,
+ "items": [
+  {
+   "added_at": "2024-01-01T00:00:00Z",
+   "album": {
+    "id": "8qOsIykkm4En49Bilfvfoq",
+    "name": "Selected Ambient Works 85-92",
+    "artists": [
+     {
+      "id": "J3UzzGxudr7hFN1nqpyB70",
+      "name": "Aphex Twin"
+     }
+    ],
+    "total_tracks": 13,
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/a"
+     }
+    ],
+    "album_type": "album"
+   }
+  },
+  {
+   "added_at": "2024-02-01T00:00:00Z",
+   "album": {
+    "id": "2bbR3DKay5Z18pgjGQ6SOV",
+    "name": "Mezzanine",
+    "artists": [
+     {
+      "id": "CIcWo5OshpNRgeGKynLasC",
+      "name": "Massive Attack"
+     }
+    ],
+    "total_tracks": 11,
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/b"
+     }
+    ],
+    "album_type": "album"
+   }
+  }
+ ]
+}

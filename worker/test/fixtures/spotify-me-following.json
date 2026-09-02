@@ -1,0 +1,30 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "artists": {
+  "href": "https://api.spotify.com/v1/me/following?type=artist&limit=50",
+  "limit": 50,
+  "next": null,
+  "cursors": {
+   "after": null
+  },
+  "total": 2,
+  "items": [
+   {
+    "id": "7N2Dop7RtbEPApP5ocuAQm",
+    "name": "Aphex Twin",
+    "images": [
+     {
+      "url": "https://i.scdn.co/image/c"
+     }
+    ],
+    "type": "artist"
+   },
+   {
+    "id": "XTFm8tYonVs7ElnzP6jyn8",
+    "name": "Boards of Canada",
+    "images": [],
+    "type": "artist"
+   }
+  ]
+ }
+}

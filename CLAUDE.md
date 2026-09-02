@@ -5,7 +5,7 @@ Free, MIT-licensed web service that moves a Spotify library (playlists, liked so
 ## Repo rules
 
 - **pnpm** only (`pnpm-workspace.yaml`: `worker`, `web`). Node 22 (`.nvmrc`; wrangler 4 needs ≥ 22). `allowBuilds` in `pnpm-workspace.yaml` approves `esbuild`/`workerd` postinstalls.
-- `docs/superpowers/` is gitignored: local planning material. Never commit it and never reference it from code, docs or commit messages.
+- Everything under `docs/` except `docs/design/` is gitignored: local planning material lives there. Never commit it and never reference it from code, docs or commit messages.
 - No AI attribution anywhere: no `Co-Authored-By`, no tool names in commits, authors or docs.
 - One commit per task, conventional prefixes (`feat(worker):`, `chore:`, `docs:`, `ci:`). Keep `pnpm test` and `pnpm --filter worker typecheck` green at every commit.
 - Secrets live in `.dev.vars` (gitignored, copy `.dev.vars.example`) locally and in `wrangler secret` in production. Never in `wrangler.jsonc`.

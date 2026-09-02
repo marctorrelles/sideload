@@ -1,5 +1,5 @@
 ---
-// web/src/components/StepBar.astro — 01 Connect · 02 Choose · 03 Transfer
+// web/src/components/StepBar.astro — 01 Connect · 02 Choose · 03 Transfer. Styles are global (components.css) because the Transfer island renders the same bar itself.
 interface Props { step: 1 | 2 | 3 | 'done' }
 const { step } = Astro.props;
 const steps = [[1, 'Connect'], [2, 'Choose'], [3, 'Transfer']] as const;
@@ -12,10 +12,3 @@ const state = (n: number) => (step === 'done' ? 'done' : n < step ? 'done' : n =
     </li>
   ))}
 </ol></div>
-<style>
-  .stepbar { background: var(--bg-sunken); }
-  .stepbar__in { display: flex; gap: 26px; list-style: none; margin: 0; padding-top: 12px; padding-bottom: 12px; }
-  .step { font: 500 10.5px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-5); transition: color var(--t-med) ease; }
-  .step.is-current { color: var(--accent); } .step.is-done { color: rgba(255,255,255,.38); } .step.is-final { color: var(--success); }
-  @media (max-width: 900px) { .stepbar__in { gap: 16px; padding-top: 11px; padding-bottom: 11px; } .step.is-done .label { display: none; } }
-</style>

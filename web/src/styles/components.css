@@ -67,3 +67,10 @@
 .kv { display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; margin: 22px 0 0; padding-top: 18px; font: 400 13px/1.4 var(--font-ui); }
 .kv dt { color: var(--fg-2); } .kv dd { margin: 0; color: var(--fg); } .kv dd.mono { font: 400 12px/1.4 var(--font-mono); }
 .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 22px; }
+
+/* step sub-bar — shared by StepBar.astro and the Transfer island */
+.stepbar { background: var(--bg-sunken); }
+.stepbar__in { display: flex; gap: 26px; list-style: none; margin: 0; padding-top: 12px; padding-bottom: 12px; }
+.step { font: 500 10.5px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-5); transition: color var(--t-med) ease; }
+.step.is-current { color: var(--accent); } .step.is-done { color: rgba(255,255,255,.38); } .step.is-final { color: var(--success); }
+@media (max-width: 900px) { .stepbar__in { gap: 16px; padding-top: 11px; padding-bottom: 11px; } .step.is-done .label { display: none; } }

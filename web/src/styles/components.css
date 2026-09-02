@@ -72,5 +72,5 @@
 .stepbar { background: var(--bg-sunken); }
 .stepbar__in { display: flex; gap: 26px; list-style: none; margin: 0; padding-top: 12px; padding-bottom: 12px; }
 .step { font: 500 10.5px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-5); transition: color var(--t-med) ease; }
-.step.is-current { color: var(--accent); } .step.is-done { color: rgba(255,255,255,.38); } .step.is-final { color: var(--success); }
+.step.is-current { color: var(--accent); } .step.is-done { color: var(--fg-4); } .step.is-final { color: var(--success); }
 @media (max-width: 900px) { .stepbar__in { gap: 16px; padding-top: 11px; padding-bottom: 11px; } .step.is-done .label { display: none; } }

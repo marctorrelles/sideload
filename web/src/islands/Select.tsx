@@ -62,7 +62,7 @@ export default function Select() {
         {hasLiked && <label class={`row is-selectable ${sel.liked ? '' : 'is-dim'}`}>
           <input type="checkbox" class="checkbox" checked={sel.liked} onChange={e => setSel({ ...sel, liked: (e.target as HTMLInputElement).checked })} />
           <span class="placeholder ph-36" aria-hidden="true" />
-          <span><div class="row__title">Liked songs</div><div class="row__sub">your saved library → likes + a private "Liked Songs" playlist</div></span>
+          <span class="row__text"><div class="row__title">Liked songs</div><div class="row__sub">your saved library → likes + a private "Liked Songs" playlist</div></span>
           <span class="row__count">{n(lib.likedCount)} songs</span>
         </label>}
         {visible.map(r => {

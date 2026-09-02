@@ -1,7 +1,7 @@
 /* web/src/styles/tokens.css — every value from docs/design/handoff.md "Design Tokens" */
 :root {
   --bg: #121110; --bg-sunken: #0e0d0c; --bg-sunken-2: #0f0e0d; --bg-panel: #0c0c0b; --bg-footer: #0c0b0a; --bg-row-active: #1a1917;
-  --fg: #f4f1eb; --fg-2: rgba(255,255,255,.60); --fg-3: rgba(255,255,255,.45); --fg-4: rgba(255,255,255,.35); --fg-5: rgba(255,255,255,.28);
+  --fg: #f4f1eb; --fg-2: rgba(255,255,255,.60); --fg-3: rgba(255,255,255,.52); --fg-4: rgba(255,255,255,.47); --fg-5: rgba(255,255,255,.42);
   --hairline: rgba(255,255,255,.10); --hairline-strong: rgba(255,255,255,.12); --hairline-hover: rgba(255,255,255,.25); --row-gap: rgba(255,255,255,.09);
   --accent: #e0703f; --accent-hover: #d2663a; --accent-soft: #f0a58a; --accent-tint-bg: #1a1512; --accent-tint-border: rgba(224,112,63,.50); --accent-tint-fill: rgba(224,112,63,.13); --accent-banner: rgba(224,112,63,.10); --accent-banner-border: rgba(224,112,63,.28);
   --danger: #e0563f;

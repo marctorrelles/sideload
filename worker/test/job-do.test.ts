@@ -149,6 +149,24 @@ describe('JobDO', () => {
     expect(v.status).toBe('failed'); expect(v.failure).toBe('auth_expired'); expect(v.ytConnected).toBe(false);
   });
 
+  it('fails just the item when Spotify refuses a playlist (403 on playlists owned by others in Development Mode)', async () => {
+    const other = 'Q'.repeat(22);
+    sp().intercept({ path: p => p.startsWith(`/v1/playlists/${'P'.repeat(22)}/items`) }).reply(200, { total: 1, next: null, items: [entry('t1', 'Xtal')] });
+    sp().intercept({ path: p => p.startsWith(`/v1/playlists/${other}/items`) }).reply(403, { error: { status: 403, message: 'Forbidden' } });
+    music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
+    data().intercept(CREATE).reply(200, { id: 'PLnew' });
+    tv().intercept(EDIT).reply(200, captureAdds);
+    data().intercept(READBACK).reply(200, () => pageOf(added));
+    const p = payload(id); p.selection.playlists.push({ id: other, name: 'Somebody else’s mix', description: null, isPublic: true, trackCount: 75 });
+    await stub.start(p);
+    await settle(stub);
+    const v = (await stub.view())!;
+    expect(v.status).toBe('done');
+    expect(v.items.map(i => i.status)).toEqual(['done', 'failed']);
+    expect(v.items[1]).toMatchObject({ review: 1, moved: 0 });
+    expect(v.review.find(r => r.reason === 'not_accessible')).toMatchObject({ title: 'Somebody else’s mix', itemName: 'Playlists', actionable: false });
+  });
+
   it('rejects oversize selections up front', async () => {
     expect(await stub.start({ ...payload(id), selection: { liked: true, likedCount: 30000, playlists: [], albums: [], artists: [] } })).toEqual({ ok: false, error: 'too_large' });
     expect(await stub.view()).toBeNull();

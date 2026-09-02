@@ -3,7 +3,7 @@ export type Provider = 'ytmusic';
 export type ItemKind = 'liked' | 'playlist' | 'album' | 'artist';
 export type ItemStatus = 'queued' | 'fetching' | 'matching' | 'writing' | 'verifying' | 'done' | 'failed';
 export type TrackStatus = 'pending' | 'matched' | 'moved' | 'review' | 'skipped';
-export type ReviewReason = 'no_match' | 'low_confidence' | 'unavailable' | 'local_file' | 'duplicate_match' | 'write_failed';
+export type ReviewReason = 'no_match' | 'low_confidence' | 'unavailable' | 'local_file' | 'duplicate_match' | 'write_failed' | 'not_accessible';
 export type JobStatus = 'running' | 'paused' | 'done' | 'failed';
 export type JobFailure = 'auth_expired' | 'provider_error' | 'too_large' | 'timeout';
 

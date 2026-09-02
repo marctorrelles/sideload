@@ -49,7 +49,7 @@ async function dataApi(token: string, method: string, path: string, body?: objec
   console.log(`DATA ${method} ${path.split('?')[0]} → ${r.status}${j?.error ? ' ❌ ' + j.error.message : ' ✅'}`);
   return j;
 }
-const redact = (o: any): any => Array.isArray(o) ? o.map(redact) : o && typeof o === 'object' ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, ['visitorData', 'consistencyTokenJar', 'encryptedTokenJarContents', 'datasyncId', 'onBehalfOfUser'].includes(k) ? 'REDACTED' : redact(v)])) : o;
+const redact = (o: any): any => Array.isArray(o) ? o.map(redact) : o && typeof o === 'object' ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, ['visitorData', 'consistencyTokenJar', 'encryptedTokenJarContents', 'datasyncId', 'onBehalfOfUser', 'channelTitle', 'channelId'].includes(k) ? 'REDACTED' : redact(v)])) : o;
 const save = (n: string, j: unknown, note = '') => writeFileSync(`worker/test/fixtures/${n}.json`, JSON.stringify({ _recorded: `${new Date().toISOString().slice(0, 10)} with worker/scripts/spike-innertube.ts; visitorData/consistencyTokenJar redacted${note}`, ...redact(j) }, null, 1));
 
 (async () => {

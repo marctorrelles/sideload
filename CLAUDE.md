@@ -34,7 +34,7 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 
 ## Accounts and external constraints (verified 2026-09-02)
 
-- Spotify Development Mode apps are capped at 5 users per Client ID and the owner needs Premium → every user brings their own Client ID. Redirect URI must use `127.0.0.1`, not `localhost`.
+- Spotify Development Mode apps are capped at 5 users per Client ID and the owner needs Premium → every user brings their own Client ID. Redirect URI must use `127.0.0.1`, not `localhost`. Such an app cannot read playlists owned by other users (403): followed playlists are shown disabled and skipped.
 - YouTube Data API v3 quota (10k units/day, 100 per search, 50 per insert) rules it out for search and item adds → InnerTube for those. OAuth tokens are rejected by InnerTube's music/web/android clients (400) and accepted only by `TVHTML5`, which cannot create playlists → `playlists.insert` on the Data API (50 units; ~200 playlists/day until a quota increase is granted, request it with verification).
 - Google's abuse page (403 HTML "Sorry…") shows up after request bursts from one IP; the client treats it as a throttle and backs off.
 - Google sensitive-scope verification is a launch blocker: unverified apps have a lifetime 100-user cap. Do not publish the URL before it is granted.
@@ -42,4 +42,4 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 
 ## Status
 
-Worker complete and tested. YouTube fixtures are **recorded** (2026-09-02, redacted); Spotify fixtures are still **synthetic** until `SPOTIFY_CLIENT_ID=… pnpm spike:spotify` runs (overwrites `worker/test/fixtures/spotify-*.json`; redact afterwards, see `worker/CLAUDE.md`). Still to do before launch: matcher calibration (`worker/scripts/calibrate-match.ts`, needs real Spotify fixtures), Google verification + Data API quota increase. Web (Part B) not started.
+Worker complete and tested. All provider fixtures are **recorded** (2026-09-02, redacted by the spike scripts; `pnpm spike:innertube`, `pnpm spike:spotify`). Still to do before launch: matcher calibration (`worker/scripts/calibrate-match.ts`), Google verification + Data API quota increase. Web (Part B) not started.

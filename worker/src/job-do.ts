@@ -105,8 +105,9 @@ export class JobDO extends DurableObject<Env> {
     }
     const itemViews: JobItemView[] = items.map(i => {
       const c = counts.get(i.id) ?? { moved: 0, review: 0, matched: 0, skipped: 0 };
-      const entityMoved = i.kind === 'album' || i.kind === 'artist' ? (i.status === 'done' ? 1 : 0) : c.moved;
-      const entityReview = i.kind === 'album' || i.kind === 'artist' ? (i.status === 'failed' ? 1 : 0) : c.review;
+      const entity = i.kind === 'album' || i.kind === 'artist';
+      const entityMoved = entity ? (i.status === 'done' ? 1 : 0) : c.moved;
+      const entityReview = entity ? (i.status === 'failed' ? 1 : 0) : i.status === 'failed' ? 1 : c.review; // a playlist we could not read (403) shows as one review entry
       return { id: i.id, kind: i.kind, name: i.name, total: i.total, moved: entityMoved, review: entityReview, status: i.status, ytId: i.yt_id };
     });
     const byReason = Object.fromEntries((this.sql.exec("SELECT reason, COUNT(*) AS n FROM track WHERE status = 'review' GROUP BY reason").toArray() as { reason: string; n: number }[]).map(r => [r.reason, r.n]));
@@ -128,7 +129,7 @@ export class JobDO extends DurableObject<Env> {
     const tracks = this.sql.exec(`SELECT t.*, i.name AS item_name, i.kind AS item_kind FROM track t JOIN item i ON i.id = t.item_id WHERE t.status = 'review' ORDER BY i.ord, t.pos LIMIT ? OFFSET ?`, REVIEW_PAGE, offset).toArray() as unknown as (TrackRow & { item_name: string; item_kind: ItemKind })[];
     const out: ReviewItemView[] = tracks.map(t => ({ id: t.id, kind: t.item_kind, title: t.name, artist: (JSON.parse(t.artists) as string[]).join(', '), itemName: t.item_name, reason: t.reason ?? 'no_match', suggestion: t.suggestion ? JSON.parse(t.suggestion) : null, collidesWith: t.collides_with, actionable: t.reason !== 'local_file' }));
     if (offset === 0) for (const i of this.sql.exec("SELECT * FROM item WHERE status = 'failed' ORDER BY ord").toArray() as unknown as ItemRow[])
-      out.push({ id: -i.ord - 1, kind: i.kind, title: i.name, artist: i.artist ?? '', itemName: i.kind === 'album' ? 'Saved albums' : 'Followed artists', reason: 'no_match', suggestion: null, collidesWith: null, actionable: false });
+      out.push({ id: -i.ord - 1, kind: i.kind, title: i.name, artist: i.artist ?? '', itemName: i.kind === 'album' ? 'Saved albums' : i.kind === 'artist' ? 'Followed artists' : 'Playlists', reason: (i.reason as ReviewReason | null) ?? 'no_match', suggestion: null, collidesWith: null, actionable: false });
     return out;
   }
   async reportCsv(): Promise<string> {
@@ -210,7 +211,13 @@ export class JobDO extends DurableObject<Env> {
   }
   private hasRedo(item: ItemRow): boolean { return (this.sql.exec('SELECT COUNT(*) AS n FROM track WHERE item_id = ? AND redo > 0', item.id).one() as { n: number }).n > 0; }
   private async fetchPage(item: ItemRow, sp: Spotify): Promise<void> {
-    const page = item.kind === 'liked' ? await sp.savedTracks(item.fetch_offset) : await sp.playlistItems(item.spotify_id!, item.fetch_offset);
+    let page;
+    try { page = item.kind === 'liked' ? await sp.savedTracks(item.fetch_offset) : await sp.playlistItems(item.spotify_id!, item.fetch_offset); }
+    catch (e) {
+      // Measured 2026-09-02: a Development Mode app gets 403 on playlists owned by other users (followed playlists). Fail the item, not the job.
+      if (e instanceof SpotifyError && (e.status === 403 || e.status === 404)) { this.sql.exec("UPDATE item SET status = 'failed', reason = 'not_accessible', fetched = 1 WHERE id = ?", item.id); return; }
+      throw e;
+    }
     const done = !page.next || page.items.length === 0;
     this.ctx.storage.transactionSync(() => {
       page.items.forEach((raw, i) => {

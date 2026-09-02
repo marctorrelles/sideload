@@ -18,7 +18,8 @@ pnpm install                      # once; needs Node 22
 pnpm test                         # all workspaces (worker runs inside workerd)
 pnpm --filter worker test         # worker only; `pnpm --filter worker exec vitest run test/x.test.ts -t "name"` for one case
 pnpm --filter worker typecheck
-pnpm dev                          # wrangler dev on 8787 + astro dev on 4321 (once web/ exists)
+pnpm dev                          # wrangler dev on 8787 + astro dev on 4321
+pnpm --filter web mock            # mock Worker on 8787 instead of wrangler: Select/Transfer screens without real accounts
 pnpm dev:worker                   # worker alone: curl -si http://127.0.0.1:8787/api/stats
 pnpm deploy                       # build site, wrangler deploy (CI does this on main)
 ```
@@ -26,7 +27,7 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 ## Layout
 
 - `worker/` — the Worker: routes, OAuth, InnerTube client, matcher, JobDO/StatsDO. See `worker/CLAUDE.md`.
-- `web/` — Astro static site + Preact islands (not started yet). Will get its own `CLAUDE.md`.
+- `web/` — Astro 7 static site + Preact islands (landing, FAQ, privacy, the three step screens). See `web/CLAUDE.md`.
 - `shared/types.ts` — DTOs shared by worker and web; no runtime code.
 - `wrangler.jsonc` — single Worker config: assets (`run_worker_first`), DOs (`JobDO`, `StatsDO`, SQLite migration `v1`), KV `MATCH_CACHE`, rate-limit bindings `RL_*`, `PUBLIC_ORIGIN` var.
 - `.github/workflows/` — `ci.yml` (PR + main: install, build web, typecheck, test), `deploy.yml` (main → `wrangler deploy`; needs `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` repo secrets).
@@ -42,4 +43,4 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 
 ## Status
 
-Worker complete and tested. All provider fixtures are **recorded** (2026-09-02, redacted by the spike scripts; `pnpm spike:innertube`, `pnpm spike:spotify`). Still to do before launch: matcher calibration (`worker/scripts/calibrate-match.ts`), Google verification + Data API quota increase. Web (Part B) not started.
+Worker and web complete and tested (56 worker tests inside workerd, 4 web tests, `astro check` clean; Lighthouse 100/100/100/100 on `/`, `/faq`, `/privacy` as of 2026-09-02). All provider fixtures are **recorded** (2026-09-02, redacted by the spike scripts; `pnpm spike:innertube`, `pnpm spike:spotify`). The web flow has been checked against the mock Worker only: an end-to-end run with real accounts (Connect → Select → Transfer with a small playlist) is still owed. Still to do before launch: that e2e run, matcher calibration (`worker/scripts/calibrate-match.ts`), Google verification + Data API quota increase, then deploy (KV namespace id, secrets, custom domain).

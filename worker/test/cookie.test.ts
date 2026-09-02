@@ -19,7 +19,7 @@ describe('session cookie', () => {
     expect(await got.json()).toEqual({ google: { access: 'a', refresh: 'r', expiresAt: 1 } });
   });
   it('uses __Host- prefix and Secure over https', async () => {
-    const set = await app.request('https://sideload.app/set', { method: 'POST' }, env);
+    const set = await app.request('https://sideload.marctorrelles.com/set', { method: 'POST' }, env);
     expect(set.headers.get('set-cookie')).toMatch(/^__Host-sl_s=.*Secure/);
   });
   it('returns null for garbage', async () => {

@@ -5,7 +5,7 @@
   "main": "worker/src/index.ts",
   "compatibility_date": "2026-08-01",
   "workers_dev": false,
-  "routes": [{ "pattern": "sideload.app", "custom_domain": true }],
+  "routes": [{ "pattern": "sideload.marctorrelles.com", "custom_domain": true }],
   "assets": {
     "directory": "./web/dist",
     "binding": "ASSETS",
@@ -25,5 +25,5 @@
   ],
   "limits": { "cpu_ms": 60000 },
   "observability": { "enabled": true, "head_sampling_rate": 1 },
-  "vars": { "PUBLIC_ORIGIN": "https://sideload.app" }
+  "vars": { "PUBLIC_ORIGIN": "https://sideload.marctorrelles.com" }
 }

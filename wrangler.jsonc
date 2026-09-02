@@ -1,0 +1,9 @@
+// wrangler.jsonc
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sideload",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "./web/dist", "binding": "ASSETS" },
+  "kv_namespaces": [{ "binding": "MATCH_CACHE", "id": "REPLACE_ME" }]
+}

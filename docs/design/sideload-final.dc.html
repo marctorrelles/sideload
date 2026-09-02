@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
+body{margin:0;background:#f0eee9;font-family:Archivo,Helvetica,sans-serif;text-wrap:pretty}
+a{color:#b3431c}a:hover{color:#8c3313}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 Archivo,sans-serif;color:#1a1a1a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px "IBM Plex Mono",ui-monospace,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Archivo,sans-serif;color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#b3431c;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 Archivo,sans-serif;color:rgba(0,0,0,.5)}
+</style></helmet>
+<section class="dv-turn" id="flow">
+<div class="dv-thd"><span class="dv-tid">Sideload</span><span class="dv-tname">Final screens — desktop flow</span></div>
+<div class="dv-opts">
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><span class="dv-oid">Landing</span>Hero — desktop</div>
+<div class="dv-card" style="width:1120px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid rgba(255,255,255,.1)">
+<span style="font:700 17px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span>
+<div style="display:flex;align-items:center;gap:24px;font:500 12.5px Archivo,sans-serif;color:rgba(255,255,255,.6)"><span>FAQ</span><span>GitHub</span><span style="color:#f4f1eb">Buy me a coffee</span></div>
+</div>
+<div style="display:grid;grid-template-columns:1.06fr .94fr">
+<div style="padding:66px 40px 60px">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#e0703f;margin-bottom:22px">Free · no account needed</div>
+<h1 style="margin:0;font:600 58px/1.02 Archivo,sans-serif;letter-spacing:-.038em">Your library, ported cleanly.</h1>
+<p style="margin:22px 0 0;max-width:44ch;font:400 16.5px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.65)">Move your playlists, saved albums and followed artists from Spotify to YouTube Music, Apple Music or Tidal. Everything that can't be matched is listed for you at the end — nothing disappears quietly.</p>
+<div style="display:flex;align-items:center;gap:16px;margin-top:36px">
+<span style="background:#e0703f;color:#141110;font:600 15px Archivo,sans-serif;padding:16px 28px">Start a transfer</span>
+</div>
+<div style="display:flex;gap:36px;margin-top:54px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)">
+<div><div style="font:600 22px 'IBM Plex Mono',monospace">1.2M</div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:5px">tracks moved</div></div>
+<div><div style="font:600 22px 'IBM Plex Mono',monospace">96.4%</div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:5px">matched first try</div></div>
+<div><div style="font:600 22px 'IBM Plex Mono',monospace">4 min</div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:5px">typical library</div></div>
+</div>
+</div>
+<div style="padding:30px 32px 34px;background:#0c0c0b;border-left:1px solid rgba(255,255,255,.1)">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span style="font:600 12.5px Archivo,sans-serif">Transferring your library</span><span style="font:500 11.5px 'IBM Plex Mono',monospace;color:#e0703f">62%</span></div>
+<div style="height:5px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:22px"><div style="width:62%;height:100%;background:#e0703f"></div></div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.08)">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif">Deep Focus</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#7fc79a">all 312 songs</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif">Liked songs</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">2,904 of 2,911</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif">road trip '24</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#f0a58a">3 to review</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif;color:rgba(255,255,255,.5)">Saved albums</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">up next</span></div>
+</div>
+<div style="margin-top:24px;border:1px dashed rgba(255,255,255,.2);height:118px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 6px,transparent 6px 12px)"><span style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;color:rgba(255,255,255,.45)">provider logo lockup</span></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1)">
+<div style="padding:26px 40px;border-right:1px solid rgba(255,255,255,.1)"><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:8px">01 — Connect</div><div style="font:400 13.5px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.66)">Sign in to Spotify, then to where you're going.</div></div>
+<div style="padding:26px 40px;border-right:1px solid rgba(255,255,255,.1)"><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:8px">02 — Choose</div><div style="font:400 13.5px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.66)">Tick what's worth keeping. Track counts shown.</div></div>
+<div style="padding:26px 40px"><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:8px">03 — Walk away</div><div style="font:400 13.5px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.66)">Come back to a finished library and a short review list.</div></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.1);background:#0c0b0a;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px">
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.35)">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</span>
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">Made with ♥ by <a href="https://marctorrelles.com" style="color:rgba(255,255,255,.7)">Marc Torrelles</a></span>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-opt" id="3a">
+<div class="dv-olabel"><span class="dv-oid">Step 01</span>Connect — desktop</div>
+<div class="dv-card" style="width:1120px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb;min-height:660px;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid rgba(255,255,255,.1)">
+<span style="font:700 17px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span>
+<div style="display:flex;align-items:center;gap:24px;font:500 12.5px Archivo,sans-serif;color:rgba(255,255,255,.6)"><span>FAQ</span><span>GitHub</span><span style="color:#f4f1eb">Buy me a coffee</span></div>
+</div><div style="display:flex;align-items:center;gap:26px;padding:12px 40px;border-bottom:1px solid rgba(255,255,255,.1);background:#0e0d0c;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase"><span style="color:#e0703f">01 Connect</span><span style="color:rgba(255,255,255,.28)">02 Choose</span><span style="color:rgba(255,255,255,.28)">03 Transfer</span></div>
+<div style="padding:52px 40px 46px;flex:1">
+<h2 style="margin:0;font:600 36px/1.1 Archivo,sans-serif;letter-spacing:-.03em">Connect the two services</h2>
+<p style="margin:14px 0 0;max-width:56ch;font:400 15.5px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.6)">We read your library from Spotify and write to the destination. Nothing is changed or deleted on the Spotify side.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:34px">
+<div style="border:1px solid rgba(127,199,154,.4);background:#141614;padding:26px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:14px">
+<div style="width:46px;height:46px;border:1px dashed rgba(255,255,255,.25);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div>
+<div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)">Source</div><div style="font:600 18px Archivo,sans-serif;margin-top:4px">Spotify</div></div>
+</div>
+<span style="font:500 11px 'IBM Plex Mono',monospace;color:#7fc79a">connected</span>
+</div>
+<div style="margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:8px;font:400 13px Archivo,sans-serif;color:rgba(255,255,255,.6)">
+<div style="display:flex;justify-content:space-between"><span>Signed in as</span><span style="color:#f4f1eb">marc@hey.com</span></div>
+<div style="display:flex;justify-content:space-between"><span>Access</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px">read-only</span></div>
+<div style="display:flex;justify-content:space-between"><span>Found</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px">41 playlists · 5,318 songs</span></div>
+</div>
+<div style="margin-top:20px;font:500 12.5px Archivo,sans-serif;color:rgba(255,255,255,.45);text-decoration:underline;text-underline-offset:3px">Use a different account</div>
+</div>
+<div style="border:1px solid rgba(224,112,63,.5);background:#1a1512;padding:26px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between">
+<div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e0703f">Destination</div><div style="font:600 18px Archivo,sans-serif;margin-top:4px">Where is your library going?</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px;margin-top:20px">
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid rgba(224,112,63,.5);background:rgba(224,112,63,.12)"><div style="width:28px;height:28px;border:1px dashed rgba(255,255,255,.3)"></div><span style="font:600 14px Archivo,sans-serif">YouTube Music</span><span style="margin-left:auto;font:500 11px 'IBM Plex Mono',monospace;color:#e0703f">chosen</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid rgba(255,255,255,.07);opacity:.45"><div style="width:28px;height:28px;border:1px dashed rgba(255,255,255,.2)"></div><span style="font:500 14px Archivo,sans-serif;color:rgba(255,255,255,.6)">Apple Music</span><span style="margin-left:auto;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);padding:3px 7px;color:rgba(255,255,255,.6)">soon</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid rgba(255,255,255,.07);opacity:.45"><div style="width:28px;height:28px;border:1px dashed rgba(255,255,255,.2)"></div><span style="font:500 14px Archivo,sans-serif;color:rgba(255,255,255,.6)">Tidal</span><span style="margin-left:auto;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);padding:3px 7px;color:rgba(255,255,255,.6)">soon</span></div>
+</div>
+<div style="margin-top:20px;background:#e0703f;color:#141110;font:600 14px Archivo,sans-serif;padding:14px;text-align:center">Sign in to YouTube Music</div>
+</div>
+</div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.1);padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+<span style="font:400 12.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">Free · we drop both tokens when the transfer finishes</span>
+<span style="background:rgba(255,255,255,.14);color:rgba(255,255,255,.45);font:600 14px Archivo,sans-serif;padding:14px 26px">Choose what to move</span>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.1);background:#0c0b0a;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px">
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.35)">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</span>
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">Made with ♥ by <a href="https://marctorrelles.com" style="color:rgba(255,255,255,.7)">Marc Torrelles</a></span>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-opt" id="3b">
+<div class="dv-olabel"><span class="dv-oid">Step 02</span>Choose what to move — desktop</div>
+<div class="dv-card" style="width:1120px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid rgba(255,255,255,.1)">
+<span style="font:700 17px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span>
+<div style="display:flex;align-items:center;gap:24px;font:500 12.5px Archivo,sans-serif;color:rgba(255,255,255,.6)"><span>FAQ</span><span>GitHub</span><span style="color:#f4f1eb">Buy me a coffee</span></div>
+</div><div style="display:flex;align-items:center;gap:26px;padding:12px 40px;border-bottom:1px solid rgba(255,255,255,.1);background:#0e0d0c;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase"><span style="color:rgba(255,255,255,.38)">01 Connect ✓</span><span style="color:#e0703f">02 Choose</span><span style="color:rgba(255,255,255,.28)">03 Transfer</span></div>
+<div style="padding:44px 40px 0">
+<h2 style="margin:0;font:600 36px/1.1 Archivo,sans-serif;letter-spacing:-.03em">Choose what to move</h2>
+<p style="margin:14px 0 0;max-width:58ch;font:400 15.5px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.6)">Spotify → YouTube Music. Uncheck anything you'd rather leave behind.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 300px;gap:24px;padding:30px 40px 40px">
+<div>
+<div style="display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:2px">
+<span style="font:600 12.5px Archivo,sans-serif;padding:11px 16px;border:1px solid rgba(255,255,255,.12);border-bottom:none;background:#1a1917">Playlists <span style="font-family:'IBM Plex Mono',monospace;color:rgba(255,255,255,.45)">41</span></span>
+<span style="font:500 12.5px Archivo,sans-serif;padding:11px 16px;color:rgba(255,255,255,.5)">Albums <span style="font-family:'IBM Plex Mono',monospace">168</span></span>
+<span style="font:500 12.5px Archivo,sans-serif;padding:11px 16px;color:rgba(255,255,255,.5)">Followed artists <span style="font-family:'IBM Plex Mono',monospace">312</span></span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1px solid rgba(255,255,255,.12);border-top:none;background:#0f0e0d">
+<div style="display:flex;align-items:center;gap:10px"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><span style="font:500 12.5px Archivo,sans-serif">Select all</span></div>
+<span style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.45)">sort: recently played</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-top:none">
+<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:36px;height:36px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13.5px Archivo,sans-serif">Liked songs</div><div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:3px">your saved library</div></div><span style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">2,911 songs</span></div>
+<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:36px;height:36px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13.5px Archivo,sans-serif">Deep Focus</div><div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:3px">by you · updated 2 days ago</div></div><span style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">312 songs</span></div>
+<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:36px;height:36px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13.5px Archivo,sans-serif">road trip '24</div><div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:3px">by you · 3 collaborators</div></div><span style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">91 songs</span></div>
+<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#121110"><div style="width:15px;height:15px;border:1px solid rgba(255,255,255,.3)"></div><div style="width:36px;height:36px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13.5px Archivo,sans-serif;color:rgba(255,255,255,.6)">Discover Weekly</div><div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:3px">by Spotify · regenerates weekly</div></div><span style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">30 songs</span></div>
+<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:36px;height:36px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13.5px Archivo,sans-serif">kitchen sessions</div><div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:3px">by you · updated last month</div></div><span style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">204 songs</span></div>
+<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:36px;height:36px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13.5px Archivo,sans-serif">gym, reluctantly</div><div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:3px">by you · updated in March</div></div><span style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">78 songs</span></div>
+<div style="padding:13px 16px;background:#121110;font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">+ 35 more playlists</div>
+</div>
+</div>
+<div>
+<div style="border:1px solid rgba(255,255,255,.12);background:#0f0e0d;padding:22px">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)">Selected</div>
+<div style="font:600 34px 'IBM Plex Mono',monospace;letter-spacing:-.03em;margin:10px 0 2px">5,288</div>
+<div style="font:400 12.5px Archivo,sans-serif;color:rgba(255,255,255,.5)">songs across 40 playlists</div>
+<div style="margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:9px;font:400 13px Archivo,sans-serif;color:rgba(255,255,255,.6)">
+<div style="display:flex;justify-content:space-between"><span>Playlists</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px">40 of 41</span></div>
+<div style="display:flex;justify-content:space-between"><span>Saved albums</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px">168 of 168</span></div>
+<div style="display:flex;justify-content:space-between"><span>Followed artists</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px">312 of 312</span></div>
+<div style="display:flex;justify-content:space-between"><span>Estimated time</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#f4f1eb">~4 min</span></div>
+</div>
+<div style="margin-top:22px;background:#e0703f;color:#141110;font:600 14.5px Archivo,sans-serif;padding:15px;text-align:center">Start the transfer</div>
+<div style="margin-top:12px;font:400 11.5px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.42)">You can close the tab once it starts — the transfer keeps running.</div>
+</div>
+</div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.1);background:#0c0b0a;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px">
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.35)">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</span>
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">Made with ♥ by <a href="https://marctorrelles.com" style="color:rgba(255,255,255,.7)">Marc Torrelles</a></span>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-opt" id="3c">
+<div class="dv-olabel"><span class="dv-oid">Step 03</span>Transferring — desktop</div>
+<div class="dv-card" style="width:1120px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid rgba(255,255,255,.1)">
+<span style="font:700 17px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span>
+<div style="display:flex;align-items:center;gap:24px;font:500 12.5px Archivo,sans-serif;color:rgba(255,255,255,.6)"><span>FAQ</span><span>GitHub</span><span style="color:#f4f1eb">Buy me a coffee</span></div>
+</div><div style="display:flex;align-items:center;gap:26px;padding:12px 40px;border-bottom:1px solid rgba(255,255,255,.1);background:#0e0d0c;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase"><span style="color:rgba(255,255,255,.38)">01 Connect ✓</span><span style="color:rgba(255,255,255,.38)">02 Choose ✓</span><span style="color:#e0703f">03 Transfer</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 40px;background:rgba(224,112,63,.1);border-bottom:1px solid rgba(224,112,63,.28)">
+<span style="font:500 12.5px Archivo,sans-serif;color:#f0a58a">You can close this tab.</span>
+<span style="font:400 12.5px Archivo,sans-serif;color:rgba(255,255,255,.6)">The transfer runs on our side — come back to this link any time to see where it got to.</span>
+<span style="margin-left:auto;font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.45)">sideload.app/t/8f21c · copy link</span>
+</div>
+<div style="padding:44px 40px 34px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between">
+<div>
+<h2 style="margin:0;font:600 36px/1.1 Archivo,sans-serif;letter-spacing:-.03em">Transferring your library</h2>
+<p style="margin:12px 0 0;font:400 15px Archivo,sans-serif;color:rgba(255,255,255,.6)">3,304 of 5,288 songs moved to YouTube Music · about 2 minutes left</p>
+</div>
+<div style="text-align:right"><div style="font:600 44px 'IBM Plex Mono',monospace;letter-spacing:-.04em;color:#e0703f;line-height:1">62%</div></div>
+</div>
+<div style="display:flex;gap:2px;height:12px;margin-top:26px">
+<div style="flex:62;background:#e0703f"></div>
+<div style="flex:2;background:#f0a58a"></div>
+<div style="flex:36;background:rgba(255,255,255,.12)"></div>
+</div>
+<div style="display:flex;gap:26px;margin-top:12px;font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.5)">
+<span><span style="color:#e0703f">■</span> 3,304 moved</span><span><span style="color:#f0a58a">■</span> 7 need review</span><span><span style="color:rgba(255,255,255,.3)">■</span> 1,977 to go</span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:0 40px 40px">
+<div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px">Activity</div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12)">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif">Deep Focus</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#7fc79a">all 312 songs</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#1a1917"><div><div style="font:500 13px Archivo,sans-serif">Liked songs</div><div style="height:3px;width:180px;background:rgba(255,255,255,.14);margin-top:8px"><div style="width:78%;height:100%;background:#e0703f"></div></div></div><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.6)">2,268 of 2,911</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif">road trip '24</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#f0a58a">88 of 91 · 3 to review</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif">kitchen sessions</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#7fc79a">all 204 songs</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif;color:rgba(255,255,255,.5)">Saved albums</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">up next · 168</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#121110"><span style="font:500 13px Archivo,sans-serif;color:rgba(255,255,255,.5)">Followed artists</span><span style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">up next · 312</span></div>
+</div>
+</div>
+<div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px"><span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#f0a58a">Needs your review · 7</span><span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">you can do this later</span></div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(240,165,138,.35)">
+<div style="padding:14px 16px;background:#1a1512">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px Archivo,sans-serif">Aphex Twin — Untitled</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">road trip '24</span></div>
+<div style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.5);margin-top:5px">No exact match. Closest: "Untitled (Selected Ambient Works)"</div>
+<div style="display:flex;gap:8px;margin-top:11px"><span style="border:1px solid rgba(255,255,255,.3);font:500 11.5px Archivo,sans-serif;padding:7px 12px">Use closest</span><span style="border:1px solid rgba(255,255,255,.14);font:500 11.5px Archivo,sans-serif;padding:7px 12px;color:rgba(255,255,255,.6)">Search manually</span><span style="font:500 11.5px Archivo,sans-serif;padding:7px 4px;color:rgba(255,255,255,.4);text-decoration:underline;text-underline-offset:3px">Skip</span></div>
+</div>
+<div style="padding:14px 16px;background:#121110">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px Archivo,sans-serif">Local file — demo_v3.mp3</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">Liked songs</span></div>
+<div style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.5);margin-top:5px">Local files can't be transferred</div>
+</div>
+<div style="padding:14px 16px;background:#121110">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px Archivo,sans-serif">Bad Bunny — DtMF (remix)</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">road trip '24</span></div>
+<div style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.5);margin-top:5px">Not available on YouTube Music</div>
+</div>
+<div style="padding:13px 16px;background:#121110;font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">+ 4 more</div>
+</div>
+<div style="display:flex;gap:10px;margin-top:16px">
+<span style="border:1px solid rgba(255,255,255,.25);font:600 13.5px Archivo,sans-serif;padding:13px 20px">Pause transfer</span>
+<span style="border:1px solid rgba(255,255,255,.12);font:600 13.5px Archivo,sans-serif;padding:13px 20px;color:rgba(255,255,255,.6)">Download report</span>
+</div>
+</div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.1);background:#0c0b0a;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px">
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.35)">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</span>
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">Made with ♥ by <a href="https://marctorrelles.com" style="color:rgba(255,255,255,.7)">Marc Torrelles</a></span>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-opt" id="4a">
+<div class="dv-olabel"><span class="dv-oid">Done</span>Transfer complete — desktop</div>
+<div class="dv-card" style="width:1120px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid rgba(255,255,255,.1)">
+<span style="font:700 17px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span>
+<div style="display:flex;align-items:center;gap:24px;font:500 12.5px Archivo,sans-serif;color:rgba(255,255,255,.6)"><span>FAQ</span><span>GitHub</span><span style="color:#f4f1eb">Buy me a coffee</span></div>
+</div>
+<div style="display:flex;align-items:center;gap:26px;padding:12px 40px;border-bottom:1px solid rgba(255,255,255,.1);background:#0e0d0c;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase"><span style="color:rgba(255,255,255,.38)">01 Connect ✓</span><span style="color:rgba(255,255,255,.38)">02 Choose ✓</span><span style="color:#7fc79a">03 Transfer ✓</span></div>
+<div style="padding:56px 40px 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:start">
+<div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7fc79a">Transfer complete · 6 min 12 s</div>
+<h2 style="margin:16px 0 0;font:600 46px/1.05 Archivo,sans-serif;letter-spacing:-.035em">Your library lives on YouTube Music now.</h2>
+<p style="margin:16px 0 0;max-width:52ch;font:400 15.5px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.6)">5,281 of 5,288 songs moved across 40 playlists, plus your albums and followed artists. Seven songs didn't exist on the other side — they're listed to the right so nothing goes missing quietly.</p>
+<div style="display:flex;gap:0;margin-top:34px;border:1px solid rgba(255,255,255,.12)">
+<div style="flex:1;padding:20px 22px;border-right:1px solid rgba(255,255,255,.12)"><div style="font:600 26px 'IBM Plex Mono',monospace;letter-spacing:-.03em">5,281</div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px">songs moved</div></div>
+<div style="flex:1;padding:20px 22px;border-right:1px solid rgba(255,255,255,.12)"><div style="font:600 26px 'IBM Plex Mono',monospace;letter-spacing:-.03em">40</div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px">playlists</div></div>
+<div style="flex:1;padding:20px 22px;border-right:1px solid rgba(255,255,255,.12)"><div style="font:600 26px 'IBM Plex Mono',monospace;letter-spacing:-.03em">168</div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px">albums</div></div>
+<div style="flex:1;padding:20px 22px"><div style="font:600 26px 'IBM Plex Mono',monospace;letter-spacing:-.03em;color:#f0a58a">7</div><div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px">not found</div></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;margin-top:26px">
+<span style="background:#e0703f;color:#141110;font:600 15px Archivo,sans-serif;padding:16px 26px">Open YouTube Music</span>
+<span style="border:1px solid rgba(255,255,255,.25);font:600 14px Archivo,sans-serif;padding:15px 22px">Download report (CSV)</span>
+<span style="font:500 13px Archivo,sans-serif;color:rgba(255,255,255,.45);text-decoration:underline;text-underline-offset:3px;margin-left:4px">Start another transfer</span>
+</div>
+<div style="margin-top:34px;border:1px solid rgba(224,112,63,.4);background:#1a1512;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:26px">
+<div><div style="font:600 15px Archivo,sans-serif">Sideload is free, and stays free.</div><div style="font:400 13px/1.55 Archivo,sans-serif;color:rgba(255,255,255,.58);margin-top:5px;max-width:46ch">If it saved you an afternoon of copy-pasting, a coffee covers the server bill for the next few hundred transfers.</div></div>
+<span style="flex:none;background:#f4f1eb;color:#141110;font:600 14px Archivo,sans-serif;padding:14px 22px">Buy me a coffee</span>
+</div>
+</div>
+<div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px"><span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#f0a58a">Couldn't be moved · 7</span><span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">saved to your report</span></div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(240,165,138,.3)">
+<div style="padding:14px 16px;background:#1a1512"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px Archivo,sans-serif">Aphex Twin — Untitled</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">road trip '24</span></div><div style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.5);margin-top:5px">No exact match found</div><div style="display:flex;gap:8px;margin-top:11px"><span style="border:1px solid rgba(255,255,255,.3);font:500 11.5px Archivo,sans-serif;padding:7px 12px">Use closest match</span><span style="border:1px solid rgba(255,255,255,.14);font:500 11.5px Archivo,sans-serif;padding:7px 12px;color:rgba(255,255,255,.6)">Search</span></div></div>
+<div style="padding:14px 16px;background:#121110"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px Archivo,sans-serif">Local file — demo_v3.mp3</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">Liked songs</span></div><div style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.5);margin-top:5px">Local files can't be transferred</div></div>
+<div style="padding:14px 16px;background:#121110"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px Archivo,sans-serif">Bad Bunny — DtMF (remix)</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">road trip '24</span></div><div style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.5);margin-top:5px">Not available on YouTube Music</div></div>
+<div style="padding:14px 16px;background:#121110"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px Archivo,sans-serif">Frank Ocean — Godspeed (live)</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.4)">kitchen sessions</span></div><div style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.5);margin-top:5px">Not available on YouTube Music</div></div>
+<div style="padding:13px 16px;background:#121110;font:400 12px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">+ 3 more</div>
+</div>
+<div style="margin-top:16px;border:1px solid rgba(255,255,255,.12);padding:16px;font:400 12px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.45)">Your Spotify library is untouched — nothing was deleted. Both connections were dropped when the transfer finished.</div>
+</div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.1);background:#0c0b0a;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px">
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.35)">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</span>
+<span style="font:400 11.5px Archivo,sans-serif;color:rgba(255,255,255,.45)">Made with ♥ by <a href="https://marctorrelles.com" style="color:rgba(255,255,255,.7)">Marc Torrelles</a></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="dv-turn" id="mobile">
+<div class="dv-thd"><span class="dv-tid">Mobile</span><span class="dv-tname">Final screens — 390px</span></div>
+<div class="dv-opts">
+<div class="dv-opt" id="4b">
+<div class="dv-olabel"><span class="dv-oid">Mobile</span>Hero &amp; connect — 390px</div>
+<div style="display:flex;gap:16px;align-items:flex-start">
+<div class="dv-card" style="width:390px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.1)"><span style="font:700 16px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span><div style="display:flex;gap:16px;font:500 12px Archivo,sans-serif;color:rgba(255,255,255,.55)"><span>FAQ</span><span style="color:#f4f1eb">Coffee</span></div></div>
+<div style="padding:34px 18px 30px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#e0703f;margin-bottom:16px">Free · no account needed</div>
+<h1 style="margin:0;font:600 38px/1.02 Archivo,sans-serif;letter-spacing:-.035em">Your library, ported cleanly.</h1>
+<p style="margin:16px 0 0;font:400 14.5px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.62)">Playlists, saved albums and followed artists out of Spotify and into YouTube Music, Apple Music or Tidal. Anything we can't match gets listed for you.</p>
+<div style="margin-top:26px;background:#e0703f;color:#141110;font:600 15px Archivo,sans-serif;padding:17px;text-align:center">Start a transfer</div>
+<div style="display:flex;gap:24px;margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+<div><div style="font:600 19px 'IBM Plex Mono',monospace">1.2M</div><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">tracks moved</div></div>
+<div><div style="font:600 19px 'IBM Plex Mono',monospace">96.4%</div><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">matched</div></div>
+<div><div style="font:600 19px 'IBM Plex Mono',monospace">4 min</div><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">typical</div></div>
+</div>
+</div>
+<div style="padding:22px 18px;background:#0c0c0b;border-top:1px solid rgba(255,255,255,.1)">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><span style="font:600 12.5px Archivo,sans-serif">Transferring your library</span><span style="font:500 11.5px 'IBM Plex Mono',monospace;color:#e0703f">62%</span></div>
+<div style="height:5px;background:rgba(255,255,255,.12);margin-bottom:16px"><div style="width:62%;height:100%;background:#e0703f"></div></div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.09)">
+<div style="display:flex;justify-content:space-between;padding:12px 14px;background:#121110"><span style="font:500 12.5px Archivo,sans-serif">Deep Focus</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:#7fc79a">all 312</span></div>
+<div style="display:flex;justify-content:space-between;padding:12px 14px;background:#121110"><span style="font:500 12.5px Archivo,sans-serif">Liked songs</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">2,904 / 2,911</span></div>
+<div style="display:flex;justify-content:space-between;padding:12px 14px;background:#121110"><span style="font:500 12.5px Archivo,sans-serif">road trip '24</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:#f0a58a">3 to review</span></div>
+</div>
+</div>
+<div style="padding:18px;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.1);background:#0c0b0a"><span style="font:400 11px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.35)">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</span><span style="font:400 11px Archivo,sans-serif;color:rgba(255,255,255,.45)">Made with ♥ by <a href="https://marctorrelles.com" style="color:rgba(255,255,255,.7)">Marc Torrelles</a></span></div>
+</div>
+</div>
+<div class="dv-card" style="width:390px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.1)"><span style="font:700 16px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span><div style="display:flex;gap:16px;font:500 12px Archivo,sans-serif;color:rgba(255,255,255,.55)"><span>FAQ</span><span style="color:#f4f1eb">Coffee</span></div></div>
+<div style="display:flex;gap:16px;padding:11px 18px;border-bottom:1px solid rgba(255,255,255,.1);background:#0e0d0c;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase"><span style="color:#e0703f">01 Connect</span><span style="color:rgba(255,255,255,.28)">02 Choose</span><span style="color:rgba(255,255,255,.28)">03 Transfer</span></div>
+<div style="padding:28px 18px 24px">
+<h2 style="margin:0;font:600 26px/1.12 Archivo,sans-serif;letter-spacing:-.028em">Connect the two services</h2>
+<p style="margin:12px 0 0;font:400 14px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.6)">We read from Spotify and write to your new service. Nothing on Spotify is changed.</p>
+<div style="border:1px solid rgba(127,199,154,.4);background:#141614;padding:18px;margin-top:22px">
+<div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border:1px dashed rgba(255,255,255,.25);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)">Source</div><div style="font:600 16px Archivo,sans-serif;margin-top:3px">Spotify</div></div></div><span style="font:500 10.5px 'IBM Plex Mono',monospace;color:#7fc79a">connected</span></div>
+<div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);font:400 12px/1.7 Archivo,sans-serif;color:rgba(255,255,255,.55)">marc@hey.com · read-only<br>41 playlists · 5,318 songs</div>
+</div>
+<div style="border:1px solid rgba(224,112,63,.5);background:#1a1512;padding:18px;margin-top:12px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e0703f">Destination</div>
+<div style="font:600 16px Archivo,sans-serif;margin-top:5px">Where is it going?</div>
+<div style="display:flex;flex-direction:column;gap:2px;margin-top:14px">
+<div style="display:flex;align-items:center;gap:11px;padding:13px;border:1px solid rgba(224,112,63,.5);background:rgba(224,112,63,.12)"><div style="width:26px;height:26px;border:1px dashed rgba(255,255,255,.3)"></div><span style="font:600 13.5px Archivo,sans-serif">YouTube Music</span></div>
+<div style="display:flex;align-items:center;gap:11px;padding:13px;border:1px solid rgba(255,255,255,.07);opacity:.45"><div style="width:26px;height:26px;border:1px dashed rgba(255,255,255,.2)"></div><span style="font:500 13.5px Archivo,sans-serif;color:rgba(255,255,255,.6)">Apple Music</span><span style="margin-left:auto;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);padding:3px 6px;color:rgba(255,255,255,.6)">soon</span></div>
+<div style="display:flex;align-items:center;gap:11px;padding:13px;border:1px solid rgba(255,255,255,.07);opacity:.45"><div style="width:26px;height:26px;border:1px dashed rgba(255,255,255,.2)"></div><span style="font:500 13.5px Archivo,sans-serif;color:rgba(255,255,255,.6)">Tidal</span><span style="margin-left:auto;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);padding:3px 6px;color:rgba(255,255,255,.6)">soon</span></div>
+</div>
+</div>
+</div>
+<div style="position:sticky;bottom:0;padding:14px 18px;border-top:1px solid rgba(255,255,255,.12);background:#0e0d0c"><div style="background:#e0703f;color:#141110;font:600 15px Archivo,sans-serif;padding:16px;text-align:center">Sign in to YouTube Music</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-opt" id="4c">
+<div class="dv-olabel"><span class="dv-oid">Mobile</span>Choose, transferring, done — 390px</div>
+<div style="display:flex;gap:16px;align-items:flex-start">
+<div class="dv-card" style="width:390px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.1)"><span style="font:700 16px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span><div style="display:flex;gap:16px;font:500 12px Archivo,sans-serif;color:rgba(255,255,255,.55)"><span>FAQ</span><span style="color:#f4f1eb">Coffee</span></div></div>
+<div style="display:flex;gap:16px;padding:11px 18px;border-bottom:1px solid rgba(255,255,255,.1);background:#0e0d0c;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase"><span style="color:rgba(255,255,255,.38)">01 ✓</span><span style="color:#e0703f">02 Choose</span><span style="color:rgba(255,255,255,.28)">03 Transfer</span></div>
+<div style="padding:26px 18px 18px">
+<h2 style="margin:0;font:600 26px/1.12 Archivo,sans-serif;letter-spacing:-.028em">Choose what to move</h2>
+<p style="margin:10px 0 0;font:400 13.5px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.6)">Spotify → YouTube Music</p>
+</div>
+<div style="display:flex;gap:0;padding:0 18px;border-bottom:1px solid rgba(255,255,255,.12);font:500 12px Archivo,sans-serif">
+<span style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-bottom:none;background:#1a1917">Playlists <span style="font-family:'IBM Plex Mono',monospace;color:rgba(255,255,255,.45)">41</span></span>
+<span style="padding:10px 12px;color:rgba(255,255,255,.5)">Albums</span>
+<span style="padding:10px 12px;color:rgba(255,255,255,.5)">Artists</span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:#0f0e0d;border-bottom:1px solid rgba(255,255,255,.1)"><div style="display:flex;align-items:center;gap:9px"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><span style="font:500 12.5px Archivo,sans-serif">Select all</span></div><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.45)">5,288 selected</span></div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.09)">
+<div style="display:flex;align-items:center;gap:12px;padding:13px 18px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:34px;height:34px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13px Archivo,sans-serif">Liked songs</div><div style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:2px">2,911 songs</div></div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 18px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:34px;height:34px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13px Archivo,sans-serif">Deep Focus</div><div style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:2px">312 songs</div></div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 18px;background:#121110"><div style="width:15px;height:15px;background:#e0703f;display:flex;align-items:center;justify-content:center;color:#141110;font:700 10px Archivo,sans-serif">✓</div><div style="width:34px;height:34px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13px Archivo,sans-serif">road trip '24</div><div style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:2px">91 songs</div></div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 18px;background:#121110"><div style="width:15px;height:15px;border:1px solid rgba(255,255,255,.3)"></div><div style="width:34px;height:34px;border:1px dashed rgba(255,255,255,.2);background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 5px,transparent 5px 10px)"></div><div style="flex:1"><div style="font:500 13px Archivo,sans-serif;color:rgba(255,255,255,.6)">Discover Weekly</div><div style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.42);margin-top:2px">30 songs · regenerates</div></div></div>
+<div style="padding:12px 18px;background:#121110;font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">+ 37 more</div>
+</div>
+<div style="position:sticky;bottom:0;padding:14px 18px;border-top:1px solid rgba(255,255,255,.12);background:#0e0d0c">
+<div style="display:flex;justify-content:space-between;font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.5);margin-bottom:10px"><span>40 playlists · 5,288 songs</span><span>~4 min</span></div>
+<div style="background:#e0703f;color:#141110;font:600 15px Archivo,sans-serif;padding:16px;text-align:center">Start the transfer</div>
+</div>
+</div>
+</div>
+<div class="dv-card" style="width:390px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.1)"><span style="font:700 16px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span><div style="display:flex;gap:16px;font:500 12px Archivo,sans-serif;color:rgba(255,255,255,.55)"><span>FAQ</span><span style="color:#f4f1eb">Coffee</span></div></div>
+<div style="padding:12px 18px;background:rgba(224,112,63,.1);border-bottom:1px solid rgba(224,112,63,.28)"><div style="font:500 12px Archivo,sans-serif;color:#f0a58a">You can close this tab.</div><div style="font:400 11.5px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.55);margin-top:3px">Transfer runs on our side · sideload.app/t/8f21c</div></div>
+<div style="padding:26px 18px 20px">
+<h2 style="margin:0;font:600 25px/1.12 Archivo,sans-serif;letter-spacing:-.028em">Transferring your library</h2>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:14px"><span style="font:400 13px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.6)">3,304 of 5,288 songs<br>about 2 minutes left</span><span style="font:600 34px 'IBM Plex Mono',monospace;letter-spacing:-.04em;color:#e0703f;line-height:1">62%</span></div>
+<div style="display:flex;gap:2px;height:10px;margin-top:16px"><div style="flex:62;background:#e0703f"></div><div style="flex:2;background:#f0a58a"></div><div style="flex:36;background:rgba(255,255,255,.12)"></div></div>
+</div>
+<div style="padding:0 18px 18px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">Activity</div>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12)">
+<div style="display:flex;justify-content:space-between;padding:13px 14px;background:#121110"><span style="font:500 12.5px Archivo,sans-serif">Deep Focus</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:#7fc79a">all 312</span></div>
+<div style="padding:13px 14px;background:#1a1917"><div style="display:flex;justify-content:space-between"><span style="font:500 12.5px Archivo,sans-serif">Liked songs</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.6)">2,268 / 2,911</span></div><div style="height:3px;background:rgba(255,255,255,.14);margin-top:8px"><div style="width:78%;height:100%;background:#e0703f"></div></div></div>
+<div style="display:flex;justify-content:space-between;padding:13px 14px;background:#121110"><span style="font:500 12.5px Archivo,sans-serif">road trip '24</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:#f0a58a">3 to review</span></div>
+<div style="display:flex;justify-content:space-between;padding:13px 14px;background:#121110"><span style="font:500 12.5px Archivo,sans-serif;color:rgba(255,255,255,.5)">Saved albums</span><span style="font:400 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.35)">up next</span></div>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(240,165,138,.35);background:#1a1512;padding:14px;margin-top:12px"><span style="font:500 12.5px Archivo,sans-serif;color:#f0a58a">7 songs need review</span><span style="font:500 12px Archivo,sans-serif;color:rgba(255,255,255,.6)">Review →</span></div>
+<div style="display:flex;gap:8px;margin-top:12px"><span style="flex:1;text-align:center;border:1px solid rgba(255,255,255,.25);font:600 13px Archivo,sans-serif;padding:13px">Pause</span><span style="flex:1;text-align:center;border:1px solid rgba(255,255,255,.12);font:600 13px Archivo,sans-serif;padding:13px;color:rgba(255,255,255,.6)">Report</span></div>
+</div>
+</div>
+</div>
+<div class="dv-card" style="width:390px;border-color:rgba(0,0,0,.3)">
+<div style="background:#121110;color:#f4f1eb">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.1)"><span style="font:700 16px Archivo,sans-serif;letter-spacing:-.02em">Sideload</span><div style="display:flex;gap:16px;font:500 12px Archivo,sans-serif;color:rgba(255,255,255,.55)"><span>FAQ</span><span style="color:#f4f1eb">Coffee</span></div></div>
+<div style="padding:30px 18px 22px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7fc79a">Transfer complete · 6 min 12 s</div>
+<h2 style="margin:14px 0 0;font:600 30px/1.06 Archivo,sans-serif;letter-spacing:-.032em">Your library lives on YouTube Music now.</h2>
+<p style="margin:14px 0 0;font:400 14px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.6)">5,281 of 5,288 songs moved across 40 playlists, plus albums and followed artists.</p>
+<div style="display:flex;border:1px solid rgba(255,255,255,.12);margin-top:22px">
+<div style="flex:1;padding:14px 12px;border-right:1px solid rgba(255,255,255,.12)"><div style="font:600 19px 'IBM Plex Mono',monospace">5,281</div><div style="font:500 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">moved</div></div>
+<div style="flex:1;padding:14px 12px;border-right:1px solid rgba(255,255,255,.12)"><div style="font:600 19px 'IBM Plex Mono',monospace">40</div><div style="font:500 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">playlists</div></div>
+<div style="flex:1;padding:14px 12px"><div style="font:600 19px 'IBM Plex Mono',monospace;color:#f0a58a">7</div><div style="font:500 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">not found</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+<span style="background:#e0703f;color:#141110;font:600 15px Archivo,sans-serif;padding:16px;text-align:center">Open YouTube Music</span>
+<span style="border:1px solid rgba(255,255,255,.25);font:600 14px Archivo,sans-serif;padding:15px;text-align:center">Download report (CSV)</span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(240,165,138,.35);background:#1a1512;padding:14px;margin-top:14px"><span style="font:500 12.5px Archivo,sans-serif;color:#f0a58a">7 songs couldn't be moved</span><span style="font:500 12px Archivo,sans-serif;color:rgba(255,255,255,.6)">See list →</span></div>
+<div style="border:1px solid rgba(224,112,63,.4);background:#1a1512;padding:18px;margin-top:14px"><div style="font:600 14.5px Archivo,sans-serif">Sideload is free, and stays free.</div><div style="font:400 12.5px/1.55 Archivo,sans-serif;color:rgba(255,255,255,.58);margin-top:5px">A coffee covers the server bill for the next few hundred transfers.</div><div style="background:#f4f1eb;color:#141110;font:600 13.5px Archivo,sans-serif;padding:13px;text-align:center;margin-top:14px">Buy me a coffee</div></div>
+<div style="margin-top:16px;font:400 11.5px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.42)">Your Spotify library is untouched. Both connections were dropped when the transfer finished.</div>
+</div>
+<div style="padding:18px;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.1);background:#0c0b0a"><span style="font:400 11px/1.5 Archivo,sans-serif;color:rgba(255,255,255,.35)">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</span><span style="font:400 11px Archivo,sans-serif;color:rgba(255,255,255,.45)">Made with ♥ by <a href="https://marctorrelles.com" style="color:rgba(255,255,255,.7)">Marc Torrelles</a></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}"></script>
+</body>
+</html>

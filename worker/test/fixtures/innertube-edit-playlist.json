@@ -1,0 +1,15 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "responseContext": {
+  "visitorData": "REDACTED"
+ },
+ "status": "STATUS_SUCCEEDED",
+ "playlistEditResults": [
+  {
+   "playlistEditVideoAddedResultData": {
+    "videoId": "G6nqGuclk7R",
+    "setVideoId": "x"
+   }
+  }
+ ]
+}

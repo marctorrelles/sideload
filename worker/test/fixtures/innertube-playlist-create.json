@@ -1,0 +1,12 @@
+{
+ "_synthetic": "hand-written from API docs / ytmusicapi shapes on 2026-09-02; replace by running worker/scripts/spike-spotify.ts or spike-innertube.ts",
+ "responseContext": {
+  "visitorData": "REDACTED"
+ },
+ "playlistId": "PLGcOfUXGdGy8i2_U0m-F96kY7ewWk5r0j",
+ "actions": [
+  {
+   "runAttestationCommand": {}
+  }
+ ]
+}

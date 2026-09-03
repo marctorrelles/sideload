@@ -37,7 +37,9 @@ export function score(t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'dura
     durationDelta = Math.abs(r.durationSec * 1000 - t.durationMs) / 1000;
     parts.push(Math.max(0, 1 - (durationDelta * 2000) / t.durationMs) * 5);
   }
-  if (r.isSong && r.album && t.album) parts.push(similarity(r.album, t.album));
+  // Album agreement breaks ties between same-title candidates (original vs compilation or cover). At full weight it outvoted
+  // the title: calibration 2026-09-03 had "Shake Body (French)" from the right album beat "Shake Body" from the single.
+  if (r.isSong && r.album && t.album) parts.push(similarity(r.album, t.album) * 0.3);
   return { r, titleSim, artistSim, durationDelta, score: (parts.reduce((a, b) => a + b, 0) / parts.length) * (r.isSong ? 2 : 1) };
 }
 export interface Match { best: SearchSong | null; confident: boolean; score: number }

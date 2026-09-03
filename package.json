@@ -14,7 +14,8 @@
     "typecheck": "pnpm -r typecheck",
     "deploy": "pnpm build && wrangler deploy",
     "spike:innertube": "tsx worker/scripts/spike-innertube.ts",
-    "spike:spotify": "tsx worker/scripts/spike-spotify.ts"
+    "spike:spotify": "tsx worker/scripts/spike-spotify.ts",
+    "calibrate": "tsx worker/scripts/calibrate-match.ts"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",

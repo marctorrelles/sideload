@@ -19,6 +19,11 @@ describe('match', () => {
     const m = pickBest(t, [song({ videoId: 'video', isSong: false, album: null }), song({ videoId: 'song' })]);
     expect(m.best!.videoId).toBe('song'); expect(m.confident).toBe(true);
   });
+  it('prefers the exact title on a single over a variant title on the right album', () => {
+    // calibration 2026-09-03: album agreement at full weight used to outvote the title
+    const m = pickBest(t, [song({ videoId: 'variant', title: 'Xtal (Gym Cover)' }), song({ videoId: 'exact', album: 'Xtal' })]);
+    expect(m.best!.videoId).toBe('exact');
+  });
   it('is not confident when duration is far off or artist differs', () => {
     expect(pickBest(t, [song({ durationSec: 60 })]).confident).toBe(false);
     expect(pickBest(t, [song({ artists: ['Somebody Else'] })]).confident).toBe(false);

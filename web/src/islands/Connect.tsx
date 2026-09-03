@@ -4,6 +4,7 @@ import { api, ApiError } from '../lib/api';
 import type { SessionView } from '@shared/types';
 import { n } from '../lib/format';
 import { Logo } from '../lib/Logo';
+import { countTo, reveal } from '../lib/motion';
 const REDIRECT = `${location.origin}/auth/spotify/callback`;
 const SPOTIFY_ERRORS: Record<string, string> = {
   state_mismatch: 'That sign-in link expired. Try again.',
@@ -24,6 +25,11 @@ export default function Connect() {
   const [devState, setDevState] = useState<'idle' | 'code' | 'denied' | 'expired' | 'error'>('idle');
   const [copied, setCopied] = useState<'redirect' | 'code' | null>(null);
   const timer = useRef<number>();
+  const codeRef = useRef<HTMLSpanElement>(null);
+  // the card that connected just now glows once: Spotify comes back through a redirect (query flag), Google connects in place
+  const [lit, setLit] = useState<'spotify' | 'google' | null>(() => (new URLSearchParams(location.search).get('connected') === 'spotify' ? 'spotify' : null));
+  useEffect(() => { if (lit === 'spotify') document.querySelectorAll<HTMLElement>('.card [data-count]').forEach(el => countTo(el, Number(el.dataset.count), v => n(v))); }, [lit, s?.spotify?.counts.playlists]);
+  useEffect(() => { if (codeRef.current) reveal(codeRef.current); }, [dev?.userCode]);
   useEffect(() => { api.session().then(setS).catch(() => setS({ spotify: null, destination: null })); history.replaceState(null, '', location.pathname); return () => clearTimeout(timer.current); }, []);
 
   async function startSpotify(e: Event) {
@@ -43,7 +49,7 @@ export default function Connect() {
     let interval = d.interval * 1000;
     const poll = async () => {
       const r = await api.googlePoll().catch(() => ({ status: 'pending' as const }));
-      if (r.status === 'connected') { setS(await api.session()); setDevState('idle'); setDev(null); return; }
+      if (r.status === 'connected') { setS(await api.session()); setDevState('idle'); setDev(null); setLit('google'); return; }
       if (r.status === 'denied' || r.status === 'expired') { setDevState(r.status); setDev(null); return; }
       if (r.status === 'slow_down') interval += 5000;
       timer.current = window.setTimeout(poll, interval);
@@ -55,13 +61,14 @@ export default function Connect() {
   if (!s) return <p class="meta connect__loading">Checking your session…</p>;
   return <>
     <div class="cards">
-      <section class={`panel card ${s.spotify ? 'panel--success' : ''}`} aria-labelledby="src">
+      <div class={`wire ${both ? 'is-on' : s.spotify ? 'is-half' : ''}`} aria-hidden="true" />
+      <section class={`panel card ${s.spotify ? 'panel--success' : ''} ${lit === 'spotify' ? 'is-lit' : ''}`} aria-labelledby="src">
         <header class="card__head"><span class="art art--46"><Logo name="spotify" size={30} /></span><div><div class="eyebrow">Source</div><h2 id="src" class="card__title">Spotify</h2></div>{s.spotify && <span class="meta is-ok card__state">connected</span>}</header>
         {s.spotify ? <>
           <dl class="kv hairline-top">
             <dt>Signed in as</dt><dd>{s.spotify.email ?? s.spotify.displayName}</dd>
             <dt>Access</dt><dd class="mono">read-only</dd>
-            <dt>Found</dt><dd class="mono">{n(s.spotify.counts.playlists)} playlists · {n(s.spotify.counts.liked)} liked songs</dd>
+            <dt>Found</dt><dd class="mono"><span data-count={s.spotify.counts.playlists}>{n(s.spotify.counts.playlists)}</span> playlists · <span data-count={s.spotify.counts.liked}>{n(s.spotify.counts.liked)}</span> liked songs</dd>
           </dl>
           <button class="link card__link" onClick={async () => { await api.spotifyLogout(); setS(await api.session()); }}>Use a different account</button>
         </> : <form onSubmit={startSpotify} class="setup">
@@ -76,7 +83,7 @@ export default function Connect() {
           <button class="btn btn--block card__cta" type="submit">Continue with Spotify</button>
         </form>}
       </section>
-      <section class="panel panel--accent card" aria-labelledby="dst">
+      <section class={`panel panel--accent card ${lit === 'google' ? 'is-lit' : ''}`} aria-labelledby="dst">
         <div class="eyebrow c-accent">Destination</div><h2 id="dst" class="card__title">Where is your library going?</h2>
         <div class="list providers" role="radiogroup" aria-label="Destination">
           <div class="row is-selected" role="radio" aria-checked="true" tabIndex={0}><Logo name="ytmusic" size={26} /><span class="row__title">YouTube Music</span><span class="row__count c-accent">{s.destination ? 'connected' : 'chosen'}</span></div>
@@ -93,7 +100,7 @@ export default function Connect() {
         : devState === 'code' ? <div class="devcode" aria-live="polite">
             {dev ? <>
               <p class="lede lede--card">Open <a href={dev.verificationUrl} target="_blank" rel="noopener">{dev.verificationUrl.replace('https://', '')}</a> on any device and enter this code:</p>
-              <p class="code"><span>{dev.userCode}</span><button type="button" class="btn btn--small code__copy" onClick={copy('code', dev.userCode)}>{copied === 'code' ? 'copied' : 'copy'}</button></p>
+              <p class="code"><span class="code__chars reveal" ref={codeRef}>{dev.userCode.split('').map((ch, i) => <i key={i}>{ch}</i>)}</span><button type="button" class="btn btn--small code__copy" onClick={copy('code', dev.userCode)}>{copied === 'code' ? 'copied' : 'copy'}</button></p>
               <p class="meta">Waiting for Google… this page updates by itself.</p>
             </> : <p class="meta">Asking Google for a code…</p>}
           </div>
@@ -108,7 +115,7 @@ export default function Connect() {
     </div>
     <div class="actionbar hairline-top">
       <span class="meta">We drop your Spotify token when the transfer finishes</span>
-      <a class={`btn ${both ? '' : 'is-disabled'}`} aria-disabled={!both} href="/select">Choose what to move</a>
+      <a key={both ? 'ready' : 'waiting'} class={`btn ${both ? '' : 'is-disabled'}`} aria-disabled={!both} href="/select">Choose what to move</a>
     </div>
   </>;
 }

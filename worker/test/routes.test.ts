@@ -35,7 +35,7 @@ describe('routes', () => {
     api.intercept({ path: '/v1/me/playlists?limit=1' }).reply(200, { total: 41, items: [], next: null });
     api.intercept({ path: '/v1/me/tracks?limit=50&offset=0' }).reply(200, { total: 3036, items: [], next: null }); // callback calls savedTracks(0) → limit=50
     const r = await SELF.fetch(`http://127.0.0.1/auth/spotify/callback?code=c&state=${state}`, { headers: { cookie: cookieOf(start) }, redirect: 'manual' });
-    expect(r.headers.get('location')).toBe('/connect');
+    expect(r.headers.get('location')).toBe('/connect?connected=spotify');
     const cookies = r.headers.get('set-cookie')!;
     const s = await SELF.fetch('http://127.0.0.1/api/session', { headers: { cookie: cookies.match(/sl_s=[^;]+/)![0] } });
     expect(await s.json()).toMatchObject({ spotify: { counts: { playlists: 41, liked: 3036 } }, destination: null });

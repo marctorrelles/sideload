@@ -1,4 +1,4 @@
-<img src=".github/readme/landing.png" alt="Sideload: ten years of playlists, one afternoon saved" width="100%">
+<img src=".github/readme/landing.webp" alt="Sideload: ten years of playlists, one afternoon saved" width="100%">
 
 # Sideload
 
@@ -14,11 +14,11 @@ Playlists, liked songs, saved albums, followed artists. Every add is read back a
 
 **02 · Choose.** Tick what is worth keeping. Algorithmic playlists are off by default, the summary says what stays behind and how long the rest will take.
 
-<img src=".github/readme/choose.png" alt="Choose what to move" width="100%">
+<img src=".github/readme/choose.webp" alt="Choose what to move" width="100%">
 
 **03 · Walk away.** The transfer runs on the server, survives closed tabs and crashes, and shows what it is matching as it goes. Anything it could not match with confidence waits in a review list: take the closest hit, search yourself, or skip it.
 
-<img src=".github/readme/transfer.png" alt="A transfer running" width="100%">
+<img src=".github/readme/transfer.webp" alt="A transfer running" width="100%">
 
 ## Why another one
 

@@ -10,9 +10,9 @@ import Transfer from '../../islands/Transfer';
   .body { padding-top: 44px; padding-bottom: 34px; }
   .c-accent { color: var(--accent); } .c-soft { color: var(--accent-soft); } .c-ok { color: var(--success); }
   .banner { background: var(--accent-banner); border-bottom: 1px solid var(--accent-banner-border); }
-  .banner__in { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 13px; padding-bottom: 13px; font: 400 12.5px/1.5 var(--font-ui); }
+  .banner__in { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 13px; padding-bottom: 13px; font: 400 14px/1.5 var(--font-ui); }
   .banner b { font-weight: 500; }
-  .banner__copy { white-space: nowrap; font-size: 11.5px; }
+  .banner__copy { white-space: nowrap; font-size: 13px; }
   .progress-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
   .progress-sub { margin-top: 12px; max-width: 58ch; }
   .pct--danger { color: var(--danger); }
@@ -27,20 +27,20 @@ import Transfer from '../../islands/Transfer';
   .list > .review { padding: 14px 16px; }
   .list.warn > .review:first-child { background: var(--accent-tint-bg); }
   .review__head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-  .review__title { font: 500 13.5px/1.3 var(--font-ui); }
-  .review__where { white-space: nowrap; font-size: 11px; }
-  .review__reason { margin: 4px 0 0; font: 400 12px/1.5 var(--font-ui); color: var(--fg-3); }
+  .review__title { font: 500 16px/1.3 var(--font-ui); }
+  .review__where { white-space: nowrap; font-size: 13px; }
+  .review__reason { margin: 4px 0 0; font: 400 14px/1.5 var(--font-ui); color: var(--fg-3); }
   .review__reason.is-ok { color: var(--success); }
   .review__actions { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
   .review__search { margin-top: 10px; }
   .review__searchrow { display: flex; gap: 8px; } .review__searchrow .input { flex: 1; }
   .review__results { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-  .review__results li { display: flex; justify-content: space-between; gap: 10px; align-items: center; font: 400 12px/1.4 var(--font-ui); color: var(--fg-2); }
+  .review__results li { display: flex; justify-content: space-between; gap: 10px; align-items: center; font: 400 14px/1.4 var(--font-ui); color: var(--fg-2); }
   .review__result { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .review__none { margin-top: 10px; }
   .actions--split { margin-top: 18px; }
-  .actions--split .btn { padding: 13px 20px; font-size: 14px; }
-  .row__toggle { width: 100%; border: 1px solid var(--warn-list-border); background: var(--accent-tint-bg); cursor: pointer; text-align: left; font: 500 13px/1.3 var(--font-ui); }
+  .actions--split .btn { padding: 13px 20px; font-size: 16px; }
+  .row__toggle { width: 100%; border: 1px solid var(--warn-list-border); background: var(--accent-tint-bg); cursor: pointer; text-align: left; font: 500 15px/1.3 var(--font-ui); }
   .row__toggle + .list { border-top: 0; }
   .activity .row__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .row__text { min-width: 0; }
@@ -54,12 +54,12 @@ import Transfer from '../../islands/Transfer';
   .done__actions { margin-top: 26px; }
   .done__actions .btn { padding: 16px 26px; } .done__actions .btn--secondary { padding: 15px 22px; }
   .coffee { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 24px; margin-top: 28px; }
-  .coffee__title { font: 600 15px/1.3 var(--font-ui); display: block; } .coffee__note { max-width: 46ch; margin-top: 6px; }
-  .reassure { border: 1px solid var(--hairline-strong); padding: 16px; margin-top: 16px; font: 400 12px/1.6 var(--font-ui); color: var(--fg-3); }
+  .coffee__title { font: 600 17px/1.3 var(--font-ui); display: block; } .coffee__note { max-width: 46ch; margin-top: 6px; }
+  .reassure { border: 1px solid var(--hairline-strong); padding: 16px; margin-top: 16px; font: 400 14px/1.6 var(--font-ui); color: var(--fg-3); }
   @media (max-width: 900px) {
     .body { padding-top: 30px; padding-bottom: 24px; }
-    .banner__in { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 12px; }
-    .progress-head { gap: 14px; } .progress-sub { font-size: 13px; margin-top: 8px; }
+    .banner__in { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 14px; }
+    .progress-head { gap: 14px; } .progress-sub { font-size: 15px; margin-top: 8px; }
     .seg { margin-top: 20px; } .legend { gap: 14px; flex-wrap: wrap; }
     .cols { grid-template-columns: 1fr; gap: 22px; margin-top: 26px; }
     .actions--split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .actions--split .btn { width: 100%; padding: 16px 12px; }

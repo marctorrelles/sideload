@@ -1,80 +1,54 @@
 ---
-// web/src/pages/index.astro: landing. Copy verbatim from docs/design/handoff.md "Hero / landing".
+// web/src/pages/index.astro: landing. Centered hero, four facts, three steps.
 import Base from '../layouts/Base.astro';
-import Placeholder from '../components/Placeholder.astro';
 import Stats from '../islands/Stats';
 const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Sideload', applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, description: 'Move your Spotify playlists, liked songs, saved albums and followed artists to YouTube Music. Free and open source.', url: 'https://sideload.marctorrelles.com', author: { '@type': 'Person', name: 'Marc Torrelles', url: 'https://marctorrelles.com' }, license: 'https://opensource.org/license/mit' };
-const rows = [
-  { name: 'Deep Focus', status: 'all 312 songs', cls: 'is-ok' },
-  { name: 'Liked songs', status: '2,904 of 2,911', cls: '' },
-  { name: "road trip '24", status: '3 to review', cls: 'is-warn' },
-  { name: 'Saved albums', status: 'up next', cls: '', dim: true },
-];
 ---
 <Base title="Sideload: move your Spotify library to YouTube Music, free" description="Copy playlists, liked songs, saved albums and followed artists from Spotify to YouTube Music. Free, open source, no account. Anything that can't be matched is listed for you." jsonLd={jsonLd}>
   <section class="hero">
-    <div class="container hero__grid">
-      <div class="hero__left">
-        <p class="eyebrow hero__eyebrow">Free · no account needed</p>
-        <h1 class="h1">Your library, ported cleanly.</h1>
-        <p class="lede hero__lede">Move your playlists, saved albums and followed artists from Spotify to YouTube Music, Apple Music or Tidal. Everything that can't be matched is listed for you at the end. Nothing disappears quietly.</p>
-        <a class="btn hero__cta" href="/connect">Start a transfer</a>
-        <Stats client:idle />
-      </div>
-      <aside class="hero__panel" aria-hidden="true">
-        <div class="mock__head"><span class="mock__title">Transferring your library</span><span class="mock__pct mono">62%</span></div>
-        <div class="track mock__track"><i class="mock__fill"></i></div>
-        <div class="list reveal mock__list" data-reveal>
-          {rows.map(r => <div class:list={['row', { 'is-dim': r.dim }]}><span class="row__title">{r.name}</span><span class:list={['row__count', r.cls]}>{r.status}</span></div>)}
-        </div>
-        <Placeholder size={118} label="provider logo lockup" />
-      </aside>
+    <div class="container hero__in">
+      <p class="eyebrow hero__eyebrow">Free · no signup · nothing kept</p>
+      <h1 class="h1 hero__h1">Ten years of playlists.<br />One afternoon saved.</h1>
+      <p class="lede hero__lede">Sideload moves your Spotify library (playlists, liked songs, albums, followed artists) to YouTube Music. Anything it can't match gets handed back to you as a list, not lost.</p>
+      <a class="btn hero__cta" href="/connect">Start a transfer</a>
     </div>
   </section>
-  <section class="how hairline-top hairline-bottom" aria-label="How it works">
-    <div class="container how__grid">
-      <div><p class="eyebrow">01 · Connect</p><p>Sign in to Spotify, then to where you're going.</p></div>
-      <div><p class="eyebrow">02 · Choose</p><p>Tick what's worth keeping. Track counts shown.</p></div>
-      <div><p class="eyebrow">03 · Walk away</p><p>Come back to a finished library and a short review list.</p></div>
-    </div>
+  <section class="facts" aria-label="Sideload in numbers"><div class="container"><Stats client:idle /></div></section>
+  <section class="how" aria-label="How it works">
+    <div class="container"><div class="how__grid">
+      <div><p class="eyebrow">01 · Connect</p><p>Spotify read-only, then your new service.</p></div>
+      <div><p class="eyebrow">02 · Choose</p><p>Tick what's worth keeping. Leave the algorithm's stuff behind.</p></div>
+      <div><p class="eyebrow">03 · Walk away</p><p>Close the tab. Come back to a finished library.</p></div>
+    </div></div>
   </section>
 </Base>
-<script>
-  import { reveal } from '../lib/motion';
-  document.addEventListener('astro:page-load', () => { document.querySelectorAll('[data-reveal]').forEach(reveal); });
-</script>
 <style>
-  .hero__grid { display: grid; grid-template-columns: 1.06fr .94fr; }
-  .hero__left { padding: 66px 40px 60px 0; }
-  .hero__eyebrow { color: var(--accent); margin: 0 0 22px; }
-  .hero__lede { max-width: 44ch; }
-  .hero__cta { margin-top: 36px; }
-  .hero__left :global(.stats) { display: flex; gap: 36px; margin-top: 54px; padding-top: 24px; }
-  .hero__left :global(.stats > div) { display: flex; flex-direction: column; gap: 8px; }
-  .hero__left :global(.stats .eyebrow) { color: var(--fg-3); }
-  .hero__panel { background: var(--bg-panel); border-left: 1px solid var(--hairline); padding: 30px 32px 34px; display: flex; flex-direction: column; gap: 14px; }
-  .mock__head { display: flex; justify-content: space-between; align-items: baseline; }
-  .mock__title { font: 600 12.5px/1 var(--font-ui); }
-  .mock__pct { font: 500 11.5px/1 var(--font-mono); color: var(--accent); }
-  .mock__fill { width: 62%; }
-  .mock__list { margin-top: 6px; }
-  .mock__list .row { padding: 12px 14px; }
-  .mock__list .row__count { color: rgba(255,255,255,.55); }
-  .mock__list .is-dim .row__count { color: var(--fg-4); }
-  .hero__panel :global(.ph-118) { margin-top: 10px; }
-  .how__grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .how__grid > div { padding: 26px 40px; border-left: 1px solid var(--hairline); }
-  .how__grid > div:first-child { padding-left: 0; border-left: 0; }
-  .how__grid .eyebrow { margin: 0 0 10px; color: var(--fg-3); }
-  .how__grid p:not(.eyebrow) { margin: 0; font: 400 13.5px/1.5 var(--font-ui); color: var(--fg-2); }
+  .hero__in { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 92px 0 80px; }
+  .hero__eyebrow { color: var(--fg-3); margin: 0 0 28px; }
+  .hero__h1 { font-size: clamp(40px, 6.2vw, 64px); width: 100%; text-wrap: initial; }
+  .hero__lede { max-width: 50ch; margin: 26px 0 0; font-size: 20px; }
+  .hero__cta { margin-top: 40px; padding: 19px 36px; font-size: 17px; }
+  .facts :global(.stats) { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--hairline-strong); }
+  .facts :global(.stats > div) { display: flex; flex-direction: column; gap: 16px; padding: 32px 22px 30px; border-left: 1px solid var(--hairline); }
+  .facts :global(.stats > div:first-child) { border-left: 0; }
+  .facts :global(.stats .stat) { font-size: 34px; }
+  .facts :global(.stats .eyebrow) { color: var(--fg-3); }
+  .how__grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--hairline-strong); border-top: 0; margin-bottom: 48px; }
+  .how__grid > div { padding: 26px 22px 30px; border-left: 1px solid var(--hairline); }
+  .how__grid > div:first-child { border-left: 0; }
+  .how__grid .eyebrow { margin: 0 0 12px; color: var(--fg-3); }
+  .how__grid p:not(.eyebrow) { margin: 0; font: 400 16px/1.5 var(--font-ui); color: var(--fg-2); max-width: 36ch; }
   @media (max-width: 900px) {
-    .hero__grid { grid-template-columns: 1fr; }
-    .hero__left { padding: 40px 0 34px; }
-    .hero__cta { display: flex; width: 100%; padding-top: 17px; padding-bottom: 17px; margin-top: 28px; }
-    .hero__left :global(.stats) { gap: 18px; margin-top: 34px; } .hero__left :global(.stats .stat) { font-size: 19px; }
-    .hero__panel { border-left: 0; border-top: 1px solid var(--hairline); margin: 0 calc(-1 * var(--gutter)); padding: 24px var(--gutter) 28px; }
-    .how__grid { grid-template-columns: 1fr; }
-    .how__grid > div { padding: 18px 0; border-left: 0; border-top: 1px solid var(--hairline); }
+    .hero__in { padding: 54px 0 46px; }
+    .hero__lede { font-size: 18px; }
+    .hero__cta { display: flex; width: 100%; padding-top: 17px; padding-bottom: 17px; margin-top: 30px; }
+    .facts :global(.stats) { grid-template-columns: 1fr 1fr; }
+    .facts :global(.stats > div) { padding: 22px 16px; gap: 12px; }
+    .facts :global(.stats > div:nth-child(3)) { border-left: 0; }
+    .facts :global(.stats > div:nth-child(n+3)) { border-top: 1px solid var(--hairline); }
+    .facts :global(.stats .stat) { font-size: 28px; } .facts :global(.stats .eyebrow) { font-size: 11px; }
+    .how__grid { grid-template-columns: 1fr; margin-bottom: 32px; }
+    .how__grid > div { border-left: 0; border-top: 1px solid var(--hairline); padding: 18px 16px 20px; }
     .how__grid > div:first-child { border-top: 0; }
   }
 </style>

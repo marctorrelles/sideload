@@ -5,6 +5,7 @@ import type { Library } from '@shared/types';
 import { defaultSel, totals, triState, rangeToggle, sortBy, toSelection, selectable, type Sel, type Tab } from '../lib/selection';
 import { n, preEstimate } from '../lib/format';
 import { reveal, countTo } from '../lib/motion';
+import { Logo } from '../lib/Logo';
 const PAGE = 6;
 type Sort = 'recent' | 'name' | 'size';
 type Row = Library['playlists'][number] | Library['albums'][number] | Library['artists'][number];
@@ -61,7 +62,7 @@ export default function Select() {
       <div class="list" ref={listRef} role="group" aria-label={tab}>
         {hasLiked && <label class={`row is-selectable ${sel.liked ? '' : 'is-dim'}`}>
           <input type="checkbox" class="checkbox" checked={sel.liked} onChange={e => setSel({ ...sel, liked: (e.target as HTMLInputElement).checked })} />
-          <span class="placeholder ph-36" aria-hidden="true" />
+          <span class="art"><Logo name="spotify" size={20} /></span>
           <span class="row__text"><div class="row__title">Liked songs</div><div class="row__sub">your saved library → likes + a private "Liked Songs" playlist</div></span>
           <span class="row__count">{n(lib.likedCount)} songs</span>
         </label>}
@@ -70,7 +71,7 @@ export default function Select() {
           const on = !locked && set.has(r.id);
           return <label class={`row ${locked ? 'is-dim is-locked' : 'is-selectable'} ${!locked && !on ? 'is-dim' : ''}`} key={r.id} title={locked ? 'Spotify does not let a personal app read playlists owned by other people' : undefined}>
             <input type="checkbox" class="checkbox" checked={on} disabled={locked} aria-label={r.name} onClick={e => { e.preventDefault(); toggle(r.id, !on, (e as MouseEvent).shiftKey); }} onKeyDown={e => { if (e.key === ' ') { e.preventDefault(); toggle(r.id, !on, false); } }} />
-            {r.image ? <img src={r.image} alt="" width="36" height="36" loading="lazy" /> : <span class="placeholder ph-36" aria-hidden="true" />}
+            {r.image ? <img src={r.image} alt="" width="36" height="36" loading="lazy" /> : <span class="art"><Logo name="spotify" size={20} /></span>}
             <span class="row__text"><div class="row__title">{r.name}</div><div class="row__sub">{sub(r)}</div></span>
             {countOf(r) != null && <span class="row__count">{n(countOf(r)!)} songs</span>}
           </label>;

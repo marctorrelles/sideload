@@ -7,8 +7,8 @@ Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worke
 | Path | What |
 |---|---|
 | `src/layouts/Base.astro` | Head (title, description, canonical, OG, optional `noindex`, optional JSON-LD), `<ClientRouter />` view transitions, Header, optional StepBar, Footer. |
-| `src/components/` | `Header.astro`, `StepBar.astro` (markup only; styles are global in `components.css` because the Transfer island renders its own bar), `Footer.astro`, `Placeholder.astro` (hatched squares until real provider marks land), `CoffeePanel.astro`. |
-| `src/pages/index.astro` | Landing: hero, static 62 % mock panel, "how it works", `Stats` island (hidden below 1,000 moved tracks: no invented numbers), `SoftwareApplication` JSON-LD. |
+| `src/components/` | `Header.astro`, `StepBar.astro` (markup only; styles are global in `components.css` because the Transfer island renders its own bar; completed steps are links), `Footer.astro`, `CoffeePanel.astro`. |
+| `src/pages/index.astro` | Landing (Marc's 2026-09-03 mock, not the handoff): centered hero, the four-cell facts strip (`Stats` island: server-rendered day-one facts, live counters take over the first cells once 1,000 tracks are really moved), three steps, `SoftwareApplication` JSON-LD. |
 | `src/pages/faq.astro`, `privacy.astro` (`#terms`), `404.astro` | Static prose pages. FAQ emits `FAQPage` JSON-LD. Privacy/terms are what Google verification links to. |
 | `src/pages/connect.astro` + `src/islands/Connect.tsx` | Step 01. Source card has a *setup* state (BYO Spotify Client ID, redirect-URI copy button) before *connected*; destination card runs the Google device-code flow and polls `/auth/google/poll`. |
 | `src/pages/select.astro` + `src/islands/Select.tsx` | Step 02. Tabs, tri-state select-all, shift-click ranges, sort, "+ N more" expansion (no virtualisation; 500-playlist cap), summary panel → sticky bar on mobile. Playlists owned by other users render locked (a Development Mode Spotify app cannot read them). |
@@ -16,6 +16,7 @@ Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worke
 | `src/lib/api.ts` | Typed client for the worker (`ApiError` carries status + code). Same-origin cookies. |
 | `src/lib/selection.ts` | Pure Choose-step helpers (`defaultSel`, `totals`, `triState`, `rangeToggle`, `sortBy`, `toSelection`, `selectable`). Tested. |
 | `src/lib/format.ts` | `n`, `compact`, `pct`, `eta`, `preEstimate` (45 searches/min, D11), `duration`. Tested. |
+| `src/lib/Logo.tsx` | Provider marks (Spotify, YouTube Music, Apple Music, Tidal): the `mono.svg` paths from thesvg.org (MIT), drawn in `currentColor`. `.art` is the 36/46 px framed box around a mark; `.row.is-selected .logo` turns accent. Rows without artwork show the Spotify mark in an `.art` box. |
 | `src/lib/motion.ts` | `reveal` (stagger rows via `.reveal > *` in `motion.css`), `countTo` (rAF; never counts down unless told), `onView` (IntersectionObserver), `collapse`, `crossfade`, `flash`. Vanilla on purpose: an animation library's Web Animations path calls `commitStyles()`, which writes a `style` attribute and the CSP blocks it. Every helper is a no-op under `prefers-reduced-motion`. |
 | `scripts/mock-api.mjs` | Stand-in for the Worker on 8787 (`pnpm --filter web mock` instead of `wrangler dev`): connected session, the recorded Spotify library, stats, and jobs by id prefix (`r…` running, `d…` done, `f…` failed, 26 chars). The only way to see Select/Transfer without real accounts. |
 | `src/styles/` | `tokens.css` (every value from the handoff table, `--gutter` 40/18), `base.css` (reset, fonts, type roles), `components.css` (btn, checkbox, list/row, track/seg, tabs, panel, placeholder, kv, stepbar), `motion.css` (keyframes + reduced-motion kill switch). Page-specific CSS lives in each page's `<style is:global>` since island markup is client-rendered. |
@@ -28,7 +29,7 @@ Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worke
 - In dev, a Vite middleware in `astro.config.mjs` rewrites `/t/<26-char id>` to `/t` (production relies on the Worker for that).
 - `build.format: 'preserve'` → `connect.astro` becomes `/connect.html` (served at `/connect` by `html_handling`), `t/index.astro` → `/t/index.html`. `trailingSlash: 'never'`.
 - App routes (`/connect`, `/select`, `/t/*`, `/404`) are `noindex` and excluded from the sitemap; `robots.txt` disallows them plus `/api/` and `/auth/`.
-- Copy is verbatim from the handoff except: BYO Spotify setup state, device-code state, honest estimates, no fake hero stats, no undo toast on review actions (a resolved row just collapses). Tokens deviate in one place: `--fg-3/4/5` are brighter than the handoff (.52/.47/.42 instead of .45/.35/.28) so 10–12 px text clears 4.5:1 contrast.
+- Type is one step larger than the handoff (2026-09-03: every size ≤ 17 px ×1.15, 18–30 px ×1.08, headings unchanged). Copy is verbatim from the handoff except: the landing (rewritten to Marc's mock), BYO Spotify setup state, device-code state, honest estimates, no fake hero stats, no undo toast on review actions (a resolved row just collapses). Tokens deviate in one place: `--fg-3/4/5` are brighter than the handoff (.52/.47/.42 instead of .45/.35/.28) so 10–12 px text clears 4.5:1 contrast.
 - Progress never runs backwards: `Transfer.tsx` clamps `totals.moved` to the highest value seen; `countTo` refuses to count down for progress values.
 - Fonts are self-hosted via Fontsource (`@fontsource-variable/archivo`, `@fontsource/ibm-plex-mono` 400/500/600); `font-src 'self'`.
 

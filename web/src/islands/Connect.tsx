@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { api, ApiError } from '../lib/api';
 import type { SessionView } from '@shared/types';
 import { n } from '../lib/format';
+import { Logo } from '../lib/Logo';
 const REDIRECT = `${location.origin}/auth/spotify/callback`;
 const SPOTIFY_ERRORS: Record<string, string> = {
   state_mismatch: 'That sign-in link expired. Try again.',
@@ -53,7 +54,7 @@ export default function Connect() {
   return <>
     <div class="cards">
       <section class={`panel card ${s.spotify ? 'panel--success' : ''}`} aria-labelledby="src">
-        <header class="card__head"><span class="placeholder ph-46" aria-hidden="true" /><div><div class="eyebrow">Source</div><h2 id="src" class="card__title">Spotify</h2></div>{s.spotify && <span class="meta is-ok card__state">connected</span>}</header>
+        <header class="card__head"><span class="art art--46"><Logo name="spotify" size={30} /></span><div><div class="eyebrow">Source</div><h2 id="src" class="card__title">Spotify</h2></div>{s.spotify && <span class="meta is-ok card__state">connected</span>}</header>
         {s.spotify ? <>
           <dl class="kv hairline-top">
             <dt>Signed in as</dt><dd>{s.spotify.email ?? s.spotify.displayName}</dd>
@@ -76,9 +77,9 @@ export default function Connect() {
       <section class="panel panel--accent card" aria-labelledby="dst">
         <div class="eyebrow c-accent">Destination</div><h2 id="dst" class="card__title">Where is your library going?</h2>
         <div class="list providers" role="radiogroup" aria-label="Destination">
-          <div class="row is-selected" role="radio" aria-checked="true" tabIndex={0}><span class="placeholder ph-28" aria-hidden="true" /><span class="row__title">YouTube Music</span><span class="row__count c-accent">{s.destination ? 'connected' : 'chosen'}</span></div>
-          <div class="row is-disabled" role="radio" aria-checked="false" aria-disabled="true"><span class="placeholder ph-28" aria-hidden="true" /><span class="row__title">Apple Music</span><span class="chip">soon</span></div>
-          <div class="row is-disabled" role="radio" aria-checked="false" aria-disabled="true"><span class="placeholder ph-28" aria-hidden="true" /><span class="row__title">Tidal</span><span class="chip">soon</span></div>
+          <div class="row is-selected" role="radio" aria-checked="true" tabIndex={0}><Logo name="ytmusic" size={26} /><span class="row__title">YouTube Music</span><span class="row__count c-accent">{s.destination ? 'connected' : 'chosen'}</span></div>
+          <div class="row is-disabled" role="radio" aria-checked="false" aria-disabled="true"><Logo name="apple" size={26} /><span class="row__title">Apple Music</span><span class="chip">soon</span></div>
+          <div class="row is-disabled" role="radio" aria-checked="false" aria-disabled="true"><Logo name="tidal" size={26} /><span class="row__title">Tidal</span><span class="chip">soon</span></div>
         </div>
         {s.destination ? <>
           <dl class="kv hairline-top">

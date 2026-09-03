@@ -33,9 +33,15 @@ import Transfer from '../../islands/Transfer';
   .review__actions { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
   .review__search { margin-top: 10px; }
   .review__searchrow { display: flex; gap: 8px; } .review__searchrow .input { flex: 1; }
-  .review__results { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .review__results { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
   .review__results li { display: flex; justify-content: space-between; gap: 10px; align-items: center; font: 400 14px/1.4 var(--font-ui); color: var(--fg-2); }
-  .review__result { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .review__result { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 3px; }
+  .sk--btn { width: 76px; height: 30px; flex: none; }
+  .ext { vertical-align: -1px; margin-left: 3px; opacity: .6; } .review__yt:hover .ext { opacity: 1; }
+  .review__result-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .review__yt { color: var(--fg); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
+  .review__yt:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .review__reason .review__yt { display: inline; color: var(--fg-2); white-space: normal; }
   .review__none { margin-top: 10px; }
   .actions--split { margin-top: 18px; }
   .actions--split .btn { padding: 13px 20px; font-size: 16px; }
@@ -45,6 +51,10 @@ import Transfer from '../../islands/Transfer';
   .row__text { min-width: 0; }
   /* done */
   .done { display: grid; grid-template-columns: 1.15fr .85fr; gap: 44px; padding-top: 56px; padding-bottom: 40px; align-items: start; }
+  .done > *, .cols > * { min-width: 0; } /* fr columns otherwise grow with a long title or the search row */
+  .review__title { min-width: 0; overflow-wrap: anywhere; }
+  .done > *, .cols > * { min-width: 0; } /* fr columns otherwise grow with the longest search result */
+  .review__results .btn { white-space: nowrap; flex: none; }
   .done > .back { grid-column: 1 / -1; margin-bottom: -26px; }
   .done__lede { max-width: 52ch; }
   .statstrip { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--hairline-strong); margin-top: 28px; }

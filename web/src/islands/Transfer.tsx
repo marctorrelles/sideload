@@ -58,7 +58,10 @@ export default function Transfer() {
   const remaining = Math.max(0, totals.tracks - totals.moved - totals.review - totals.skipped);
   const review = [...job.review, ...more.filter(m => !job.review.some(r => r.id === m.id))]; // page 0 shifts after a resolve; never render a row twice
   const copy = (e: Event) => { const el = e.currentTarget as HTMLElement; navigator.clipboard.writeText(location.href).then(() => flash(el, 'copied')); };
-  const onResolved = (trackId: number) => { setJob({ ...job, review: job.review.filter(r => r.id !== trackId), reviewTotal: Math.max(0, job.reviewTotal - 1), totals: { ...totals, review: Math.max(0, totals.review - 1) } }); setMore(more.filter(r => r.id !== trackId)); };
+  const onResolved = async (trackId: number) => {
+    setJob({ ...job, review: job.review.filter(r => r.id !== trackId), reviewTotal: Math.max(0, job.reviewTotal - 1), totals: { ...totals, review: Math.max(0, totals.review - 1) } }); setMore(more.filter(r => r.id !== trackId));
+    try { setJob(await api.job(id)); } catch { /* the optimistic state stands until the next load */ } // moved/review totals come from the worker's track rows
+  };
   const loadMore = async () => setMore([...more, ...(await api.review(id, review.filter(r => r.id > 0).length))]);
   const reviewList = <div class="list warn" data-reveal-once>
     {review.map(r => <ReviewItem key={r.id} jobId={id} item={r} onResolved={onResolved} disabled={job.status === 'done' && !job.ytConnected} />)}

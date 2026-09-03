@@ -31,6 +31,15 @@ const items = (running) => [
 const job = (id, status) => ({ id, status, failure: status === 'failed' ? 'auth_expired' : null,
   totals: { tracks: 5288, moved: status === 'running' ? 3304 : 5281, review: 7, skipped: 0, collapsed: 1, writeFailed: 1 }, items: items(status === 'running'), review, reviewTotal: 7,
   startedAt: Date.now() - 372_000, finishedAt: status === 'running' ? null : Date.now() - 1000, ratePerMin: 44, etaSeconds: 130, throttledUntil: null, ytConnected: true, searches: 3100, cacheHits: 940 });
+// static files from web/dist with the Worker's html_handling: /connect → connect.html, /t/<id> → t/index.html
+const DIST = new URL('../dist/', import.meta.url).pathname;
+const TYPES = { html: 'text/html; charset=utf-8', js: 'text/javascript', css: 'text/css', svg: 'image/svg+xml', png: 'image/png', woff2: 'font/woff2', txt: 'text/plain', xml: 'application/xml', json: 'application/json' };
+function serveStatic(p, res) {
+  if (/^\/t\/[a-z0-9]{26}$/.test(p)) p = '/t/index.html';
+  const candidates = [p, `${p}.html`, `${p.replace(/\/$/, '')}/index.html`, p === '/' ? '/index.html' : null].filter(Boolean);
+  for (const c of candidates) { const f = DIST + c.replace(/^\//, ''); if (fs.existsSync(f) && fs.statSync(f).isFile()) { res.writeHead(200, { 'content-type': TYPES[f.split('.').pop()] ?? 'application/octet-stream' }); return res.end(fs.readFileSync(f)); } }
+  res.writeHead(404, { 'content-type': 'text/html' }); res.end(fs.existsSync(DIST + '404.html') ? fs.readFileSync(DIST + '404.html') : 'not found');
+}
 http.createServer((req, res) => {
   const u = new URL(req.url, 'http://x'); const p = u.pathname; const json = (b, s = 200) => { res.writeHead(s, { 'content-type': 'application/json' }); res.end(JSON.stringify(b)); };
   if (p === '/api/session') return json({ spotify: { displayName: 'Marc', email: 'marc@example.com', clientId: 'x'.repeat(32), counts: { playlists: 70, liked: 3036 } }, destination: { provider: 'ytmusic', account: { title: 'Marc Torrelles', handle: '@marctorrelles' } } });
@@ -39,5 +48,6 @@ http.createServer((req, res) => {
   let m = p.match(/^\/api\/jobs\/([a-z0-9]{26})$/); if (m) return m[1][0] === 'r' ? json(job(m[1], 'running')) : m[1][0] === 'd' ? json(job(m[1], 'done')) : m[1][0] === 'f' ? json(job(m[1], 'failed')) : json({ error: 'not_found' }, 404);
   if (/\/review$/.test(p)) return json([]);
   if (/\/search$/.test(p)) return json([{ videoId: 'abcdefghijk', title: 'Untitled (Selected Ambient Works)', artists: 'Aphex Twin', album: 'SAW 85-92', durationSec: 293 }]);
+  if (req.method === 'GET' && !p.startsWith('/api') && !p.startsWith('/auth')) return serveStatic(p, res); // the built site, so this doubles as a QA server
   return json({ ok: true });
-}).listen(8787, '127.0.0.1', () => console.log('mock api on 8787'));
+}).listen(Number(process.env.PORT ?? 8787), '127.0.0.1', () => console.log(`mock api on ${process.env.PORT ?? 8787}`));

@@ -44,7 +44,8 @@ export default defineConfig({
   vite: {
     // dev only: the Worker serves /t/index.html for /t/<id> in production
     plugins: [{ name: 'transfer-shell', configureServer(s) { s.middlewares.use((req, _res, next) => { if (/^\/t\/[a-z0-9]{26}$/.test(req.url ?? '')) req.url = '/t'; next(); }); } }],
-    server: { proxy: { '/api': 'http://127.0.0.1:8787', '/auth': 'http://127.0.0.1:8787' } },
+    // SIDELOAD_API=http://127.0.0.1:8788 pnpm --filter web dev --port 4322 runs a second dev server against the mock while wrangler keeps 8787
+    server: { proxy: { '/api': process.env.SIDELOAD_API ?? 'http://127.0.0.1:8787', '/auth': process.env.SIDELOAD_API ?? 'http://127.0.0.1:8787' } },
     resolve: { alias: { '@shared': new URL('../shared', import.meta.url).pathname } },
   },
 });

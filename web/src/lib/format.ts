@@ -12,4 +12,4 @@ export function eta(seconds: number | null): string {
 }
 /** Pre-start estimate: 45 searches/min measured (D11). Songs other people already moved are cache hits and go faster. */
 export const preEstimate = (tracks: number) => { const m = Math.max(1, Math.round(tracks / 45)); return m < 60 ? `~${m} min` : `~${Math.round((m / 60) * 2) / 2} h`; };
-export function duration(ms: number): string { const s = Math.round(ms / 1000), m = Math.floor(s / 60); return m >= 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m} min ${s % 60} s`; }
+export function duration(ms: number): string { const s = Math.round(ms / 1000), m = Math.floor(s / 60); return m >= 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : m === 0 ? `${s} s` : `${m} min ${s % 60} s`; }

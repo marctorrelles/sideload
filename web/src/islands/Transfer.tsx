@@ -135,9 +135,9 @@ function DoneView({ job, reviewList, narrow, showReview, setShowReview }: { job:
   return <>
     <StepBar done />
     <section class="container body done">
+      <a class="back" href="/select">← Back</a>
       <div class="reveal">
-        <a class="back" href="/select">← Back</a>
-        <div class="eyebrow c-ok">Transfer complete · {duration((job.finishedAt ?? Date.now()) - job.startedAt)}</div>
+        <div class="eyebrow c-ok done__eyebrow">Transfer complete · {duration((job.finishedAt ?? Date.now()) - job.startedAt)}</div>
         <h1 class="h2-done">Your library lives on YouTube Music now.</h1>
         <p class="lede done__lede">
           {n(totals.moved)} of {n(totals.tracks)} songs moved across {playlists} playlist{playlists === 1 ? '' : 's'}{albums || artists ? `, plus ${albums ? `${albums} album${albums === 1 ? '' : 's'}` : ''}${albums && artists ? ' and ' : ''}${artists ? `${artists} followed artist${artists === 1 ? '' : 's'}` : ''}` : ''}.
@@ -154,7 +154,7 @@ function DoneView({ job, reviewList, narrow, showReview, setShowReview }: { job:
         <div class="actions done__actions"><a class="btn" href="https://music.youtube.com/library" rel="noopener">Open YouTube Music</a><a class="btn btn--secondary" href={`/api/jobs/${job.id}/report.csv`}>Download report (CSV)</a><a class="link" href="/connect">Start another transfer</a></div>
         <div class="panel panel--accent coffee">
           <div><b class="coffee__title">Sideload is free, and stays free.</b><p class="note coffee__note">If it saved you an afternoon of copy-pasting, a coffee covers the server bill for the next few hundred transfers.</p></div>
-          <a class="btn btn--light" href="https://buymeacoffee.com/marctorrelles" rel="noopener noreferrer">Buy me a coffee</a>
+          <a class="btn" href="https://buymeacoffee.com/marctorrelles" rel="noopener noreferrer">Buy me a coffee</a>
         </div>
       </div>
       <div>

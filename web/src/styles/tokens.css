@@ -7,7 +7,7 @@
   --accent: #e0703f; --accent-hover: #d2663a; --accent-soft: #f0a58a; --accent-tint-bg: #1a1512; --accent-tint-border: rgba(224,112,63,.50); --accent-tint-fill: rgba(224,112,63,.13); --accent-banner: rgba(224,112,63,.10); --accent-banner-border: rgba(224,112,63,.28);
   --danger: #e0563f;
   --success: #7fc79a; --success-border: rgba(127,199,154,.40); --success-bg: #141614;
-  --on-accent: #141110; --light-btn: #f4f1eb;
+  --on-accent: #141110;
   --warn-list-border: rgba(240,165,138,.33);
   --font-ui: 'Archivo Variable', Archivo, Helvetica, Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;

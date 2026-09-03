@@ -3,8 +3,6 @@
 .btn:hover { background: var(--accent-hover); }
 .btn--secondary { background: transparent; color: var(--fg); border-color: var(--hairline-control); padding: 15px 22px; font-size: 16px; }
 .btn--secondary:hover { border-color: var(--hairline-hover); background: var(--bg-row-active); }
-.btn--light { background: var(--light-btn); color: var(--on-accent); }
-.btn--light:hover { background: #fff; }
 .btn--small { padding: 7px 12px; font: 500 13px/1 var(--font-ui); border: 1px solid var(--hairline-control); background: transparent; color: var(--fg); }
 .btn--small:hover { background: var(--bg-row-active); border-color: var(--hairline-hover); }
 .btn--small.is-dim { border-color: var(--hairline-strong); color: var(--fg-2); }

@@ -26,9 +26,7 @@ export default function Select() {
   const t = lib && sel ? totals(lib, sel) : null;
   useEffect(() => { if (bigRef.current && t) countTo(bigRef.current, t.songs, n, true); }, [t?.songs]);
   if (err) return <p class="error error--hard" role="alert">{err}</p>;
-  if (!lib || !sel || !t) return <div class="list skeleton choose__loading" aria-busy="true" aria-label="Reading your library">
-    {[0, 1, 2, 3, 4, 5].map(i => <div class="row" key={i}><span class="sk sk--box" /><span class="sk sk--art" /><span class="row__text"><span class="sk sk--title" /><span class="sk sk--sub" /></span><span class="sk sk--count" /></div>)}
-  </div>;
+  if (!lib || !sel || !t) return <ChooseSkeleton />;
   const rows: Row[] = tab === 'playlists' ? sortBy(lib.playlists, sort) : tab === 'albums' ? sortBy(lib.albums, sort) : sortBy(lib.artists, sort);
   const set = sel[tab] as Set<string>;
   const ids = rows.filter(r => !isPlaylist(r) || selectable(r)).map(r => r.id);
@@ -106,3 +104,36 @@ export default function Select() {
     </aside>
   </div>;
 }
+
+/** The real layout with bars where the data goes, so nothing jumps when the library arrives. */
+function ChooseSkeleton() {
+  return <div class="choose" aria-busy="true" aria-label="Reading your library">
+    <div>
+      <div class="tabs" role="tablist" aria-label="What to move">
+        {['Playlists', 'Albums', 'Followed artists'].map((label, i) => <button role="tab" class="tab" aria-selected={i === 0} disabled key={label}>{label} <span class="sk sk--tab" /></button>)}
+      </div>
+      <div class="toolbar">
+        <label class="toolbar__all"><input type="checkbox" class="checkbox" disabled />Select all</label>
+        <label class="meta toolbar__sort">sort: <select class="select" disabled><option>recently played</option></select></label>
+      </div>
+      <div class="list skeleton">
+        {[0, 1, 2, 3, 4, 5].map(i => <div class="row" key={i}><span class="sk sk--box" /><span class="sk sk--art" /><span class="row__text"><span class="sk sk--title" /><span class="sk sk--sub" /></span><span class="sk sk--count" /></div>)}
+      </div>
+    </div>
+    <aside class="panel summary skeleton">
+      <div class="summary__in">
+        <div class="eyebrow">Selected</div>
+        <span class="sk sk--big" />
+        <span class="sk sk--line" />
+        <dl class="kv hairline-top summary__kv">
+          {['Playlists', 'Saved albums', 'Followed artists', 'Estimated time'].map(k => <><dt key={k}>{k}</dt><dd><span class="sk sk--dd" /></dd></>)}
+        </dl>
+        <p class="note summary__hint">Songs other people already moved go faster.</p>
+      </div>
+      <div class="summary__bar"><span class="sk sk--line" /></div>
+      <button class="btn btn--block summary__cta" disabled>Start the transfer</button>
+      <p class="note summary__note">You can close the tab once it starts. The transfer keeps running.</p>
+    </aside>
+  </div>;
+}
+

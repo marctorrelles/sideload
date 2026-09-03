@@ -64,6 +64,8 @@
 .sk--box { width: 15px; height: 15px; flex: none; } .sk--art { width: 36px; height: 36px; flex: none; }
 .sk--title { height: 11px; width: 40%; } .sk--sub { height: 8px; width: 24%; margin-top: 8px; } .sk--count { height: 10px; width: 64px; margin-left: auto; flex: none; }
 .skeleton .row__text { flex: 1; }
+.sk--tab { display: inline-block; width: 18px; height: 10px; vertical-align: middle; margin-left: 6px; }
+.sk--big { height: 30px; width: 46%; margin-top: 14px; } .sk--line { height: 10px; width: 60%; margin-top: 12px; } .sk--dd { height: 10px; width: 56px; margin-left: auto; }
 .skeleton .row:nth-child(2) .sk--title { width: 28%; } .skeleton .row:nth-child(3) .sk--title { width: 52%; } .skeleton .row:nth-child(4) .sk--title { width: 34%; } .skeleton .row:nth-child(5) .sk--title { width: 46%; }
 .skeleton .row:nth-child(2) .sk { animation-delay: .15s; } .skeleton .row:nth-child(3) .sk { animation-delay: .3s; } .skeleton .row:nth-child(4) .sk { animation-delay: .45s; } .skeleton .row:nth-child(5) .sk { animation-delay: .6s; } .skeleton .row:nth-child(6) .sk { animation-delay: .75s; }
 .kv { display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; margin: 22px 0 0; padding-top: 18px; font: 400 15px/1.4 var(--font-ui); }

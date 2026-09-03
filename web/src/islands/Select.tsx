@@ -43,6 +43,13 @@ export default function Select() {
     catch (e) { if (e instanceof ApiError && e.status === 401) { location.href = '/connect'; return; } setErr(e instanceof ApiError ? e.message : 'Could not start the transfer.'); setBusy(false); }
   }
   const nothing = t.songs === 0 && t.albums === 0 && t.artists === 0;
+  // what stays on Spotify: a dim second line under the big number
+  const left = [
+    [lib.playlists.filter(p => p.isAlgorithmic).length, 'by Spotify'],
+    [lib.playlists.filter(p => !p.isAlgorithmic && !selectable(p)).length, 'by other people'],
+    [lib.playlists.filter(p => selectable(p) && !sel.playlists.has(p.id)).length + (lib.likedCount > 0 && !sel.liked ? 1 : 0), 'of yours'],
+  ].filter(([k]) => (k as number) > 0).map(([k, w]) => `${n(k as number)} ${w}`);
+  const flashRow = (e: Event) => { const row = (e.currentTarget as HTMLElement).closest('.row'); if (row) { row.classList.remove('is-flash'); void (row as HTMLElement).offsetWidth; row.classList.add('is-flash'); } };
   const sub = (r: Row) =>
     isPlaylist(r) ? (selectable(r) ? `by you${r.collaborative ? ' · collaborative' : ''}${r.isPublic === false ? ' · private' : ''}` : r.isAlgorithmic ? `by Spotify · regenerates` : `by ${r.owner} · can't be read by a personal Spotify app`) : isAlbum(r) ? r.artist : '';
   const countOf = (r: Row) => (isPlaylist(r) ? r.trackCount : isAlbum(r) ? r.trackCount : null);
@@ -61,7 +68,7 @@ export default function Select() {
       </div>
       <div class="list" ref={listRef} role="group" aria-label={tab}>
         {hasLiked && <label class={`row is-selectable ${sel.liked ? '' : 'is-dim'}`}>
-          <input type="checkbox" class="checkbox" checked={sel.liked} onChange={e => setSel({ ...sel, liked: (e.target as HTMLInputElement).checked })} />
+          <input type="checkbox" class="checkbox" checked={sel.liked} onChange={e => { flashRow(e); setSel({ ...sel, liked: (e.target as HTMLInputElement).checked }); }} />
           <span class="art"><Logo name="spotify" size={20} /></span>
           <span class="row__text"><div class="row__title">Liked songs</div><div class="row__sub">your saved library → likes + a private "Liked Songs" playlist</div></span>
           <span class="row__count">{n(lib.likedCount)} songs</span>
@@ -70,7 +77,7 @@ export default function Select() {
           const locked = isPlaylist(r) && !selectable(r);
           const on = !locked && set.has(r.id);
           return <label class={`row ${locked ? 'is-dim is-locked' : 'is-selectable'} ${!locked && !on ? 'is-dim' : ''}`} key={r.id} title={locked ? 'Spotify does not let a personal app read playlists owned by other people' : undefined}>
-            <input type="checkbox" class="checkbox" checked={on} disabled={locked} aria-label={r.name} onClick={e => { shift.current = (e as MouseEvent).shiftKey; }} onChange={e => toggle(r.id, (e.currentTarget as HTMLInputElement).checked, shift.current)} />
+            <input type="checkbox" class="checkbox" checked={on} disabled={locked} aria-label={r.name} onClick={e => { shift.current = (e as MouseEvent).shiftKey; }} onChange={e => { flashRow(e); toggle(r.id, (e.currentTarget as HTMLInputElement).checked, shift.current); }} />
             {r.image ? <img src={r.image} alt="" width="36" height="36" loading="lazy" /> : <span class="art"><Logo name="spotify" size={20} /></span>}
             <span class="row__text"><div class="row__title">{r.name}</div><div class="row__sub">{sub(r)}</div></span>
             {countOf(r) != null && <span class="row__count">{n(countOf(r)!)} songs</span>}
@@ -89,6 +96,7 @@ export default function Select() {
         <div class="eyebrow">Selected</div>
         <div class="stat stat--big" ref={bigRef} data-value={t.songs}>{n(t.songs)}</div>
         <div class="summary__sub">songs across {t.playlists} playlist{t.playlists === 1 ? '' : 's'}</div>
+        {left.length > 0 && <div class="summary__left meta">leaving {left.join(' · ')} behind</div>}
         <dl class="kv hairline-top summary__kv">
           <dt>Playlists</dt><dd class="mono">{t.playlists} of {t.playlistsTotal}</dd>
           <dt>Saved albums</dt><dd class="mono">{t.albums} of {lib.albums.length}</dd>

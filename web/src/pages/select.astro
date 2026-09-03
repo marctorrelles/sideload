@@ -37,6 +37,9 @@ import Select from '../islands/Select';
   .summary { position: sticky; top: 16px; grid-column: 2; grid-row: 2 / span 2; }
   .stat--big { font-size: 34px; margin-top: 12px; }
   .summary__sub { font: 400 14px/1.4 var(--font-ui); color: var(--fg-2); margin-top: 6px; }
+  .summary__left { color: var(--fg-4); margin-top: 8px; }
+  @keyframes row-flash { from { background: var(--accent-tint-fill); } }
+  .row.is-flash { animation: row-flash .6s var(--ease); }
   .summary__kv { grid-template-columns: 1fr auto; }
   .summary__hint { margin-top: 10px; }
   .summary__bar { display: none; }

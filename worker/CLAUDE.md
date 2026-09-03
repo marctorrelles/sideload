@@ -7,6 +7,7 @@ Cloudflare Worker: Hono routes + OAuth + provider clients + the job engine. Test
 | File | Responsibility |
 |---|---|
 | `index.ts` | Hono app. Middleware order: `securityHeaders` on `*`, `sameOrigin` on `/api/*` and `/auth/*`. Routes: session, Spotify PKCE start/callback/logout, Google device-code start/poll/logout, `/api/library`, `/api/jobs*`, `/api/stats`, `/t/:id` app shell (adds `X-Robots-Tag: noindex`), then `ASSETS` fallthrough. Exports `JobDO`, `StatsDO`. |
+| `sentry.ts` | `sentryOptions(env)`: errors only (`tracesSampleRate: 0`), no PII, `beforeSend` drops cookies and headers. `index.ts` wraps the default export with `withSentry` and re-exports both DOs through `instrumentDurableObjectWithSentry` (wrangler binds the wrapped classes). Hono's `onError` and JobDO's `handleError` swallow errors, so both call `Sentry.captureException` explicitly. No `SENTRY_DSN` = nothing sent. Needs the `nodejs_compat` flag. |
 | `env.ts` | `Env` interface: bindings (`ASSETS`, `JOB`, `STATS`, `MATCH_CACHE`, optional `RL_*`) + secrets (`GOOGLE_CLIENT_ID/SECRET`, `COOKIE_SECRET`, `TOKEN_SECRET`) + `PUBLIC_ORIGIN`. |
 | `http.ts` | `HttpError(status, code, message)`, `withSecurityHeaders` (also called from `app.onError`), `sameOrigin` (Sec-Fetch-Site / Origin guard on non-GET), `rateLimit(binding, keyFn?)` (no-op when the binding is absent). |
 | `cookie.ts` | AES-GCM sealed, HttpOnly, SameSite=Lax cookies: `sl_s` session (1 h) and `sl_o` OAuth transient (15 min); `__Host-` prefix + Secure on https. Fails loudly above 3.8 KB. |

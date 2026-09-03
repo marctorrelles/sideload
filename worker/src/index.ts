@@ -1,5 +1,7 @@
 // worker/src/index.ts: Hono app: API + auth routes, then static assets.
 import { Hono } from 'hono';
+import * as Sentry from '@sentry/cloudflare';
+import { sentryOptions } from './sentry';
 import type { Env } from './env';
 import { HttpError, securityHeaders, withSecurityHeaders, sameOrigin, rateLimit } from './http';
 import { readSession, writeSession, clearSession, readTransient, writeTransient, clearTransient, type Session } from './cookie';
@@ -8,8 +10,11 @@ import { deviceCode, pollDevice, channelInfo } from './google';
 import { randomId, ID_RE, pkceVerifier, pkceChallenge } from './crypto';
 import { validateSelection } from './routes-validate';
 import type { SessionView, Library, ReviewAction } from '@shared/types';
-export { JobDO } from './job-do';
-export { StatsDO } from './stats-do';
+import { JobDO as JobDOBase } from './job-do';
+import { StatsDO as StatsDOBase } from './stats-do';
+// The wrapped classes are what wrangler binds (same export names); alarms and RPC calls run inside a Sentry scope.
+export const JobDO = Sentry.instrumentDurableObjectWithSentry(sentryOptions, JobDOBase);
+export const StatsDO = Sentry.instrumentDurableObjectWithSentry(sentryOptions, StatsDOBase);
 
 type App = { Bindings: Env };
 const app = new Hono<App>();
@@ -25,6 +30,7 @@ app.onError((e, c) => {
       : e.status === 401 ? 'Your Spotify sign-in expired. Connect it again.' : `Spotify answered ${e.status} on ${e.message.split(':')[0]}. Try again in a minute.`;
     return withSecurityHeaders(c.json({ error: premium ? 'spotify_premium_required' : `spotify_${e.code}`, message }, e.status === 401 ? 401 : e.status === 403 ? 403 : 502), c.req.path);
   }
+  Sentry.captureException(e);
   console.error(JSON.stringify({ evt: 'unhandled', path: c.req.path, err: String(e).slice(0, 300) }));
   return withSecurityHeaders(c.json({ error: 'internal', message: 'Something broke on our side. Try again in a minute.' }, 500), c.req.path);
 });
@@ -154,4 +160,4 @@ app.get('/t/:id', async c => {
   const out = new Response(res.body, res); out.headers.set('X-Robots-Tag', 'noindex'); return out;
 });
 app.all('*', c => c.env.ASSETS.fetch(c.req.raw));
-export default app;
+export default Sentry.withSentry<Env>(sentryOptions, { fetch: (req, env, ctx) => app.fetch(req, env, ctx) });

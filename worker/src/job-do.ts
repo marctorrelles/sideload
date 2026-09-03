@@ -1,4 +1,5 @@
 // worker/src/job-do.ts: one Durable Object per transfer. Alarm-driven ticks; every unit of work is persisted before the next await.
+import * as Sentry from '@sentry/cloudflare';
 import { DurableObject } from 'cloudflare:workers';
 import type { Env } from './env';
 import { seal, open } from './crypto';
@@ -370,6 +371,7 @@ export class JobDO extends DurableObject<Env> {
     }
     if (e instanceof AuthError || e instanceof GoogleError || (e instanceof SpotifyError && e.status === 401)) return this.fail('auth_expired');
     if (e instanceof FatalError) return this.fail(e.failure);
+    Sentry.captureException(e);
     console.error(JSON.stringify({ evt: 'tick_error', job: job.id.slice(0, 6), attempt, err: String(e).slice(0, 300) }));
     if (attempt > 8) return this.fail('provider_error');
     this.sql.exec('UPDATE job SET attempt = ?', attempt);

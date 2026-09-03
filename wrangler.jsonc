@@ -4,6 +4,7 @@
   "name": "sideload",
   "main": "worker/src/index.ts",
   "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"], // @sentry/cloudflare needs AsyncLocalStorage
   "workers_dev": false,
   "routes": [{ "pattern": "sideload.marctorrelles.com", "custom_domain": true }],
   "assets": {

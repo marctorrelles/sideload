@@ -13,6 +13,8 @@ Move your Spotify library (playlists, liked songs, saved albums, followed artist
 
 **Commands.** `pnpm install` · `pnpm test` · `pnpm dev` (worker on 8787, site on 4321 proxying `/api` and `/auth`) · `pnpm deploy` (builds the site, then `wrangler deploy`). `main` deploys automatically through GitHub Actions; roll back with `pnpm wrangler rollback`.
 
+**Telemetry (optional).** Set `SENTRY_DSN` (a Sentry project of type Cloudflare Workers) and unhandled errors in the Worker and the Durable Objects are reported with cookies and headers scrubbed. Leave it unset and nothing is sent; forks need no changes.
+
 **Live logs.** `pnpm wrangler tail --format pretty`. Every log line is one JSON object with an `evt`:
 `job_created` · `throttle` (attempt, wait, err) · `verify` (one per read-back pass: `missingAdds`, `missingLikes`) · `job_done` (`verifyPasses`, `collapsed`, `writeFailed`, `searches`, `cacheHits`, `seconds`) · `job_failed` · `tick_error` · `unhandled`. Job ids are logged as their first 6 characters only.
 

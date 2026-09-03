@@ -11,4 +11,5 @@ export interface Env {
   GOOGLE_CLIENT_ID: string; GOOGLE_CLIENT_SECRET: string;
   COOKIE_SECRET: string; TOKEN_SECRET: string;
   PUBLIC_ORIGIN: string;
+  SENTRY_DSN?: string; // optional: error reports go nowhere without it
 }

@@ -1,6 +1,8 @@
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 COOKIE_SECRET=
+# optional: Sentry error reports (Cloudflare Workers project DSN); empty = nothing is sent
+SENTRY_DSN=
 TOKEN_SECRET=
 PUBLIC_ORIGIN=http://127.0.0.1:4321
 # only for worker/scripts/spike-spotify.ts (users bring their own id in the product)

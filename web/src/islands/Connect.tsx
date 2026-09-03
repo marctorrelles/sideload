@@ -12,7 +12,7 @@ const SPOTIFY_ERRORS: Record<string, string> = {
   invalid_grant: 'Spotify rejected the sign-in. Make sure the redirect URI below is saved in your app, then try again.',
   token_exchange_failed: 'Spotify sign-in failed. Try again in a minute.',
   no_code: 'Spotify sent us back without a code. Try again.',
-  premium_required: 'Spotify says the account that owns your app needs an active Premium subscription (their Development Mode rule). Just paid? Spotify can take a few hours to notice. Try again later.',
+  premium_required: 'Spotify requires the owner of a Development Mode app to have an active Premium subscription. Just subscribed? Spotify can take a few hours to notice. Try again later.',
   http_error: 'Spotify answered with an error while reading your account. Try again in a minute.',
 };
 type Dev = { userCode: string; verificationUrl: string; interval: number; expiresIn: number };

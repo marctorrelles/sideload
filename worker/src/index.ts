@@ -21,7 +21,7 @@ app.onError((e, c) => {
   if (e instanceof SpotifyError) { // Spotify's own words reach the user; the endpoint reaches the log
     const premium = /premium/i.test(e.message);
     console.error(JSON.stringify({ evt: 'spotify_error', path: c.req.path, status: e.status, err: e.message.slice(0, 300) }));
-    const message = premium ? 'Spotify says the account that owns your app needs an active Premium subscription (a Development Mode rule). If that changed recently, Spotify can take a few hours to notice.'
+    const message = premium ? 'Spotify requires the owner of a Development Mode app to have an active Premium subscription. Just subscribed? Spotify can take a few hours to notice. Try again later.'
       : e.status === 401 ? 'Your Spotify sign-in expired. Connect it again.' : `Spotify answered ${e.status} on ${e.message.split(':')[0]}. Try again in a minute.`;
     return withSecurityHeaders(c.json({ error: premium ? 'spotify_premium_required' : `spotify_${e.code}`, message }, e.status === 401 ? 401 : e.status === 403 ? 403 : 502), c.req.path);
   }

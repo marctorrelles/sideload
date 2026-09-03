@@ -6,7 +6,7 @@ import type { Env } from './env';
 
 export interface SpotifySession { clientId: string; access: string; refresh: string; expiresAt: number; userId: string; email: string | null; displayName: string; counts: { playlists: number; liked: number } }
 export interface GoogleSession { access: string; refresh: string; expiresAt: number; account?: { title: string; handle: string | null } | null }
-export interface Session { spotify?: SpotifySession; google?: GoogleSession }
+export interface Session { spotify?: SpotifySession; google?: GoogleSession; tid?: string /* telemetry id: random, per session, not an account id */ }
 export interface OAuthTransient { spotify?: { state: string; verifier: string; clientId: string }; google?: { deviceCode: string; expiresAt: number } }
 
 const SESSION = 'sl_s', TRANSIENT = 'sl_o';

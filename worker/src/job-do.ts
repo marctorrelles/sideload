@@ -1,5 +1,6 @@
 // worker/src/job-do.ts: one Durable Object per transfer. Alarm-driven ticks; every unit of work is persisted before the next await.
 import * as Sentry from '@sentry/cloudflare';
+import { track } from './telemetry';
 import { DurableObject } from 'cloudflare:workers';
 import type { Env } from './env';
 import { seal, open } from './crypto';
@@ -10,7 +11,7 @@ import { buildQuery, cacheKey, pickBest, similarity } from './match';
 import { toCsv } from './csv';
 import type { JobView, JobItemView, ReviewItemView, ReviewAction, Selection, ManualSearchResult, ItemKind, ItemStatus, JobStatus, JobFailure, ReviewReason } from '@shared/types';
 
-export interface StartPayload { id: string; spotify: Tokens; google: { access: string; refresh: string; expiresAt: number }; selection: Selection }
+export interface StartPayload { id: string; tid?: string; spotify: Tokens; google: { access: string; refresh: string; expiresAt: number }; selection: Selection }
 
 const TICK_BUDGET_MS = 50_000;     // wall-clock per alarm; CPU use is tiny, network wait dominates
 const CONCURRENCY = 2;             // ponytail: per job. If logs show shared-IP throttling across jobs, add a global limiter DO.
@@ -25,7 +26,7 @@ const REVIEW_PAGE = 20;
 
 const SCHEMA = `
 CREATE TABLE IF NOT EXISTS job (
-  id TEXT PRIMARY KEY, status TEXT NOT NULL, created_at INTEGER NOT NULL, started_at INTEGER NOT NULL, finished_at INTEGER,
+  id TEXT PRIMARY KEY, tid TEXT, status TEXT NOT NULL, created_at INTEGER NOT NULL, started_at INTEGER NOT NULL, finished_at INTEGER,
   spotify_tokens TEXT, yt_tokens TEXT, failure TEXT,
   attempt INTEGER NOT NULL DEFAULT 0, throttled_until INTEGER,
   searches INTEGER NOT NULL DEFAULT 0, cache_hits INTEGER NOT NULL DEFAULT 0
@@ -44,7 +45,7 @@ CREATE TABLE IF NOT EXISTS track (
 CREATE INDEX IF NOT EXISTS track_item_status ON track(item_id, status, pos);
 CREATE INDEX IF NOT EXISTS track_status ON track(status);`;
 
-interface JobRow { id: string; status: JobStatus; created_at: number; started_at: number; finished_at: number | null; spotify_tokens: string | null; yt_tokens: string | null; failure: JobFailure | null; attempt: number; throttled_until: number | null; searches: number; cache_hits: number }
+interface JobRow { id: string; tid: string | null; status: JobStatus; created_at: number; started_at: number; finished_at: number | null; spotify_tokens: string | null; yt_tokens: string | null; failure: JobFailure | null; attempt: number; throttled_until: number | null; searches: number; cache_hits: number }
 interface ItemRow { id: string; ord: number; kind: ItemKind; spotify_id: string | null; name: string; artist: string | null; description: string | null; is_public: number; total: number; status: ItemStatus; yt_id: string | null; reason: string | null; fetched: number; fetch_offset: number; verify_passes: number }
 interface TrackRow { id: number; item_id: string; pos: number; spotify_id: string | null; name: string; artists: string; album: string | null; duration_ms: number | null; is_local: number; status: string; video_id: string | null; reason: ReviewReason | null; suggestion: string | null; resolution: string | null; liked: number; redo: number; collides_with: string | null }
 const ids = (rows: { id: number }[]) => rows.map(() => '?').join(',');
@@ -72,7 +73,7 @@ export class JobDO extends DurableObject<Env> {
     const now = Date.now();
     const [spot, yt] = await Promise.all([seal(this.env.TOKEN_SECRET, p.spotify), seal(this.env.TOKEN_SECRET, p.google)]);
     this.ctx.storage.transactionSync(() => {
-      this.sql.exec('INSERT INTO job (id, status, created_at, started_at, spotify_tokens, yt_tokens) VALUES (?,?,?,?,?,?)', p.id, 'running', now, now, spot, yt);
+      this.sql.exec('INSERT INTO job (id, tid, status, created_at, started_at, spotify_tokens, yt_tokens) VALUES (?,?,?,?,?,?,?)', p.id, p.tid ?? null, 'running', now, now, spot, yt);
       let ord = 0;
       const add = (id: string, kind: ItemKind, name: string, extra: Partial<ItemRow> = {}) =>
         this.sql.exec('INSERT INTO item (id, ord, kind, spotify_id, name, artist, description, is_public, total) VALUES (?,?,?,?,?,?,?,?,?)', id, ord++, kind, extra.spotify_id ?? null, name, extra.artist ?? null, extra.description ?? null, extra.is_public ?? 0, extra.total ?? 0);
@@ -354,11 +355,14 @@ export class JobDO extends DurableObject<Env> {
     await this.ctx.storage.setAlarm(Date.now() + REVIEW_GRACE_MS);
     this.ctx.waitUntil(this.env.STATS.get(this.env.STATS.idFromName('global')).add({ moved: v.totals.moved, total: v.totals.tracks, seconds: Math.round((Date.now() - v.startedAt) / 1000) }).catch(() => {}));
     const passes = (this.sql.exec('SELECT COALESCE(SUM(verify_passes), 0) AS n FROM item').one() as { n: number }).n;
-    console.log(JSON.stringify({ evt: 'job_done', job: v.id.slice(0, 6), ...v.totals, verifyPasses: passes, searches: v.searches, cacheHits: v.cacheHits, seconds: Math.round((Date.now() - v.startedAt) / 1000) }));
+    const summary = { job: v.id.slice(0, 6), ...v.totals, verifyPasses: passes, searches: v.searches, cacheHits: v.cacheHits, seconds: Math.round((Date.now() - v.startedAt) / 1000) };
+    console.log(JSON.stringify({ evt: 'job_done', ...summary }));
+    this.ctx.waitUntil(track(this.env, 'job_done', this.job()?.tid ?? undefined, summary));
   }
   private async fail(failure: JobFailure): Promise<void> {
     this.sql.exec("UPDATE job SET status = 'failed', failure = ?, finished_at = ?, spotify_tokens = NULL, yt_tokens = NULL", failure, Date.now());
     console.log(JSON.stringify({ evt: 'job_failed', failure }));
+    this.ctx.waitUntil(track(this.env, 'job_failed', this.job()?.tid ?? undefined, { failure }));
     await this.ctx.storage.setAlarm(Date.now() + RETENTION_MS);
   }
   private async handleError(e: unknown, job: JobRow): Promise<void> {

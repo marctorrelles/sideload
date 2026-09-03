@@ -12,4 +12,5 @@ export interface Env {
   COOKIE_SECRET: string; TOKEN_SECRET: string;
   PUBLIC_ORIGIN: string;
   SENTRY_DSN?: string; // optional: error reports go nowhere without it
+  MIXPANEL_TOKEN?: string; MIXPANEL_API?: string; // optional: usage events go nowhere without the token; API defaults to api.mixpanel.com (EU projects: api-eu.mixpanel.com)
 }

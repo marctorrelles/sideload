@@ -2,6 +2,7 @@
 import { Hono } from 'hono';
 import * as Sentry from '@sentry/cloudflare';
 import { sentryOptions } from './sentry';
+import { track } from './telemetry';
 import type { Env } from './env';
 import { HttpError, securityHeaders, withSecurityHeaders, sameOrigin, rateLimit } from './http';
 import { readSession, writeSession, clearSession, readTransient, writeTransient, clearTransient, type Session } from './cookie';
@@ -65,7 +66,9 @@ app.get('/auth/spotify/callback', async c => {
     const sp = new Spotify(tokens, async () => {});
     const [me, pl, liked] = await Promise.all([sp.me(), sp.playlists('/me/playlists?limit=1'), sp.savedTracks(0).catch(() => ({ total: 0 }))]);
     const s = await readSession(c, c.env) ?? {};
-    await writeSession(c, c.env, { ...s, spotify: { ...tokens, userId: me.id, email: me.email ?? null, displayName: me.display_name ?? me.id, counts: { playlists: pl.total, liked: liked.total } } });
+    const tid = s.tid ?? randomId();
+    await writeSession(c, c.env, { ...s, tid, spotify: { ...tokens, userId: me.id, email: me.email ?? null, displayName: me.display_name ?? me.id, counts: { playlists: pl.total, liked: liked.total } } });
+    c.executionCtx.waitUntil(track(c.env, 'spotify_connected', tid, { playlists: pl.total, liked: liked.total }));
     clearTransient(c);
     return c.redirect('/connect');
   } catch (e) {
@@ -89,6 +92,7 @@ app.post('/auth/google/poll', rateLimit('RL_READ'), async c => {
   if (r.status !== 'ok') return c.json({ status: r.status });
   const s = await readSession(c, c.env) ?? {};
   await writeSession(c, c.env, { ...s, google: { access: r.access, refresh: r.refresh, expiresAt: r.expiresAt, account: await channelInfo(r.access) } });
+  c.executionCtx.waitUntil(track(c.env, 'youtube_connected', s.tid));
   delete tr.google; await writeTransient(c, c.env, tr);
   return c.json({ status: 'connected' });
 });
@@ -110,6 +114,7 @@ app.get('/api/library', rateLimit('RL_READ'), async c => {
   const artists: Library['artists'] = [];
   for (let after: string | undefined; ; ) { const p = await sp.followedArtists(after); for (const a of p.artists.items) artists.push({ id: a.id, name: a.name, image: a.images?.[0]?.url ?? null }); if (!p.artists.cursors.after || !p.artists.items.length) break; after = p.artists.cursors.after; }
   const lib: Library = { likedCount: s.spotify.counts.liked, playlists, albums, artists };
+  c.executionCtx.waitUntil(track(c.env, 'library_loaded', s.tid, { playlists: playlists.length, locked: playlists.filter(p => !p.ownedByUser).length, albums: albums.length, artists: artists.length, liked: lib.likedCount }));
   return c.json(lib);
 });
 
@@ -119,10 +124,11 @@ app.post('/api/jobs', rateLimit('RL_JOB_CREATE'), async c => {
   if (!s?.spotify || !s.google) throw new HttpError(401, 'both_required', 'Connect Spotify and YouTube Music first.');
   const selection = validateSelection(await c.req.json().catch(() => null));
   const id = randomId();
-  const r = await c.env.JOB.get(c.env.JOB.idFromName(id)).start({ id, spotify: { clientId: s.spotify.clientId, access: s.spotify.access, refresh: s.spotify.refresh, expiresAt: s.spotify.expiresAt }, google: s.google, selection });
+  const r = await c.env.JOB.get(c.env.JOB.idFromName(id)).start({ id, tid: s.tid, spotify: { clientId: s.spotify.clientId, access: s.spotify.access, refresh: s.spotify.refresh, expiresAt: s.spotify.expiresAt }, google: s.google, selection });
   if (!r.ok) throw r.error === 'too_large' ? new HttpError(413, 'too_large', 'That is more than 25,000 songs. Split it into two transfers.') : new HttpError(409, r.error);
   clearSession(c);
   console.log(JSON.stringify({ evt: 'job_created', job: id.slice(0, 6), playlists: selection.playlists.length, liked: selection.liked, albums: selection.albums.length, artists: selection.artists.length }));
+  c.executionCtx.waitUntil(track(c.env, 'job_created', s.tid, { job: id.slice(0, 6), playlists: selection.playlists.length, liked: selection.liked, albums: selection.albums.length, artists: selection.artists.length }));
   return c.json({ id });
 });
 app.get('/api/jobs/:id', rateLimit('RL_READ'), async c => { const v = await jobStub(c, c.req.param('id')).view(); if (!v) throw new HttpError(404, 'not_found'); return c.json(v); });

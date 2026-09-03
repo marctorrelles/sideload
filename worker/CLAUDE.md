@@ -8,6 +8,7 @@ Cloudflare Worker: Hono routes + OAuth + provider clients + the job engine. Test
 |---|---|
 | `index.ts` | Hono app. Middleware order: `securityHeaders` on `*`, `sameOrigin` on `/api/*` and `/auth/*`. Routes: session, Spotify PKCE start/callback/logout, Google device-code start/poll/logout, `/api/library`, `/api/jobs*`, `/api/stats`, `/t/:id` app shell (adds `X-Robots-Tag: noindex`), then `ASSETS` fallthrough. Exports `JobDO`, `StatsDO`. |
 | `sentry.ts` | `sentryOptions(env)`: errors only (`tracesSampleRate: 0`), no PII, `beforeSend` drops cookies and headers. `index.ts` wraps the default export with `withSentry` and re-exports both DOs through `instrumentDurableObjectWithSentry` (wrangler binds the wrapped classes). Hono's `onError` and JobDO's `handleError` swallow errors, so both call `Sentry.captureException` explicitly. No `SENTRY_DSN` = nothing sent. Needs the `nodejs_compat` flag. |
+| `telemetry.ts` | `track(env, event, distinctId, props)`: one POST to Mixpanel's `/track?ip=0` (`MIXPANEL_API` override for EU), swallowed on failure, no-op without `MIXPANEL_TOKEN`. Callers wrap it in `waitUntil`. `distinct_id` is `Session.tid`, a `randomId()` minted at the Spotify callback and copied into the job row (`job.tid`), so the funnel spotify_connected → youtube_connected → library_loaded → job_created → job_done/job_failed lines up per session. Props are counts and seconds only. |
 | `env.ts` | `Env` interface: bindings (`ASSETS`, `JOB`, `STATS`, `MATCH_CACHE`, optional `RL_*`) + secrets (`GOOGLE_CLIENT_ID/SECRET`, `COOKIE_SECRET`, `TOKEN_SECRET`) + `PUBLIC_ORIGIN`. |
 | `http.ts` | `HttpError(status, code, message)`, `withSecurityHeaders` (also called from `app.onError`), `sameOrigin` (Sec-Fetch-Site / Origin guard on non-GET), `rateLimit(binding, keyFn?)` (no-op when the binding is absent). |
 | `cookie.ts` | AES-GCM sealed, HttpOnly, SameSite=Lax cookies: `sl_s` session (1 h) and `sl_o` OAuth transient (15 min); `__Host-` prefix + Secure on https. Fails loudly above 3.8 KB. |
@@ -40,7 +41,7 @@ Invariants:
 - Match cache: KV `m1:<cacheKey>` → videoId, 180-day TTL, confident matches only.
 - RPC methods return values (`start()` returns `{ok:false,error}`) instead of throwing: a throw inside an RPC is also logged by workerd as an uncaught exception.
 
-Logs are single-line JSON with `evt`: `throttle`, `verify`, `job_done`, `job_failed`, `tick_error`, `unhandled`, `job_created`. Job ids are logged as their first 6 characters.
+Logs are single-line JSON with `evt`: `throttle`, `verify`, `job_done`, `job_failed`, `tick_error`, `unhandled`, `job_created`, `telemetry_error` (a Mixpanel post failed; the job is unaffected). Job ids are logged as their first 6 characters.
 
 ## Testing
 

@@ -3,6 +3,8 @@ GOOGLE_CLIENT_SECRET=
 COOKIE_SECRET=
 # optional: Sentry error reports (Cloudflare Workers project DSN); empty = nothing is sent
 SENTRY_DSN=
+# optional: Mixpanel project token for server-side usage counts; empty = nothing is sent (EU project: also set MIXPANEL_API=https://api-eu.mixpanel.com)
+MIXPANEL_TOKEN=
 TOKEN_SECRET=
 PUBLIC_ORIGIN=http://127.0.0.1:4321
 # only for worker/scripts/spike-spotify.ts (users bring their own id in the product)

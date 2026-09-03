@@ -26,5 +26,5 @@
   ],
   "limits": { "cpu_ms": 60000 },
   "observability": { "enabled": true, "head_sampling_rate": 1 },
-  "vars": { "PUBLIC_ORIGIN": "https://sideload.marctorrelles.com" }
+  "vars": { "PUBLIC_ORIGIN": "https://sideload.marctorrelles.com", "MIXPANEL_API": "https://api-eu.mixpanel.com" }
 }

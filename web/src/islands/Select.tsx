@@ -18,6 +18,7 @@ export default function Select() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const anchor = useRef<string | null>(null);
+  const shift = useRef(false); // preventDefault on a checkbox click makes the browser revert it after the handler, so read the modifier on click and toggle on change
   const listRef = useRef<HTMLDivElement>(null);
   const bigRef = useRef<HTMLDivElement>(null);
   useEffect(() => { api.library().then(l => { setLib(l); setSel(defaultSel(l)); }).catch(e => { if (e instanceof ApiError && e.status === 401) location.href = '/connect'; else setErr(e instanceof Error ? e.message : 'Could not read your library.'); }); }, []);
@@ -68,7 +69,7 @@ export default function Select() {
           const locked = isPlaylist(r) && !selectable(r);
           const on = !locked && set.has(r.id);
           return <label class={`row ${locked ? 'is-dim is-locked' : 'is-selectable'} ${!locked && !on ? 'is-dim' : ''}`} key={r.id} title={locked ? 'Spotify does not let a personal app read playlists owned by other people' : undefined}>
-            <input type="checkbox" class="checkbox" checked={on} disabled={locked} aria-label={r.name} onClick={e => { e.preventDefault(); toggle(r.id, !on, (e as MouseEvent).shiftKey); }} onKeyDown={e => { if (e.key === ' ') { e.preventDefault(); toggle(r.id, !on, false); } }} />
+            <input type="checkbox" class="checkbox" checked={on} disabled={locked} aria-label={r.name} onClick={e => { shift.current = (e as MouseEvent).shiftKey; }} onChange={e => toggle(r.id, (e.currentTarget as HTMLInputElement).checked, shift.current)} />
             {r.image ? <img src={r.image} alt="" width="36" height="36" loading="lazy" /> : <span class="art"><Logo name="spotify" size={20} /></span>}
             <span class="row__text"><div class="row__title">{r.name}</div><div class="row__sub">{sub(r)}</div></span>
             {countOf(r) != null && <span class="row__count">{n(countOf(r)!)} songs</span>}

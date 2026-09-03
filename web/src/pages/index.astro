@@ -23,9 +23,9 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
   </section>
 </Base>
 <style>
-  .hero__in { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 92px 0 80px; }
+  .hero__in { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 92px; padding-bottom: 80px; }
   .hero__eyebrow { color: var(--fg-3); margin: 0 0 28px; }
-  .hero__h1 { font-size: clamp(40px, 6.2vw, 64px); width: 100%; text-wrap: initial; }
+  .hero__h1 { font-size: clamp(32px, 9.2vw, 64px); width: 100%; text-wrap: initial; }
   .hero__lede { max-width: 50ch; margin: 26px 0 0; font-size: 20px; }
   .hero__cta { margin-top: 40px; padding: 19px 36px; font-size: 17px; }
   .facts :global(.stats) { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--hairline-strong); }
@@ -39,7 +39,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
   .how__grid .eyebrow { margin: 0 0 12px; color: var(--fg-3); }
   .how__grid p:not(.eyebrow) { margin: 0; font: 400 16px/1.5 var(--font-ui); color: var(--fg-2); max-width: 36ch; }
   @media (max-width: 900px) {
-    .hero__in { padding: 54px 0 46px; }
+    .hero__in { padding-top: 54px; padding-bottom: 46px; }
     .hero__lede { font-size: 18px; }
     .hero__cta { display: flex; width: 100%; padding-top: 17px; padding-bottom: 17px; margin-top: 30px; }
     .facts :global(.stats) { grid-template-columns: 1fr 1fr; }

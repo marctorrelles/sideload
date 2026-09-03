@@ -16,7 +16,7 @@ const ACTIVE = ['fetching', 'matching', 'writing', 'verifying'];
 const GLYPH: Record<JobEventKind, string> = { read: '>', match: '+', review: '?', create: '+', add: '+', verify: '~', entity: '*', throttle: '!' };
 function StepBar({ done }: { done: boolean }) {
   const steps = [[1, 'Connect'], [2, 'Choose'], [3, 'Transfer']] as const;
-  return <div class="stepbar hairline-bottom"><ol class="container stepbar__in">
+  return <div class={`stepbar hairline-bottom is-step-${done ? 'done' : 3}`}><ol class="container stepbar__in"><i class="stepbar__wire" aria-hidden="true" />
     {steps.map(([k, label]) => { const st = done || k < 3 ? 'done' : 'current'; const inner = <><span class="num">0{k}</span> <span class="label">{label}</span>{st === 'done' && <span class="tick"> ✓</span>}</>; return <li class={`step is-${st} ${done && k === 3 ? 'is-final' : ''}`} aria-current={st === 'current' ? 'step' : undefined}>{k < 3 ? <a href={k === 1 ? '/connect' : '/select'}>{inner}</a> : inner}</li>; })}
   </ol></div>;
 }

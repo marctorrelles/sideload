@@ -6,7 +6,7 @@ const { step } = Astro.props;
 const steps = [[1, 'Connect', '/connect'], [2, 'Choose', '/select'], [3, 'Transfer', null]] as const;
 const state = (n: number) => (step === 'done' ? 'done' : n < step ? 'done' : n === step ? 'current' : 'upcoming');
 ---
-<div class="stepbar hairline-bottom" transition:name="stepbar"><ol class="container stepbar__in">
+<div class:list={['stepbar', 'hairline-bottom', `is-step-${step}`]} transition:name="stepbar"><ol class="container stepbar__in"><i class="stepbar__wire" aria-hidden="true"></i>
   {steps.map(([n, label, href]) => (
     <li class:list={['step', `is-${state(n)}`, { 'is-final': step === 'done' && n === 3 }]} aria-current={state(n) === 'current' ? 'step' : undefined}>
       {state(n) === 'done' && href

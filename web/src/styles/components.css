@@ -79,7 +79,12 @@
 
 /* step sub-bar, shared by StepBar.astro and the Transfer island */
 .stepbar { background: var(--bg-sunken); }
-.stepbar__in { display: flex; gap: 26px; list-style: none; margin: 0 auto; padding-top: 12px; padding-bottom: 12px; }
+.stepbar__in { display: flex; gap: 26px; list-style: none; margin: 0 auto; padding-top: 12px; padding-bottom: 12px; position: relative; }
+/* the wire under the steps fills in accent as steps complete, animating from where the previous page left it */
+.stepbar__wire { position: absolute; left: var(--gutter); right: var(--gutter); bottom: -1px; height: 1px; pointer-events: none; }
+.stepbar__wire::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); width: var(--w, 0%); animation: wire-fill .8s var(--ease) both; }
+@keyframes wire-fill { from { width: var(--w0, 0%); } }
+.stepbar.is-step-1 { --w0: 0%; --w: 0%; } .stepbar.is-step-2 { --w0: 0%; --w: 33.3%; } .stepbar.is-step-3 { --w0: 33.3%; --w: 66.6%; } .stepbar.is-step-done { --w0: 66.6%; --w: 100%; }
 .step { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-5); transition: color var(--t-med) ease; }
 .step.is-current { color: var(--accent); } .step.is-done { color: var(--fg-4); } .step.is-final { color: var(--success); }
 .step a { color: inherit; text-decoration: none; } .step a:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }

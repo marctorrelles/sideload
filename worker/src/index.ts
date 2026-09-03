@@ -62,7 +62,10 @@ app.get('/auth/spotify/callback', async c => {
     await writeSession(c, c.env, { ...s, spotify: { ...tokens, userId: me.id, email: me.email ?? null, displayName: me.display_name ?? me.id, counts: { playlists: pl.total, liked: liked.total } } });
     clearTransient(c);
     return c.redirect('/connect');
-  } catch (e) { return back(e instanceof SpotifyError ? e.code : 'token_exchange_failed'); }
+  } catch (e) {
+    if (e instanceof SpotifyError) console.error(JSON.stringify({ evt: 'spotify_error', path: c.req.path, status: e.status, err: e.message.slice(0, 300) }));
+    return back(e instanceof SpotifyError ? (/premium/i.test(e.message) ? 'premium_required' : e.code) : 'token_exchange_failed');
+  }
 });
 app.post('/auth/spotify/logout', async c => { const s = await readSession(c, c.env) ?? {}; delete s.spotify; await writeSession(c, c.env, s); return c.json({ ok: true }); });
 

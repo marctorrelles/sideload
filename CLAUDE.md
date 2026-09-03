@@ -32,7 +32,7 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 - `shared/types.ts`: DTOs shared by worker and web; no runtime code.
 - `wrangler.jsonc`: single Worker config: assets (`run_worker_first`), DOs (`JobDO`, `StatsDO`, SQLite migration `v1`), KV `MATCH_CACHE`, rate-limit bindings `RL_*`, `PUBLIC_ORIGIN` var.
 - `.github/workflows/`: `ci.yml` (PR + main: install, build web, typecheck, test), `deploy.yml` (main → `wrangler deploy`; needs `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` repo secrets).
-- `SECURITY.md`: reporting policy + the pre-launch checklist. `README.md`: user-facing intro + operator runbook.
+- `SECURITY.md`: reporting policy + the security checks (one statement per guarantee with the command that verifies it; rerun after touching auth, cookies, headers or rate limits). `README.md`: user-facing intro + operator runbook.
 
 ## Accounts and external constraints (verified 2026-09-02)
 
@@ -44,4 +44,4 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 
 ## Status
 
-Live at https://sideload.marctorrelles.com since 2026-09-03 (public repo `marctorrelles/sideload`, `main` deploys through GitHub Actions; 67 worker tests inside workerd, 4 web tests, `astro check` clean). Worker secrets set; `SENTRY_DSN` and `MIXPANEL_TOKEN` are optional and off until set. First real transfer finished the same day (245 songs, 93% confident, the rest reviewed). Google sensitive-scope verification was submitted on 2026-09-03 and is pending: until it is granted the consent screen shows the unverified warning and the 100-user cap applies, so the URL is not announced yet. Still owed: the YouTube Data API quota extension (submit after verification, text in the operator's local notes), then the launch posts.
+Live at https://sideload.marctorrelles.com since 2026-09-03 (public repo `marctorrelles/sideload`, `main` deploys through GitHub Actions; 68 worker tests inside workerd, 4 web tests, `astro check` clean). Worker secrets set; `SENTRY_DSN` and `MIXPANEL_TOKEN` are optional and off until set. First real transfer finished the same day (245 songs, 93% confident, the rest reviewed). Google sensitive-scope verification was submitted on 2026-09-03 and is pending: until it is granted the consent screen shows the unverified warning and the 100-user cap applies, so the URL is not announced yet. Still owed: the YouTube Data API quota extension (submit after verification, text in the operator's local notes), then the launch posts.

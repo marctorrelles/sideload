@@ -37,7 +37,7 @@ describe('JobDO', () => {
   let stub: Stub;
   beforeEach(async () => { await reset(); stub = env.JOB.get(env.JOB.idFromName(id + Math.random())); added = []; }); // reset(): KV is shared across tests in this pool; the match cache must not leak between cases
 
-  it('moves a playlist end to end, lists review items, wipes spotify tokens on finish', async () => {
+  it('moves a playlist end to end, lists review items, wipes spotify tokens on finish, yt tokens after 24 h, everything after 7 days', async () => {
     sp().intercept({ path: p => p.startsWith(`/v1/playlists/${'P'.repeat(22)}/items`) }).reply(200, { total: 3, next: null, items: [entry('t1', 'Xtal'), entry('t2', 'Nothing Will Match This Zzz'), { added_at: null, is_local: true, item: { id: null, name: 'demo_v3.mp3', type: 'track', duration_ms: 1000, artists: [{ name: 'me' }], is_local: true } }] });
     music().intercept({ ...SEARCH, body: q('Xtal') }).reply(200, songs);
     music().intercept({ ...SEARCH, body: q('Zzz') }).reply(200, { contents: {} }).times(2); // songs, then the videos fallback → nothing
@@ -56,6 +56,14 @@ describe('JobDO', () => {
     expect(v.ytConnected).toBe(true);
     await runInDurableObject(stub, (_, state) => { const row = state.storage.sql.exec('SELECT spotify_tokens, yt_tokens FROM job').one(); expect(row.spotify_tokens).toBeNull(); expect(row.yt_tokens).not.toBeNull(); });
     expect(await env.MATCH_CACHE.get('m1:aphex twin|xtal')).toMatch(/^[\w-]{11}$/);
+    // retention: the alarm drops the YouTube tokens 24 h after the finish and the whole record 7 days after
+    await runInDurableObject(stub, (_, state) => { state.storage.sql.exec('UPDATE job SET finished_at = ?', Date.now() - 25 * 3600_000); });
+    expect(await runDurableObjectAlarm(stub)).toBe(true);
+    await runInDurableObject(stub, (_, state) => { expect(state.storage.sql.exec('SELECT yt_tokens FROM job').one().yt_tokens).toBeNull(); });
+    expect((await stub.view())!.ytConnected).toBe(false);
+    await runInDurableObject(stub, (_, state) => { state.storage.sql.exec('UPDATE job SET finished_at = ?', Date.now() - 8 * 24 * 3600_000); });
+    expect(await runDurableObjectAlarm(stub)).toBe(true);
+    expect(await stub.view()).toBeNull();
   });
 
   it('backs off on throttling and resumes where it stopped', async () => {

@@ -60,12 +60,17 @@ describe('client', () => {
     const r = await new InnerTube('T').searchSongs('Aphex Twin Xtal');
     expect(r.length).toBe(20);
   });
-  it('falls back to WEB_REMIX when the Android client is throttled', async () => {
+  it('retries the app clients on an abuse page, then the web client, and only then throttles', async () => {
     const clients: string[] = [];
-    music().intercept({ ...SEARCH, body: b => { clients.push(JSON.parse(String(b)).context.client.clientName); return true; } }).reply(403, '<html><title>Sorry...</title></html>');
-    music().intercept({ ...SEARCH, body: b => { clients.push(JSON.parse(String(b)).context.client.clientName); return true; } }).reply(200, songs);
-    expect((await new InnerTube(null).searchSongs('Aphex Twin Xtal')).length).toBeGreaterThan(0);
-    expect(clients).toEqual(['ANDROID_MUSIC', 'WEB_REMIX']);
+    const seen = { ...SEARCH, body: (b: string) => { clients.push(JSON.parse(String(b)).context.client.clientName); return true; } };
+    music().intercept(seen).reply(403, '<html><title>Sorry...</title></html>');
+    music().intercept(seen).reply(200, androidSongs);
+    expect((await new InnerTube(null, { retryDelayMs: 0 }).searchSongs('Aphex Twin Xtal')).length).toBe(20);
+    expect(clients).toEqual(['ANDROID_MUSIC', 'IOS_MUSIC']);
+    clients.length = 0;
+    music().intercept(seen).reply(403, '<html><title>Sorry...</title></html>').times(5);
+    await expect(new InnerTube(null, { retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
+    expect(clients).toEqual(['ANDROID_MUSIC', 'IOS_MUSIC', 'ANDROID_MUSIC', 'IOS_MUSIC', 'WEB_REMIX']);
   });
   it('albums, artists, album → playlist id', async () => {
     music().intercept(SEARCH).reply(200, albums);
@@ -109,18 +114,18 @@ describe('client', () => {
     expect((await new InnerTube('T').likedVideoIds()).size).toBe(3);
   });
   it('treats a hang as a retryable failure (D17)', async () => {
-    music().intercept(SEARCH).reply(200, songs).delay(300).times(2); // both clients hang
-    await expect(new InnerTube(null, { timeoutMs: 50 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
+    music().intercept(SEARCH).reply(200, songs).delay(300).times(5); // every client hangs
+    await expect(new InnerTube(null, { timeoutMs: 50, retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
   });
   it('maps InnerTube 401 → AuthError; 429/5xx/HTML-200/abuse-page-403 → ThrottleError', async () => {
     music().intercept(SEARCH).reply(401, {});
     await expect(new InnerTube(null).searchSongs('x')).rejects.toBeInstanceOf(AuthError);
-    music().intercept(SEARCH).reply(200, '<html>Too many requests</html>').times(2);
-    await expect(new InnerTube(null).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
-    music().intercept(SEARCH).reply(503, {}).times(2);
-    await expect(new InnerTube(null).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
-    music().intercept(SEARCH).reply(403, '<html><head><title>Sorry...</title></head></html>').times(2);
-    await expect(new InnerTube(null).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
+    music().intercept(SEARCH).reply(200, '<html>Too many requests</html>').times(5);
+    await expect(new InnerTube(null, { retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
+    music().intercept(SEARCH).reply(503, {}).times(5);
+    await expect(new InnerTube(null, { retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
+    music().intercept(SEARCH).reply(403, '<html><head><title>Sorry...</title></head></html>').times(5);
+    await expect(new InnerTube(null, { retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
     tv().intercept({ path: p => p.startsWith('/youtubei/v1/like/like'), method: 'POST' }).reply(403, { error: { code: 403, status: 'PERMISSION_DENIED' } });
     await expect(new InnerTube('T').like('aaaaaaaaaaa')).rejects.toBeInstanceOf(AuthError);
   });

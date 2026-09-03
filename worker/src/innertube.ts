@@ -1,7 +1,8 @@
 // worker/src/innertube.ts: YouTube access. Three transports, chosen per operation (verified live 2026-09-02):
 //   music: anonymous InnerTube on music.youtube.com: search, album resolve. OAuth tokens are rejected here (400 INVALID_ARGUMENT).
-//          ANDROID_MUSIC first, WEB_REMIX as fallback: from Cloudflare's egress the web client gets Google's abuse page or a 404
-//          on nearly every call (measured 2026-09-03), the Android app client passes. Both item shapes are parsed.
+//          App clients (ANDROID_MUSIC, IOS_MUSIC) with retries, WEB_REMIX last: from Cloudflare's egress the web client gets
+//          Google's abuse page or a 404 on every call and the app clients get the abuse page on a request here and there
+//          (measured 2026-09-03: Android 8/10, iOS 5/5, web 0/5), so one search tries several times before it counts as a throttle.
 //   tv:    InnerTube TVHTML5 on www.youtube.com with the user's TV-client OAuth token: add to playlist, like, save album, subscribe.
 //          The only InnerTube client that accepts a TV OAuth token; it cannot create playlists ("Precondition check failed").
 //   data:  YouTube Data API v3 with the same token: create playlist (50 quota units), read playlists back (1 unit per 50 items).
@@ -11,6 +12,8 @@ const TV = 'https://www.youtube.com/youtubei/v1/';
 const DATA = 'https://www.googleapis.com/youtube/v3/';
 const MUSIC_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0';
 const ANDROID_UA = 'com.google.android.apps.youtube.music/7.27.52 (Linux; U; Android 14) gzip';
+const IOS_UA = 'com.google.ios.youtubemusic/7.27.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X)';
+const MUSIC_PLAN = ['android', 'ios', 'android', 'ios', 'web'] as const;
 const TV_UA = 'Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Version/2.2 Chrome/63.0.3239.84 TV Safari/537.36';
 export const SEARCH_PARAMS = { songs: 'EgWKAQIIAWoMEA4QChADEAQQCRAF', videos: 'EgWKAQIQAWoMEA4QChADEAQQCRAF', albums: 'EgWKAQIYAWoMEA4QChADEAQQCRAF', artists: 'EgWKAQIgAWoMEA4QChADEAQQCRAF' } as const;
 
@@ -87,11 +90,12 @@ export function parseArtist(r: J): SearchArtist | null {
   return { channelId, name: (r?.subtitle ? r?.title?.runs?.[0]?.text : runsOf(r.flexColumns?.[0])?.[0]?.text) ?? '' };
 }
 
-export interface InnerTubeOptions { timeoutMs?: number }
+export interface InnerTubeOptions { timeoutMs?: number; retryDelayMs?: number }
 export class InnerTube {
   private timeoutMs: number;
+  private retryDelayMs: number;
   /** `token` may be null for search-only use; every write and read-back needs it. */
-  constructor(private token: string | null, opts: InnerTubeOptions = {}) { this.timeoutMs = opts.timeoutMs ?? 30_000; }
+  constructor(private token: string | null, opts: InnerTubeOptions = {}) { this.timeoutMs = opts.timeoutMs ?? 30_000; this.retryDelayMs = opts.retryDelayMs ?? 250; }
 
   private async post(url: string, headers: Record<string, string>, body: object): Promise<J> {
     let r: Response;
@@ -106,19 +110,26 @@ export class InnerTube {
     if (j?.error) throw new Error(`${url.split('?')[0]?.split('/v1/')[1] ?? url}: ${j.error.status ?? j.error.code} ${String(j.error.message ?? '').slice(0, 120)}`);
     return j;
   }
-  /** Anonymous InnerTube on music.youtube.com: the Android app client first, the web client when that is throttled. */
+  /** Anonymous InnerTube on music.youtube.com. The abuse page comes and goes per request (each fetch may leave Cloudflare from
+   *  another IP), so a call walks MUSIC_PLAN with growing pauses and only the last failure surfaces as a throttle. */
   async music(endpoint: string, body: object): Promise<J> {
-    try { return await this.musicAs('android', endpoint, body); }
-    catch (e) {
-      if (!(e instanceof ThrottleError)) throw e;
-      console.log(JSON.stringify({ evt: 'music_fallback', endpoint, err: e.message.slice(0, 120) }));
-      return this.musicAs('web', endpoint, body);
+    let last: ThrottleError | undefined;
+    for (const [i, client] of MUSIC_PLAN.entries()) {
+      try { return await this.musicAs(client, endpoint, body); }
+      catch (e) {
+        if (!(e instanceof ThrottleError)) throw e;
+        last = e; console.log(JSON.stringify({ evt: 'music_retry', endpoint, client, attempt: i + 1, err: e.message.slice(0, 80) }));
+        if (i < MUSIC_PLAN.length - 1) await new Promise(r => setTimeout(r, this.retryDelayMs * (i + 1)));
+      }
     }
+    throw last;
   }
-  async musicAs(client: 'android' | 'web', endpoint: string, body: object): Promise<J> {
+  async musicAs(client: 'android' | 'ios' | 'web', endpoint: string, body: object): Promise<J> {
     const url = `${MUSIC}${endpoint}?prettyPrint=false`;
     if (client === 'android') return this.post(url, { 'content-type': 'application/json', 'user-agent': ANDROID_UA },
       { ...body, context: { client: { clientName: 'ANDROID_MUSIC', clientVersion: '7.27.52', androidSdkVersion: 34, hl: 'en', gl: 'US' }, user: {} } });
+    if (client === 'ios') return this.post(url, { 'content-type': 'application/json', 'user-agent': IOS_UA },
+      { ...body, context: { client: { clientName: 'IOS_MUSIC', clientVersion: '7.27.1', deviceModel: 'iPhone16,2', hl: 'en', gl: 'US' }, user: {} } });
     const d = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     return this.post(url, { 'content-type': 'application/json', 'user-agent': MUSIC_UA, origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com' },
       { ...body, context: { client: { clientName: 'WEB_REMIX', clientVersion: `1.${d}.01.00`, hl: 'en', gl: 'US' }, user: {} } });

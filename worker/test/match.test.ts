@@ -10,6 +10,9 @@ describe('match', () => {
     expect(stripFeat('Song - feat. Someone')).toBe('Song');
     expect(stripFeat('Gorit Dom feat. Sasha Smaga (feat. Sasha Smaga)')).toBe('Gorit Dom');
     expect(stripFeat('Song feat. X (Remix)')).toBe('Song (Remix)');
+    expect(stripFeat('Never Fake - Original Mix')).toBe('Never Fake');
+    expect(stripFeat('Never Fake (Original Mix)')).toBe('Never Fake');
+    expect(stripFeat('Never Fake - Santiga Remix')).toBe('Never Fake - Santiga Remix');
     expect(buildQuery({ name: 'DtMF (feat. X)', artists: ['Bad Bunny', 'Y'] })).toBe('Bad Bunny DtMF');
     expect(buildQuery({ name: 'Jazz', artists: ['Simon & Garfunkel'] })).toBe('Simon Garfunkel Jazz');
   });
@@ -35,6 +38,12 @@ describe('match', () => {
     // calibration 2026-09-03: album agreement at full weight used to outvote the title
     const m = pickBest(t, [song({ videoId: 'variant', title: 'Xtal (Gym Cover)' }), song({ videoId: 'exact', album: 'Xtal' })]);
     expect(m.best!.videoId).toBe('exact');
+  });
+  it('offers a closest suggestion only when it is plausibly the same song', () => {
+    expect(pickBest(t, [song({ durationSec: 500 })]).plausible).toBe(true); // same title and artist, another version
+    expect(pickBest(t, [song({ title: 'Xtal', artists: ['Somebody Else'] })]).plausible).toBe(true); // exact title, unknown artist: maybe a cover
+    expect(pickBest(t, [song({ title: 'Collect The Commas' })]).plausible).toBe(false); // same artist, different song
+    expect(pickBest(t, [song({ title: 'The Climb', artists: ['Miley Cyrus'] })]).plausible).toBe(false);
   });
   it('is not confident when duration is far off or artist differs', () => {
     expect(pickBest(t, [song({ durationSec: 60 })]).confident).toBe(false);

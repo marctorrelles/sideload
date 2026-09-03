@@ -264,7 +264,7 @@ export class JobDO extends DurableObject<Env> {
       await this.env.MATCH_CACHE.put(key, m.best.videoId, { expirationTtl: CACHE_TTL_S }); // awaited: tests assert on it, and it is one cheap write
       return { ...base, status: 'matched', videoId: m.best.videoId, searched: true, hit: false };
     }
-    if (m.best) return { ...base, status: 'review', reason: 'low_confidence', suggestion: JSON.stringify({ videoId: m.best.videoId, title: m.best.title, artists: m.best.artists.join(', ') }), searched: true, hit: false };
+    if (m.best && m.plausible) return { ...base, status: 'review', reason: 'low_confidence', suggestion: JSON.stringify({ videoId: m.best.videoId, title: m.best.title, artists: m.best.artists.join(', ') }), searched: true, hit: false };
     return { ...base, status: 'review', reason: results.length && results.every(r => r.unavailable) ? 'unavailable' : 'no_match', searched: true, hit: false };
   }
   private async writeBatch(item: ItemRow, yt: InnerTube): Promise<void> {

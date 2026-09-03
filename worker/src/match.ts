@@ -7,6 +7,7 @@ export function stripFeat(name: string): string {
     .replace(/\s*[\(\[]\s*(feat|ft|featuring|with)\.?\s[^\)\]]*[\)\]]/gi, '')
     .replace(/\s+-\s+(feat|ft)\.?\s.*$/i, '')
     .replace(/\s+(feat\.|ft\.|featuring)\s[^()\[\]]*/i, ' ') // bare "feat. X" up to the next bracket or the end ("Gorit Dom feat. Sasha Smaga")
+    .replace(/\s*(?:-\s*|\(|\[)original (?:mix|version)[)\]]?\s*$/i, '') // Beatport's "Original Mix" is the plain version YouTube lists without a suffix
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -47,11 +48,13 @@ export function score(t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'dura
   if (r.isSong && r.album && t.album) parts.push(similarity(r.album, t.album) * 0.3);
   return { r, titleSim, artistSim, durationDelta, score: (parts.reduce((a, b) => a + b, 0) / parts.length) * (r.isSong ? 2 : 1) };
 }
-export interface Match { best: SearchSong | null; confident: boolean; score: number }
+/** plausible: worth showing as "closest" in the review list. Below it the suggestion is a different song and "Use closest" only adds mistakes. */
+export interface Match { best: SearchSong | null; confident: boolean; plausible: boolean; score: number }
 export function pickBest(t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'durationMs'>, results: SearchSong[]): Match {
   const scored = results.filter(r => !r.unavailable && r.title).map(r => score(t, r)).sort((a, b) => b.score - a.score);
   const top = scored[0];
-  if (!top) return { best: null, confident: false, score: 0 };
+  if (!top) return { best: null, confident: false, plausible: false, score: 0 };
   const confident = top.titleSim >= 0.6 && top.artistSim >= 0.5 && (top.durationDelta === null || top.durationDelta <= 15);
-  return { best: top.r, confident, score: top.score };
+  const plausible = confident || (top.titleSim >= 0.5 && top.artistSim >= 0.3) || top.titleSim >= 0.8;
+  return { best: top.r, confident, plausible, score: top.score };
 }

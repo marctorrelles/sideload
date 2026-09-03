@@ -3,21 +3,21 @@
 import Base from '../layouts/Base.astro';
 import Stats from '../islands/Stats';
 import Grainient from '../islands/Grainient';
-const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Sideload', applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, description: 'Move your Spotify playlists, liked songs, saved albums and followed artists to YouTube Music. Free and open source.', url: 'https://sideload.marctorrelles.com', author: { '@type': 'Person', name: 'Marc Torrelles', url: 'https://marctorrelles.com' }, license: 'https://opensource.org/license/mit' };
+const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Sideload', applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, description: 'Move playlists, liked songs, albums and artists from Spotify to YouTube Music. Free, no song limit, open source, nothing kept. Misses come back as a list, not lost.', url: 'https://sideload.marctorrelles.com', author: { '@type': 'Person', name: 'Marc Torrelles', url: 'https://marctorrelles.com' }, license: 'https://opensource.org/license/mit' };
 ---
-<Base title="Sideload · Move your Spotify library to YouTube Music, free" description="Copy playlists, liked songs, saved albums and followed artists from Spotify to YouTube Music. Free, open source, no account. Anything that can't be matched is listed for you." jsonLd={jsonLd}>
+<Base title="Sideload · Spotify to YouTube Music, free and open source" description="Move playlists, liked songs, albums and artists from Spotify to YouTube Music. Free, no song limit, open source, nothing kept. Misses come back as a list, not lost." jsonLd={jsonLd}>
   <section class="hero">
     <div class="hero__bg" transition:animate="fade"><Grainient centerY={0.12} saturation={0.9} client:visible /></div>
     <div class="container hero__in">
-      <p class="eyebrow hero__eyebrow">Free · open source · nothing kept</p>
-      <h1 class="h1 hero__h1">Ten years of playlists.<br />One afternoon saved.</h1>
-      <p class="lede hero__lede">Sideload moves your Spotify library (playlists, liked songs, albums, followed artists) to YouTube Music. Anything it can't match gets handed back to you as a list, not lost.</p>
+      <p class="eyebrow hero__eyebrow">Spotify → YouTube Music · free · open source</p>
+      <h1 class="h1 hero__h1">Ten years of playlists.<br />Moved in an afternoon.</h1>
+      <p class="lede hero__lede">Move your Spotify library to YouTube Music. No song limit, no account, nothing kept.</p>
       <a class="btn hero__cta" href="/connect">Start a transfer</a>
     </div>
   </section>
   <section class="how" aria-label="How it works">
     <div class="container"><Stats client:idle /><div class="how__grid">
-      <div><p class="eyebrow"><span class="c-accent">01</span> · Connect</p><p>Spotify read-only, then your new service.</p></div>
+      <div><p class="eyebrow"><span class="c-accent">01</span> · Connect</p><p>Spotify, read-only. Then YouTube Music, with your Google account.</p></div>
       <div><p class="eyebrow"><span class="c-accent">02</span> · Choose</p><p>Tick what's worth keeping. Leave the algorithm's stuff behind.</p></div>
       <div><p class="eyebrow"><span class="c-accent">03</span> · Walk away</p><p>Close the tab. Come back to a finished library.</p></div>
     </div></div>
@@ -59,5 +59,6 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
   }
   @media (max-width: 600px) {
     .hero__lede { font-size: 16px; line-height: 1.55; }
+    .hero__eyebrow { font-size: 11px; letter-spacing: .08em; }
   }
 </style>

@@ -343,7 +343,7 @@ export class JobDO extends DurableObject<Env> {
       this.sql.exec("UPDATE item SET status = 'done', yt_id = ? WHERE id = ?", best.channelId, item.id);
     } else {
       const best = (await yt.searchAlbums(`${item.artist ?? ''} ${item.name}`.trim())).find(h => similarity(h.title, item.name) >= 0.7 && (!item.artist || similarity(h.artists.join(' '), item.artist) >= 0.5));
-      const pl = best ? await yt.albumPlaylistId(best.browseId) : null;
+      const pl = best ? best.playlistId ?? await yt.albumPlaylistId(best.browseId) : null;
       if (!pl) return void fail();
       await yt.likePlaylist(pl);
       this.sql.exec("UPDATE item SET status = 'done', yt_id = ? WHERE id = ?", pl, item.id);

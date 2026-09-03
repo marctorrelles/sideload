@@ -1,5 +1,7 @@
 // worker/src/innertube.ts: YouTube access. Three transports, chosen per operation (verified live 2026-09-02):
-//   music: anonymous InnerTube WEB_REMIX on music.youtube.com: search, album resolve. OAuth tokens are rejected here (400 INVALID_ARGUMENT).
+//   music: anonymous InnerTube on music.youtube.com: search, album resolve. OAuth tokens are rejected here (400 INVALID_ARGUMENT).
+//          ANDROID_MUSIC first, WEB_REMIX as fallback: from Cloudflare's egress the web client gets Google's abuse page or a 404
+//          on nearly every call (measured 2026-09-03), the Android app client passes. Both item shapes are parsed.
 //   tv:    InnerTube TVHTML5 on www.youtube.com with the user's TV-client OAuth token: add to playlist, like, save album, subscribe.
 //          The only InnerTube client that accepts a TV OAuth token; it cannot create playlists ("Precondition check failed").
 //   data:  YouTube Data API v3 with the same token: create playlist (50 quota units), read playlists back (1 unit per 50 items).
@@ -8,6 +10,7 @@ const MUSIC = 'https://music.youtube.com/youtubei/v1/';
 const TV = 'https://www.youtube.com/youtubei/v1/';
 const DATA = 'https://www.googleapis.com/youtube/v3/';
 const MUSIC_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0';
+const ANDROID_UA = 'com.google.android.apps.youtube.music/7.27.52 (Linux; U; Android 14) gzip';
 const TV_UA = 'Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Version/2.2 Chrome/63.0.3239.84 TV Safari/537.36';
 export const SEARCH_PARAMS = { songs: 'EgWKAQIIAWoMEA4QChADEAQQCRAF', videos: 'EgWKAQIQAWoMEA4QChADEAQQCRAF', albums: 'EgWKAQIYAWoMEA4QChADEAQQCRAF', artists: 'EgWKAQIgAWoMEA4QChADEAQQCRAF' } as const;
 
@@ -25,7 +28,7 @@ export function msUntilQuotaReset(now = Date.now()): number {
 }
 
 export interface SearchSong { videoId: string; title: string; artists: string[]; album: string | null; durationSec: number | null; isSong: boolean; unavailable: boolean }
-export interface SearchAlbum { browseId: string; title: string; artists: string[] }
+export interface SearchAlbum { browseId: string; title: string; artists: string[]; playlistId: string | null /* the album's OLAK5uy_ playlist when the result carries it */ }
 export interface SearchArtist { channelId: string; name: string }
 
 type J = any;
@@ -33,17 +36,29 @@ const runsOf = (col: J): J[] => col?.musicResponsiveListItemFlexColumnRenderer?.
 const browseIdOf = (run: J): string | undefined => run?.navigationEndpoint?.browseEndpoint?.browseId;
 const playEndpoint = (r: J): J => r?.overlay?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playNavigationEndpoint?.watchEndpoint;
 
-/** Flattens every musicShelfRenderer in a search response to its list-item renderers. */
+/** Flattens every musicShelfRenderer in a search response to its item renderers (web list items or Android two-column items). */
 export function shelves(res: J): J[] {
   const sections: J[] = res?.contents?.tabbedSearchResultsRenderer?.tabs?.[0]?.tabRenderer?.content?.sectionListRenderer?.contents ?? [];
-  return sections.flatMap(s => s?.musicShelfRenderer?.contents ?? []).map(c => c?.musicResponsiveListItemRenderer).filter(Boolean);
+  return sections.flatMap(s => s?.musicShelfRenderer?.contents ?? []).map(c => c?.musicResponsiveListItemRenderer ?? c?.musicTwoColumnItemRenderer).filter(Boolean);
 }
+/** Android subtitle: "Artist1, Artist2 • 3:51 • 1B plays" (songs) or "Album • Artist" (albums). */
+const androidSegs = (r: J): string[] => String((r?.subtitle?.runs ?? []).map((x: J) => x.text).join('')).split(' • ');
+const splitArtists = (s: string): string[] => s.split(/, | & /).filter(Boolean);
 export function parseDuration(t: string): number | null {
   const m = t.trim().match(/^(\d+):(\d{2})(?::(\d{2}))?$/);
   if (!m) return null;
   return m[3] ? +m[1]! * 3600 + +m[2]! * 60 + +m[3] : +m[1]! * 60 + +m[2]!;
 }
 export function parseSong(r: J): SearchSong | null {
+  if (r?.subtitle) { // Android two-column item: no album, no artist links, never greyed out
+    const watch = r?.navigationEndpoint?.watchEndpoint;
+    if (!watch?.videoId) return null;
+    const segs = androidSegs(r);
+    const duration = segs.find(s => /^\d+:\d{2}(?::\d{2})?$/.test(s.trim()));
+    const artists = /\d\s*(views|plays)$/.test(segs[0] ?? '') ? [] : splitArtists(segs[0] ?? '');
+    const type = watch?.watchEndpointMusicSupportedConfigs?.watchEndpointMusicConfig?.musicVideoType;
+    return { videoId: watch.videoId, title: r?.title?.runs?.[0]?.text ?? '', artists, album: null, durationSec: duration ? parseDuration(duration) : null, isSong: type === 'MUSIC_VIDEO_TYPE_ATV' || r?.thumbnailAspectRatio === 'MUSIC_TWO_COLUMN_ITEM_THUMBNAIL_SQUARE', unavailable: false };
+  }
   const videoId: string | undefined = r?.playlistItemData?.videoId ?? playEndpoint(r)?.videoId;
   if (!videoId) return null;
   const cols = (r.flexColumns ?? []).map(runsOf);
@@ -58,13 +73,18 @@ export function parseSong(r: J): SearchSong | null {
 export function parseAlbum(r: J): SearchAlbum | null {
   const browseId = r?.navigationEndpoint?.browseEndpoint?.browseId;
   if (typeof browseId !== 'string' || !browseId.startsWith('MPRE')) return null;
+  if (r?.subtitle) { // Android: "Album • Artist1, Artist2"; the play overlay names the album's playlist
+    const overlay = (r?.potentialThumbnailOverlays ?? []).map((o: J) => o?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playbackIdMatchers?.[0]?.playlistId).find(Boolean);
+    return { browseId, title: r?.title?.runs?.[0]?.text ?? '', artists: splitArtists(androidSegs(r).slice(1).join(' ')), playlistId: typeof overlay === 'string' ? overlay : null };
+  }
   const cols = (r.flexColumns ?? []).map(runsOf);
-  return { browseId, title: cols[0]?.[0]?.text ?? '', artists: (cols[1] ?? []).filter((x: J) => browseIdOf(x)?.startsWith('UC')).map((x: J) => String(x.text)) };
+  const pl = r?.overlay?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playNavigationEndpoint?.watchPlaylistEndpoint?.playlistId;
+  return { browseId, title: cols[0]?.[0]?.text ?? '', artists: (cols[1] ?? []).filter((x: J) => browseIdOf(x)?.startsWith('UC')).map((x: J) => String(x.text)), playlistId: typeof pl === 'string' ? pl : null };
 }
 export function parseArtist(r: J): SearchArtist | null {
   const channelId = r?.navigationEndpoint?.browseEndpoint?.browseId;
   if (typeof channelId !== 'string' || !channelId.startsWith('UC')) return null;
-  return { channelId, name: runsOf(r.flexColumns?.[0])?.[0]?.text ?? '' };
+  return { channelId, name: (r?.subtitle ? r?.title?.runs?.[0]?.text : runsOf(r.flexColumns?.[0])?.[0]?.text) ?? '' };
 }
 
 export interface InnerTubeOptions { timeoutMs?: number }
@@ -86,10 +106,21 @@ export class InnerTube {
     if (j?.error) throw new Error(`${url.split('?')[0]?.split('/v1/')[1] ?? url}: ${j.error.status ?? j.error.code} ${String(j.error.message ?? '').slice(0, 120)}`);
     return j;
   }
-  /** Anonymous InnerTube on music.youtube.com (WEB_REMIX). */
+  /** Anonymous InnerTube on music.youtube.com: the Android app client first, the web client when that is throttled. */
   async music(endpoint: string, body: object): Promise<J> {
+    try { return await this.musicAs('android', endpoint, body); }
+    catch (e) {
+      if (!(e instanceof ThrottleError)) throw e;
+      console.log(JSON.stringify({ evt: 'music_fallback', endpoint, err: e.message.slice(0, 120) }));
+      return this.musicAs('web', endpoint, body);
+    }
+  }
+  async musicAs(client: 'android' | 'web', endpoint: string, body: object): Promise<J> {
+    const url = `${MUSIC}${endpoint}?prettyPrint=false`;
+    if (client === 'android') return this.post(url, { 'content-type': 'application/json', 'user-agent': ANDROID_UA },
+      { ...body, context: { client: { clientName: 'ANDROID_MUSIC', clientVersion: '7.27.52', androidSdkVersion: 34, hl: 'en', gl: 'US' }, user: {} } });
     const d = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-    return this.post(`${MUSIC}${endpoint}?prettyPrint=false`, { 'content-type': 'application/json', 'user-agent': MUSIC_UA, origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com' },
+    return this.post(url, { 'content-type': 'application/json', 'user-agent': MUSIC_UA, origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com' },
       { ...body, context: { client: { clientName: 'WEB_REMIX', clientVersion: `1.${d}.01.00`, hl: 'en', gl: 'US' }, user: {} } });
   }
   /** Authenticated InnerTube on www.youtube.com (TVHTML5): the one client that accepts a TV OAuth token. */
@@ -120,8 +151,9 @@ export class InnerTube {
   async searchSongs(q: string, filter: 'songs' | 'videos' = 'songs'): Promise<SearchSong[]> { return (await this.search(q, SEARCH_PARAMS[filter])).map(parseSong).filter((x): x is SearchSong => !!x); }
   async searchAlbums(q: string): Promise<SearchAlbum[]> { return (await this.search(q, SEARCH_PARAMS.albums)).map(parseAlbum).filter((x): x is SearchAlbum => !!x); }
   async searchArtists(q: string): Promise<SearchArtist[]> { return (await this.search(q, SEARCH_PARAMS.artists)).map(parseArtist).filter((x): x is SearchArtist => !!x); }
+  /** Only when a search result carried no playlist id: the web client's browse page names it (the Android one does not). */
   async albumPlaylistId(browseId: string): Promise<string | null> {
-    const j = await this.music('browse', { browseId });
+    const j = await this.musicAs('web', 'browse', { browseId });
     return String(j?.microformat?.microformatDataRenderer?.urlCanonical ?? '').match(/list=([\w-]+)/)?.[1] ?? null;
   }
 

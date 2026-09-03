@@ -16,6 +16,7 @@ Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worke
 | `src/lib/api.ts` | Typed client for the worker (`ApiError` carries status + code). Same-origin cookies. |
 | `src/lib/selection.ts` | Pure Choose-step helpers (`defaultSel`, `totals`, `triState`, `rangeToggle`, `sortBy`, `toSelection`, `selectable`). Tested. |
 | `src/lib/format.ts` | `n`, `compact`, `pct`, `eta`, `preEstimate` (45 searches/min, D11), `duration`. Tested. |
+| `src/islands/Grainient.tsx` | The animated grain gradient behind the landing hero: react-bits "Grainient" shader (MIT + Commons Clause, notice kept in the file) ported to raw WebGL2, no dependency. Mounts `client:visible`, pauses offscreen and in hidden tabs, one still frame under reduced motion, fades in on its first frame, stops on `astro:before-swap`. Colours and `centerY` are props on `index.astro`. Headless Chrome never hydrates islands under `--dump-dom`, so check it in a real browser. |
 | `src/lib/Logo.tsx` | Provider marks (Spotify, YouTube Music, Apple Music, Tidal): the `mono.svg` paths from thesvg.org (MIT), drawn in `currentColor`. `.art` is the 36/46 px framed box around a mark; `.row.is-selected .logo` turns accent. Rows without artwork show the Spotify mark in an `.art` box. |
 | `src/lib/motion.ts` | `reveal` (stagger rows via `.reveal > *` in `motion.css`), `countTo` (rAF; never counts down unless told), `onView` (IntersectionObserver), `collapse`, `crossfade`, `flash`. Vanilla on purpose: an animation library's Web Animations path calls `commitStyles()`, which writes a `style` attribute and the CSP blocks it. Every helper is a no-op under `prefers-reduced-motion`. |
 | `scripts/mock-api.mjs` | Stand-in for the Worker on 8787 (`pnpm --filter web mock` instead of `wrangler dev`): connected session, the recorded Spotify library, stats, and jobs by id prefix (`r…` running, `d…` done, `f…` failed, 26 chars). The only way to see Select/Transfer without real accounts. |
@@ -23,7 +24,8 @@ Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worke
 
 ## Rules
 
-- Islands that read `location` (Connect, Select, Transfer) mount with `client:only="preact"`, never `client:load` (they must not SSR). `Stats` is `client:idle`.
+- Islands that read `location` (Connect, Select, Transfer) mount with `client:only="preact"`, never `client:load` (they must not SSR). `Stats` is `client:idle`, `Grainient` is `client:visible`.
+- Astro dev sometimes keeps serving a stale scoped `<style>` module after a page or component style block is edited from outside the editor; if a style change does not show up, restart `pnpm dev:web`.
 - **No `style=""` attributes in `.astro` markup**: the CSP `<meta>` Astro emits has no `unsafe-inline` for styles. Preact islands may set `style` (applied through the CSSOM). Prefer classes anyway.
 - Astro hashes its own inline scripts into the CSP; page `<script>` blocks are bundled to `_astro/*.js` (`script-src 'self'`). JSON-LD is a data block and is not subject to `script-src`. Astro does **not** hash the `<style>` blocks it emits for `transition:name`/`transition:animate` scopes, so the `cspStyleHashes` hook in `astro.config.mjs` hashes every inline `<style>` in the built HTML into `style-src` after the build. Never add `unsafe-inline`: browsers ignore it once hashes are present anyway.
 - In dev, a Vite middleware in `astro.config.mjs` rewrites `/t/<26-char id>` to `/t` (production relies on the Worker for that).

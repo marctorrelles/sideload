@@ -21,3 +21,9 @@ Move your Spotify library (playlists, liked songs, saved albums, followed artist
 **Cost model.** Per job: about one alarm per 50 s of work, one KV read per track, one KV write per cache miss. A 5,000-track job is roughly 120 alarms, 5,000 KV reads and up to 5,000 KV writes, well under $0.05. The $5/month Workers Paid plan covers thousands of jobs.
 
 **When YouTube changes something.** Re-run `pnpm spike:innertube` with your `.dev.vars`, look at what the new response looks like, adjust the parser in `worker/src/innertube.ts`, re-record the fixtures (redacted), and run the tests. The same goes for Spotify with `pnpm spike:spotify`.
+
+## Credits
+
+Sideload started as a web rewrite of [sigma67/spotify_to_ytmusic](https://github.com/sigma67/spotify_to_ytmusic) (MIT), the Python tool the author's own 3,000-song migration ran on. Its `match.py` is the ancestor of `worker/src/match.ts`, and measuring that run (silent no-op writes, collapsed matches, requests that hang) is where the read-back verification and the review list come from. The YouTube calls are hand-ported from [sigma67/ytmusicapi](https://github.com/sigma67/ytmusicapi) (MIT).
+
+The landing page gradient is the Grainient shader from [react-bits](https://reactbits.dev) (MIT + Commons Clause) ported to raw WebGL, and the provider marks come from [thesvg.org](https://thesvg.org) (MIT).

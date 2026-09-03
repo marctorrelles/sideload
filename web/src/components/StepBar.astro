@@ -1,14 +1,17 @@
 ---
-// web/src/components/StepBar.astro — 01 Connect · 02 Choose · 03 Transfer. Styles are global (components.css) because the Transfer island renders the same bar itself.
+// web/src/components/StepBar.astro: 01 Connect · 02 Choose · 03 Transfer. Styles are global (components.css) because the Transfer island renders the same bar itself.
+// Completed steps are links: the bar doubles as the way back.
 interface Props { step: 1 | 2 | 3 | 'done' }
 const { step } = Astro.props;
-const steps = [[1, 'Connect'], [2, 'Choose'], [3, 'Transfer']] as const;
+const steps = [[1, 'Connect', '/connect'], [2, 'Choose', '/select'], [3, 'Transfer', null]] as const;
 const state = (n: number) => (step === 'done' ? 'done' : n < step ? 'done' : n === step ? 'current' : 'upcoming');
 ---
 <div class="stepbar hairline-bottom" transition:name="stepbar"><ol class="container stepbar__in">
-  {steps.map(([n, label]) => (
+  {steps.map(([n, label, href]) => (
     <li class:list={['step', `is-${state(n)}`, { 'is-final': step === 'done' && n === 3 }]} aria-current={state(n) === 'current' ? 'step' : undefined}>
-      <span class="num">0{n}</span> <span class="label">{label}</span>{state(n) === 'done' && <span class="tick"> ✓</span>}
+      {state(n) === 'done' && href
+        ? <a href={href}><span class="num">0{n}</span> <span class="label">{label}</span><span class="tick"> ✓</span></a>
+        : <><span class="num">0{n}</span> <span class="label">{label}</span>{state(n) === 'done' && <span class="tick"> ✓</span>}</>}
     </li>
   ))}
 </ol></div>

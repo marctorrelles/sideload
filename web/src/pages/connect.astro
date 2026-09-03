@@ -1,10 +1,11 @@
 ---
-// web/src/pages/connect.astro — step 01. The island reads `location`, so it is client:only.
+// web/src/pages/connect.astro: step 01. The island reads `location`, so it is client:only.
 import Base from '../layouts/Base.astro';
 import Connect from '../islands/Connect';
 ---
-<Base title="Connect — Sideload" description="Connect Spotify and YouTube Music to start moving your library." step={1} noindex>
+<Base title="Connect · Sideload" description="Connect Spotify and YouTube Music to start moving your library." step={1} noindex>
   <section class="container body">
+    <a class="back" href="/">← Back</a>
     <h1 class="h2">Connect the two services</h1>
     <p class="lede">We read your library from Spotify and write to the destination. Nothing is changed or deleted on the Spotify side.</p>
     <Connect client:only="preact" />

@@ -1,4 +1,4 @@
-// web/src/islands/Transfer.tsx — /t/:id. Polls the job and renders running / paused / done / failed / not found.
+// web/src/islands/Transfer.tsx: /t/:id. Polls the job and renders running / paused / done / failed / not found.
 // Reload safety is the core promise: the page is a pure viewer of job state and progress never runs backwards.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { api, ApiError } from '../lib/api';
@@ -7,7 +7,7 @@ import { n, pct, eta, duration } from '../lib/format';
 import { countTo, flash, crossfade, reveal } from '../lib/motion';
 import ReviewItem from './ReviewItem';
 const FAILURE: Record<string, string> = {
-  auth_expired: 'One of the sign-ins expired mid-transfer. Nothing was deleted anywhere. Start another transfer — songs already matched are cached, so it will be fast.',
+  auth_expired: 'One of the sign-ins expired mid-transfer. Nothing was deleted anywhere. Start another transfer: songs already matched are cached, so it will be fast.',
   provider_error: 'Spotify or YouTube kept returning errors for a long time. Start another transfer in a while; matched songs are cached.',
   too_large: 'That is more than 25,000 songs. Split it into two transfers.',
   timeout: 'The transfer ran for 24 hours without finishing, so it was stopped. Start another one; matched songs are cached.',
@@ -16,7 +16,7 @@ const ACTIVE = ['fetching', 'matching', 'writing', 'verifying'];
 function StepBar({ done }: { done: boolean }) {
   const steps = [[1, 'Connect'], [2, 'Choose'], [3, 'Transfer']] as const;
   return <div class="stepbar hairline-bottom"><ol class="container stepbar__in">
-    {steps.map(([k, label]) => { const st = done || k < 3 ? 'done' : 'current'; return <li class={`step is-${st} ${done && k === 3 ? 'is-final' : ''}`} aria-current={st === 'current' ? 'step' : undefined}><span class="num">0{k}</span> <span class="label">{label}</span>{st === 'done' && <span class="tick"> ✓</span>}</li>; })}
+    {steps.map(([k, label]) => { const st = done || k < 3 ? 'done' : 'current'; const inner = <><span class="num">0{k}</span> <span class="label">{label}</span>{st === 'done' && <span class="tick"> ✓</span>}</>; return <li class={`step is-${st} ${done && k === 3 ? 'is-final' : ''}`} aria-current={st === 'current' ? 'step' : undefined}>{k < 3 ? <a href={k === 1 ? '/connect' : '/select'}>{inner}</a> : inner}</li>; })}
   </ol></div>;
 }
 function useNarrow() {
@@ -52,7 +52,7 @@ export default function Transfer() {
   useEffect(() => { document.querySelectorAll<HTMLElement>('[data-count]').forEach(el => countTo(el, Number(el.dataset.count), v => n(v))); }, [job?.totals.moved, job?.status]);
   useEffect(() => { const el = document.querySelector('[data-reveal-once]'); if (el && !el.hasAttribute('data-revealed')) { el.setAttribute('data-revealed', ''); reveal(el); } }, [job?.status]);
   if (job === undefined) return <><StepBar done={false} /><section class="container body"><p class="meta cursor">Loading transfer</p></section></>;
-  if (job === null) return <><StepBar done={false} /><section class="container body"><p class="eyebrow c-accent">404</p><h1 class="h2">This transfer doesn't exist any more.</h1><p class="lede">Transfers are deleted 7 days after they finish. <a href="/connect">Start another one.</a></p></section></>;
+  if (job === null) return <><StepBar done={false} /><section class="container body"><a class="back" href="/select">← Back</a><p class="eyebrow c-accent">404</p><h1 class="h2">This transfer doesn't exist any more.</h1><p class="lede">Transfers are deleted 7 days after they finish. <a href="/connect">Start another one.</a></p></section></>;
   const { totals } = job;
   const p = pct(totals.moved, totals.tracks);
   const remaining = Math.max(0, totals.tracks - totals.moved - totals.review - totals.skipped);
@@ -71,14 +71,15 @@ export default function Transfer() {
   return <>
     <StepBar done={false} />
     {!failed && <div class={`banner ${job.status === 'paused' ? 'is-paused' : ''}`}><div class="container banner__in">
-      <div><b class="c-soft">{job.status === 'paused' ? 'Paused.' : 'You can close this tab.'}</b> <span class="fg2">{job.status === 'paused' ? 'Nothing is being moved until you resume. Your link keeps working.' : 'The transfer runs on our side — come back to this link any time to see where it got to.'}</span></div>
+      <div><b class="c-soft">{job.status === 'paused' ? 'Paused.' : 'You can close this tab.'}</b> <span class="fg2">{job.status === 'paused' ? 'Nothing is being moved until you resume. Your link keeps working.' : 'The transfer runs on our side. Come back to this link any time to see where it got to.'}</span></div>
       <button class="link mono banner__copy" onClick={copy}>{location.host}/t/{id.slice(0, 5)}… · copy link</button>
     </div></div>}
     <section class="container body">
+      <a class="back" href="/select">← Back</a>
       <div class="progress-head">
         <div>
           <h1 class="h2">{failed ? 'The transfer stopped.' : 'Transferring your library'}</h1>
-          <p class="lede progress-sub" aria-live="polite">{failed ? FAILURE[job.failure ?? ''] ?? 'Something went wrong on our side.' : <>{n(totals.moved)} of {n(totals.tracks)} songs moved to YouTube Music · {job.throttledUntil ? `YouTube asked us to slow down — retrying at ${new Date(job.throttledUntil).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : job.status === 'paused' ? 'paused' : eta(job.etaSeconds)}</>}</p>
+          <p class="lede progress-sub" aria-live="polite">{failed ? FAILURE[job.failure ?? ''] ?? 'Something went wrong on our side.' : <>{n(totals.moved)} of {n(totals.tracks)} songs moved to YouTube Music · {job.throttledUntil ? `YouTube asked us to slow down, retrying at ${new Date(job.throttledUntil).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : job.status === 'paused' ? 'paused' : eta(job.etaSeconds)}</>}</p>
           {failed && <div class="actions"><a class="btn" href="/connect">Start another transfer</a><a class="btn btn--secondary" href={`/api/jobs/${id}/report.csv`}>Download report</a></div>}
         </div>
         <div class={`pct ${failed ? 'pct--danger' : ''}`} aria-hidden="true">{p}%</div>
@@ -135,12 +136,13 @@ function DoneView({ job, reviewList, narrow, showReview, setShowReview }: { job:
     <StepBar done />
     <section class="container body done">
       <div class="reveal">
+        <a class="back" href="/select">← Back</a>
         <div class="eyebrow c-ok">Transfer complete · {duration((job.finishedAt ?? Date.now()) - job.startedAt)}</div>
         <h1 class="h2-done">Your library lives on YouTube Music now.</h1>
         <p class="lede done__lede">
           {n(totals.moved)} of {n(totals.tracks)} songs moved across {playlists} playlist{playlists === 1 ? '' : 's'}{albums || artists ? `, plus ${albums ? `${albums} album${albums === 1 ? '' : 's'}` : ''}${albums && artists ? ' and ' : ''}${artists ? `${artists} followed artist${artists === 1 ? '' : 's'}` : ''}` : ''}.
-          {' '}{notFound ? `${n(notFound)} ${notFound === 1 ? "song didn't" : "songs didn't"} exist on the other side — ${notFound === 1 ? "it's" : "they're"} listed ${narrow ? 'below' : 'to the right'} so nothing goes missing quietly.` : 'Everything matched.'}
-          {totals.collapsed ? ` ${n(totals.collapsed)} of those share a YouTube video with another track (remixes, live takes, re-releases) — check them if the difference matters to you.` : ''}
+          {' '}{notFound ? `${n(notFound)} ${notFound === 1 ? "song didn't" : "songs didn't"} exist on the other side. ${notFound === 1 ? "It's" : "They're"} listed ${narrow ? 'below' : 'to the right'} so nothing goes missing quietly.` : 'Everything matched.'}
+          {totals.collapsed ? ` ${n(totals.collapsed)} of those share a YouTube video with another track (remixes, live takes, re-releases). Check them if the difference matters to you.` : ''}
           {totals.writeFailed ? ` ${n(totals.writeFailed)} were accepted by YouTube but never showed up; "Try again" re-adds them.` : ''}
         </p>
         <div class="statstrip">
@@ -163,7 +165,7 @@ function DoneView({ job, reviewList, narrow, showReview, setShowReview }: { job:
           <div class="review-head"><span class="eyebrow c-soft">Couldn't be moved · {n(notFound)}</span><span class="meta">saved to your report</span></div>
           {reviewList}
         </>}
-        <div class="reassure">Your Spotify library is untouched — nothing was deleted, and that connection was dropped when the transfer finished. {disconnected ? 'The YouTube Music connection has been dropped too.' : <>The YouTube Music connection stays for 24 hours so you can fix the list above. <button class="link" onClick={async () => { await api.disconnect(job.id); setDisconnected(true); location.reload(); }}>Disconnect now</button></>}</div>
+        <div class="reassure">Your Spotify library is untouched: nothing was deleted, and that connection was dropped when the transfer finished. {disconnected ? 'The YouTube Music connection has been dropped too.' : <>The YouTube Music connection stays for 24 hours so you can fix the list above. <button class="link" onClick={async () => { await api.disconnect(job.id); setDisconnected(true); location.reload(); }}>Disconnect now</button></>}</div>
       </div>
     </section>
   </>;

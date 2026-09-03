@@ -1,4 +1,4 @@
-/* web/src/styles/components.css — button, checkbox, list, progress, tabs, chip, panel, placeholder */
+/* web/src/styles/components.css: button, checkbox, list, progress, tabs, chip, panel, placeholder */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 28px; background: var(--accent); color: var(--on-accent); border: 1px solid transparent; font: 600 15px/1 var(--font-ui); cursor: pointer; text-decoration: none; transition: background-color var(--t-fast) ease, border-color var(--t-fast) ease; }
 .btn:hover { background: var(--accent-hover); }
 .btn--secondary { background: transparent; color: var(--fg); border-color: rgba(255,255,255,.3); padding: 15px 22px; font-size: 14px; }
@@ -68,9 +68,11 @@
 .kv dt { color: var(--fg-2); } .kv dd { margin: 0; color: var(--fg); } .kv dd.mono { font: 400 12px/1.4 var(--font-mono); }
 .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 22px; }
 
-/* step sub-bar — shared by StepBar.astro and the Transfer island */
+/* step sub-bar, shared by StepBar.astro and the Transfer island */
 .stepbar { background: var(--bg-sunken); }
-.stepbar__in { display: flex; gap: 26px; list-style: none; margin: 0; padding-top: 12px; padding-bottom: 12px; }
+.stepbar__in { display: flex; gap: 26px; list-style: none; margin: 0 auto; padding-top: 12px; padding-bottom: 12px; }
 .step { font: 500 10.5px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-5); transition: color var(--t-med) ease; }
 .step.is-current { color: var(--accent); } .step.is-done { color: var(--fg-4); } .step.is-final { color: var(--success); }
+.step a { color: inherit; text-decoration: none; } .step a:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+.back { display: inline-block; font: 500 10.5px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); text-decoration: none; margin-bottom: 18px; } .back:hover { color: var(--fg); }
 @media (max-width: 900px) { .stepbar__in { gap: 16px; padding-top: 11px; padding-bottom: 11px; } .step.is-done .label { display: none; } }

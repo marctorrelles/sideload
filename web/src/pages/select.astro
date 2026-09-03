@@ -1,10 +1,11 @@
 ---
-// web/src/pages/select.astro — step 02.
+// web/src/pages/select.astro: step 02.
 import Base from '../layouts/Base.astro';
 import Select from '../islands/Select';
 ---
-<Base title="Choose what to move — Sideload" description="Pick the playlists, albums and artists to move to YouTube Music." step={2} noindex>
+<Base title="Choose what to move · Sideload" description="Pick the playlists, albums and artists to move to YouTube Music." step={2} noindex>
   <section class="container body">
+    <a class="back" href="/connect">← Back</a>
     <h1 class="h2">Choose what to move</h1>
     <p class="lede">Spotify → YouTube Music. Uncheck anything you'd rather leave behind.</p>
     <Select client:only="preact" />

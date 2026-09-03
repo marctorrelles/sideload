@@ -1,8 +1,8 @@
-// worker/src/innertube.ts — YouTube access. Three transports, chosen per operation (verified live 2026-09-02):
-//   music: anonymous InnerTube WEB_REMIX on music.youtube.com — search, album resolve. OAuth tokens are rejected here (400 INVALID_ARGUMENT).
-//   tv:    InnerTube TVHTML5 on www.youtube.com with the user's TV-client OAuth token — add to playlist, like, save album, subscribe.
+// worker/src/innertube.ts: YouTube access. Three transports, chosen per operation (verified live 2026-09-02):
+//   music: anonymous InnerTube WEB_REMIX on music.youtube.com: search, album resolve. OAuth tokens are rejected here (400 INVALID_ARGUMENT).
+//   tv:    InnerTube TVHTML5 on www.youtube.com with the user's TV-client OAuth token: add to playlist, like, save album, subscribe.
 //          The only InnerTube client that accepts a TV OAuth token; it cannot create playlists ("Precondition check failed").
-//   data:  YouTube Data API v3 with the same token — create playlist (50 quota units), read playlists back (1 unit per 50 items).
+//   data:  YouTube Data API v3 with the same token: create playlist (50 quota units), read playlists back (1 unit per 50 items).
 // Parsers are a hand-port of the ytmusicapi shapes we need (MIT, sigma67/ytmusicapi).
 const MUSIC = 'https://music.youtube.com/youtubei/v1/';
 const TV = 'https://www.youtube.com/youtubei/v1/';
@@ -76,7 +76,7 @@ export class InnerTube {
   private async post(url: string, headers: Record<string, string>, body: object): Promise<J> {
     let r: Response;
     try { r = await fetch(url, { method: 'POST', headers, body: JSON.stringify(body), signal: AbortSignal.timeout(this.timeoutMs) }); }
-    catch (e) { throw new ThrottleError(-1, String(e).slice(0, 120)); } // D17: measured hangs of 4.5+ min with no response — a hang is a retryable failure, never a wait
+    catch (e) { throw new ThrottleError(-1, String(e).slice(0, 120)); } // D17: measured hangs of 4.5+ min with no response; a hang is a retryable failure, never a wait
     if (r.status === 401) throw new AuthError();
     if (r.status === 429 || r.status >= 500) throw new ThrottleError(r.status);
     const text = await r.text();
@@ -92,7 +92,7 @@ export class InnerTube {
     return this.post(`${MUSIC}${endpoint}?prettyPrint=false`, { 'content-type': 'application/json', 'user-agent': MUSIC_UA, origin: 'https://music.youtube.com', 'x-origin': 'https://music.youtube.com' },
       { ...body, context: { client: { clientName: 'WEB_REMIX', clientVersion: `1.${d}.01.00`, hl: 'en', gl: 'US' }, user: {} } });
   }
-  /** Authenticated InnerTube on www.youtube.com (TVHTML5) — the one client that accepts a TV OAuth token. */
+  /** Authenticated InnerTube on www.youtube.com (TVHTML5): the one client that accepts a TV OAuth token. */
   async tv(endpoint: string, body: object): Promise<J> {
     if (!this.token) throw new AuthError('no token');
     return this.post(`${TV}${endpoint}?prettyPrint=false`, { 'content-type': 'application/json', 'user-agent': TV_UA, authorization: `Bearer ${this.token}` },

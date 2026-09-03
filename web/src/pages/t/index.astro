@@ -1,9 +1,9 @@
 ---
-// web/src/pages/t/index.astro — served by the worker at /t/:id (X-Robots-Tag: noindex). The island renders its own step bar.
+// web/src/pages/t/index.astro: served by the worker at /t/:id (X-Robots-Tag: noindex). The island renders its own step bar.
 import Base from '../../layouts/Base.astro';
 import Transfer from '../../islands/Transfer';
 ---
-<Base title="Transfer — Sideload" description="Your Spotify → YouTube Music transfer." noindex>
+<Base title="Transfer · Sideload" description="Your Spotify → YouTube Music transfer." noindex>
   <Transfer client:only="preact" />
 </Base>
 <style is:global>

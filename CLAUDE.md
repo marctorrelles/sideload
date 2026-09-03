@@ -7,6 +7,7 @@ Free, MIT-licensed web service that moves a Spotify library (playlists, liked so
 - **pnpm** only (`pnpm-workspace.yaml`: `worker`, `web`). Node 22 (`.nvmrc`; wrangler 4 needs ≥ 22). `allowBuilds` in `pnpm-workspace.yaml` approves `esbuild`/`workerd` postinstalls.
 - Everything under `docs/` except `docs/design/` is gitignored: local planning material lives there. Never commit it and never reference it from code, docs or commit messages.
 - No AI attribution anywhere: no `Co-Authored-By`, no tool names in commits, authors or docs.
+- No em dashes anywhere: code, comments, UI copy, docs, commit messages. Use a period, comma, colon, semicolon or parentheses; a middle dot (·) in titles and labels.
 - One commit per task, conventional prefixes (`feat(worker):`, `chore:`, `docs:`, `ci:`). Keep `pnpm test` and `pnpm --filter worker typecheck` green at every commit.
 - Secrets live in `.dev.vars` (gitignored, copy `.dev.vars.example`) locally and in `wrangler secret` in production. Never in `wrangler.jsonc`.
 - Each package has its own `CLAUDE.md` with the conventions for that path; update it at the end of any phase that touches the package.
@@ -26,12 +27,12 @@ pnpm deploy                       # build site, wrangler deploy (CI does this on
 
 ## Layout
 
-- `worker/` — the Worker: routes, OAuth, InnerTube client, matcher, JobDO/StatsDO. See `worker/CLAUDE.md`.
-- `web/` — Astro 7 static site + Preact islands (landing, FAQ, privacy, the three step screens). See `web/CLAUDE.md`.
-- `shared/types.ts` — DTOs shared by worker and web; no runtime code.
-- `wrangler.jsonc` — single Worker config: assets (`run_worker_first`), DOs (`JobDO`, `StatsDO`, SQLite migration `v1`), KV `MATCH_CACHE`, rate-limit bindings `RL_*`, `PUBLIC_ORIGIN` var.
-- `.github/workflows/` — `ci.yml` (PR + main: install, build web, typecheck, test), `deploy.yml` (main → `wrangler deploy`; needs `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` repo secrets).
-- `SECURITY.md` — reporting policy + the pre-launch checklist. `README.md` — user-facing intro + operator runbook.
+- `worker/`: the Worker: routes, OAuth, InnerTube client, matcher, JobDO/StatsDO. See `worker/CLAUDE.md`.
+- `web/`: Astro 7 static site + Preact islands (landing, FAQ, privacy, the three step screens). See `web/CLAUDE.md`.
+- `shared/types.ts`: DTOs shared by worker and web; no runtime code.
+- `wrangler.jsonc`: single Worker config: assets (`run_worker_first`), DOs (`JobDO`, `StatsDO`, SQLite migration `v1`), KV `MATCH_CACHE`, rate-limit bindings `RL_*`, `PUBLIC_ORIGIN` var.
+- `.github/workflows/`: `ci.yml` (PR + main: install, build web, typecheck, test), `deploy.yml` (main → `wrangler deploy`; needs `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` repo secrets).
+- `SECURITY.md`: reporting policy + the pre-launch checklist. `README.md`: user-facing intro + operator runbook.
 
 ## Accounts and external constraints (verified 2026-09-02)
 

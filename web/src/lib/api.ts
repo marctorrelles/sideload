@@ -1,4 +1,4 @@
-// web/src/lib/api.ts — the worker's JSON API. Same-origin; cookies carry the session.
+// web/src/lib/api.ts: the worker's JSON API. Same-origin; cookies carry the session.
 import type { SessionView, Library, Selection, JobView, ReviewItemView, ReviewAction, ManualSearchResult } from '@shared/types';
 export class ApiError extends Error { constructor(public status: number, public code: string, message: string) { super(message); } }
 async function req<T>(path: string, init: RequestInit = {}): Promise<T> {

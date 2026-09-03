@@ -1,4 +1,4 @@
-// worker/scripts/spike-spotify.ts — run from the repo root: pnpm spike:spotify
+// worker/scripts/spike-spotify.ts: run from the repo root: pnpm spike:spotify
 // Reads SPOTIFY_CLIENT_ID from the environment or from .dev.vars. The Spotify app needs the redirect URI
 // http://127.0.0.1:8787/auth/spotify/callback (Spotify rejects `localhost`). Records redacted fixtures (replaces the synthetic ones).
 import { createServer } from 'node:http';
@@ -47,6 +47,6 @@ createServer(async (req, res) => {
   save('spotify-me-tracks', await get('/me/tracks?limit=50'));
   save('spotify-me-albums', await get('/me/albums?limit=50'));
   save('spotify-me-following', await get('/me/following?type=artist&limit=50'));
-  console.log('DONE — fixtures rewritten; run pnpm --filter worker test, then: cd worker/test/fixtures && grep -l "@gmail" *.json || echo clean');
+  console.log('DONE. Fixtures rewritten; run pnpm --filter worker test, then: cd worker/test/fixtures && grep -l "@gmail" *.json || echo clean');
   process.exit(0);
 }).listen(8787, '127.0.0.1');

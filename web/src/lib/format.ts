@@ -1,4 +1,4 @@
-// web/src/lib/format.ts — number/time formatting shared by the islands.
+// web/src/lib/format.ts: number/time formatting shared by the islands.
 export const n = (v: number) => new Intl.NumberFormat('en-US').format(v);
 export const compact = (v: number) => (v >= 1_000_000 ? `${(v / 1_000_000).toFixed(1)}M` : v >= 10_000 ? `${Math.round(v / 1000)}k` : n(v));
 export const pct = (a: number, b: number) => (b ? Math.floor((a / b) * 100) : 0);

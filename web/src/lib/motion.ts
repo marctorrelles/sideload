@@ -1,4 +1,4 @@
-// web/src/lib/motion.ts — vanilla motion helpers (CSS animations in motion.css + rAF). Purposeful and forward-only; nothing bounces.
+// web/src/lib/motion.ts: vanilla motion helpers (CSS animations in motion.css + rAF). Purposeful and forward-only; nothing bounces.
 // No animation library: the Web Animations path (`commitStyles`) writes a style attribute, which the CSP's style-src blocks.
 // Every helper is a no-op under prefers-reduced-motion.
 export const reduced = () => typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;

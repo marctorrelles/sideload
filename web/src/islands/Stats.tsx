@@ -1,4 +1,4 @@
-// web/src/islands/Stats.tsx — hero stat row from the real counter (D10). Hidden until ≥ 1,000 tracks have been moved: no invented numbers.
+// web/src/islands/Stats.tsx: hero stat row from the real counter (D10). Hidden until ≥ 1,000 tracks have been moved: no invented numbers.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type { StatsView } from '@shared/types';
 import { compact } from '../lib/format';

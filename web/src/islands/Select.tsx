@@ -1,4 +1,4 @@
-// web/src/islands/Select.tsx — step 02. Tabs, tri-state select-all, shift-click ranges, summary panel.
+// web/src/islands/Select.tsx: step 02. Tabs, tri-state select-all, shift-click ranges, summary panel.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { api, ApiError } from '../lib/api';
 import type { Library } from '@shared/types';
@@ -95,7 +95,7 @@ export default function Select() {
       <div class="summary__bar"><span class="meta summary__bar-text">{t.playlists} playlist{t.playlists === 1 ? '' : 's'} · {n(t.songs)} songs</span><span class="meta c-fg">{preEstimate(t.songs)}</span></div>
       {err && <p class="error" role="alert">{err}</p>}
       <button class="btn btn--block summary__cta" onClick={start} disabled={busy || nothing}>{busy ? 'Starting…' : 'Start the transfer'}</button>
-      <p class="note summary__note">You can close the tab once it starts — the transfer keeps running.</p>
+      <p class="note summary__note">You can close the tab once it starts. The transfer keeps running.</p>
     </aside>
   </div>;
 }

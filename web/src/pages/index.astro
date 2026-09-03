@@ -1,5 +1,5 @@
 ---
-// web/src/pages/index.astro — landing. Copy verbatim from docs/design/handoff.md "Hero / landing".
+// web/src/pages/index.astro: landing. Copy verbatim from docs/design/handoff.md "Hero / landing".
 import Base from '../layouts/Base.astro';
 import Placeholder from '../components/Placeholder.astro';
 import Stats from '../islands/Stats';
@@ -11,13 +11,13 @@ const rows = [
   { name: 'Saved albums', status: 'up next', cls: '', dim: true },
 ];
 ---
-<Base title="Sideload — move your Spotify library to YouTube Music, free" description="Copy playlists, liked songs, saved albums and followed artists from Spotify to YouTube Music. Free, open source, no account. Anything that can't be matched is listed for you." jsonLd={jsonLd}>
+<Base title="Sideload: move your Spotify library to YouTube Music, free" description="Copy playlists, liked songs, saved albums and followed artists from Spotify to YouTube Music. Free, open source, no account. Anything that can't be matched is listed for you." jsonLd={jsonLd}>
   <section class="hero">
     <div class="container hero__grid">
       <div class="hero__left">
         <p class="eyebrow hero__eyebrow">Free · no account needed</p>
         <h1 class="h1">Your library, ported cleanly.</h1>
-        <p class="lede hero__lede">Move your playlists, saved albums and followed artists from Spotify to YouTube Music, Apple Music or Tidal. Everything that can't be matched is listed for you at the end — nothing disappears quietly.</p>
+        <p class="lede hero__lede">Move your playlists, saved albums and followed artists from Spotify to YouTube Music, Apple Music or Tidal. Everything that can't be matched is listed for you at the end. Nothing disappears quietly.</p>
         <a class="btn hero__cta" href="/connect">Start a transfer</a>
         <Stats client:idle />
       </div>
@@ -33,9 +33,9 @@ const rows = [
   </section>
   <section class="how hairline-top hairline-bottom" aria-label="How it works">
     <div class="container how__grid">
-      <div><p class="eyebrow">01 — Connect</p><p>Sign in to Spotify, then to where you're going.</p></div>
-      <div><p class="eyebrow">02 — Choose</p><p>Tick what's worth keeping. Track counts shown.</p></div>
-      <div><p class="eyebrow">03 — Walk away</p><p>Come back to a finished library and a short review list.</p></div>
+      <div><p class="eyebrow">01 · Connect</p><p>Sign in to Spotify, then to where you're going.</p></div>
+      <div><p class="eyebrow">02 · Choose</p><p>Tick what's worth keeping. Track counts shown.</p></div>
+      <div><p class="eyebrow">03 · Walk away</p><p>Come back to a finished library and a short review list.</p></div>
     </div>
   </section>
 </Base>

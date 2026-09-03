@@ -18,7 +18,7 @@ const EDIT = { path: (p: string) => p.startsWith('/youtubei/v1/browse/edit_playl
 const q = (needle: string) => (b: unknown) => String(JSON.parse(String(b)).query ?? '').includes(needle); // match a search by its query (t1/t2 run in parallel)
 const READBACK = { path: (p: string) => p.startsWith('/youtube/v3/playlistItems?'), method: 'GET' as const };
 const pageOf = (vids: string[]) => ({ items: vids.map(videoId => ({ contentDetails: { videoId } })) });
-let added: string[] = []; // videoIds the job sent to browse/edit_playlist — the read-back mock echoes them (D15)
+let added: string[] = []; // videoIds the job sent to browse/edit_playlist; the read-back mock echoes them (D15)
 const captureAdds = (opts: { body?: unknown }) => { added.push(...JSON.parse(String(opts.body)).actions.map((a: { addedVideoId: string }) => a.addedVideoId)); return { status: 'STATUS_SUCCEEDED' }; };
 const entry = (id: string, name: string, extra: object = {}) => ({ added_at: '2024-01-01T00:00:00Z', is_local: false, item: { id, name, type: 'track', duration_ms: 293000, artists: [{ name: 'Aphex Twin' }], album: { name: 'SAW' }, ...extra } });
 const payload = (id: string) => ({ id, spotify: { clientId: 'c'.repeat(32), access: 'SA', refresh: 'SR', expiresAt: Date.now() + 3600_000 }, google: { access: 'GA', refresh: 'GR', expiresAt: Date.now() + 3600_000 },
@@ -26,7 +26,7 @@ const payload = (id: string) => ({ id, spotify: { clientId: 'c'.repeat(32), acce
 
 // workerd fires due alarms on its own inside the vitest pool: start()/resume() kick off a real tick immediately.
 // So: poll until the job settles, and use runDurableObjectAlarm ONLY to fast-forward alarms scheduled in the future
-// (backoff, the 24 h expiry) — those are safe because no handler is in flight at that moment.
+// (backoff, the 24 h expiry); those are safe because no handler is in flight at that moment.
 type Stub = DurableObjectStub<JobDO>;
 const until = (stub: Stub, pred: (v: JobView) => boolean) => vi.waitFor(async () => { const v = await stub.view(); if (!v || !pred(v)) throw new Error(`not yet: ${v?.status}`); }, { timeout: 10_000, interval: 25 });
 const settle = (stub: Stub) => until(stub, v => v.status === 'done' || v.status === 'failed');

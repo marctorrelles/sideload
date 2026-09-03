@@ -1,4 +1,4 @@
-// worker/src/match.ts — ported from sigma67/spotify_to_ytmusic utils/match.py (MIT), with a confidence gate added
+// worker/src/match.ts: ported from sigma67/spotify_to_ytmusic utils/match.py (MIT), with a confidence gate added
 import type { SpotifyTrack } from './spotify';
 import type { SearchSong } from './innertube';
 

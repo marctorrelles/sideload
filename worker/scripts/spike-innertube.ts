@@ -1,4 +1,4 @@
-// worker/scripts/spike-innertube.ts — run from the repo root: pnpm spike:innertube
+// worker/scripts/spike-innertube.ts: run from the repo root: pnpm spike:innertube
 // Verifies the YouTube paths the worker relies on and re-records the fixtures in worker/test/fixtures (redacted).
 // Findings (2026-09-02): OAuth tokens are rejected by InnerTube WEB_REMIX (400) but accepted by TVHTML5 on www.youtube.com;
 // TVHTML5 cannot create playlists ("Precondition check failed") → playlists.insert on the Data API; anonymous WEB_REMIX search works.
@@ -82,5 +82,5 @@ const save = (n: string, j: unknown, note = '') => writeFileSync(`worker/test/fi
   if (albumPl) { await pause(); await tv(token, 'like/removelike', { target: { playlistId: albumPl } }); }
   if (channelId) { await pause(); await tv(token, 'subscription/unsubscribe', { channelIds: [channelId] }); }
   await pause(); await dataApi(token, 'DELETE', `playlists?id=${pl}`);
-  console.log('\nDONE — fixtures rewritten; run pnpm --filter worker test. Then: cd worker/test/fixtures && grep -l "@gmail" *.json || echo clean');
+  console.log('\nDONE. Fixtures rewritten; run pnpm --filter worker test. Then: cd worker/test/fixtures && grep -l "@gmail" *.json || echo clean');
 })();

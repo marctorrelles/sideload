@@ -1,4 +1,4 @@
-// worker/test/fetch-mock.ts — undici-MockAgent-style shim over globalThis.fetch.
+// worker/test/fetch-mock.ts: undici-MockAgent-style shim over globalThis.fetch.
 // @cloudflare/vitest-pool-workers 0.22 dropped `fetchMock` from `cloudflare:test`; tests and the main worker share one
 // isolate, so a stubbed global `fetch` reaches Durable Objects and SELF.fetch handlers alike.
 import { vi } from 'vitest';

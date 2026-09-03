@@ -1,4 +1,4 @@
-// web/src/lib/selection.ts — pure helpers for the Choose step.
+// web/src/lib/selection.ts: pure helpers for the Choose step.
 import type { Library, Selection } from '@shared/types';
 export type Tab = 'playlists' | 'albums' | 'artists';
 export interface Sel { liked: boolean; playlists: Set<string>; albums: Set<string>; artists: Set<string> }

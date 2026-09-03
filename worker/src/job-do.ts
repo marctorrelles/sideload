@@ -1,4 +1,4 @@
-// worker/src/job-do.ts — one Durable Object per transfer. Alarm-driven ticks; every unit of work is persisted before the next await.
+// worker/src/job-do.ts: one Durable Object per transfer. Alarm-driven ticks; every unit of work is persisted before the next await.
 import { DurableObject } from 'cloudflare:workers';
 import type { Env } from './env';
 import { seal, open } from './crypto';
@@ -292,7 +292,7 @@ export class JobDO extends DurableObject<Env> {
     this.sql.exec("UPDATE item SET status = 'verifying' WHERE id = ?", item.id); // nothing left to write → read back before calling it done (D15)
   }
   /**
-   * D15. Measured: 346 of 2,585 like calls returned success and silently did nothing. Never trust a 200 — read back, mark the diff
+   * D15. Measured: 346 of 2,585 like calls returned success and silently did nothing. Never trust a 200: read back, mark the diff
    * for re-drive (`redo` 1 = missing from playlist, 2 = missing like), converge. Track status never flips back, so progress never runs backwards.
    */
   private async verifyItem(item: ItemRow, yt: InnerTube): Promise<void> {

@@ -20,16 +20,16 @@ const review = [
   rv(7, "CRYStal (x)", '', 'Playlists', 'not_accessible', { actionable: false, id: -3 }),
 ];
 const items = (running) => [
-  { id: 'pl:a', kind: 'playlist', name: 'Deep Focus', total: 312, moved: 312, review: 1, status: 'done', ytId: 'PL1' },
-  { id: 'liked', kind: 'liked', name: 'Liked songs', total: 2911, moved: running ? 2268 : 2904, review: 2, status: running ? 'writing' : 'done', ytId: 'PL2' },
-  { id: 'pl:b', kind: 'playlist', name: "road trip '24", total: 91, moved: 88, review: 1, status: 'done', ytId: 'PL3' },
-  { id: 'pl:c', kind: 'playlist', name: 'kitchen sessions', total: 204, moved: running ? 0 : 203, review: 1, status: running ? 'queued' : 'done', ytId: running ? null : 'PL4' },
-  { id: 'pl:d', kind: 'playlist', name: 'CRYStal (x)', total: 75, moved: 0, review: 1, status: 'failed', ytId: null },
-  { id: 'al:1', kind: 'album', name: 'Selected Ambient Works 85-92', total: 1, moved: running ? 0 : 1, review: 0, status: running ? 'queued' : 'done', ytId: null },
-  { id: 'ar:1', kind: 'artist', name: 'Aphex Twin', total: 1, moved: running ? 0 : 1, review: 0, status: running ? 'queued' : 'done', ytId: null },
+  { id: 'pl:a', kind: 'playlist', name: 'Deep Focus', total: 312, moved: 312, matched: 0, review: 1, status: 'done', ytId: 'PL1' },
+  { id: 'liked', kind: 'liked', name: 'Liked songs', total: 2911, moved: running ? 2268 : 2904, matched: running ? 212 : 0, review: 2, status: running ? 'writing' : 'done', ytId: 'PL2' },
+  { id: 'pl:b', kind: 'playlist', name: "road trip '24", total: 91, moved: 88, matched: 0, review: 1, status: 'done', ytId: 'PL3' },
+  { id: 'pl:c', kind: 'playlist', name: 'kitchen sessions', total: 204, moved: running ? 0 : 203, matched: 0, review: 1, status: running ? 'queued' : 'done', ytId: running ? null : 'PL4' },
+  { id: 'pl:d', kind: 'playlist', name: 'CRYStal (x)', total: 75, moved: 0, matched: 0, review: 1, status: 'failed', ytId: null },
+  { id: 'al:1', kind: 'album', name: 'Selected Ambient Works 85-92', total: 1, moved: running ? 0 : 1, matched: 0, review: 0, status: running ? 'queued' : 'done', ytId: null },
+  { id: 'ar:1', kind: 'artist', name: 'Aphex Twin', total: 1, moved: running ? 0 : 1, matched: 0, review: 0, status: running ? 'queued' : 'done', ytId: null },
 ];
 const job = (id, status) => ({ id, status, failure: status === 'failed' ? 'auth_expired' : null,
-  totals: { tracks: 5288, moved: status === 'running' ? 3304 : 5281, review: 7, skipped: 0, collapsed: 1, writeFailed: 1 }, items: items(status === 'running'), review, reviewTotal: 7,
+  totals: { tracks: 5288, moved: status === 'running' ? 3304 : 5281, matched: status === 'running' ? 212 : 0, review: 7, skipped: 0, collapsed: 1, writeFailed: 1 }, items: items(status === 'running'), review, reviewTotal: 7,
   startedAt: Date.now() - 372_000, finishedAt: status === 'running' ? null : Date.now() - 1000, ratePerMin: 44, etaSeconds: 130, throttledUntil: null, ytConnected: true, searches: 3100, cacheHits: 940 });
 // static files from web/dist with the Worker's html_handling: /connect → connect.html, /t/<id> → t/index.html
 const DIST = new URL('../dist/', import.meta.url).pathname;

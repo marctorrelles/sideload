@@ -55,7 +55,7 @@ export default function Transfer() {
   if (job === null) return <><StepBar done={false} /><section class="container body"><a class="back" href="/select">← Back</a><p class="eyebrow c-accent">404</p><h1 class="h2">This transfer doesn't exist any more.</h1><p class="lede">Transfers are deleted 7 days after they finish. <a href="/connect">Start another one.</a></p></section></>;
   const { totals } = job;
   const p = pct(totals.moved, totals.tracks);
-  const remaining = Math.max(0, totals.tracks - totals.moved - totals.review - totals.skipped);
+  const remaining = Math.max(0, totals.tracks - totals.moved - totals.matched - totals.review - totals.skipped);
   const review = [...job.review, ...more.filter(m => !job.review.some(r => r.id === m.id))]; // page 0 shifts after a resolve; never render a row twice
   const copy = (e: Event) => { const el = e.currentTarget as HTMLElement; navigator.clipboard.writeText(location.href).then(() => flash(el, 'copied')); };
   const onResolved = async (trackId: number) => {
@@ -87,8 +87,8 @@ export default function Transfer() {
         </div>
         <div class={`pct ${failed ? 'pct--danger' : ''}`} aria-hidden="true">{p}%</div>
       </div>
-      <div class="seg" role="progressbar" aria-valuenow={p} aria-valuemin={0} aria-valuemax={100} aria-label="Transfer progress"><i class="moved" style={`--w:${totals.moved}`} /><i class="review" style={`--w:${totals.review}`} /><i class="rest" style={`--w:${remaining}`} /></div>
-      <div class="legend meta"><span><i class="sw sw--moved" /><b data-count={totals.moved}>{n(totals.moved)}</b> moved</span><span class="c-soft"><i class="sw sw--review" />{n(totals.review)} need review</span><span><i class="sw sw--rest" />{n(remaining)} to go</span></div>
+      <div class="seg" role="progressbar" aria-valuenow={p} aria-valuemin={0} aria-valuemax={100} aria-label="Transfer progress"><i class="moved" style={`--w:${totals.moved}`} /><i class="matched" style={`--w:${totals.matched}`} /><i class="review" style={`--w:${totals.review}`} /><i class="rest" style={`--w:${remaining}`} /></div>
+      <div class="legend meta"><span><i class="sw sw--moved" /><b data-count={totals.moved}>{n(totals.moved)}</b> moved</span>{totals.matched > 0 && <span><i class="sw sw--matched" />{n(totals.matched)} found, adding next</span>}<span class="c-soft"><i class="sw sw--review" />{n(totals.review)} need review</span><span><i class="sw sw--rest" />{n(remaining)} to go</span></div>
       <div class="cols">
         <div>
           <div class="eyebrow col__label">Activity</div>
@@ -120,11 +120,12 @@ function ActivityRow({ item }: { item: JobView['items'][number] }) {
     : item.status === 'queued' ? (entity ? 'up next' : `up next · ${n(item.total)}`)
     : item.status === 'verifying' ? `${n(item.moved)} of ${n(item.total)} · checking`
     : item.status === 'fetching' ? 'reading'
+    : item.status === 'matching' ? `${n(item.moved + item.matched)} of ${n(item.total)} found`
     : entity ? 'adding' : `${n(item.moved)} of ${n(item.total)}`;
   useEffect(() => { if (ref.current) crossfade(ref.current); }, [status]);
   const cls = item.status === 'done' && !item.review ? 'is-ok' : item.review || item.status === 'failed' ? 'is-warn' : '';
   return <div class={`row ${ACTIVE.includes(item.status) ? 'is-active' : ''} ${item.status === 'queued' ? 'is-dim' : ''}`}>
-    <span class="row__text"><div class="row__title">{item.name}</div>{(item.status === 'matching' || item.status === 'writing') && item.total > 0 && !entity && <div class="track track--inline"><i style={`--pct:${pct(item.moved, item.total)}%`} /></div>}</span>
+    <span class="row__text"><div class="row__title">{item.name}</div>{(item.status === 'matching' || item.status === 'writing') && item.total > 0 && !entity && <div class="track track--inline"><i style={`--pct:${pct(item.moved + item.matched, item.total)}%`} /></div>}</span>
     <span class={`row__count ${cls}`} ref={ref}>{status}</span>
   </div>;
 }

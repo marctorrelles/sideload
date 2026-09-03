@@ -90,6 +90,11 @@ describe('JobDO', () => {
     tv().intercept({ ...EDIT, body: b => JSON.parse(String(b)).actions[0].addedVideoId === 'abcdefghijk' }).reply(200, { status: 'STATUS_SUCCEEDED' });
     expect(await stub.resolve(v.review[0]!.id, { action: 'manual', videoId: 'abcdefghijk' })).toEqual({ ok: true });
     expect((await stub.view())!.totals.moved).toBe(1);
+    // a fix made while the playlist is still matching is 'matched', counted as found until the write pass adds it
+    await runInDurableObject(stub, (_, state) => { state.storage.sql.exec("UPDATE item SET status = 'matching'"); state.storage.sql.exec("UPDATE track SET status = 'review' WHERE status = 'moved'"); });
+    const again = (await stub.view())!;
+    expect(await stub.resolve(again.review[0]!.id, { action: 'manual', videoId: 'abcdefghijk' })).toEqual({ ok: true });
+    expect((await stub.view())!.totals).toMatchObject({ moved: 0, matched: 1 });
     await stub.disconnect();
     expect((await stub.view())!.ytConnected).toBe(false);
     expect(await stub.resolve(v.review[0]!.id, { action: 'skip' })).toEqual({ ok: false, error: 'not_reviewable' });

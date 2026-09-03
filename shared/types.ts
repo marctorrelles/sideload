@@ -25,11 +25,11 @@ export interface Selection {
   artists: { id: string; name: string }[];
 }
 
-export interface JobItemView { id: string; kind: ItemKind; name: string; total: number; moved: number; review: number; status: ItemStatus; ytId: string | null }
+export interface JobItemView { id: string; kind: ItemKind; name: string; total: number; moved: number; matched: number; review: number; status: ItemStatus; ytId: string | null } // matched: found, waiting for the write pass
 export interface ReviewItemView { id: number; kind: ItemKind; title: string; artist: string; itemName: string; reason: ReviewReason; suggestion: null | { videoId: string; title: string; artists: string }; collidesWith: string | null; actionable: boolean }
 export interface JobView {
   id: string; status: JobStatus; failure: JobFailure | null;
-  totals: { tracks: number; moved: number; review: number; skipped: number; collapsed: number; writeFailed: number };
+  totals: { tracks: number; moved: number; matched: number; review: number; skipped: number; collapsed: number; writeFailed: number };
   items: JobItemView[];
   review: ReviewItemView[]; reviewTotal: number;
   startedAt: number; finishedAt: number | null;

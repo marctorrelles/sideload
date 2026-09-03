@@ -110,13 +110,13 @@ export class JobDO extends DurableObject<Env> {
       const entity = i.kind === 'album' || i.kind === 'artist';
       const entityMoved = entity ? (i.status === 'done' ? 1 : 0) : c.moved;
       const entityReview = entity ? (i.status === 'failed' ? 1 : 0) : i.status === 'failed' ? 1 : c.review; // a playlist we could not read (403) shows as one review entry
-      return { id: i.id, kind: i.kind, name: i.name, total: i.total, moved: entityMoved, review: entityReview, status: i.status, ytId: i.yt_id };
+      return { id: i.id, kind: i.kind, name: i.name, total: i.total, moved: entityMoved, matched: entity ? 0 : c.matched, review: entityReview, status: i.status, ytId: i.yt_id };
     });
     const byReason = Object.fromEntries((this.sql.exec("SELECT reason, COUNT(*) AS n FROM track WHERE status = 'review' GROUP BY reason").toArray() as { reason: string; n: number }[]).map(r => [r.reason, r.n]));
-    const totals = itemViews.reduce((t, i) => ({ ...t, tracks: t.tracks + i.total, moved: t.moved + i.moved, review: t.review + i.review, skipped: t.skipped + (counts.get(i.id)?.skipped ?? 0) }), { tracks: 0, moved: 0, review: 0, skipped: 0, collapsed: byReason.duplicate_match ?? 0, writeFailed: byReason.write_failed ?? 0 });
+    const totals = itemViews.reduce((t, i) => ({ ...t, tracks: t.tracks + i.total, moved: t.moved + i.moved, matched: t.matched + i.matched, review: t.review + i.review, skipped: t.skipped + (counts.get(i.id)?.skipped ?? 0) }), { tracks: 0, moved: 0, matched: 0, review: 0, skipped: 0, collapsed: byReason.duplicate_match ?? 0, writeFailed: byReason.write_failed ?? 0 });
     const elapsedMin = (Date.now() - j.started_at) / 60_000;
     const ratePerMin = j.searches >= 30 ? j.searches / elapsedMin : null;
-    const remaining = Math.max(0, totals.tracks - totals.moved - totals.review - totals.skipped);
+    const remaining = Math.max(0, totals.tracks - totals.moved - totals.matched - totals.review - totals.skipped); // searches still to run
     return {
       id: j.id, status: j.status, failure: j.failure, totals, items: itemViews,
       review: this.reviewPage(0), reviewTotal: totals.review,

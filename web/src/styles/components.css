@@ -46,7 +46,7 @@
 .track--big { height: 12px; } .track--inline { height: 3px; width: 180px; margin-top: 6px; }
 .seg { display: flex; gap: 2px; height: 12px; }
 .seg > i { display: block; height: 100%; flex: var(--w, 0) 0 0; transition: flex-grow var(--t-med) var(--ease); }
-.seg > .moved { background: var(--accent); } .seg > .review { background: var(--accent-soft); } .seg > .rest { background: rgba(255,255,255,.12); }
+.seg > .moved { background: var(--accent); } .seg > .matched { background: var(--accent); opacity: .45; } .seg > .review { background: var(--accent-soft); } .seg > .rest { background: rgba(255,255,255,.12); }
 
 .tabs { display: flex; border-bottom: 1px solid var(--hairline-strong); }
 .tab { padding: 10px 14px; border: 1px solid transparent; border-bottom: 0; margin-bottom: -1px; background: none; color: var(--fg-2); font: 600 14px/1 var(--font-ui); cursor: pointer; }

@@ -22,7 +22,7 @@ export default function Connect() {
   const [err, setErr] = useState<string | null>(() => { const e = new URLSearchParams(location.search).get('spotify_error'); return e ? (SPOTIFY_ERRORS[e] ?? `Spotify error: ${e}`) : null; });
   const [dev, setDev] = useState<Dev | null>(null);
   const [devState, setDevState] = useState<'idle' | 'code' | 'denied' | 'expired' | 'error'>('idle');
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<'redirect' | 'code' | null>(null);
   const timer = useRef<number>();
   useEffect(() => { api.session().then(setS).catch(() => setS({ spotify: null, destination: null })); history.replaceState(null, '', location.pathname); return () => clearTimeout(timer.current); }, []);
 
@@ -50,7 +50,7 @@ export default function Connect() {
     };
     timer.current = window.setTimeout(poll, interval);
   }
-  const copyRedirect = () => { navigator.clipboard.writeText(REDIRECT).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1500); }); };
+  const copy = (what: 'redirect' | 'code', text: string) => () => { navigator.clipboard.writeText(text).then(() => { setCopied(what); setTimeout(() => setCopied(null), 1500); }); };
   const both = !!s?.spotify && !!s?.destination;
   if (!s) return <p class="meta cursor connect__loading">Checking your session</p>;
   return <>
@@ -68,7 +68,7 @@ export default function Connect() {
           <p class="lede lede--card">Spotify limits every new app to 5 people, so Sideload can't sign you in with a shared button. Make your own app: two minutes, needs Premium.</p>
           <ol class="steps">
             <li>Open <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a> → <b>Create app</b>.</li>
-            <li>Any name. Redirect URI: <code>{REDIRECT}</code> <button type="button" class="link" onClick={copyRedirect}>{copied ? 'copied' : 'copy'}</button></li>
+            <li>Any name. Redirect URI: <code>{REDIRECT}</code> <button type="button" class="link" onClick={copy('redirect', REDIRECT)}>{copied === 'redirect' ? 'copied' : 'copy'}</button></li>
             <li>Tick <b>Web API</b>, save, then paste the <b>Client ID</b> here.</li>
           </ol>
           <label class="field"><span class="eyebrow">Client ID</span><input class="input" value={clientId} onInput={e => setClientId((e.target as HTMLInputElement).value)} pattern="[a-fA-F0-9]{32}" required autocomplete="off" spellcheck={false} placeholder="32 hex characters" inputMode="text" /></label>
@@ -93,7 +93,7 @@ export default function Connect() {
         : devState === 'code' ? <div class="devcode" aria-live="polite">
             {dev ? <>
               <p class="lede lede--card">Open <a href={dev.verificationUrl} target="_blank" rel="noopener">{dev.verificationUrl.replace('https://', '')}</a> on any device and enter this code:</p>
-              <p class="code cursor">{dev.userCode}</p>
+              <p class="code"><span>{dev.userCode}</span><button type="button" class="btn btn--small code__copy" onClick={copy('code', dev.userCode)}>{copied === 'code' ? 'copied' : 'copy'}</button></p>
               <p class="meta">Waiting for Google… this page updates by itself.</p>
             </> : <p class="meta cursor">Asking Google for a code</p>}
           </div>

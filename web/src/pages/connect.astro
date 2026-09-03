@@ -32,7 +32,9 @@ import Connect from '../islands/Connect';
   .providers .row { padding: 13px 14px; }
   .card__connected { margin: 16px 0 0; }
   .devcode { margin-top: 16px; }
-  .code { font: 600 28px/1.2 var(--font-mono); letter-spacing: .12em; margin: 14px 0; user-select: all; }
+  .code { display: flex; align-items: center; gap: 16px; font: 600 28px/1.2 var(--font-mono); letter-spacing: .12em; margin: 14px 0; }
+  .code > span { user-select: all; }
+  .code__copy { letter-spacing: 0; }
   .actionbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 34px; padding-top: 20px; }
   @media (max-width: 900px) {
     .body { padding-top: 36px; padding-bottom: 0; }

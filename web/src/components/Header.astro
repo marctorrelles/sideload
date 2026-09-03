@@ -3,7 +3,7 @@
 const coffee = 'https://buymeacoffee.com/marctorrelles';
 ---
 <header class="hdr hairline-bottom"><div class="container hdr__in">
-  <a href="/" class="wordmark" transition:name="wordmark">Sideload</a>
+  <a href="/" class="wordmark" transition:name="wordmark"><svg class="mark" viewBox="7.5 6.5 33 33" aria-hidden="true" focusable="false"><path d="M27 13 H18 a5 5 0 0 0 0 10 H30 a5 5 0 0 1 0 10 H14" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/><circle cx="36" cy="13" r="2.75" fill="var(--accent)"/></svg>Sideload</a>
   <nav class="hdr__nav" aria-label="Site">
     <a href="/faq">FAQ</a>
     <a class="gh" href="https://github.com/marctorrelles/sideload" rel="noopener">GitHub</a>
@@ -12,12 +12,14 @@ const coffee = 'https://buymeacoffee.com/marctorrelles';
 </div></header>
 <style>
   .hdr__in { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
-  .wordmark { font: 700 20px/1 var(--font-ui); letter-spacing: -.02em; text-decoration: none; }
+  .wordmark { display: inline-flex; align-items: center; gap: 9px; font: 700 20px/1 var(--font-ui); letter-spacing: -.02em; text-decoration: none; color: var(--fg); }
+  .mark { width: 26px; height: 26px; flex: none; }
   .hdr__nav { display: flex; gap: 24px; }
   .hdr__nav a { font: 500 14px/1 var(--font-ui); color: var(--fg-2); text-decoration: none; transition: color var(--t-fast) ease; }
   .hdr__nav a:hover, .hdr__nav .is-strong { color: var(--fg); }
   .mobile-only { display: none; }
   @media (max-width: 900px) {
+    .mark { width: 22px; height: 22px; } .wordmark { gap: 8px; }
     .hdr__in { padding-top: 14px; padding-bottom: 14px; } .hdr__nav { gap: 16px; } .hdr__nav a { font-size: 14px; }
     .desktop-only { display: none; } .mobile-only { display: inline; } .hdr__nav .gh { display: none; }
   }

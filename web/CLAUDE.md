@@ -7,7 +7,7 @@ Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worke
 | Path | What |
 |---|---|
 | `src/layouts/Base.astro` | Head (title, description, canonical, OG, optional `noindex`, optional JSON-LD), `<ClientRouter />` view transitions, Header, optional StepBar, Footer. |
-| `src/components/` | `Header.astro`, `StepBar.astro` (markup only; styles are global in `components.css` because the Transfer island renders its own bar; completed steps are links), `Footer.astro`, `CoffeePanel.astro`. |
+| `src/components/` | `Header.astro` (mark + wordmark; the mark is inline SVG in `currentColor` with an accent dot, 26/22 px), `StepBar.astro` (markup only; styles are global in `components.css` because the Transfer island renders its own bar; completed steps are links), `Footer.astro`, `CoffeePanel.astro`. |
 | `src/pages/index.astro` | Landing (Marc's 2026-09-03 mock, not the handoff): centered hero, the four-cell facts strip (`Stats` island: server-rendered day-one facts, live counters take over the first cells once 1,000 tracks are really moved), three steps, `SoftwareApplication` JSON-LD. |
 | `src/pages/faq.astro`, `privacy.astro` (`#terms`), `404.astro` | Static prose pages. FAQ emits `FAQPage` JSON-LD. Privacy/terms are what Google verification links to. |
 | `src/pages/connect.astro` + `src/islands/Connect.tsx` | Step 01. Source card has a *setup* state (BYO Spotify Client ID, redirect-URI copy button) before *connected*; destination card runs the Google device-code flow and polls `/auth/google/poll`. |
@@ -49,4 +49,4 @@ pnpm --filter web mock         # mock Worker on 8787 for visual QA (stop wrangle
 - Mobile: headless Chrome will not shrink its window below ~500 px, so a `--window-size=390,…` shot is a crop of a wider layout. Wrap the page in a local HTML file with `<iframe src="…" width="390" height="1500">` and screenshot that file instead; media queries then really apply.
 - Animated values: `--virtual-time-budget` runs one animation frame at most, so counters and revealed rows look frozen at their start. Use `--timeout=4000` (real time) or `--force-prefers-reduced-motion` (every helper is a no-op) before calling something a bug.
 - Lighthouse on the built site: `pnpm --filter web build && pnpm --filter web exec astro preview --port 4322`, then `CHROME_PATH=… pnpm dlx lighthouse http://localhost:4322/ --preset=desktop --output=json`. `/`, `/faq`, `/privacy` score 100/100/100/100 (2026-09-02); the CSP console errors and contrast were the two things that used to cost points.
-- `og.png` was rendered the same way from an HTML mock with the Fontsource files.
+- Raster assets are reproducible: `sh web/scripts/render-assets.sh` renders `public/og.png` (1200×630, from `scripts/og.html`), `apple-touch-icon.png` and `favicon-32.png` (from `scripts/icon.html`) with headless Chrome + `sips`. `favicon.svg` is the mark on the page background; the PNG exists because Safari ignores SVG favicons.

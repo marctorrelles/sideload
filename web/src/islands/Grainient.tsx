@@ -110,8 +110,8 @@ const U = { // uniform defaults from react-bits; colours are Sideload's
 };
 const rgb = (hex: string): [number, number, number] => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255) as [number, number, number];
 
-/** centerY shifts the pattern vertically as a fraction of the height; positive moves the bright origin down. */
-export default function Grainient({ color1 = '#0d0c0b', color2 = '#301803', color3 = '#9f5610', centerY = 0 }: { color1?: string; color2?: string; color3?: string; centerY?: number }) {
+/** centerY shifts the pattern vertically as a fraction of the height; positive moves the bright origin down. saturation 1 = the shader's default, lower is duller. */
+export default function Grainient({ color1 = '#0d0c0b', color2 = '#2a1409', color3 = '#8c4627', centerY = 0, saturation = 1 }: { color1?: string; color2?: string; color3?: string; centerY?: number; saturation?: number }) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = ref.current; if (!canvas) return;
@@ -127,7 +127,10 @@ export default function Grainient({ color1 = '#0d0c0b', color2 = '#301803', colo
     const pos = gl.getAttribLocation(prog, 'position'); gl.enableVertexAttribArray(pos); gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
     const loc = (n: string) => gl.getUniformLocation(prog, n);
     for (const [k, v] of Object.entries(U)) gl.uniform1f(loc(k), v);
-    gl.uniform2f(loc('uCenterOffset'), 0, centerY);
+    gl.uniform2f(loc('uCenterOffset'), 0, centerY); gl.uniform1f(loc('uSaturation'), saturation);
+    // every visit starts somewhere else: a random point in the animation and a slightly different blend angle
+    const tStart = Math.random() * 1000, angle = (Math.random() - 0.5) * 30;
+    gl.uniform1f(loc('uBlendAngle'), angle);
     gl.uniform3f(loc('uColor1'), ...rgb(color1)); gl.uniform3f(loc('uColor2'), ...rgb(color2)); gl.uniform3f(loc('uColor3'), ...rgb(color3));
     const iTime = loc('iTime'), iRes = loc('iResolution');
     const dpr = Math.min(devicePixelRatio || 1, 1.5);
@@ -136,10 +139,10 @@ export default function Grainient({ color1 = '#0d0c0b', color2 = '#301803', colo
       const w = Math.max(1, Math.floor(canvas.clientWidth * dpr)), h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
       if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); gl.uniform2f(iRes, w, h); }
     };
-    size(); draw(0); canvas.classList.add('is-on');
-    if (reduced()) { const ro = new ResizeObserver(() => { size(); draw(0); }); ro.observe(canvas); return () => ro.disconnect(); }
+    size(); draw(tStart); canvas.classList.add('is-on');
+    if (reduced()) { const ro = new ResizeObserver(() => { size(); draw(tStart); }); ro.observe(canvas); return () => ro.disconnect(); }
     let raf = 0, seen = true, shown = !document.hidden; const t0 = performance.now();
-    const loop = (now: number) => { size(); draw((now - t0) / 1000); raf = requestAnimationFrame(loop); };
+    const loop = (now: number) => { size(); draw(tStart + (now - t0) / 1000); raf = requestAnimationFrame(loop); };
     const start = () => { if (seen && shown && !raf) raf = requestAnimationFrame(loop); };
     const stop = () => { if (raf) { cancelAnimationFrame(raf); raf = 0; } };
     const io = new IntersectionObserver(([e]) => { seen = e.isIntersecting; seen ? start() : stop(); }); io.observe(canvas);
@@ -148,6 +151,6 @@ export default function Grainient({ color1 = '#0d0c0b', color2 = '#301803', colo
     document.addEventListener('astro:before-swap', stop, { once: true }); // view transition leaves the page: no orphan loop
     start();
     return () => { stop(); io.disconnect(); document.removeEventListener('visibilitychange', vis); };
-  }, [color1, color2, color3, centerY]);
+  }, [color1, color2, color3, centerY, saturation]);
   return <canvas ref={ref} class="grainient" aria-hidden="true" />;
 }

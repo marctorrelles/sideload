@@ -2,7 +2,7 @@
 // Reload safety is the core promise: the page is a pure viewer of job state and progress never runs backwards.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { api, ApiError } from '../lib/api';
-import type { JobView, ReviewItemView } from '@shared/types';
+import type { JobView, ReviewItemView, JobEventKind } from '@shared/types';
 import { n, pct, eta, duration } from '../lib/format';
 import { countTo, flash, crossfade, reveal } from '../lib/motion';
 import ReviewItem from './ReviewItem';
@@ -13,6 +13,7 @@ const FAILURE: Record<string, string> = {
   timeout: 'The transfer ran for 24 hours without finishing, so it was stopped. Start another one; matched songs are cached.',
 };
 const ACTIVE = ['fetching', 'matching', 'writing', 'verifying'];
+const GLYPH: Record<JobEventKind, string> = { read: '>', match: '+', review: '?', create: '+', add: '+', verify: '~', entity: '*', throttle: '!' };
 function StepBar({ done }: { done: boolean }) {
   const steps = [[1, 'Connect'], [2, 'Choose'], [3, 'Transfer']] as const;
   return <div class="stepbar hairline-bottom"><ol class="container stepbar__in">
@@ -93,6 +94,10 @@ export default function Transfer() {
         <div>
           <div class="eyebrow col__label">Activity</div>
           <div class="list activity">{job.items.map(i => <ActivityRow key={i.id} item={i} />)}</div>
+          {job.recent.length > 0 && <>
+            <div class="eyebrow col__label feed__label">Live</div>
+            <ol class="feed" aria-live="polite">{[...job.recent].reverse().map(e => <li key={`${e.at}${e.text}`} class={`feed__row feed__row--${e.kind}`}><span class="feed__glyph" aria-hidden="true">{GLYPH[e.kind]}</span><span class="feed__text">{e.text}{e.sub && <span class="feed__sub"> · {e.sub}</span>}</span></li>)}</ol>
+          </>}
         </div>
         <div>
           {narrow ? <>

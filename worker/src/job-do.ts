@@ -9,11 +9,12 @@ import { refreshGoogle, GoogleError } from './google';
 import { InnerTube, ThrottleError, AuthError } from './innertube';
 import { buildQuery, cacheKey, pickBest, similarity } from './match';
 import { toCsv } from './csv';
-import type { JobView, JobItemView, ReviewItemView, ReviewAction, Selection, ManualSearchResult, ItemKind, ItemStatus, JobStatus, JobFailure, ReviewReason } from '@shared/types';
+import type { JobView, JobItemView, ReviewItemView, ReviewAction, Selection, ManualSearchResult, ItemKind, ItemStatus, JobStatus, JobFailure, ReviewReason, JobEvent } from '@shared/types';
 
 export interface StartPayload { id: string; tid?: string; spotify: Tokens; google: { access: string; refresh: string; expiresAt: number }; selection: Selection }
 
 const TICK_BUDGET_MS = 50_000;     // wall-clock per alarm; CPU use is tiny, network wait dominates
+const RECENT = 12;                 // live feed depth
 const CONCURRENCY = 2;             // ponytail: per job. If logs show shared-IP throttling across jobs, add a global limiter DO.
 const WRITE_BATCH = 100;
 const MAX_VERIFY_PASSES = 3;      // measured: one pass fixed all 346 silent no-op likes; three is generous
@@ -49,6 +50,7 @@ interface JobRow { id: string; tid: string | null; status: JobStatus; created_at
 interface ItemRow { id: string; ord: number; kind: ItemKind; spotify_id: string | null; name: string; artist: string | null; description: string | null; is_public: number; total: number; status: ItemStatus; yt_id: string | null; reason: string | null; fetched: number; fetch_offset: number; verify_passes: number }
 interface TrackRow { id: number; item_id: string; pos: number; spotify_id: string | null; name: string; artists: string; album: string | null; duration_ms: number | null; is_local: number; status: string; video_id: string | null; reason: ReviewReason | null; suggestion: string | null; resolution: string | null; liked: number; redo: number; collides_with: string | null }
 const ids = (rows: { id: number }[]) => rows.map(() => '?').join(',');
+const REASON_TEXT: Record<string, string> = { no_match: 'no match found', low_confidence: 'needs a look', duplicate_match: 'same video as another song', unavailable: 'not available', local_file: 'local file' };
 class FatalError extends Error { constructor(public failure: JobFailure) { super(failure); } }
 const VIDEO_ID = /^[\w-]{11}$/;
 
@@ -65,6 +67,13 @@ export class JobDO extends DurableObject<Env> {
 
   // ---------- RPC: lifecycle ----------
   /** Returns an error code instead of throwing: a throw inside an RPC method is also logged by workerd as an uncaught exception. */
+  private recent: JobEvent[] | null = null;
+  /** The live feed: the last RECENT things that happened, kept in DO storage so a reload still shows them. */
+  private async note(kind: JobEvent['kind'], text: string, sub: string | null = null, videoId: string | null = null): Promise<void> {
+    if (!this.recent) this.recent = (await this.ctx.storage.get<JobEvent[]>('recent')) ?? [];
+    this.recent = [...this.recent, { kind, text, sub, videoId, at: Date.now() }].slice(-RECENT);
+    await this.ctx.storage.put('recent', this.recent);
+  }
   async start(p: StartPayload): Promise<{ ok: true } | { ok: false; error: 'already_started' | 'too_large' }> {
     if (this.job()) return { ok: false, error: 'already_started' };
     const s = p.selection;
@@ -123,6 +132,7 @@ export class JobDO extends DurableObject<Env> {
       startedAt: j.started_at, finishedAt: j.finished_at,
       ratePerMin, etaSeconds: ratePerMin && j.status === 'running' ? Math.round((remaining / ratePerMin) * 60) : null,
       throttledUntil: j.throttled_until && j.throttled_until > Date.now() ? j.throttled_until : null,
+      recent: this.recent ?? (await this.ctx.storage.get<JobEvent[]>('recent')) ?? [],
       ytConnected: !!j.yt_tokens, searches: j.searches, cacheHits: j.cache_hits,
     };
   }
@@ -213,6 +223,7 @@ export class JobDO extends DurableObject<Env> {
   }
   private hasRedo(item: ItemRow): boolean { return (this.sql.exec('SELECT COUNT(*) AS n FROM track WHERE item_id = ? AND redo > 0', item.id).one() as { n: number }).n > 0; }
   private async fetchPage(item: ItemRow, sp: Spotify): Promise<void> {
+    if (item.fetch_offset === 0) await this.note('read', item.kind === 'liked' ? 'Reading your liked songs' : `Reading "${item.name}"`, 'from Spotify');
     let page;
     try { page = item.kind === 'liked' ? await sp.savedTracks(item.fetch_offset) : await sp.playlistItems(item.spotify_id!, item.fetch_offset); }
     catch (e) {
@@ -236,6 +247,7 @@ export class JobDO extends DurableObject<Env> {
   }
   private async matchBatch(tracks: TrackRow[], yt: InnerTube): Promise<void> {
     const results = await Promise.all(tracks.map(t => this.matchOne(t, yt)));
+    const events: { r: (typeof results)[number]; status: string; reason?: ReviewReason }[] = [];
     this.ctx.storage.transactionSync(() => {
       for (const r of results) {
         let { status, reason, suggestion } = r;
@@ -247,8 +259,15 @@ export class JobDO extends DurableObject<Env> {
         }
         this.sql.exec('UPDATE track SET status = ?, video_id = ?, reason = ?, suggestion = ?, collides_with = ? WHERE id = ?', status, status === 'matched' ? r.videoId : null, reason ?? null, suggestion ?? null, collidesWith, r.id);
         this.sql.exec('UPDATE job SET searches = searches + ?, cache_hits = cache_hits + ?', r.searched ? 1 : 0, r.hit ? 1 : 0);
+        events.push({ r, status, reason });
       }
     });
+    for (const { r, status, reason } of events) {
+      const t = tracks.find(x => x.id === r.id)!;
+      const line = `${(JSON.parse(t.artists) as string[])[0] ?? ''} · ${t.name}`;
+      if (status === 'matched') await this.note('match', line, r.hit ? 'from the shared cache' : null, r.videoId ?? null);
+      else await this.note('review', line, REASON_TEXT[reason ?? 'no_match'] ?? null);
+    }
   }
   private async matchOne(t: TrackRow, yt: InnerTube): Promise<{ id: number; itemId: string; spotifyId: string | null; status: 'matched' | 'review'; videoId?: string; reason?: ReviewReason; suggestion?: string; searched: boolean; hit: boolean }> {
     const base = { id: t.id, itemId: t.item_id, spotifyId: t.spotify_id };
@@ -274,12 +293,14 @@ export class JobDO extends DurableObject<Env> {
       const description = item.kind === 'liked' ? 'Your Spotify liked songs, moved with Sideload.' : item.description ?? '';
       const ytId = await yt.createPlaylist(title, description, item.is_public ? 'PUBLIC' : 'PRIVATE');
       this.sql.exec("UPDATE item SET yt_id = ?, status = 'writing' WHERE id = ?", ytId, item.id);
+      await this.note('create', `Created "${title}"`, item.kind === 'liked' || !item.is_public ? 'private playlist' : 'public playlist');
       return;
     }
     const batch = this.sql.exec("SELECT id, video_id FROM track WHERE item_id = ? AND status = 'matched' ORDER BY pos ASC LIMIT ?", item.id, WRITE_BATCH).toArray() as { id: number; video_id: string }[];
     if (batch.length) {
       await yt.addPlaylistItems(item.yt_id, batch.map(b => b.video_id));
       this.sql.exec(`UPDATE track SET status = 'moved' WHERE id IN (${ids(batch)})`, ...batch.map(b => b.id));
+      await this.note('add', `Added ${batch.length} song${batch.length === 1 ? '' : 's'} to "${item.kind === 'liked' ? 'Liked Songs' : item.name}"`);
       return;
     }
     if (item.kind === 'liked') {
@@ -307,6 +328,8 @@ export class JobDO extends DurableObject<Env> {
     const missingLikes = likedSet ? moved.filter(t => t.liked && !likedSet.has(t.video_id)) : [];
     const passes = item.verify_passes + 1;
     console.log(JSON.stringify({ evt: 'verify', kind: item.kind, pass: passes, moved: moved.length, missingAdds: missingAdds.length, missingLikes: missingLikes.length }));
+    const missing = missingAdds.length + missingLikes.length;
+    await this.note('verify', `Checked "${item.kind === 'liked' ? 'Liked Songs' : item.name}" on YouTube`, missing ? `${missing} missing, adding again` : `all ${moved.length} there`);
     this.ctx.storage.transactionSync(() => {
       this.sql.exec('UPDATE item SET verify_passes = ? WHERE id = ?', passes, item.id);
       if (!missingAdds.length && !missingLikes.length) return void finishItem();
@@ -335,18 +358,20 @@ export class JobDO extends DurableObject<Env> {
   }
   private async moveEntity(item: ItemRow, yt: InnerTube): Promise<void> {
     this.sql.exec("UPDATE item SET status = 'writing' WHERE id = ?", item.id);
-    const fail = () => this.sql.exec("UPDATE item SET status = 'failed', reason = 'no_match' WHERE id = ?", item.id);
+    const fail = async () => { this.sql.exec("UPDATE item SET status = 'failed', reason = 'no_match' WHERE id = ?", item.id); await this.note('review', item.kind === 'artist' ? item.name : `${item.artist ?? ''} · ${item.name}`, 'not found on YouTube Music'); };
     if (item.kind === 'artist') {
       const best = (await yt.searchArtists(item.name)).find(h => similarity(h.name, item.name) >= 0.8);
-      if (!best) return void fail();
+      if (!best) return fail();
       await yt.subscribe(best.channelId);
       this.sql.exec("UPDATE item SET status = 'done', yt_id = ? WHERE id = ?", best.channelId, item.id);
+      await this.note('entity', `Followed ${item.name}`);
     } else {
       const best = (await yt.searchAlbums(`${item.artist ?? ''} ${item.name}`.trim())).find(h => similarity(h.title, item.name) >= 0.7 && (!item.artist || similarity(h.artists.join(' '), item.artist) >= 0.5));
       const pl = best ? best.playlistId ?? await yt.albumPlaylistId(best.browseId) : null;
-      if (!pl) return void fail();
+      if (!pl) return fail();
       await yt.likePlaylist(pl);
       this.sql.exec("UPDATE item SET status = 'done', yt_id = ? WHERE id = ?", pl, item.id);
+      await this.note('entity', `Saved "${item.name}"`, item.artist);
     }
   }
   private async finish(): Promise<void> {
@@ -371,6 +396,7 @@ export class JobDO extends DurableObject<Env> {
       const wait = e instanceof SpotifyError ? e.retryAfter * 1000 : e.retryAfterMs ?? Math.min(5_000 * 2 ** (attempt - 1), 600_000); // retryAfterMs: Data API daily quota → next midnight Pacific
       this.sql.exec('UPDATE job SET attempt = ?, throttled_until = ?', attempt, Date.now() + wait);
       console.log(JSON.stringify({ evt: 'throttle', job: job.id.slice(0, 6), attempt, wait, err: String(e).slice(0, 200) }));
+      await this.note('throttle', 'YouTube asked us to slow down', `retrying in ${Math.round(wait / 1000)} s`);
       return this.ctx.storage.setAlarm(Date.now() + wait);
     }
     if (e instanceof AuthError || e instanceof GoogleError || (e instanceof SpotifyError && e.status === 401)) return this.fail('auth_expired');

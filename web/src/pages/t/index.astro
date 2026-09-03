@@ -22,6 +22,14 @@ import Transfer from '../../islands/Transfer';
   .sw--moved { background: var(--accent); } .sw--matched { background: var(--accent); opacity: .45; } .sw--review { background: var(--accent-soft); } .sw--rest { background: rgba(255,255,255,.12); }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 34px; align-items: start; }
   .col__label { color: var(--fg-3); margin-bottom: 10px; }
+  .feed__label { margin-top: 26px; }
+  .feed { list-style: none; margin: 0; padding: 0; font: 500 13px/1.5 var(--font-mono); }
+  .feed__row { display: flex; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--row-gap); animation: fade-up .35s var(--ease) both; }
+  .feed__glyph { color: var(--accent); flex: 0 0 10px; }
+  .feed__row--review .feed__glyph { color: var(--accent-soft); }
+  .feed__row--read .feed__glyph, .feed__row--verify .feed__glyph, .feed__row--throttle .feed__glyph { color: var(--fg-3); }
+  .feed__text { color: var(--fg-2); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .feed__sub { color: var(--fg-3); }
   .review-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
   .list > .review { padding: 14px 16px; }
   .list.warn > .review:first-child { background: var(--accent-tint-bg); }

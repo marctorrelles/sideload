@@ -28,7 +28,10 @@ const items = (running) => [
   { id: 'al:1', kind: 'album', name: 'Selected Ambient Works 85-92', total: 1, moved: running ? 0 : 1, matched: 0, review: 0, status: running ? 'queued' : 'done', ytId: null },
   { id: 'ar:1', kind: 'artist', name: 'Aphex Twin', total: 1, moved: running ? 0 : 1, matched: 0, review: 0, status: running ? 'queued' : 'done', ytId: null },
 ];
-const job = (id, status) => ({ id, status, failure: status === 'failed' ? 'auth_expired' : null,
+const FEED = [['read', 'Reading "kitchen sessions"', 'from Spotify'], ['match', 'Bad Bunny · DtMF', null], ['match', 'Aphex Twin · Xtal', 'from the shared cache'], ['review', 'Frank Ocean · Godspeed (live)', 'needs a look'], ['add', 'Added 50 songs to "Liked Songs"', null], ['match', "Kylie Minogue · Can't Get You out of My Head", null], ['verify', 'Checked "Deep Focus" on YouTube', 'all 312 there'], ['entity', 'Followed Aphex Twin', null], ['match', 'New Order · Blue Monday', null], ['review', 'Rob Reynolds · Sing Sing', 'no match found'], ['create', 'Created "kitchen sessions"', 'private playlist'], ['throttle', 'YouTube asked us to slow down', 'retrying in 5 s'], ['match', 'Bronski Beat · Smalltown Boy', null], ['match', 'Daft Punk · Around the World', null], ['add', 'Added 50 songs to "kitchen sessions"', null], ['match', 'Radiohead · Karma Police', null]];
+// a new line every 3 s while running, so the feed can be watched arriving
+const recent = (running) => running ? FEED.slice(0, 12 + Math.floor(Date.now() / 3000) % 5).slice(-12).map(([kind, text, sub], i, a) => ({ kind, text, sub, videoId: null, at: Date.now() - (a.length - i) * 3000 })) : [];
+const job = (id, status) => ({ recent: recent(status === 'running'), id, status, failure: status === 'failed' ? 'auth_expired' : null,
   totals: { tracks: 5288, moved: status === 'running' ? 3304 : 5281, matched: status === 'running' ? 212 : 0, review: 7, skipped: 0, collapsed: 1, writeFailed: 1 }, items: items(status === 'running'), review, reviewTotal: 7,
   startedAt: Date.now() - 372_000, finishedAt: status === 'running' ? null : Date.now() - 1000, ratePerMin: 44, etaSeconds: 130, throttledUntil: null, ytConnected: true, searches: 3100, cacheHits: 940 });
 // static files from web/dist with the Worker's html_handling: /connect → connect.html, /t/<id> → t/index.html

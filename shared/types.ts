@@ -27,6 +27,9 @@ export interface Selection {
 
 export interface JobItemView { id: string; kind: ItemKind; name: string; total: number; moved: number; matched: number; review: number; status: ItemStatus; ytId: string | null } // matched: found, waiting for the write pass
 export interface ReviewItemView { id: number; kind: ItemKind; title: string; artist: string; itemName: string; reason: ReviewReason; suggestion: null | { videoId: string; title: string; artists: string }; collidesWith: string | null; actionable: boolean }
+/** One line of the transfer's live feed. */
+export type JobEventKind = 'read' | 'match' | 'review' | 'create' | 'add' | 'verify' | 'entity' | 'throttle';
+export interface JobEvent { kind: JobEventKind; text: string; sub: string | null; videoId: string | null; at: number }
 export interface JobView {
   id: string; status: JobStatus; failure: JobFailure | null;
   totals: { tracks: number; moved: number; matched: number; review: number; skipped: number; collapsed: number; writeFailed: number };
@@ -35,6 +38,7 @@ export interface JobView {
   startedAt: number; finishedAt: number | null;
   ratePerMin: number | null; etaSeconds: number | null; throttledUntil: number | null;
   ytConnected: boolean; searches: number; cacheHits: number;
+  recent: JobEvent[]; // newest last
 }
 export type ReviewAction = { action: 'closest' } | { action: 'manual'; videoId: string } | { action: 'skip' };
 export interface ManualSearchResult { videoId: string; title: string; artists: string; album: string | null; durationSec: number | null }

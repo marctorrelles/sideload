@@ -32,7 +32,7 @@ export default defineConfig({
     csp: {
       directives: [
         "default-src 'self'",
-        "img-src 'self' data: https://i.scdn.co https://mosaic.scdn.co https://*.spotifycdn.com https://lh3.googleusercontent.com https://yt3.ggpht.com",
+        "img-src 'self' data: https://i.scdn.co https://mosaic.scdn.co https://*.spotifycdn.com https://lh3.googleusercontent.com https://yt3.ggpht.com https://i.ytimg.com",
         "connect-src 'self'",
         "font-src 'self'",
         "base-uri 'self'",

@@ -39,6 +39,7 @@ export interface JobView {
   ratePerMin: number | null; etaSeconds: number | null; throttledUntil: number | null;
   ytConnected: boolean; searches: number; cacheHits: number;
   recent: JobEvent[]; // newest last
+  covers: string[]; // video ids of the last 48 matched songs, oldest first: the cover wall
 }
 export type ReviewAction = { action: 'closest' } | { action: 'manual'; videoId: string } | { action: 'skip' };
 export interface ManualSearchResult { videoId: string; title: string; artists: string; album: string | null; durationSec: number | null }

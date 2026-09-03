@@ -51,6 +51,7 @@ describe('JobDO', () => {
     expect(v.items[0]).toMatchObject({ name: 'Deep Focus', status: 'done', ytId: 'PLnew', moved: 1, review: 2, total: 3 });
     expect(v.totals).toMatchObject({ tracks: 3, moved: 1, review: 2 });
     expect(v.recent.map(e => e.kind)).toEqual(expect.arrayContaining(['read', 'match', 'review', 'create', 'add', 'verify'])); // the live feed
+    expect(v.covers).toHaveLength(1); // the cover wall: one confident match
     expect(v.review.map(r => r.reason).sort()).toEqual(['local_file', 'no_match'].sort());
     expect(v.ytConnected).toBe(true);
     await runInDurableObject(stub, (_, state) => { const row = state.storage.sql.exec('SELECT spotify_tokens, yt_tokens FROM job').one(); expect(row.spotify_tokens).toBeNull(); expect(row.yt_tokens).not.toBeNull(); });

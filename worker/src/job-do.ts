@@ -133,6 +133,7 @@ export class JobDO extends DurableObject<Env> {
       ratePerMin, etaSeconds: ratePerMin && j.status === 'running' ? Math.round((remaining / ratePerMin) * 60) : null,
       throttledUntil: j.throttled_until && j.throttled_until > Date.now() ? j.throttled_until : null,
       recent: this.recent ?? (await this.ctx.storage.get<JobEvent[]>('recent')) ?? [],
+      covers: (this.sql.exec("SELECT video_id FROM (SELECT id, video_id FROM track WHERE status IN ('matched', 'moved') AND video_id IS NOT NULL ORDER BY id DESC LIMIT 48) ORDER BY id ASC").toArray() as { video_id: string }[]).map(r => r.video_id),
       ytConnected: !!j.yt_tokens, searches: j.searches, cacheHits: j.cache_hits,
     };
   }

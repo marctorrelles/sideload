@@ -90,6 +90,7 @@ export default function Transfer() {
       </div>
       <div class="seg" role="progressbar" aria-valuenow={p} aria-valuemin={0} aria-valuemax={100} aria-label="Transfer progress"><i class="moved" style={`--w:${totals.moved}`} /><i class="matched" style={`--w:${totals.matched}`} /><i class="review" style={`--w:${totals.review}`} /><i class="rest" style={`--w:${remaining}`} /></div>
       <div class="legend meta"><span><i class="sw sw--moved" /><b data-count={totals.moved}>{n(totals.moved)}</b> moved</span>{totals.matched > 0 && <span><i class="sw sw--matched" />{n(totals.matched)} found, adding next</span>}<span class="c-soft"><i class="sw sw--review" />{n(totals.review)} need review</span><span><i class="sw sw--rest" />{n(remaining)} to go</span></div>
+      {job.covers.length > 0 && <div class="wall" aria-hidden="true">{job.covers.map(v => <img key={v} class="wall__tile" src={`https://i.ytimg.com/vi/${v}/default.jpg`} alt="" loading="lazy" />)}</div>}
       <div class="cols">
         <div>
           <div class="eyebrow col__label">Activity</div>

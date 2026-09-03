@@ -26,6 +26,7 @@ code { font-family: var(--font-mono); }
 .is-ok { color: var(--success); } .is-warn { color: var(--accent-soft); }
 .error { font: 400 14px/1.5 var(--font-ui); color: var(--accent-soft); margin: 10px 0 0; }
 .error--hard { color: var(--danger); }
+.c-accent { color: var(--accent); } .c-soft { color: var(--accent-soft); } .c-ok { color: var(--success); }
 .note { font: 400 13px/1.5 var(--font-ui); color: var(--fg-4); margin: 12px 0 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (max-width: 900px) {

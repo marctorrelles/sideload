@@ -8,11 +8,23 @@ describe('match', () => {
   it('strips feat and builds the query without ampersands', () => {
     expect(stripFeat('Song (feat. Someone)')).toBe('Song');
     expect(stripFeat('Song - feat. Someone')).toBe('Song');
+    expect(stripFeat('Gorit Dom feat. Sasha Smaga (feat. Sasha Smaga)')).toBe('Gorit Dom');
+    expect(stripFeat('Song feat. X (Remix)')).toBe('Song (Remix)');
     expect(buildQuery({ name: 'DtMF (feat. X)', artists: ['Bad Bunny', 'Y'] })).toBe('Bad Bunny DtMF');
     expect(buildQuery({ name: 'Jazz', artists: ['Simon & Garfunkel'] })).toBe('Simon Garfunkel Jazz');
   });
   it('cache key is accent/punctuation/case insensitive', () => {
     expect(cacheKey({ name: 'Déjà Vu!', artists: ['Beyoncé'] })).toBe(cacheKey({ name: 'deja vu', artists: ['BEYONCE'] }));
+  });
+  it('similarity ignores punctuation, case and accents', () => {
+    expect(similarity('The Rite Place - Crazy P Remix', 'The Rite Place (Crazy P Remix)')).toBe(1);
+    expect(similarity('S-Tone Inc', 'Hôtel Costes, STone Inc')).toBeLessThan(0.6);
+    expect(similarity('S-Tone Inc', 'STone Inc')).toBe(1);
+  });
+  it('is confident when the candidate names one of several Spotify artists', () => {
+    const m = pickBest({ ...t, name: 'The Rite Place - Crazy P Remix', artists: ['Blakkat', 'Aswan', 'Crazy P'] }, [song({ title: 'The Rite Place (Crazy P Remix) (feat. Aswan)', artists: ['Blakkat'] })]);
+    expect(m.confident).toBe(true);
+    expect(pickBest({ ...t, name: 'Con Mi Sombra', artists: ['S-Tone Inc'] }, [song({ title: 'Con Mi Sombra', artists: ['Hôtel Costes', 'STone Inc'] })]).confident).toBe(true);
   });
   it('similarity', () => { expect(similarity('Xtal', 'Xtal')).toBe(1); expect(similarity('Xtal', 'zzzz')).toBe(0); expect(similarity('Untitled', 'Untitled (Selected Ambient Works)')).toBeGreaterThan(0.3); }); // Dice bigrams ≈ 0.36 here; pickBest's 0.6 title gate still sends it to review
   it('prefers the song over the video with the same title', () => {

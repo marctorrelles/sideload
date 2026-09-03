@@ -6,6 +6,8 @@ export function stripFeat(name: string): string {
   return name
     .replace(/\s*[\(\[]\s*(feat|ft|featuring|with)\.?\s[^\)\]]*[\)\]]/gi, '')
     .replace(/\s+-\s+(feat|ft)\.?\s.*$/i, '')
+    .replace(/\s+(feat\.|ft\.|featuring)\s[^()\[\]]*/i, ' ') // bare "feat. X" up to the next bracket or the end ("Gorit Dom feat. Sasha Smaga")
+    .replace(/\s+/g, ' ')
     .trim();
 }
 export function buildQuery(t: { name: string; artists: string[] }): string {
@@ -15,9 +17,11 @@ export function buildQuery(t: { name: string; artists: string[] }): string {
 export function cacheKey(t: { name: string; artists: string[] }): string {
   return `${t.artists[0] ?? ''}|${stripFeat(t.name)}`.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(/[^\p{L}\p{N}|]+/gu, ' ').replace(/\s+/g, ' ').trim();
 }
-/** Sørensen–Dice over character bigrams, 0..1. ponytail: close enough to difflib.ratio for titles; swap for Levenshtein if calibration says so. */
+/** Lowercase, accents stripped, punctuation collapsed: "The Rite Place - Crazy P Remix" equals "The Rite Place (Crazy P Remix)", "S-Tone" equals "STone". */
+const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(/['’\-]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+/** Sørensen–Dice over character bigrams of the normalised strings, 0..1. ponytail: close enough to difflib.ratio for titles; swap for Levenshtein if calibration says so. */
 export function similarity(a: string, b: string): number {
-  const A = a.toLowerCase().trim(), B = b.toLowerCase().trim();
+  const A = norm(a), B = norm(b);
   if (!A || !B) return 0;
   if (A === B) return 1;
   const grams = (s: string) => { const m = new Map<string, number>(); for (let i = 0; i < s.length - 1; i++) { const g = s.slice(i, i + 2); m.set(g, (m.get(g) ?? 0) + 1); } return m; };
@@ -30,7 +34,8 @@ export interface Scored { r: SearchSong; score: number; titleSim: number; artist
 export function score(t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'durationMs'>, r: SearchSong): Scored {
   const title = r.isSong ? r.title : (r.title.split(' - ')[1] ?? r.title); // videos are often "Artist - Title"
   const titleSim = similarity(stripFeat(title), stripFeat(t.name));
-  const artistSim = similarity(r.artists.join(' '), t.artists.join(' '));
+  // Spotify lists every artist, YouTube usually one (the rest go into the title as feat.): best pair wins over the joined strings
+  const artistSim = Math.max(similarity(r.artists.join(' '), t.artists.join(' ')), ...r.artists.flatMap(a => t.artists.map(b => similarity(a, b))));
   const parts = [titleSim, artistSim];
   let durationDelta: number | null = null;
   if (r.durationSec && t.durationMs) {

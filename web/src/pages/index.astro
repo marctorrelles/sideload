@@ -46,7 +46,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
   .how__grid p:not(.eyebrow) { margin: 0; font: 400 16px/1.5 var(--font-ui); color: var(--fg-2); max-width: 36ch; }
   @media (max-width: 900px) {
     .hero__in { padding-top: 54px; padding-bottom: 46px; }
-    .hero__lede { font-size: 18px; }
+    .hero__lede { font-size: 17px; margin-top: 20px; }
     .hero__cta { display: flex; width: 100%; padding-top: 17px; padding-bottom: 17px; margin-top: 30px; }
     .how :global(.stats) { grid-template-columns: 1fr 1fr; }
     .how :global(.stats > div) { padding: 22px 16px; gap: 12px; }
@@ -56,5 +56,8 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
     .how__grid { grid-template-columns: 1fr; margin-bottom: 32px; }
     .how__grid > div { border-left: 0; border-top: 1px solid var(--hairline); padding: 18px 16px 20px; }
     .how__grid > div:first-child { border-top: 0; }
+  }
+  @media (max-width: 600px) {
+    .hero__lede { font-size: 16px; line-height: 1.55; }
   }
 </style>

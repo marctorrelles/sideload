@@ -107,7 +107,7 @@ export default function Connect() {
       </section>
     </div>
     <div class="actionbar hairline-top">
-      <span class="meta">Free · we drop your Spotify token when the transfer finishes</span>
+      <span class="meta">We drop your Spotify token when the transfer finishes</span>
       <a class={`btn ${both ? '' : 'is-disabled'}`} aria-disabled={!both} href="/select">Choose what to move</a>
     </div>
   </>;

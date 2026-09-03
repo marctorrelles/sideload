@@ -17,7 +17,7 @@ const GLYPH: Record<JobEventKind, string> = { read: '>', match: '+', review: '?'
 function StepBar({ done }: { done: boolean }) {
   const steps = [[1, 'Connect'], [2, 'Choose'], [3, 'Transfer']] as const;
   return <div class={`stepbar hairline-bottom is-step-${done ? 'done' : 3}`}><ol class="container stepbar__in"><i class="stepbar__wire" aria-hidden="true" />
-    {steps.map(([k, label]) => { const st = done || k < 3 ? 'done' : 'current'; const inner = <><span class="num">0{k}</span> <span class="label">{label}</span>{st === 'done' && <span class="tick"> ✓</span>}</>; return <li class={`step is-${st} ${done && k === 3 ? 'is-final' : ''}`} aria-current={st === 'current' ? 'step' : undefined}>{k < 3 ? <a href={k === 1 ? '/connect' : '/select'}>{inner}</a> : inner}</li>; })}
+    {steps.map(([k, label]) => { const st = done || k < 3 ? 'done' : 'current'; const inner = <><span class="num">0{k}</span> <span class="label">{label}</span>{st === 'done' && <span class="tick"> ✓</span>}</>; return <li class={`step is-${st} ${done && k === 3 ? 'is-final' : ''}`} aria-current={st === 'current' ? 'step' : undefined}>{inner}</li>; })} {/* no links back: the session is cleared when the job starts, so Connect and Choose would only bounce */}
   </ol></div>;
 }
 function useNarrow() {
@@ -53,7 +53,7 @@ export default function Transfer() {
   useEffect(() => { document.querySelectorAll<HTMLElement>('[data-count]').forEach(el => countTo(el, Number(el.dataset.count), v => n(v))); }, [job?.totals.moved, job?.status]);
   useEffect(() => { const el = document.querySelector('[data-reveal-once]'); if (el && !el.hasAttribute('data-revealed')) { el.setAttribute('data-revealed', ''); reveal(el); } }, [job?.status]);
   if (job === undefined) return <><StepBar done={false} /><section class="container body"><p class="meta">Loading transfer…</p></section></>;
-  if (job === null) return <><StepBar done={false} /><section class="container body"><a class="back" href="/select">← Back</a><p class="eyebrow c-accent">404</p><h1 class="h2">This transfer doesn't exist any more.</h1><p class="lede">Transfers are deleted 7 days after they finish. <a href="/connect">Start another one.</a></p></section></>;
+  if (job === null) return <><StepBar done={false} /><section class="container body"><a class="back" href="/">← Home</a><p class="eyebrow c-accent">404</p><h1 class="h2">This transfer doesn't exist any more.</h1><p class="lede">Transfers are deleted 7 days after they finish. <a href="/connect">Start another one.</a></p></section></>;
   const { totals } = job;
   const p = pct(totals.moved, totals.tracks);
   const remaining = Math.max(0, totals.tracks - totals.moved - totals.matched - totals.review - totals.skipped);
@@ -79,7 +79,6 @@ export default function Transfer() {
       <button class="link mono banner__copy" onClick={copy}>{location.host}/t/{id.slice(0, 5)}… · copy link</button>
     </div></div>}
     <section class="container body">
-      <a class="back" href="/select">← Back</a>
       <div class="progress-head">
         <div>
           <h1 class="h2">{failed ? 'The transfer stopped.' : 'Transferring your library'}</h1>
@@ -145,7 +144,6 @@ function DoneView({ job, reviewList, narrow, showReview, setShowReview }: { job:
   return <>
     <StepBar done />
     <section class="container body done">
-      <a class="back" href="/select">← Back</a>
       <div class="reveal">
         <div class="eyebrow c-ok done__eyebrow">Transfer complete · {duration((job.finishedAt ?? Date.now()) - job.startedAt)}</div>
         <h1 class="h2-done">Your library lives on YouTube Music now.</h1>

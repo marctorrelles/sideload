@@ -1,25 +1,25 @@
 /* web/src/styles/components.css: button, checkbox, list, progress, tabs, chip, panel, placeholder */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 28px; background: var(--accent); color: var(--on-accent); border: 1px solid transparent; font: 600 17px/1 var(--font-ui); cursor: pointer; text-decoration: none; transition: background-color var(--t-fast) ease, border-color var(--t-fast) ease; }
 .btn:hover { background: var(--accent-hover); }
-.btn--secondary { background: transparent; color: var(--fg); border-color: rgba(255,255,255,.3); padding: 15px 22px; font-size: 16px; }
-.btn--secondary:hover { border-color: var(--fg-2); background: var(--bg-row-active); }
+.btn--secondary { background: transparent; color: var(--fg); border-color: var(--hairline-control); padding: 15px 22px; font-size: 16px; }
+.btn--secondary:hover { border-color: var(--hairline-hover); background: var(--bg-row-active); }
 .btn--light { background: var(--light-btn); color: var(--on-accent); }
 .btn--light:hover { background: #fff; }
-.btn--small { padding: 7px 12px; font: 500 13px/1 var(--font-ui); border: 1px solid rgba(255,255,255,.3); background: transparent; color: var(--fg); }
+.btn--small { padding: 7px 12px; font: 500 13px/1 var(--font-ui); border: 1px solid var(--hairline-control); background: transparent; color: var(--fg); }
 .btn--small:hover { background: var(--bg-row-active); border-color: var(--hairline-hover); }
-.btn--small.is-dim { border-color: rgba(255,255,255,.18); color: var(--fg-2); }
+.btn--small.is-dim { border-color: var(--hairline-strong); color: var(--fg-2); }
 .btn--block { width: 100%; }
 .btn[disabled], .btn[aria-disabled="true"], .is-disabled { background: rgba(255,255,255,.14); color: var(--fg-3); pointer-events: none; border-color: transparent; }
 .link { background: none; border: 0; padding: 0; color: var(--fg-3); font: 500 14px/1 var(--font-ui); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .link:hover { color: var(--fg); }
-.chip { font: 500 12px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.25); padding: 3px 7px; margin-left: auto; }
+.chip { font: 500 12px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--hairline-control); padding: 3px 7px; margin-left: auto; }
 
 .input { width: 100%; padding: 12px 14px; background: var(--bg-sunken); border: 1px solid var(--hairline-strong); color: var(--fg); font: 400 15px/1.3 var(--font-mono); }
 .input:focus { outline: none; border-color: var(--accent); }
 .select { background: var(--bg-sunken); border: 1px solid var(--hairline-strong); color: var(--fg); padding: 4px 6px; font: 400 13px/1.2 var(--font-mono); }
 .field { display: block; margin-top: 18px; } .field .eyebrow { display: block; margin-bottom: 8px; color: var(--fg-3); }
 
-.checkbox { appearance: none; width: 15px; height: 15px; border: 1px solid rgba(255,255,255,.3); background: transparent; display: inline-grid; place-content: center; cursor: pointer; flex: none; margin: 0; transition: background-color var(--t-fast) ease, border-color var(--t-fast) ease; }
+.checkbox { appearance: none; width: 15px; height: 15px; border: 1px solid var(--hairline-control); background: transparent; display: inline-grid; place-content: center; cursor: pointer; flex: none; margin: 0; transition: background-color var(--t-fast) ease, border-color var(--t-fast) ease; }
 .checkbox:checked, .checkbox:indeterminate { background: var(--accent); border-color: var(--accent); }
 .checkbox:checked::after { content: '✓'; font: 700 12px/1 var(--font-ui); color: var(--on-accent); }
 .checkbox:indeterminate::after { content: ''; width: 7px; height: 1.5px; background: var(--on-accent); }

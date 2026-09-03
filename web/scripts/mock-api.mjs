@@ -9,6 +9,14 @@ const lib = { likedCount: 3036,
   playlists: pl.map(x => ({ id: x.id, name: x.name, description: x.description, owner: x.owner.id === 'me' ? 'you' : x.owner.id, ownedByUser: x.owner.id === 'me', isAlgorithmic: x.owner.id === 'spotify', collaborative: x.collaborative, isPublic: x.public, trackCount: x.items?.total ?? 0, image: null })),
   albums: al.map(x => ({ id: x.album.id, name: x.album.name, artist: x.album.artists.map(a => a.name).join(', '), trackCount: x.album.total_tracks, image: null })),
   artists: ar.map(x => ({ id: x.id, name: x.name, image: null })) };
+// DEMO=1: an invented library instead of the recorded one (screenshots for the README must not show a real library)
+const DEMO = [['morning coffee', 'you', 84], ["road trip '24", 'you', 91, { isPublic: true }], ['kitchen sessions', 'you', 204], ['slow sundays', 'you', 133], ['wedding · Ana & Joel', 'you', 245, { collaborative: true }], ['gym 2019', 'you', 57], ['Best of 2023', 'you', 100], ['late night drives', 'you', 168], ['Discover Weekly', 'spotify', 30], ['Release Radar', 'spotify', 30], ['Daily Mix 1', 'spotify', 50], ['indie sleaze revival', 'Júlia', 78], ['office focus', 'Tomás', 412], ['summer bbq', 'Ana', 66]];
+if (process.env.DEMO) {
+  lib.likedCount = 2911;
+  // invented covers: a small SVG per playlist (data: is in the CSP img-src); algorithmic ones stay without artwork
+  const cover = i => { const [a, b] = [['#c4552b', '#2b1a12'], ['#3d6b8f', '#101b24'], ['#b08d3c', '#2a2113'], ['#5a7a4e', '#141c12'], ['#8c4a7d', '#1d1220'], ['#c9c2b3', '#33302a']][i % 6]; const shape = ['<circle cx="18" cy="18" r="9" fill="' + b + '" opacity=".8"/>', '<rect x="6" y="20" width="24" height="10" fill="' + b + '" opacity=".8"/>', '<path d="M0 36L36 0v36z" fill="' + b + '" opacity=".7"/>', '<circle cx="26" cy="10" r="6" fill="' + b + '"/><circle cx="12" cy="24" r="6" fill="' + b + '" opacity=".6"/>'][i % 4]; return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + a + '"/><stop offset="1" stop-color="' + b + '"/></linearGradient></defs><rect width="36" height="36" fill="url(#g)"/>' + shape + '</svg>'); };
+  lib.playlists = DEMO.map(([name, owner, trackCount, extra = {}], i) => ({ id: `demo${i}`, name, description: '', owner, ownedByUser: owner === 'you', isAlgorithmic: owner === 'spotify', collaborative: !!extra.collaborative, isPublic: extra.isPublic ?? false, trackCount, image: owner === 'spotify' ? null : cover(i) }));
+}
 const rv = (id, t, a, itemName, reason, extra = {}) => ({ id, kind: 'playlist', title: t, artist: a, itemName, reason, suggestion: null, collidesWith: null, actionable: reason !== 'local_file', ...extra });
 const review = [
   rv(1, 'Untitled', 'Aphex Twin', 'Deep Focus', 'low_confidence', { suggestion: { videoId: 'abcdefghijk', title: 'Untitled (Selected Ambient Works)', artists: 'Aphex Twin' } }),

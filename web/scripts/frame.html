@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><style>
+html,body{margin:0;background:transparent}
+.win{width:1280px;border:1px solid rgba(255,255,255,.16);border-radius:10px;overflow:hidden;background:#121110}
+.bar{height:44px;background:#1a1917;border-bottom:1px solid rgba(255,255,255,.10);display:flex;align-items:center;padding:0 16px;gap:8px;position:relative}
+.dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.16)}
+.url{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:26px;min-width:360px;padding:0 14px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:#121110;color:rgba(255,255,255,.55);font:12px/1 "IBM Plex Mono",ui-monospace,Menlo,monospace;letter-spacing:.02em}
+iframe{display:block;width:1280px;height:900px;border:0}
+</style><div class="win"><div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url" id="u"></div></div><iframe id="f"></iframe></div>
+<script>const q=new URLSearchParams(location.search);document.getElementById('f').src=q.get('src');document.getElementById('u').textContent=q.get('host');</script>

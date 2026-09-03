@@ -1,9 +1,31 @@
+<img src=".github/readme/landing.png" alt="Sideload: ten years of playlists, one afternoon saved" width="100%">
+
 # Sideload
 
-Move your Spotify library (playlists, liked songs, saved albums, followed artists) to YouTube Music. Free, open source, no account. Runs on one Cloudflare Worker.
+**Move your Spotify library to YouTube Music. Free, open source, nothing kept.**
 
-**https://sideload.marctorrelles.com** · [Buy me a coffee](https://buymeacoffee.com/marctorrelles)
+Playlists, liked songs, saved albums, followed artists. Every add is read back and verified, and whatever YouTube Music does not have comes back to you as a list, not lost. No account, nothing to install: start it, close the tab, come back to a finished library.
 
+**[sideload.marctorrelles.com](https://sideload.marctorrelles.com)** · [FAQ](https://sideload.marctorrelles.com/faq) · [Privacy](https://sideload.marctorrelles.com/privacy) · [Buy me a coffee](https://buymeacoffee.com/marctorrelles)
+
+## How it works
+
+**01 · Connect.** Spotify read-only with your own Client ID (Spotify caps third-party apps at five users each, so everyone brings their own; the page walks you through the two minutes it takes), then Google's device-code sign-in for YouTube Music.
+
+**02 · Choose.** Tick what is worth keeping. Algorithmic playlists are off by default, the summary says what stays behind and how long the rest will take.
+
+<img src=".github/readme/choose.png" alt="Choose what to move" width="100%">
+
+**03 · Walk away.** The transfer runs on the server, survives closed tabs and crashes, and shows what it is matching as it goes. Anything it could not match with confidence waits in a review list: take the closest hit, search yourself, or skip it.
+
+<img src=".github/readme/transfer.png" alt="A transfer running" width="100%">
+
+## Why another one
+
+- **Nothing silently lost.** YouTube sometimes answers 200 to an add that never lands. Sideload reads every playlist back and re-adds what is missing.
+- **Honest matching.** Confident matches go straight in (93% on the first real library); the rest are handed to you with the closest candidate, never guessed.
+- **Nothing kept.** Tokens are encrypted and deleted 24 hours after the transfer, or the moment you click Disconnect. No accounts, no analytics script, no cookies beyond the session.
+- **Cheap to run.** One Cloudflare Worker, one SQLite Durable Object per transfer, YouTube's own app endpoints for search. A 5,000-song library costs the operator cents.
 
 ## Self-hosting / Operating
 

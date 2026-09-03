@@ -34,6 +34,7 @@ export default function Select() {
   const ids = rows.filter(r => !isPlaylist(r) || selectable(r)).map(r => r.id);
   const visible = rows;
   const hasLiked = tab === 'playlists' && lib.likedCount > 0;
+  const lockedCount = tab === 'playlists' ? lib.playlists.filter(p => !selectable(p)).length : 0;
   const tabSelected = set.size + (hasLiked && sel.liked ? 1 : 0), tabTotal = ids.length + (hasLiked ? 1 : 0);
   const tri = triState(tabSelected, tabTotal);
   const toggleAll = () => setSel({ ...sel, [tab]: new Set(tri === 'all' ? [] : ids), ...(tab === 'playlists' ? { liked: tri !== 'all' && lib.likedCount > 0 } : {}) });
@@ -79,6 +80,11 @@ export default function Select() {
         })}
         {rows.length === 0 && !hasLiked && <div class="row"><span class="row__sub">Nothing here.</span></div>}
       </div>
+      {lockedCount > 0 && <details class="why">
+        <summary>Why can't {n(lockedCount)} playlist{lockedCount === 1 ? '' : 's'} be read?</summary>
+        <p>Spotify only lets a personal app (their "Development Mode") read what you own: your playlists, your library, the artists you follow. Playlists made by other people and Spotify's own mixes answer with a 403 whatever you grant, so Sideload can't see their songs.</p>
+        <p>To move one anyway, make it yours: open it in Spotify, select all its songs (Cmd/Ctrl+A), right-click → Add to playlist → New playlist. Refresh this page and the copy shows up unlocked.</p>
+      </details>}
     </div>
     <aside class="panel summary">
       <div class="summary__in">

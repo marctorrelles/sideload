@@ -1,10 +1,10 @@
-// worker/src/index.ts — Hono app: API + auth routes, then static assets.
+// worker/src/index.ts: Hono app: API + auth routes, then static assets.
 import { Hono } from 'hono';
 import type { Env } from './env';
 import { HttpError, securityHeaders, withSecurityHeaders, sameOrigin, rateLimit } from './http';
 import { readSession, writeSession, clearSession, readTransient, writeTransient, clearTransient, type Session } from './cookie';
 import { authorizeUrl, exchangeCode, Spotify, SpotifyError, CLIENT_ID_RE } from './spotify';
-import { deviceCode, pollDevice } from './google';
+import { deviceCode, pollDevice, channelInfo } from './google';
 import { randomId, ID_RE, pkceVerifier, pkceChallenge } from './crypto';
 import { validateSelection } from './routes-validate';
 import type { SessionView, Library, ReviewAction } from '@shared/types';
@@ -18,13 +18,20 @@ app.use('/api/*', sameOrigin);
 app.use('/auth/*', sameOrigin);
 app.onError((e, c) => {
   if (e instanceof HttpError) return withSecurityHeaders(c.json({ error: e.code, message: e.message }, e.status), c.req.path);
+  if (e instanceof SpotifyError) { // Spotify's own words reach the user; the endpoint reaches the log
+    const premium = /premium/i.test(e.message);
+    console.error(JSON.stringify({ evt: 'spotify_error', path: c.req.path, status: e.status, err: e.message.slice(0, 300) }));
+    const message = premium ? 'Spotify says the account that owns your app needs an active Premium subscription (a Development Mode rule). If that changed recently, Spotify can take a few hours to notice.'
+      : e.status === 401 ? 'Your Spotify sign-in expired. Connect it again.' : `Spotify answered ${e.status} on ${e.message.split(':')[0]}. Try again in a minute.`;
+    return withSecurityHeaders(c.json({ error: premium ? 'spotify_premium_required' : `spotify_${e.code}`, message }, e.status === 401 ? 401 : e.status === 403 ? 403 : 502), c.req.path);
+  }
   console.error(JSON.stringify({ evt: 'unhandled', path: c.req.path, err: String(e).slice(0, 300) }));
   return withSecurityHeaders(c.json({ error: 'internal', message: 'Something broke on our side. Try again in a minute.' }, 500), c.req.path);
 });
 const redirectUri = (env: Env) => `${env.PUBLIC_ORIGIN}/auth/spotify/callback`;
 const sessionView = (s: Session | null): SessionView => ({
   spotify: s?.spotify ? { displayName: s.spotify.displayName, email: s.spotify.email, clientId: s.spotify.clientId, counts: s.spotify.counts } : null,
-  destination: s?.google ? { provider: 'ytmusic' } : null,
+  destination: s?.google ? { provider: 'ytmusic', account: s.google.account ?? null } : null,
 });
 const jobStub = (c: { env: Env }, id: string) => { if (!ID_RE.test(id)) throw new HttpError(404, 'not_found'); return c.env.JOB.get(c.env.JOB.idFromName(id)); };
 
@@ -72,7 +79,7 @@ app.post('/auth/google/poll', rateLimit('RL_READ'), async c => {
   const r = await pollDevice(c.env.GOOGLE_CLIENT_ID, c.env.GOOGLE_CLIENT_SECRET, g.deviceCode);
   if (r.status !== 'ok') return c.json({ status: r.status });
   const s = await readSession(c, c.env) ?? {};
-  await writeSession(c, c.env, { ...s, google: { access: r.access, refresh: r.refresh, expiresAt: r.expiresAt } });
+  await writeSession(c, c.env, { ...s, google: { access: r.access, refresh: r.refresh, expiresAt: r.expiresAt, account: await channelInfo(r.access) } });
   delete tr.google; await writeTransient(c, c.env, tr);
   return c.json({ status: 'connected' });
 });

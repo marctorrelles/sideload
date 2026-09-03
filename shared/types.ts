@@ -1,4 +1,4 @@
-// shared/types.ts — DTOs shared by worker and web. No runtime code.
+// shared/types.ts: DTOs shared by worker and web. No runtime code.
 export type Provider = 'ytmusic';
 export type ItemKind = 'liked' | 'playlist' | 'album' | 'artist';
 export type ItemStatus = 'queued' | 'fetching' | 'matching' | 'writing' | 'verifying' | 'done' | 'failed';
@@ -9,7 +9,7 @@ export type JobFailure = 'auth_expired' | 'provider_error' | 'too_large' | 'time
 
 export interface SessionView {
   spotify: null | { displayName: string; email: string | null; clientId: string; counts: { playlists: number; liked: number } };
-  destination: null | { provider: Provider };
+  destination: null | { provider: Provider; account: { title: string; handle: string | null } | null };
 }
 
 export interface LibraryPlaylist { id: string; name: string; description: string | null; owner: string; ownedByUser: boolean; isAlgorithmic: boolean; collaborative: boolean; isPublic: boolean | null; trackCount: number | null; image: string | null }

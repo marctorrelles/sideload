@@ -1,7 +1,7 @@
 // worker/test/google.test.ts
 import { describe, it, expect, beforeAll } from 'vitest';
 import { fetchMock } from './fetch-mock';
-import { deviceCode, pollDevice, refreshGoogle } from '../src/google';
+import { deviceCode, pollDevice, refreshGoogle, channelInfo } from '../src/google';
 beforeAll(() => { fetchMock.activate(); fetchMock.disableNetConnect(); });
 const g = () => fetchMock.get('https://oauth2.googleapis.com');
 
@@ -22,5 +22,9 @@ describe('google device flow', () => {
   it('refreshes', async () => {
     g().intercept({ path: '/token', method: 'POST', body: b => String(b).includes('grant_type=refresh_token') }).reply(200, { access_token: 'a2', expires_in: 3599 });
     expect((await refreshGoogle('cid', 's', 'r')).access).toBe('a2');
+  });
+  it('channelInfo is best-effort: null on any failure', async () => {
+    fetchMock.get('https://www.googleapis.com').intercept({ path: '/youtube/v3/channels?part=snippet&mine=true' }).reply(403, {});
+    expect(await channelInfo('t')).toBeNull();
   });
 });

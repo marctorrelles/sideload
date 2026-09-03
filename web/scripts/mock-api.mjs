@@ -1,5 +1,5 @@
 import http from 'node:http'; import fs from 'node:fs';
-// web/scripts/mock-api.mjs — stand-in for the Worker on 8787 so every screen (connected, Select, running/done/failed transfer) can be checked without real accounts.
+// web/scripts/mock-api.mjs: stand-in for the Worker on 8787 so every screen (connected, Select, running/done/failed transfer) can be checked without real accounts.
 // Job ids: any 26-char id starting with r = running, d = done, f = failed. Run: pnpm --filter web mock (with astro dev, instead of wrangler dev).
 const F = new URL('../../worker/test/fixtures/', import.meta.url).pathname;
 const pl = JSON.parse(fs.readFileSync(F + 'spotify-me-playlists.json', 'utf8')).items;
@@ -33,7 +33,7 @@ const job = (id, status) => ({ id, status, failure: status === 'failed' ? 'auth_
   startedAt: Date.now() - 372_000, finishedAt: status === 'running' ? null : Date.now() - 1000, ratePerMin: 44, etaSeconds: 130, throttledUntil: null, ytConnected: true, searches: 3100, cacheHits: 940 });
 http.createServer((req, res) => {
   const u = new URL(req.url, 'http://x'); const p = u.pathname; const json = (b, s = 200) => { res.writeHead(s, { 'content-type': 'application/json' }); res.end(JSON.stringify(b)); };
-  if (p === '/api/session') return json({ spotify: { displayName: 'Marc', email: 'marc@example.com', clientId: 'x'.repeat(32), counts: { playlists: 70, liked: 3036 } }, destination: { provider: 'ytmusic' } });
+  if (p === '/api/session') return json({ spotify: { displayName: 'Marc', email: 'marc@example.com', clientId: 'x'.repeat(32), counts: { playlists: 70, liked: 3036 } }, destination: { provider: 'ytmusic', account: { title: 'Marc Torrelles', handle: '@marctorrelles' } } });
   if (p === '/api/library') return json(lib);
   if (p === '/api/stats') return json({ tracksMoved: 12480, jobs: 31, matchRate: 0.964, medianMinutes: 41 });
   let m = p.match(/^\/api\/jobs\/([a-z0-9]{26})$/); if (m) return m[1][0] === 'r' ? json(job(m[1], 'running')) : m[1][0] === 'd' ? json(job(m[1], 'done')) : m[1][0] === 'f' ? json(job(m[1], 'failed')) : json({ error: 'not_found' }, 404);

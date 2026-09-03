@@ -1,4 +1,4 @@
-// web/src/islands/Connect.tsx — step 01. Source: BYO Spotify app (PKCE). Destination: YouTube Music via Google device code.
+// web/src/islands/Connect.tsx: step 01. Source: BYO Spotify app (PKCE). Destination: YouTube Music via Google device code.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { api, ApiError } from '../lib/api';
 import type { SessionView } from '@shared/types';
@@ -62,7 +62,7 @@ export default function Connect() {
           </dl>
           <button class="link card__link" onClick={async () => { await api.spotifyLogout(); setS(await api.session()); }}>Use a different account</button>
         </> : <form onSubmit={startSpotify} class="setup">
-          <p class="lede lede--card">Spotify limits every new app to 5 people, so Sideload can't sign you in with a shared button. Make your own app — two minutes, needs Premium.</p>
+          <p class="lede lede--card">Spotify limits every new app to 5 people, so Sideload can't sign you in with a shared button. Make your own app: two minutes, needs Premium.</p>
           <ol class="steps">
             <li>Open <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a> → <b>Create app</b>.</li>
             <li>Any name. Redirect URI: <code>{REDIRECT}</code> <button type="button" class="link" onClick={copyRedirect}>{copied ? 'copied' : 'copy'}</button></li>
@@ -80,7 +80,13 @@ export default function Connect() {
           <div class="row is-disabled" role="radio" aria-checked="false" aria-disabled="true"><span class="placeholder ph-28" aria-hidden="true" /><span class="row__title">Apple Music</span><span class="chip">soon</span></div>
           <div class="row is-disabled" role="radio" aria-checked="false" aria-disabled="true"><span class="placeholder ph-28" aria-hidden="true" /><span class="row__title">Tidal</span><span class="chip">soon</span></div>
         </div>
-        {s.destination ? <p class="meta is-ok card__connected">YouTube Music connected. <button class="link" onClick={async () => { await api.googleLogout(); setS(await api.session()); }}>Use a different account</button></p>
+        {s.destination ? <>
+          <dl class="kv hairline-top">
+            <dt>Signed in as</dt><dd>{s.destination.account ? <>{s.destination.account.title}{s.destination.account.handle && <span class="meta"> · {s.destination.account.handle}</span>}</> : 'your YouTube account'}</dd>
+            <dt>Access</dt><dd class="mono">write · playlists, likes, subscriptions</dd>
+          </dl>
+          <button class="link card__link" onClick={async () => { await api.googleLogout(); setS(await api.session()); }}>Use a different account</button>
+        </>
         : devState === 'code' ? <div class="devcode" aria-live="polite">
             {dev ? <>
               <p class="lede lede--card">Open <a href={dev.verificationUrl} target="_blank" rel="noopener">{dev.verificationUrl.replace('https://', '')}</a> on any device and enter this code:</p>

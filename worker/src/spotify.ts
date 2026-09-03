@@ -49,7 +49,7 @@ export class Spotify {
     catch (e) { throw new SpotifyError(429, 'timeout', `Spotify did not answer: ${String(e).slice(0, 120)}`, 10); } // D17: a hang is a retryable failure
     if (r.status === 429) throw new SpotifyError(429, 'rate_limited', 'Spotify rate limit', Number(r.headers.get('retry-after') ?? 5));
     if (r.status === 401) throw new SpotifyError(401, 'auth_expired');
-    if (!r.ok) throw new SpotifyError(r.status, 'http_error', (await r.text()).slice(0, 300));
+    if (!r.ok) throw new SpotifyError(r.status, 'http_error', `${path.startsWith('http') ? new URL(path).pathname : path.split('?')[0]}: ${(await r.text()).slice(0, 300)}`);
     return r.json() as Promise<T>;
   }
   me() { return this.get<{ id: string; email?: string; display_name: string | null }>('/me'); }

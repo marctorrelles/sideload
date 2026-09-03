@@ -21,6 +21,16 @@ export async function pollDevice(clientId: string, secret: string, deviceCode: s
   if (j.error === 'access_denied') return { status: 'denied' };
   return { status: 'expired' };
 }
+/** Channel behind the token (Data API `channels.list mine`, 1 unit). Null on any failure: cosmetic, never blocks connecting. */
+export async function channelInfo(access: string): Promise<{ title: string; handle: string | null } | null> {
+  try {
+    const r = await fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', { headers: { authorization: `Bearer ${access}` }, signal: AbortSignal.timeout(15_000) });
+    if (!r.ok) return null;
+    const j = await r.json() as { items?: { snippet?: { title?: string; customUrl?: string } }[] };
+    const sn = j.items?.[0]?.snippet;
+    return sn?.title ? { title: sn.title, handle: sn.customUrl ?? null } : null;
+  } catch { return null; }
+}
 export async function refreshGoogle(clientId: string, secret: string, refresh: string): Promise<{ access: string; expiresAt: number }> {
   const j = await post(TOKEN, { client_id: clientId, client_secret: secret, refresh_token: refresh, grant_type: 'refresh_token' });
   if (!j.access_token) throw new GoogleError(j.error ?? 'refresh_failed');

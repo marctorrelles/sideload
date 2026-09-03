@@ -39,6 +39,24 @@ describe('routes', () => {
     const cookies = r.headers.get('set-cookie')!;
     const s = await SELF.fetch('http://127.0.0.1/api/session', { headers: { cookie: cookies.match(/sl_s=[^;]+/)![0] } });
     expect(await s.json()).toMatchObject({ spotify: { counts: { playlists: 41, liked: 3036 } }, destination: null });
+    // Spotify's Development Mode rule surfaces as a 403 with Spotify's reason, not as a 500
+    api.intercept({ path: '/v1/me/playlists?limit=50' }).reply(403, { error: { status: 403, message: 'Active premium subscription required for the owner of the app.' } });
+    const lib = await SELF.fetch('http://127.0.0.1/api/library', { headers: { cookie: cookies.match(/sl_s=[^;]+/)![0] } });
+    expect(lib.status).toBe(403);
+    expect(await lib.json()).toMatchObject({ error: 'spotify_premium_required' });
+  });
+  it('device flow: poll stores the token and the channel behind it', async () => {
+    const g = fetchMock.get('https://oauth2.googleapis.com');
+    g.intercept({ path: '/device/code', method: 'POST' }).reply(200, { device_code: 'd', user_code: 'ABCD-EFGH', verification_url: 'https://www.google.com/device', expires_in: 1800, interval: 5 });
+    const start = await post('/auth/google/start');
+    expect(await start.json()).toMatchObject({ userCode: 'ABCD-EFGH' });
+    g.intercept({ path: '/token', method: 'POST' }).reply(200, { access_token: 'a', refresh_token: 'r', expires_in: 3599 });
+    fetchMock.get('https://www.googleapis.com').intercept({ path: '/youtube/v3/channels?part=snippet&mine=true' }).reply(200, { items: [{ snippet: { title: 'Marc', customUrl: '@marc' } }] });
+    const poll = await post('/auth/google/poll', undefined, cookieOf(start));
+    expect(await poll.json()).toEqual({ status: 'connected' });
+    const cookie = (poll.headers.get('set-cookie') ?? '').match(/sl_s=[^;]+/)![0];
+    const s = await SELF.fetch('http://127.0.0.1/api/session', { headers: { cookie } });
+    expect(await s.json()).toMatchObject({ destination: { provider: 'ytmusic', account: { title: 'Marc', handle: '@marc' } } });
   });
   it('job creation requires both connections and a non-empty selection', async () => {
     expect((await post('/api/jobs', { liked: true })).status).toBe(401);

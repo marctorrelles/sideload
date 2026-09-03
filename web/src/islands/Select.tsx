@@ -6,7 +6,6 @@ import { defaultSel, totals, triState, rangeToggle, sortBy, toSelection, selecta
 import { n, preEstimate } from '../lib/format';
 import { reveal, countTo } from '../lib/motion';
 import { Logo } from '../lib/Logo';
-const PAGE = 6;
 type Sort = 'recent' | 'name' | 'size';
 type Row = Library['playlists'][number] | Library['albums'][number] | Library['artists'][number];
 const isPlaylist = (r: Row): r is Library['playlists'][number] => 'ownedByUser' in r;
@@ -16,14 +15,13 @@ export default function Select() {
   const [sel, setSel] = useState<Sel | null>(null);
   const [tab, setTab] = useState<Tab>('playlists');
   const [sort, setSort] = useState<Sort>('recent');
-  const [expanded, setExpanded] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const anchor = useRef<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const bigRef = useRef<HTMLDivElement>(null);
   useEffect(() => { api.library().then(l => { setLib(l); setSel(defaultSel(l)); }).catch(e => { if (e instanceof ApiError && e.status === 401) location.href = '/connect'; else setErr(e instanceof Error ? e.message : 'Could not read your library.'); }); }, []);
-  useEffect(() => { if (listRef.current) reveal(listRef.current); }, [lib, tab, sort, expanded]);
+  useEffect(() => { if (listRef.current) reveal(listRef.current); }, [lib, tab, sort]);
   const t = lib && sel ? totals(lib, sel) : null;
   useEffect(() => { if (bigRef.current && t) countTo(bigRef.current, t.songs, n, true); }, [t?.songs]);
   if (err) return <p class="error error--hard" role="alert">{err}</p>;
@@ -31,7 +29,7 @@ export default function Select() {
   const rows: Row[] = tab === 'playlists' ? sortBy(lib.playlists, sort) : tab === 'albums' ? sortBy(lib.albums, sort) : sortBy(lib.artists, sort);
   const set = sel[tab] as Set<string>;
   const ids = rows.filter(r => !isPlaylist(r) || selectable(r)).map(r => r.id);
-  const visible = expanded ? rows : rows.slice(0, PAGE);
+  const visible = rows;
   const hasLiked = tab === 'playlists' && lib.likedCount > 0;
   const tabSelected = set.size + (hasLiked && sel.liked ? 1 : 0), tabTotal = ids.length + (hasLiked ? 1 : 0);
   const tri = triState(tabSelected, tabTotal);
@@ -49,7 +47,7 @@ export default function Select() {
   return <div class="choose">
     <div>
       <div class="tabs" role="tablist" aria-label="What to move">
-        {(['playlists', 'albums', 'artists'] as Tab[]).map(k => <button role="tab" class="tab" aria-selected={tab === k} onClick={() => { setTab(k); setExpanded(false); anchor.current = null; }}>
+        {(['playlists', 'albums', 'artists'] as Tab[]).map(k => <button role="tab" class="tab" aria-selected={tab === k} onClick={() => { setTab(k); anchor.current = null; }}>
           {k === 'playlists' ? 'Playlists' : k === 'albums' ? 'Albums' : <><span class="long">Followed </span><span class="cap">artists</span></>}
           <span class="count">{k === 'playlists' ? lib.playlists.length + (lib.likedCount ? 1 : 0) : k === 'albums' ? lib.albums.length : lib.artists.length}</span>
         </button>)}
@@ -76,7 +74,6 @@ export default function Select() {
             {countOf(r) != null && <span class="row__count">{n(countOf(r)!)} songs</span>}
           </label>;
         })}
-        {!expanded && rows.length > PAGE && <button class="row row__more" onClick={() => setExpanded(true)}>+ {n(rows.length - PAGE)} more {tab === 'artists' ? 'artists' : tab}</button>}
         {rows.length === 0 && !hasLiked && <div class="row"><span class="row__sub">Nothing here.</span></div>}
       </div>
     </div>

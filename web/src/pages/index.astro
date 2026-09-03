@@ -1,5 +1,5 @@
 ---
-// web/src/pages/index.astro: landing. Centered hero, four facts, three steps.
+// web/src/pages/index.astro: landing. Centered hero, live facts once they exist, three steps.
 import Base from '../layouts/Base.astro';
 import Stats from '../islands/Stats';
 import Grainient from '../islands/Grainient';
@@ -15,9 +15,8 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
       <a class="btn hero__cta" href="/connect">Start a transfer</a>
     </div>
   </section>
-  <section class="facts" aria-label="Sideload in numbers"><div class="container"><Stats client:idle /></div></section>
   <section class="how" aria-label="How it works">
-    <div class="container"><div class="how__grid">
+    <div class="container"><Stats client:idle /><div class="how__grid">
       <div><p class="eyebrow"><span class="c-accent">01</span> · Connect</p><p>Spotify read-only, then your new service.</p></div>
       <div><p class="eyebrow"><span class="c-accent">02</span> · Choose</p><p>Tick what's worth keeping. Leave the algorithm's stuff behind.</p></div>
       <div><p class="eyebrow"><span class="c-accent">03</span> · Walk away</p><p>Close the tab. Come back to a finished library.</p></div>
@@ -35,12 +34,12 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
   .hero__h1 { font-size: clamp(32px, 9.2vw, 64px); width: 100%; text-wrap: initial; }
   .hero__lede { max-width: 50ch; margin: 26px 0 0; font-size: 20px; }
   .hero__cta { margin-top: 40px; padding: 19px 36px; font-size: 17px; }
-  .facts :global(.stats) { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--hairline-strong); }
-  .facts :global(.stats > div) { display: flex; flex-direction: column; gap: 16px; padding: 32px 22px 30px; border-left: 1px solid var(--hairline); }
-  .facts :global(.stats > div:first-child) { border-left: 0; }
-  .facts :global(.stats .stat) { font-size: 34px; }
-  .facts :global(.stats .eyebrow) { color: var(--fg-3); }
-  .how__grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--hairline-strong); border-top: 0; margin-bottom: 48px; }
+  .how :global(.stats) { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--hairline-strong); border-bottom: 0; }
+  .how :global(.stats > div) { display: flex; flex-direction: column; gap: 16px; padding: 32px 22px 30px; border-left: 1px solid var(--hairline); }
+  .how :global(.stats > div:first-child) { border-left: 0; }
+  .how :global(.stats .stat) { font-size: 34px; }
+  .how :global(.stats .eyebrow) { color: var(--fg-3); }
+  .how__grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--hairline-strong); margin-bottom: 48px; }
   .how__grid > div { padding: 26px 22px 30px; border-left: 1px solid var(--hairline); }
   .how__grid > div:first-child { border-left: 0; }
   .how__grid .eyebrow { margin: 0 0 12px; color: var(--fg-3); }
@@ -49,11 +48,11 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
     .hero__in { padding-top: 54px; padding-bottom: 46px; }
     .hero__lede { font-size: 18px; }
     .hero__cta { display: flex; width: 100%; padding-top: 17px; padding-bottom: 17px; margin-top: 30px; }
-    .facts :global(.stats) { grid-template-columns: 1fr 1fr; }
-    .facts :global(.stats > div) { padding: 22px 16px; gap: 12px; }
-    .facts :global(.stats > div:nth-child(3)) { border-left: 0; }
-    .facts :global(.stats > div:nth-child(n+3)) { border-top: 1px solid var(--hairline); }
-    .facts :global(.stats .stat) { font-size: 28px; } .facts :global(.stats .eyebrow) { font-size: 11px; }
+    .how :global(.stats) { grid-template-columns: 1fr 1fr; }
+    .how :global(.stats > div) { padding: 22px 16px; gap: 12px; }
+    .how :global(.stats > div:nth-child(3)) { border-left: 0; }
+    .how :global(.stats > div:nth-child(n+3)) { border-top: 1px solid var(--hairline); }
+    .how :global(.stats .stat) { font-size: 28px; } .how :global(.stats .eyebrow) { font-size: 11px; }
     .how__grid { grid-template-columns: 1fr; margin-bottom: 32px; }
     .how__grid > div { border-left: 0; border-top: 1px solid var(--hairline); padding: 18px 16px 20px; }
     .how__grid > div:first-child { border-top: 0; }

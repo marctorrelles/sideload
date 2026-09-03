@@ -52,7 +52,7 @@ export default function Connect() {
   }
   const copy = (what: 'redirect' | 'code', text: string) => () => { navigator.clipboard.writeText(text).then(() => { setCopied(what); setTimeout(() => setCopied(null), 1500); }); };
   const both = !!s?.spotify && !!s?.destination;
-  if (!s) return <p class="meta cursor connect__loading">Checking your session</p>;
+  if (!s) return <p class="meta connect__loading">Checking your session…</p>;
   return <>
     <div class="cards">
       <section class={`panel card ${s.spotify ? 'panel--success' : ''}`} aria-labelledby="src">
@@ -95,7 +95,7 @@ export default function Connect() {
               <p class="lede lede--card">Open <a href={dev.verificationUrl} target="_blank" rel="noopener">{dev.verificationUrl.replace('https://', '')}</a> on any device and enter this code:</p>
               <p class="code"><span>{dev.userCode}</span><button type="button" class="btn btn--small code__copy" onClick={copy('code', dev.userCode)}>{copied === 'code' ? 'copied' : 'copy'}</button></p>
               <p class="meta">Waiting for Google… this page updates by itself.</p>
-            </> : <p class="meta cursor">Asking Google for a code</p>}
+            </> : <p class="meta">Asking Google for a code…</p>}
           </div>
         : <>
             {devState === 'denied' && <p class="error" role="alert">You declined on Google's side. Try again when ready.</p>}

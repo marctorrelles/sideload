@@ -53,7 +53,7 @@ export default function ReviewItem({ jobId, item, onResolved, disabled = false }
       <div class="review__searchrow"><input class="input" value={q} onInput={e => setQ((e.target as HTMLInputElement).value)} placeholder={`${item.artist} ${item.title}`.trim()} aria-label="Search YouTube Music" autofocus /><button class="btn btn--small" type="submit">Search</button></div>
       {results && (results.length ? <ul class="review__results">{results.map(r => <li key={r.videoId}><span class="review__result">{r.artists} - {r.title}{r.album ? ` · ${r.album}` : ''}{dur(r.durationSec)}</span><button type="button" class="btn btn--small" onClick={() => act({ action: 'manual', videoId: r.videoId }, 'Added')}>Use this</button></li>)}</ul> : <p class="meta review__none">No results on YouTube Music.</p>)}
     </form>}
-    {mode === 'busy' && <p class="meta cursor">Working</p>}
+    {mode === 'busy' && <p class="meta">Working…</p>}
     {err && <p class="error" role="alert">{err}</p>}
   </div>;
 }

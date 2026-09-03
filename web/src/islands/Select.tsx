@@ -26,7 +26,9 @@ export default function Select() {
   const t = lib && sel ? totals(lib, sel) : null;
   useEffect(() => { if (bigRef.current && t) countTo(bigRef.current, t.songs, n, true); }, [t?.songs]);
   if (err) return <p class="error error--hard" role="alert">{err}</p>;
-  if (!lib || !sel || !t) return <div class="list choose__loading" aria-busy="true"><div class="row"><span class="row__sub cursor">Reading your library</span></div></div>;
+  if (!lib || !sel || !t) return <div class="list skeleton choose__loading" aria-busy="true" aria-label="Reading your library">
+    {[0, 1, 2, 3, 4, 5].map(i => <div class="row" key={i}><span class="sk sk--box" /><span class="sk sk--art" /><span class="row__text"><span class="sk sk--title" /><span class="sk sk--sub" /></span><span class="sk sk--count" /></div>)}
+  </div>;
   const rows: Row[] = tab === 'playlists' ? sortBy(lib.playlists, sort) : tab === 'albums' ? sortBy(lib.albums, sort) : sortBy(lib.artists, sort);
   const set = sel[tab] as Set<string>;
   const ids = rows.filter(r => !isPlaylist(r) || selectable(r)).map(r => r.id);

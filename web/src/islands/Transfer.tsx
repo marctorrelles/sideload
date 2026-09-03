@@ -51,7 +51,7 @@ export default function Transfer() {
   }, [id]);
   useEffect(() => { document.querySelectorAll<HTMLElement>('[data-count]').forEach(el => countTo(el, Number(el.dataset.count), v => n(v))); }, [job?.totals.moved, job?.status]);
   useEffect(() => { const el = document.querySelector('[data-reveal-once]'); if (el && !el.hasAttribute('data-revealed')) { el.setAttribute('data-revealed', ''); reveal(el); } }, [job?.status]);
-  if (job === undefined) return <><StepBar done={false} /><section class="container body"><p class="meta cursor">Loading transfer</p></section></>;
+  if (job === undefined) return <><StepBar done={false} /><section class="container body"><p class="meta">Loading transfer…</p></section></>;
   if (job === null) return <><StepBar done={false} /><section class="container body"><a class="back" href="/select">← Back</a><p class="eyebrow c-accent">404</p><h1 class="h2">This transfer doesn't exist any more.</h1><p class="lede">Transfers are deleted 7 days after they finish. <a href="/connect">Start another one.</a></p></section></>;
   const { totals } = job;
   const p = pct(totals.moved, totals.tracks);

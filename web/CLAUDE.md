@@ -1,6 +1,6 @@
 # web/
 
-Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worker as static assets (`run_worker_first: true`, so every response passes through the worker's security headers). The spec is `docs/design/handoff.md` (tokens, copy, interactions) + `docs/design/sideload-final.dc.html` (visual reference). Aesthetic is terminal calm: square corners, hairlines, mono eyebrows, blinking block cursor on live values, rows that arrive like log lines. Nothing bounces.
+Astro 7 static site + Preact islands. Built into `web/dist`, served by the Worker as static assets (`run_worker_first: true`, so every response passes through the worker's security headers). The spec is `docs/design/handoff.md` (tokens, copy, interactions) + `docs/design/sideload-final.dc.html` (visual reference). Aesthetic is terminal calm: square corners, hairlines, mono eyebrows, skeleton rows while something loads, rows that arrive like log lines. Nothing bounces.
 
 ## Map
 

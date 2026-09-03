@@ -161,7 +161,7 @@ function DoneView({ job, reviewList, narrow, showReview, setShowReview }: { job:
           <div class="statstrip__albums"><b class="stat">{albums}</b><span class="eyebrow">albums</span></div>
           <div><b class="stat c-soft">{n(notFound)}</b><span class="eyebrow">not found</span></div>
         </div>
-        <div class="actions done__actions"><a class="btn" href="https://music.youtube.com/library" target="_blank" rel="noopener">Open YouTube Music</a><a class="btn btn--secondary" href={`/api/jobs/${job.id}/report.csv`}>Download report (CSV)</a><a class="link" href="/connect">Start another transfer</a></div>
+        <div class="actions done__actions"><a class="btn btn--pulse" href="https://music.youtube.com/library" target="_blank" rel="noopener">Open YouTube Music</a><a class="btn btn--secondary" href={`/api/jobs/${job.id}/report.csv`}>Download report (CSV)</a><a class="link" href="/connect">Start another transfer</a></div>
         <div class="panel panel--accent coffee">
           <div><b class="coffee__title">Sideload is free, and stays free.</b><p class="note coffee__note">If it saved you an afternoon of copy-pasting, a coffee covers the server bill for the next few hundred transfers.</p></div>
           <a class="btn" href="https://buymeacoffee.com/marctorrelles" rel="noopener noreferrer">Buy me a coffee</a>

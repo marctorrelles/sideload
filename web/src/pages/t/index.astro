@@ -25,6 +25,9 @@ import Transfer from '../../islands/Transfer';
   .wall { display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px; margin-top: 18px; }
   .wall__tile { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--bg-row-active); filter: saturate(.85); animation: fade-in .6s var(--ease) both; }
   .feed__label { margin-top: 26px; }
+  /* the receipt: once the numbers have counted up, the way out gets one accent pulse */
+  @keyframes btn-pulse { 0% { box-shadow: 0 0 0 0 rgba(224, 112, 63, .6); } 100% { box-shadow: 0 0 0 14px rgba(224, 112, 63, 0); } }
+  .btn--pulse { animation: btn-pulse 1.2s var(--ease) .7s both; }
   .feed { list-style: none; margin: 0; padding: 0; font: 500 13px/1.5 var(--font-mono); }
   .feed__row { display: flex; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--row-gap); animation: fade-up .35s var(--ease) both; }
   .feed__glyph { color: var(--accent); flex: 0 0 10px; }

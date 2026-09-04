@@ -7,6 +7,7 @@ import type { Env } from './env';
 import { HttpError, securityHeaders, withSecurityHeaders, sameOrigin, rateLimit } from './http';
 import { readSession, writeSession, clearSession, readTransient, writeTransient, clearTransient, type Session } from './cookie';
 import { authorizeUrl, exchangeCode, Spotify, SpotifyError, CLIENT_ID_RE } from './spotify';
+import { demoTokens, DEMO_USER, DEMO_COUNTS } from './spotify-demo';
 import { deviceCode, pollDevice, channelInfo } from './google';
 import { randomId, ID_RE, pkceVerifier, pkceChallenge } from './crypto';
 import { validateSelection } from './routes-validate';
@@ -50,6 +51,11 @@ app.post('/auth/spotify/start', rateLimit('RL_AUTH'), async c => {
   const body = await c.req.json().catch(() => ({})) as { clientId?: unknown };
   const clientId = typeof body.clientId === 'string' ? body.clientId.trim().toLowerCase() : '';
   if (!CLIENT_ID_RE.test(clientId)) throw new HttpError(400, 'bad_client_id', 'A Spotify Client ID is 32 hex characters. Copy it from your app in the Spotify dashboard.');
+  if (c.env.REVIEW_CODE && clientId === c.env.REVIEW_CODE) { // the built-in demo library: no Spotify round trip, straight to "connected"
+    const s = await readSession(c, c.env) ?? {};
+    await writeSession(c, c.env, { ...s, tid: s.tid ?? randomId(), spotify: { ...demoTokens(clientId), userId: DEMO_USER.id, email: null, displayName: DEMO_USER.display_name, counts: DEMO_COUNTS } });
+    return c.json({ url: '/connect?connected=spotify' });
+  }
   const state = randomId(), verifier = pkceVerifier();
   await writeTransient(c, c.env, { ...(await readTransient(c, c.env) ?? {}), spotify: { state, verifier, clientId } });
   return c.json({ url: authorizeUrl({ clientId, redirectUri: redirectUri(c.env), state, challenge: await pkceChallenge(verifier) }) });

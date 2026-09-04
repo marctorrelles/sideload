@@ -12,6 +12,7 @@ export default defineConfig({
           COOKIE_SECRET: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // 32 zero bytes, base64url, tests only
           TOKEN_SECRET: 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
           PUBLIC_ORIGIN: 'http://127.0.0.1:4321',
+          REVIEW_CODE: 'deadbeef'.repeat(4),
         },
       },
     }),

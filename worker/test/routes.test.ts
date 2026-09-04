@@ -3,6 +3,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { SELF } from 'cloudflare:test';
 import { fetchMock } from './fetch-mock';
 import me from './fixtures/spotify-me.json';
+import type { Library } from '@shared/types';
 beforeAll(() => { fetchMock.activate(); fetchMock.disableNetConnect(); });
 const post = (path: string, body?: unknown, cookie = '') => SELF.fetch(`http://127.0.0.1${path}`, { method: 'POST', headers: { 'content-type': 'application/json', 'sec-fetch-site': 'same-origin', cookie }, body: body === undefined ? undefined : JSON.stringify(body) });
 const cookieOf = (r: Response) => (r.headers.get('set-cookie') ?? '').split(';')[0]!;
@@ -19,6 +20,15 @@ describe('routes', () => {
     const { url } = await r.json() as { url: string };
     expect(url).toContain('code_challenge=');
     expect(cookieOf(r)).toMatch(/^sl_o=/);
+  });
+  it('the review code connects the built-in demo library without a Spotify round trip', async () => {
+    const r = await post('/auth/spotify/start', { clientId: 'DEADBEEF'.repeat(4) }); // case-insensitive like a real id
+    expect(await r.json()).toEqual({ url: '/connect?connected=spotify' });
+    const cookie = cookieOf(r); expect(cookie).toMatch(/^sl_s=/);
+    expect(await (await SELF.fetch('http://127.0.0.1/api/session', { headers: { cookie } })).json()).toMatchObject({ spotify: { displayName: 'Sideload demo', counts: { playlists: 2, liked: 5 } } });
+    const lib = await (await SELF.fetch('http://127.0.0.1/api/library', { headers: { cookie } })).json() as Library; // fetchMock has net connect disabled: nothing may leave
+    expect(lib.playlists.map(p => [p.name, p.trackCount, p.ownedByUser])).toEqual([['Road trip', 8, true], ['Late nights', 5, true]]);
+    expect([lib.albums.length, lib.artists.length, lib.likedCount]).toEqual([1, 1, 5]);
   });
   it('callback with wrong state redirects with an error and sets no session', async () => {
     const start = await post('/auth/spotify/start', { clientId: 'a'.repeat(32) });

@@ -1,4 +1,5 @@
 // worker/src/spotify.ts
+import { DEMO_ACCESS, demoGet } from './spotify-demo';
 export const SPOTIFY_SCOPES = 'user-library-read playlist-read-private playlist-read-collaborative user-follow-read user-read-email';
 export const CLIENT_ID_RE = /^[a-f0-9]{32}$/;
 const AUTH = 'https://accounts.spotify.com';
@@ -39,6 +40,11 @@ export function toTrack(e: RawEntry): SpotifyTrack | null {
 export class Spotify {
   constructor(private t: Tokens, private onRefresh: (t: Tokens) => Promise<void>) {}
   private async get<T>(path: string): Promise<T> {
+    if (this.t.access === DEMO_ACCESS) { // reviewer / demo library, nothing leaves the Worker
+      const j = demoGet(path);
+      if (j === null) throw new SpotifyError(404, 'http_error', `${path.split('?')[0]}: not found`);
+      return j as T;
+    }
     if (this.t.expiresAt - Date.now() < 120_000) {
       const r = await refreshToken(this.t.clientId, this.t.refresh);
       this.t = { ...this.t, access: r.access_token, refresh: r.refresh_token ?? this.t.refresh, expiresAt: Date.now() + r.expires_in * 1000 };

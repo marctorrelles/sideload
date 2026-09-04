@@ -6,6 +6,8 @@ SENTRY_DSN=
 # optional: Mixpanel project token for server-side usage counts; empty = nothing is sent (EU project: also set MIXPANEL_API=https://api-eu.mixpanel.com)
 MIXPANEL_TOKEN=
 TOKEN_SECRET=
+# optional: 32 hex chars; pasted as the Client ID it connects a built-in demo library instead of Spotify (for reviewers and demos)
+REVIEW_CODE=
 PUBLIC_ORIGIN=http://127.0.0.1:4321
 # only for worker/scripts/spike-spotify.ts (users bring their own id in the product)
 SPOTIFY_CLIENT_ID=

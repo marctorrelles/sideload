@@ -4,6 +4,7 @@ import { env, reset, runInDurableObject, runDurableObjectAlarm } from 'cloudflar
 import { fetchMock } from './fetch-mock';
 import songs from './fixtures/innertube-search-songs.json';
 import type { JobDO } from '../src/job-do';
+import { demoTokens } from '../src/spotify-demo';
 import type { JobView } from '@shared/types';
 
 beforeAll(() => { fetchMock.activate(); fetchMock.disableNetConnect(); });
@@ -182,6 +183,12 @@ describe('JobDO', () => {
     expect(v.review.find(r => r.reason === 'not_accessible')).toMatchObject({ title: 'Somebody else’s mix', itemName: 'Playlists', actionable: false });
   });
 
+  it('reads the built-in demo library when the job carries demo tokens', async () => {
+    const p = payload(id); p.spotify = demoTokens('deadbeef'.repeat(4)); p.selection.playlists = [{ id: 'demolatenights00000000', name: 'Late nights', description: null, isPublic: false, trackCount: 5 }];
+    await stub.start(p); // no Spotify mock is registered and net connect is off: the tracks can only come from spotify-demo.ts
+    await until(stub, v => v.totals.tracks === 5);
+    await stub.pause();
+  });
   it('rejects oversize selections up front', async () => {
     expect(await stub.start({ ...payload(id), selection: { liked: true, likedCount: 30000, playlists: [], albums: [], artists: [] } })).toEqual({ ok: false, error: 'too_large' });
     expect(await stub.view()).toBeNull();

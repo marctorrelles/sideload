@@ -12,7 +12,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
       <p class="eyebrow hero__eyebrow">Spotify → YouTube Music · free · open source</p>
       <h1 class="h1 hero__h1">Ten years of playlists.<br />Moved over lunch.</h1>
       <p class="lede hero__lede">Move your Spotify library to YouTube Music. No song limit, no account, nothing kept.</p>
-      <a class="btn hero__cta" href="/connect">Start a transfer</a>
+      <a class="btn hero__cta" href="/connect"><span class="cta__a">Start a transfer</span><span class="cta__b" aria-hidden="true">Start a transfer</span></a>
     </div>
   </section>
   <section class="how" aria-label="How it works">
@@ -24,7 +24,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
   </section>
 </Base>
 <style>
-  .hero { position: relative; overflow: hidden; }
+  .hero { position: relative; overflow: hidden; clip-path: inset(0); }
   .hero__bg { position: absolute; inset: 0; z-index: 0; }
   .hero__bg::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(to bottom, transparent, var(--bg)); }
   .hero__bg :global(.grainient) { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 1.6s ease; }
@@ -33,7 +33,12 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
   .hero__eyebrow { color: var(--accent); margin: 0 0 28px; }
   .hero__h1 { font-size: clamp(32px, 9.2vw, 64px); width: 100%; text-wrap: initial; }
   .hero__lede { max-width: 50ch; margin: 26px 0 0; font-size: 20px; }
-  .hero__cta { margin-top: 40px; padding: 19px 36px; font-size: 17px; }
+  .hero__cta { margin-top: 40px; padding: 19px 36px; font-size: 17px; position: relative; overflow: hidden; }
+  /* hover: the label leaves to the right while a second copy comes in from the left; leaving the button plays it backwards (transitions, so nothing replays at load) */
+  .cta__a, .cta__b { display: block; width: 100%; text-align: center; transition: transform .22s var(--ease); } /* both copies span the button, so 100% plus the padding clears the edge at every width */
+  .cta__b { position: absolute; inset: 0; display: grid; place-items: center; transform: translateX(calc(-100% - 40px)); }
+  .hero__cta:hover .cta__a { transform: translateX(calc(100% + 40px)); }
+  .hero__cta:hover .cta__b { transform: translateX(0); }
   .how :global(.stats) { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--hairline-strong); border-bottom: 0; }
   .how :global(.stats > div) { display: flex; flex-direction: column; gap: 16px; padding: 32px 22px 30px; border-left: 1px solid var(--hairline); }
   .how :global(.stats > div:first-child) { border-left: 0; }

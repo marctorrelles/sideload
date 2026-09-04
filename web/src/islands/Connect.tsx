@@ -109,6 +109,7 @@ export default function Connect() {
             {devState === 'expired' && <p class="error" role="alert">That code expired. Get a new one.</p>}
             {devState === 'error' && <p class="error" role="alert">Google did not answer. Try again in a minute.</p>}
             <button class="btn btn--block card__cta" onClick={startGoogle} disabled={!s.spotify} aria-disabled={!s.spotify}>Sign in to YouTube Music</button>
+            <p class="note">Google shows this as full YouTube access: it has no narrower permission that can write playlists, likes and subscriptions. Sideload never deletes anything.</p>
             {!s.spotify && <p class="note">Connect Spotify first.</p>}
           </>}
       </section>

@@ -7,6 +7,7 @@ import Base from '../layouts/Base.astro';
     <p class="eyebrow page__eyebrow">Privacy</p>
     <h1 class="h2">What we keep, and for how long.</h1>
     <p class="lede">Sideload is a transfer tool, not a service you sign up for. It holds what it needs to move your library and then lets go of it.</p>
+    <p class="meta">Updated 4 September 2026.</p>
     <dl class="faq prose">
       <div class="faq__item"><dt>What we collect</dt><dd>
       <ul>
@@ -28,11 +29,26 @@ import Base from '../layouts/Base.astro';
         <tr><th>Logs</th><td>7 days. They contain counts and the first 6 characters of a transfer id, never titles, emails or tokens.</td></tr>
       </table>
       </dd></div>
-      <div class="faq__item"><dt>Third parties</dt><dd>
-      <p>Spotify (reading your library), Google / YouTube (writing to your YouTube Music account) and Cloudflare (hosting). When something breaks on the server, an error report goes to Sentry: the stack trace and the request path, never cookies, tokens, song titles or your account. The server also sends usage counts to Mixpanel (how many playlists a transfer had, how long it took, how many songs matched) under a random id that is not tied to your Spotify or Google account; the page itself runs no analytics script and sets no analytics cookie. No advertising, no resale of anything.</p>
+      <div class="faq__item"><dt>Google user data we use</dt><dd>
+      <p>With the YouTube token Sideload creates the playlists you chose, adds the matched songs to them, likes songs, saves albums, subscribes to artists, and reads the new playlists back once to check that every add went through. It also reads your channel name to show which account is signed in. It never reads your watch history or comments, and never deletes anything.</p>
+      </dd></div>
+      <div class="faq__item"><dt>Who we share Google user data with</dt><dd>
+      <p>Nobody. Your YouTube token, channel name and the video ids written to your account are never sold, rented, transferred or disclosed to a third party, never used for advertising, never used to train models, and never read by a person. One company processes them on our behalf: Cloudflare, which hosts the service and stores the encrypted token for the life of the transfer.</p>
+      <p>Two other services receive server-side data that contains no Google user data. Sentry gets error reports: the stack trace and the request path, with cookies and headers stripped, so never a token, a title or an account. Mixpanel gets usage counts (playlists in a transfer, songs matched, how long it took) under a random per-session id that is not linked to your Google or Spotify account. The page itself runs no analytics script and sets no analytics cookie. Spotify only ever sees the read requests for your own library.</p>
+      </dd></div>
+      <div class="faq__item"><dt>How Google user data is protected</dt><dd>
+      <ul>
+        <li><b>In transit:</b> HTTPS only, with HSTS, between your browser, Sideload, Google and Spotify.</li>
+        <li><b>At rest:</b> tokens are encrypted with AES-256-GCM before they are written. The key is a Worker secret held separately from the storage; without it the stored tokens are unreadable.</li>
+        <li><b>Isolation:</b> each transfer lives in its own Durable Object. Nothing is shared between transfers except the anonymous match cache.</li>
+        <li><b>Access:</b> a transfer page is reachable only through its 128-bit random id, which is never indexed and appears in logs only as its first 6 characters. Session cookies are HttpOnly, Secure and SameSite. The only administrative access is the author's Cloudflare account, protected with two-factor authentication.</li>
+        <li><b>Logs and error reports</b> never contain tokens, titles, emails or account names.</li>
+        <li><b>Deletion:</b> automatic on the schedule above, or immediately with Disconnect now. Revoking Sideload in your Google account invalidates the stored token at once.</li>
+        <li><b>Code:</b> all of the above is open source and can be checked line by line.</li>
+      </ul>
       </dd></div>
       <div class="faq__item"><dt>Google API Services</dt><dd>
-      <p>Sideload's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. The YouTube token is used only to create the playlists, likes and subscriptions you asked for, and is deleted as described above.</p>
+      <p>Sideload's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. The YouTube token is used only to create the playlists, likes, saved albums and subscriptions you asked for, and to read those playlists back once to verify them. It is deleted as described above.</p>
       </dd></div>
       <div class="faq__item"><dt>Your choices</dt><dd>
       <ul>

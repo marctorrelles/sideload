@@ -14,7 +14,7 @@ import Select from '../islands/Select';
 <style is:global>
   .body { padding-top: 52px; padding-bottom: 40px; }
   .c-fg { color: var(--fg) !important; }
-  .choose { display: grid; grid-template-columns: 1fr 300px; gap: 0 24px; margin-top: 30px; align-items: start; }
+  .choose { display: grid; grid-template-columns: 1fr 300px; grid-template-rows: auto auto auto 1fr; gap: 0 24px; margin-top: 30px; align-items: start; } /* tabs, toolbar, list, why: the last row is the flexible one, so a summary taller than the list pushes slack below the list instead of between toolbar and list */
   .choose > div:first-child { display: contents; } /* tabs, toolbar and list are grid items, so the summary can start under the tabs */
   .choose .tabs, .choose .toolbar, .choose .list, .choose .why { grid-column: 1; min-width: 0; }
   .why { margin-top: 14px; }
@@ -34,7 +34,7 @@ import Select from '../islands/Select';
   .row__text { min-width: 0; } .row__text .row__title, .row__text .row__sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .row.is-locked .checkbox { opacity: .35; cursor: not-allowed; }
   .tab .cap { text-transform: capitalize; }
-  .summary { position: sticky; top: 16px; grid-column: 2; grid-row: 2 / span 2; }
+  .summary { position: sticky; top: 16px; grid-column: 2; grid-row: 2 / -1; }
   .stat--big { font-size: 34px; margin-top: 12px; }
   .summary__sub { font: 400 14px/1.4 var(--font-ui); color: var(--fg-2); margin-top: 6px; }
   .summary__left { color: var(--fg-4); margin-top: 8px; }

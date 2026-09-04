@@ -2,8 +2,22 @@
 import { describe, it, expect } from 'vitest';
 import { validateSelection } from '../src/routes-validate';
 import { HttpError } from '../src/http';
-const pl = (extra: object = {}) => ({ id: 'P'.repeat(22), name: 'x', description: null, isPublic: false, trackCount: 1, ...extra });
-const status = (b: unknown) => { try { validateSelection(b); return 200; } catch (e) { return (e as HttpError).status; } };
+const pl = (extra: object = {}) => ({
+  id: 'P'.repeat(22),
+  name: 'x',
+  description: null,
+  isPublic: false,
+  trackCount: 1,
+  ...extra,
+});
+const status = (b: unknown) => {
+  try {
+    validateSelection(b);
+    return 200;
+  } catch (e) {
+    return (e as HttpError).status;
+  }
+};
 describe('validateSelection', () => {
   it('accepts a normal selection and rejects oversized or malformed ones', () => {
     expect(status({ playlists: [pl()] })).toBe(200);

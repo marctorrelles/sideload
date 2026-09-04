@@ -8,7 +8,8 @@ export default defineConfig({
       miniflare: {
         kvNamespaces: ['MATCH_CACHE'],
         bindings: {
-          GOOGLE_CLIENT_ID: 'gid', GOOGLE_CLIENT_SECRET: 'gsecret',
+          GOOGLE_CLIENT_ID: 'gid',
+          GOOGLE_CLIENT_SECRET: 'gsecret',
           COOKIE_SECRET: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // 32 zero bytes, base64url, tests only
           TOKEN_SECRET: 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
           PUBLIC_ORIGIN: 'http://127.0.0.1:4321',

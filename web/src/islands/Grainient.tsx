@@ -103,54 +103,148 @@ void main(){
 }
 `;
 
-const U = { // uniform defaults from react-bits; colours are Sideload's
-  uTimeSpeed: 0.25, uColorBalance: 0, uWarpStrength: 1, uWarpFrequency: 5, uWarpSpeed: 2, uWarpAmplitude: 50, uBlendAngle: 0,
-  uBlendSoftness: 0.05, uRotationAmount: 500, uNoiseScale: 2, uGrainAmount: 0.1, uGrainScale: 2, uGrainAnimated: 0, uContrast: 1.5,
-  uGamma: 1, uSaturation: 1, uZoom: 0.9, uLightMode: 0,
+const U = {
+  // uniform defaults from react-bits; colours are Sideload's
+  uTimeSpeed: 0.25,
+  uColorBalance: 0,
+  uWarpStrength: 1,
+  uWarpFrequency: 5,
+  uWarpSpeed: 2,
+  uWarpAmplitude: 50,
+  uBlendAngle: 0,
+  uBlendSoftness: 0.05,
+  uRotationAmount: 500,
+  uNoiseScale: 2,
+  uGrainAmount: 0.1,
+  uGrainScale: 2,
+  uGrainAnimated: 0,
+  uContrast: 1.5,
+  uGamma: 1,
+  uSaturation: 1,
+  uZoom: 0.9,
+  uLightMode: 0,
 };
-const rgb = (hex: string): [number, number, number] => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255) as [number, number, number];
+const rgb = (hex: string): [number, number, number] =>
+  [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255) as [number, number, number];
 
 /** centerY shifts the pattern vertically as a fraction of the height; positive moves the bright origin down. saturation 1 = the shader's default, lower is duller. */
-export default function Grainient({ color1 = '#0d0c0b', color2 = '#2a1409', color3 = '#8c4627', centerY = 0, saturation = 1 }: { color1?: string; color2?: string; color3?: string; centerY?: number; saturation?: number }) {
+export default function Grainient({
+  color1 = '#0d0c0b',
+  color2 = '#2a1409',
+  color3 = '#8c4627',
+  centerY = 0,
+  saturation = 1,
+}: {
+  color1?: string;
+  color2?: string;
+  color3?: string;
+  centerY?: number;
+  saturation?: number;
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const canvas = ref.current; if (!canvas) return;
+    const canvas = ref.current;
+    if (!canvas) return;
     const gl = canvas.getContext('webgl2', { alpha: true, antialias: false, powerPreference: 'low-power' });
-    if (!gl) { console.warn('grainient: no WebGL2, keeping the flat background'); return; }
-    const sh = (type: number, src: string) => { const s = gl.createShader(type)!; gl.shaderSource(s, src); gl.compileShader(s); return s; };
+    if (!gl) {
+      console.warn('grainient: no WebGL2, keeping the flat background');
+      return;
+    }
+    const sh = (type: number, src: string) => {
+      const s = gl.createShader(type)!;
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return s;
+    };
     const prog = gl.createProgram()!;
-    gl.attachShader(prog, sh(gl.VERTEX_SHADER, VERT)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FRAG)); gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.warn('grainient: shader failed', gl.getProgramInfoLog(prog)); return; }
+    gl.attachShader(prog, sh(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.warn('grainient: shader failed', gl.getProgramInfoLog(prog));
+      return;
+    }
     gl.useProgram(prog);
-    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    const pos = gl.getAttribLocation(prog, 'position'); gl.enableVertexAttribArray(pos); gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+    const pos = gl.getAttribLocation(prog, 'position');
+    gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
     const loc = (n: string) => gl.getUniformLocation(prog, n);
     for (const [k, v] of Object.entries(U)) gl.uniform1f(loc(k), v);
-    gl.uniform2f(loc('uCenterOffset'), 0, centerY); gl.uniform1f(loc('uSaturation'), saturation);
+    gl.uniform2f(loc('uCenterOffset'), 0, centerY);
+    gl.uniform1f(loc('uSaturation'), saturation);
     // every visit starts somewhere else: a random point in the animation and a slightly different blend angle
-    const tStart = Math.random() * 1000, angle = (Math.random() - 0.5) * 30;
+    const tStart = Math.random() * 1000,
+      angle = (Math.random() - 0.5) * 30;
     gl.uniform1f(loc('uBlendAngle'), angle);
-    gl.uniform3f(loc('uColor1'), ...rgb(color1)); gl.uniform3f(loc('uColor2'), ...rgb(color2)); gl.uniform3f(loc('uColor3'), ...rgb(color3));
-    const iTime = loc('iTime'), iRes = loc('iResolution');
+    gl.uniform3f(loc('uColor1'), ...rgb(color1));
+    gl.uniform3f(loc('uColor2'), ...rgb(color2));
+    gl.uniform3f(loc('uColor3'), ...rgb(color3));
+    const iTime = loc('iTime'),
+      iRes = loc('iResolution');
     const dpr = Math.min(devicePixelRatio || 1, 1.5);
-    const draw = (t: number) => { gl.uniform1f(iTime, t); gl.drawArrays(gl.TRIANGLES, 0, 3); };
-    const size = () => {
-      const w = Math.max(1, Math.floor(canvas.clientWidth * dpr)), h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
-      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); gl.uniform2f(iRes, w, h); }
+    const draw = (t: number) => {
+      gl.uniform1f(iTime, t);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
-    size(); draw(tStart); canvas.classList.add('is-on');
-    if (reduced()) { const ro = new ResizeObserver(() => { size(); draw(tStart); }); ro.observe(canvas); return () => ro.disconnect(); }
-    let raf = 0, seen = true, shown = !document.hidden; const t0 = performance.now();
-    const loop = (now: number) => { size(); draw(tStart + (now - t0) / 1000); raf = requestAnimationFrame(loop); };
-    const start = () => { if (seen && shown && !raf) raf = requestAnimationFrame(loop); };
-    const stop = () => { if (raf) { cancelAnimationFrame(raf); raf = 0; } };
-    const io = new IntersectionObserver(([e]) => { seen = e.isIntersecting; seen ? start() : stop(); }); io.observe(canvas);
-    const vis = () => { shown = !document.hidden; shown ? start() : stop(); };
+    const size = () => {
+      const w = Math.max(1, Math.floor(canvas.clientWidth * dpr)),
+        h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+        gl.viewport(0, 0, w, h);
+        gl.uniform2f(iRes, w, h);
+      }
+    };
+    size();
+    draw(tStart);
+    canvas.classList.add('is-on');
+    if (reduced()) {
+      const ro = new ResizeObserver(() => {
+        size();
+        draw(tStart);
+      });
+      ro.observe(canvas);
+      return () => ro.disconnect();
+    }
+    let raf = 0,
+      seen = true,
+      shown = !document.hidden;
+    const t0 = performance.now();
+    const loop = (now: number) => {
+      size();
+      draw(tStart + (now - t0) / 1000);
+      raf = requestAnimationFrame(loop);
+    };
+    const start = () => {
+      if (seen && shown && !raf) raf = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+    const io = new IntersectionObserver(([e]) => {
+      seen = e.isIntersecting;
+      seen ? start() : stop();
+    });
+    io.observe(canvas);
+    const vis = () => {
+      shown = !document.hidden;
+      shown ? start() : stop();
+    };
     document.addEventListener('visibilitychange', vis);
     document.addEventListener('astro:before-swap', stop, { once: true }); // view transition leaves the page: no orphan loop
     start();
-    return () => { stop(); io.disconnect(); document.removeEventListener('visibilitychange', vis); };
+    return () => {
+      stop();
+      io.disconnect();
+      document.removeEventListener('visibilitychange', vis);
+    };
   }, [color1, color2, color3, centerY, saturation]);
   return <canvas ref={ref} class="grainient" aria-hidden="true" />;
 }

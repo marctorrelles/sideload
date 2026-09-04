@@ -16,27 +16,58 @@ export function buildQuery(t: { name: string; artists: string[] }): string {
 }
 /** Global cache key: primary artist | title, lowercase, accents stripped, punctuation collapsed. */
 export function cacheKey(t: { name: string; artists: string[] }): string {
-  return `${t.artists[0] ?? ''}|${stripFeat(t.name)}`.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(/[^\p{L}\p{N}|]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  return `${t.artists[0] ?? ''}|${stripFeat(t.name)}`
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .replace(/[^\p{L}\p{N}|]+/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 /** Lowercase, accents stripped, punctuation collapsed: "The Rite Place - Crazy P Remix" equals "The Rite Place (Crazy P Remix)", "S-Tone" equals "STone". */
-const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(/['’\-]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .replace(/['’\-]/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim();
 /** Sørensen–Dice over character bigrams of the normalised strings, 0..1. ponytail: close enough to difflib.ratio for titles; swap for Levenshtein if calibration says so. */
 export function similarity(a: string, b: string): number {
-  const A = norm(a), B = norm(b);
+  const A = norm(a),
+    B = norm(b);
   if (!A || !B) return 0;
   if (A === B) return 1;
-  const grams = (s: string) => { const m = new Map<string, number>(); for (let i = 0; i < s.length - 1; i++) { const g = s.slice(i, i + 2); m.set(g, (m.get(g) ?? 0) + 1); } return m; };
-  const ga = grams(A), gb = grams(B);
+  const grams = (s: string) => {
+    const m = new Map<string, number>();
+    for (let i = 0; i < s.length - 1; i++) {
+      const g = s.slice(i, i + 2);
+      m.set(g, (m.get(g) ?? 0) + 1);
+    }
+    return m;
+  };
+  const ga = grams(A),
+    gb = grams(B);
   let hit = 0;
   for (const [g, n] of ga) hit += Math.min(n, gb.get(g) ?? 0);
   return (2 * hit) / (Math.max(A.length - 1, 1) + Math.max(B.length - 1, 1));
 }
-export interface Scored { r: SearchSong; score: number; titleSim: number; artistSim: number; durationDelta: number | null }
+export interface Scored {
+  r: SearchSong;
+  score: number;
+  titleSim: number;
+  artistSim: number;
+  durationDelta: number | null;
+}
 export function score(t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'durationMs'>, r: SearchSong): Scored {
   const title = r.isSong ? r.title : (r.title.split(' - ')[1] ?? r.title); // videos are often "Artist - Title"
   const titleSim = similarity(stripFeat(title), stripFeat(t.name));
   // Spotify lists every artist, YouTube usually one (the rest go into the title as feat.): best pair wins over the joined strings
-  const artistSim = Math.max(similarity(r.artists.join(' '), t.artists.join(' ')), ...r.artists.flatMap(a => t.artists.map(b => similarity(a, b))));
+  const artistSim = Math.max(
+    similarity(r.artists.join(' '), t.artists.join(' ')),
+    ...r.artists.flatMap((a) => t.artists.map((b) => similarity(a, b))),
+  );
   const parts = [titleSim, artistSim];
   let durationDelta: number | null = null;
   if (r.durationSec && t.durationMs) {
@@ -46,15 +77,33 @@ export function score(t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'dura
   // Album agreement breaks ties between same-title candidates (original vs compilation or cover). At full weight it outvoted
   // the title: calibration 2026-09-03 had "Shake Body (French)" from the right album beat "Shake Body" from the single.
   if (r.isSong && r.album && t.album) parts.push(similarity(r.album, t.album) * 0.3);
-  return { r, titleSim, artistSim, durationDelta, score: (parts.reduce((a, b) => a + b, 0) / parts.length) * (r.isSong ? 2 : 1) };
+  return {
+    r,
+    titleSim,
+    artistSim,
+    durationDelta,
+    score: (parts.reduce((a, b) => a + b, 0) / parts.length) * (r.isSong ? 2 : 1),
+  };
 }
 /** plausible: worth showing as "closest" in the review list. Below it the suggestion is a different song and "Use closest" only adds mistakes. */
-export interface Match { best: SearchSong | null; confident: boolean; plausible: boolean; score: number }
-export function pickBest(t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'durationMs'>, results: SearchSong[]): Match {
-  const scored = results.filter(r => !r.unavailable && r.title).map(r => score(t, r)).sort((a, b) => b.score - a.score);
+export interface Match {
+  best: SearchSong | null;
+  confident: boolean;
+  plausible: boolean;
+  score: number;
+}
+export function pickBest(
+  t: Pick<SpotifyTrack, 'name' | 'artists' | 'album' | 'durationMs'>,
+  results: SearchSong[],
+): Match {
+  const scored = results
+    .filter((r) => !r.unavailable && r.title)
+    .map((r) => score(t, r))
+    .sort((a, b) => b.score - a.score);
   const top = scored[0];
   if (!top) return { best: null, confident: false, plausible: false, score: 0 };
-  const confident = top.titleSim >= 0.6 && top.artistSim >= 0.5 && (top.durationDelta === null || top.durationDelta <= 15);
+  const confident =
+    top.titleSim >= 0.6 && top.artistSim >= 0.5 && (top.durationDelta === null || top.durationDelta <= 15);
   const plausible = confident || (top.titleSim >= 0.5 && top.artistSim >= 0.3) || top.titleSim >= 0.8;
   return { best: top.r, confident, plausible, score: top.score };
 }

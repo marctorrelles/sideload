@@ -3,66 +3,237 @@
 import Grainient from '../islands/Grainient';
 import Stats from '../islands/Stats';
 import Base from '../layouts/Base.astro';
-const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Sideload', applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, description: 'Move playlists, liked songs, albums and artists from Spotify to YouTube Music. Free, no song limit, open source, nothing kept. Misses come back as a list, not lost.', url: 'https://sideload.marctorrelles.com', author: { '@type': 'Person', name: 'Marc Torrelles', url: 'https://marctorrelles.com' }, license: 'https://opensource.org/license/mit' };
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Sideload',
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description:
+    'Move playlists, liked songs, albums and artists from Spotify to YouTube Music. Free, no song limit, open source, nothing kept. Misses come back as a list, not lost.',
+  url: 'https://sideload.marctorrelles.com',
+  author: { '@type': 'Person', name: 'Marc Torrelles', url: 'https://marctorrelles.com' },
+  license: 'https://opensource.org/license/mit',
+};
 ---
-<Base title="Sideload · Spotify to YouTube Music, free and open source" description="Move playlists, liked songs, albums and artists from Spotify to YouTube Music. Free, no song limit, open source, nothing kept. Misses come back as a list, not lost." jsonLd={jsonLd}>
+
+<Base
+  title="Sideload · Spotify to YouTube Music, free and open source"
+  description="Move playlists, liked songs, albums and artists from Spotify to YouTube Music. Free, no song limit, open source, nothing kept. Misses come back as a list, not lost."
+  jsonLd={jsonLd}
+>
   <section class="hero">
     <div class="hero__bg" transition:animate="fade"><Grainient centerY={0.12} saturation={0.9} client:visible /></div>
     <div class="container hero__in">
       <p class="eyebrow hero__eyebrow">Spotify → YouTube Music · free · open source</p>
       <h1 class="h1 hero__h1">Ten years of playlists.<br />Moved over lunch.</h1>
-      <p class="lede hero__lede">Move your Spotify library to YouTube Music. No song limit, no account, nothing kept.</p>
-      <a class="btn hero__cta" href="/connect"><span class="cta__a">Start a transfer</span><span class="cta__b" aria-hidden="true">Start a transfer</span></a>
+      <p class="lede hero__lede">
+        Move your Spotify library to YouTube Music. No song limit, no account, nothing kept.
+      </p>
+      <a class="btn hero__cta" href="/connect"
+        ><span class="cta__a">Start a transfer</span><span class="cta__b" aria-hidden="true">Start a transfer</span></a
+      >
     </div>
   </section>
   <section class="how" aria-label="How it works">
-    <div class="container"><Stats client:idle /><div class="how__grid">
-      <div><p class="eyebrow"><span class="c-accent">01</span> · Connect</p><p>Spotify, read-only. Then YouTube Music, with your Google account.</p></div>
-      <div><p class="eyebrow"><span class="c-accent">02</span> · Choose</p><p>Tick what's worth keeping. Leave the algorithm's stuff behind.</p></div>
-      <div><p class="eyebrow"><span class="c-accent">03</span> · Walk away</p><p>Close the tab. Come back to a finished library.</p></div>
-    </div></div>
+    <div class="container">
+      <Stats client:idle /><div class="how__grid">
+        <div>
+          <p class="eyebrow"><span class="c-accent">01</span> · Connect</p><p>
+            Spotify, read-only. Then YouTube Music, with your Google account.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow"><span class="c-accent">02</span> · Choose</p><p>
+            Tick what's worth keeping. Leave the algorithm's stuff behind.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow"><span class="c-accent">03</span> · Walk away</p><p>
+            Close the tab. Come back to a finished library.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 </Base>
 <style>
-  .hero { position: relative; overflow: hidden; clip-path: inset(0); }
-  .hero__bg { position: absolute; inset: 0; z-index: 0; }
-  .hero__bg::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(to bottom, transparent, var(--bg)); }
-  .hero__bg :global(.grainient) { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 1.6s ease; }
-  .hero__bg :global(.grainient.is-on) { opacity: 1; }
-  .hero__in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 92px; padding-bottom: 80px; }
-  .hero__eyebrow { color: var(--accent); margin: 0 0 28px; }
-  .hero__h1 { font-size: clamp(32px, 9.2vw, 64px); width: 100%; text-wrap: initial; }
-  .hero__lede { max-width: 50ch; margin: 26px 0 0; font-size: 20px; }
-  .hero__cta { margin-top: 40px; padding: 19px 36px; font-size: 17px; position: relative; overflow: hidden; }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    clip-path: inset(0);
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero__bg::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+  }
+  .hero__bg :global(.grainient) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.6s ease;
+  }
+  .hero__bg :global(.grainient.is-on) {
+    opacity: 1;
+  }
+  .hero__in {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 92px;
+    padding-bottom: 80px;
+  }
+  .hero__eyebrow {
+    color: var(--accent);
+    margin: 0 0 28px;
+  }
+  .hero__h1 {
+    font-size: clamp(32px, 9.2vw, 64px);
+    width: 100%;
+    text-wrap: initial;
+  }
+  .hero__lede {
+    max-width: 50ch;
+    margin: 26px 0 0;
+    font-size: 20px;
+  }
+  .hero__cta {
+    margin-top: 40px;
+    padding: 19px 36px;
+    font-size: 17px;
+    position: relative;
+    overflow: hidden;
+  }
   /* hover: the label leaves to the right while a second copy comes in from the left; leaving the button plays it backwards (transitions, so nothing replays at load) */
-  .cta__a, .cta__b { display: block; width: 100%; text-align: center; transition: transform .22s var(--ease); } /* both copies span the button, so 100% plus the padding clears the edge at every width */
-  .cta__b { position: absolute; inset: 0; display: grid; place-items: center; transform: translateX(calc(-100% - 40px)); }
-  .hero__cta:hover .cta__a { transform: translateX(calc(100% + 40px)); }
-  .hero__cta:hover .cta__b { transform: translateX(0); }
-  .how :global(.stats) { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--hairline-strong); border-bottom: 0; }
-  .how :global(.stats > div) { display: flex; flex-direction: column; gap: 16px; padding: 32px 22px 30px; border-left: 1px solid var(--hairline); }
-  .how :global(.stats > div:first-child) { border-left: 0; }
-  .how :global(.stats .stat) { font-size: 34px; }
-  .how :global(.stats .eyebrow) { color: var(--fg-3); }
-  .how__grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--hairline-strong); margin-bottom: 48px; }
-  .how__grid > div { padding: 26px 22px 30px; border-left: 1px solid var(--hairline); }
-  .how__grid > div:first-child { border-left: 0; }
-  .how__grid .eyebrow { margin: 0 0 12px; color: var(--fg-3); }
-  .how__grid p:not(.eyebrow) { margin: 0; font: 400 16px/1.5 var(--font-ui); color: var(--fg-2); max-width: 36ch; }
+  .cta__a,
+  .cta__b {
+    display: block;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.22s var(--ease);
+  } /* both copies span the button, so 100% plus the padding clears the edge at every width */
+  .cta__b {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transform: translateX(calc(-100% - 40px));
+  }
+  .hero__cta:hover .cta__a {
+    transform: translateX(calc(100% + 40px));
+  }
+  .hero__cta:hover .cta__b {
+    transform: translateX(0);
+  }
+  .how :global(.stats) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--hairline-strong);
+    border-bottom: 0;
+  }
+  .how :global(.stats > div) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 22px 30px;
+    border-left: 1px solid var(--hairline);
+  }
+  .how :global(.stats > div:first-child) {
+    border-left: 0;
+  }
+  .how :global(.stats .stat) {
+    font-size: 34px;
+  }
+  .how :global(.stats .eyebrow) {
+    color: var(--fg-3);
+  }
+  .how__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--hairline-strong);
+    margin-bottom: 48px;
+  }
+  .how__grid > div {
+    padding: 26px 22px 30px;
+    border-left: 1px solid var(--hairline);
+  }
+  .how__grid > div:first-child {
+    border-left: 0;
+  }
+  .how__grid .eyebrow {
+    margin: 0 0 12px;
+    color: var(--fg-3);
+  }
+  .how__grid p:not(.eyebrow) {
+    margin: 0;
+    font: 400 16px/1.5 var(--font-ui);
+    color: var(--fg-2);
+    max-width: 36ch;
+  }
   @media (max-width: 900px) {
-    .hero__in { padding-top: 54px; padding-bottom: 46px; }
-    .hero__lede { font-size: 17px; margin-top: 20px; }
-    .how :global(.stats) { grid-template-columns: 1fr 1fr; }
-    .how :global(.stats > div) { padding: 22px 16px; gap: 12px; }
-    .how :global(.stats > div:nth-child(3)) { border-left: 0; }
-    .how :global(.stats > div:nth-child(n+3)) { border-top: 1px solid var(--hairline); }
-    .how :global(.stats .stat) { font-size: 28px; } .how :global(.stats .eyebrow) { font-size: 11px; }
-    .how__grid { grid-template-columns: 1fr; margin-bottom: 32px; }
-    .how__grid > div { border-left: 0; border-top: 1px solid var(--hairline); padding: 18px 16px 20px; }
-    .how__grid > div:first-child { border-top: 0; }
+    .hero__in {
+      padding-top: 54px;
+      padding-bottom: 46px;
+    }
+    .hero__lede {
+      font-size: 17px;
+      margin-top: 20px;
+    }
+    .how :global(.stats) {
+      grid-template-columns: 1fr 1fr;
+    }
+    .how :global(.stats > div) {
+      padding: 22px 16px;
+      gap: 12px;
+    }
+    .how :global(.stats > div:nth-child(3)) {
+      border-left: 0;
+    }
+    .how :global(.stats > div:nth-child(n + 3)) {
+      border-top: 1px solid var(--hairline);
+    }
+    .how :global(.stats .stat) {
+      font-size: 28px;
+    }
+    .how :global(.stats .eyebrow) {
+      font-size: 11px;
+    }
+    .how__grid {
+      grid-template-columns: 1fr;
+      margin-bottom: 32px;
+    }
+    .how__grid > div {
+      border-left: 0;
+      border-top: 1px solid var(--hairline);
+      padding: 18px 16px 20px;
+    }
+    .how__grid > div:first-child {
+      border-top: 0;
+    }
   }
   @media (max-width: 600px) {
-    .hero__lede { font-size: 16px; line-height: 1.55; }
-    .hero__eyebrow { font-size: 11px; letter-spacing: .08em; }
+    .hero__lede {
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .hero__eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
   }
 </style>

@@ -3,7 +3,13 @@ import type { Context, MiddlewareHandler } from 'hono';
 import type { Env, RateLimit } from './env';
 
 export class HttpError extends Error {
-  constructor(public status: 400 | 401 | 403 | 404 | 409 | 413 | 429, public code: string, message?: string) { super(message ?? code); }
+  constructor(
+    public status: 400 | 401 | 403 | 404 | 409 | 413 | 429,
+    public code: string,
+    message?: string,
+  ) {
+    super(message ?? code);
+  }
 }
 type App = { Bindings: Env };
 
@@ -34,12 +40,18 @@ export const sameOrigin: MiddlewareHandler<App> = async (c, next) => {
   await next();
 };
 
-export const rateLimit = (binding: 'RL_AUTH' | 'RL_JOB_CREATE' | 'RL_READ' | 'RL_SEARCH', keyFn?: (c: Context<App>) => string): MiddlewareHandler<App> => async (c, next) => {
-  const rl = c.env[binding] as RateLimit | undefined;
-  if (rl) { // binding absent → no limit (recent wrangler/miniflare do provide working local limiters in tests; keep test call counts under the configured limits)
-    const key = keyFn ? keyFn(c) : (c.req.header('CF-Connecting-IP') ?? 'local');
-    const { success } = await rl.limit({ key });
-    if (!success) throw new HttpError(429, 'rate_limited', 'Too many requests. Try again in a minute.');
-  }
-  await next();
-};
+export const rateLimit =
+  (
+    binding: 'RL_AUTH' | 'RL_JOB_CREATE' | 'RL_READ' | 'RL_SEARCH',
+    keyFn?: (c: Context<App>) => string,
+  ): MiddlewareHandler<App> =>
+  async (c, next) => {
+    const rl = c.env[binding] as RateLimit | undefined;
+    if (rl) {
+      // binding absent → no limit (recent wrangler/miniflare do provide working local limiters in tests; keep test call counts under the configured limits)
+      const key = keyFn ? keyFn(c) : (c.req.header('CF-Connecting-IP') ?? 'local');
+      const { success } = await rl.limit({ key });
+      if (!success) throw new HttpError(429, 'rate_limited', 'Too many requests. Try again in a minute.');
+    }
+    await next();
+  };

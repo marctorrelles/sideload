@@ -1,7 +1,18 @@
 // worker/test/innertube.test.ts
 import { describe, it, expect, beforeAll, afterEach } from 'vitest';
 import { fetchMock } from './fetch-mock';
-import { InnerTube, parseSong, parseAlbum, parseArtist, parseDuration, shelves, ThrottleError, AuthError, SEARCH_PARAMS, msUntilQuotaReset } from '../src/innertube';
+import {
+  InnerTube,
+  parseSong,
+  parseAlbum,
+  parseArtist,
+  parseDuration,
+  shelves,
+  ThrottleError,
+  AuthError,
+  SEARCH_PARAMS,
+  msUntilQuotaReset,
+} from '../src/innertube';
 import songs from './fixtures/innertube-search-songs.json';
 import albums from './fixtures/innertube-search-albums.json';
 import artists from './fixtures/innertube-search-artists.json';
@@ -16,7 +27,10 @@ import subscribed from './fixtures/innertube-subscribe.json';
 import created from './fixtures/data-playlist-insert.json';
 import items from './fixtures/data-playlist-items.json';
 import itemsLL from './fixtures/data-playlist-items-ll.json';
-beforeAll(() => { fetchMock.activate(); fetchMock.disableNetConnect(); });
+beforeAll(() => {
+  fetchMock.activate();
+  fetchMock.disableNetConnect();
+});
 afterEach(() => fetchMock.assertNoPendingInterceptors());
 const music = () => fetchMock.get('https://music.youtube.com');
 const tv = () => fetchMock.get('https://www.youtube.com');
@@ -38,31 +52,76 @@ describe('parsers (recorded fixtures)', () => {
   it('parses the Android app client shapes (recorded from the edge 2026-09-03)', () => {
     const s = shelves(androidSongs).map(parseSong).filter(Boolean);
     expect(s.length).toBe(20);
-    expect(s[0]).toMatchObject({ videoId: 'sWcLccMuCA8', title: 'Xtal', artists: ['Aphex Twin'], album: null, durationSec: 294, isSong: true, unavailable: false });
+    expect(s[0]).toMatchObject({
+      videoId: 'sWcLccMuCA8',
+      title: 'Xtal',
+      artists: ['Aphex Twin'],
+      album: null,
+      durationSec: 294,
+      isSong: true,
+      unavailable: false,
+    });
     const v = shelves(androidVideos).map(parseSong).filter(Boolean);
-    expect(v[0]!.isSong).toBe(false); expect(v[0]!.durationSec).toBe(295);
-    expect(v.find(x => x!.title.includes('slowed'))!.artists).toEqual([]); // "0 views • 7:14" is not an artist
+    expect(v[0]!.isSong).toBe(false);
+    expect(v[0]!.durationSec).toBe(295);
+    expect(v.find((x) => x!.title.includes('slowed'))!.artists).toEqual([]); // "0 views • 7:14" is not an artist
     const a = shelves(androidAlbums).map(parseAlbum).filter(Boolean);
-    expect(a[0]).toMatchObject({ browseId: 'MPREb_gaJgUErCmNd', title: 'Selected Ambient Works 85-92', artists: ['Aphex Twin'], playlistId: expect.stringMatching(/^OLAK5uy_/) });
-    expect(shelves(androidArtists).map(parseArtist).filter(Boolean)[0]).toMatchObject({ channelId: expect.stringMatching(/^UC/), name: 'Aphex Twin' });
+    expect(a[0]).toMatchObject({
+      browseId: 'MPREb_gaJgUErCmNd',
+      title: 'Selected Ambient Works 85-92',
+      artists: ['Aphex Twin'],
+      playlistId: expect.stringMatching(/^OLAK5uy_/),
+    });
+    expect(shelves(androidArtists).map(parseArtist).filter(Boolean)[0]).toMatchObject({
+      channelId: expect.stringMatching(/^UC/),
+      name: 'Aphex Twin',
+    });
     expect(shelves(albums).map(parseAlbum).filter(Boolean)[0]!.playlistId).toMatch(/^OLAK5uy_/); // the web shape carries it too
   });
   it('does not throw on a result without artist links', () => {
-    expect(() => parseSong({ playlistItemData: { videoId: 'abcdefghijk' }, flexColumns: [{ musicResponsiveListItemFlexColumnRenderer: { text: { runs: [{ text: 'T' }] } } }] })).not.toThrow();
+    expect(() =>
+      parseSong({
+        playlistItemData: { videoId: 'abcdefghijk' },
+        flexColumns: [{ musicResponsiveListItemFlexColumnRenderer: { text: { runs: [{ text: 'T' }] } } }],
+      }),
+    ).not.toThrow();
   });
-  it('parseDuration', () => { expect(parseDuration('3:45')).toBe(225); expect(parseDuration('1:02:03')).toBe(3723); expect(parseDuration('Song')).toBeNull(); });
-  it('msUntilQuotaReset is within a day', () => { const ms = msUntilQuotaReset(); expect(ms).toBeGreaterThan(60_000); expect(ms).toBeLessThanOrEqual(86_460_000); });
+  it('parseDuration', () => {
+    expect(parseDuration('3:45')).toBe(225);
+    expect(parseDuration('1:02:03')).toBe(3723);
+    expect(parseDuration('Song')).toBeNull();
+  });
+  it('msUntilQuotaReset is within a day', () => {
+    const ms = msUntilQuotaReset();
+    expect(ms).toBeGreaterThan(60_000);
+    expect(ms).toBeLessThanOrEqual(86_460_000);
+  });
 });
 
 describe('client', () => {
   it('search is anonymous ANDROID_MUSIC on music.youtube.com (no bearer, even with a token)', async () => {
-    music().intercept({ ...SEARCH, headers: noAuth, body: b => { const j = JSON.parse(String(b)); return j.params === SEARCH_PARAMS.songs && j.context.client.clientName === 'ANDROID_MUSIC'; } }).reply(200, androidSongs);
+    music()
+      .intercept({
+        ...SEARCH,
+        headers: noAuth,
+        body: (b) => {
+          const j = JSON.parse(String(b));
+          return j.params === SEARCH_PARAMS.songs && j.context.client.clientName === 'ANDROID_MUSIC';
+        },
+      })
+      .reply(200, androidSongs);
     const r = await new InnerTube('T').searchSongs('Aphex Twin Xtal');
     expect(r.length).toBe(20);
   });
   it('retries the app clients on an abuse page, then the web client, and only then throttles', async () => {
     const clients: string[] = [];
-    const seen = { ...SEARCH, body: (b: string) => { clients.push(JSON.parse(String(b)).context.client.clientName); return true; } };
+    const seen = {
+      ...SEARCH,
+      body: (b: string) => {
+        clients.push(JSON.parse(String(b)).context.client.clientName);
+        return true;
+      },
+    };
     music().intercept(seen).reply(403, '<html><title>Sorry...</title></html>');
     music().intercept(seen).reply(200, androidSongs);
     expect((await new InnerTube(null, { retryDelayMs: 0 }).searchSongs('Aphex Twin Xtal')).length).toBe(20);
@@ -75,25 +134,72 @@ describe('client', () => {
   it('albums, artists, album → playlist id', async () => {
     music().intercept(SEARCH).reply(200, albums);
     const a = await new InnerTube(null).searchAlbums('Aphex Twin Selected Ambient Works');
-    expect(a[0]!.browseId).toMatch(/^MPRE/); expect(a[0]!.artists).toContain('Aphex Twin'); expect(a[0]!.playlistId).toMatch(/^OLAK5uy_/);
+    expect(a[0]!.browseId).toMatch(/^MPRE/);
+    expect(a[0]!.artists).toContain('Aphex Twin');
+    expect(a[0]!.playlistId).toMatch(/^OLAK5uy_/);
     music().intercept(SEARCH).reply(200, artists);
-    expect((await new InnerTube(null).searchArtists('Aphex Twin'))[0]).toMatchObject({ channelId: expect.stringMatching(/^UC/), name: 'Aphex Twin' });
-    music().intercept({ path: p => p.startsWith('/youtubei/v1/browse'), method: 'POST', headers: noAuth }).reply(200, album);
+    expect((await new InnerTube(null).searchArtists('Aphex Twin'))[0]).toMatchObject({
+      channelId: expect.stringMatching(/^UC/),
+      name: 'Aphex Twin',
+    });
+    music()
+      .intercept({ path: (p) => p.startsWith('/youtubei/v1/browse'), method: 'POST', headers: noAuth })
+      .reply(200, album);
     expect(await new InnerTube(null).albumPlaylistId('MPREb_gaJgUErCmNd')).toMatch(/^OLAK5uy_/);
   });
   it('creates playlists through the Data API (the TV client cannot)', async () => {
-    data().intercept({ path: '/youtube/v3/playlists?part=snippet,status', method: 'POST', headers: { authorization: 'Bearer T' }, body: b => { const j = JSON.parse(String(b)); return j.snippet.title === 'x' && j.status.privacyStatus === 'private'; } }).reply(200, created);
+    data()
+      .intercept({
+        path: '/youtube/v3/playlists?part=snippet,status',
+        method: 'POST',
+        headers: { authorization: 'Bearer T' },
+        body: (b) => {
+          const j = JSON.parse(String(b));
+          return j.snippet.title === 'x' && j.status.privacyStatus === 'private';
+        },
+      })
+      .reply(200, created);
     expect(await new InnerTube('T').createPlaylist('x', '', 'PRIVATE')).toBe((created as any).id);
   });
   it('adds, likes, saves albums and subscribes through TVHTML5 with the bearer token', async () => {
     const withAuth = { authorization: 'Bearer T' };
-    tv().intercept({ path: p => p.startsWith('/youtubei/v1/browse/edit_playlist'), method: 'POST', headers: withAuth, body: b => { const j = JSON.parse(String(b)); return j.actions.length === 2 && j.context.client.clientName === 'TVHTML5'; } }).reply(200, edited);
+    tv()
+      .intercept({
+        path: (p) => p.startsWith('/youtubei/v1/browse/edit_playlist'),
+        method: 'POST',
+        headers: withAuth,
+        body: (b) => {
+          const j = JSON.parse(String(b));
+          return j.actions.length === 2 && j.context.client.clientName === 'TVHTML5';
+        },
+      })
+      .reply(200, edited);
     await new InnerTube('T').addPlaylistItems('PL', ['aaaaaaaaaaa', 'bbbbbbbbbbb']);
-    tv().intercept({ path: p => p.startsWith('/youtubei/v1/like/like'), method: 'POST', headers: withAuth, body: b => JSON.parse(String(b)).target.videoId === 'aaaaaaaaaaa' }).reply(200, liked);
+    tv()
+      .intercept({
+        path: (p) => p.startsWith('/youtubei/v1/like/like'),
+        method: 'POST',
+        headers: withAuth,
+        body: (b) => JSON.parse(String(b)).target.videoId === 'aaaaaaaaaaa',
+      })
+      .reply(200, liked);
     await new InnerTube('T').like('aaaaaaaaaaa');
-    tv().intercept({ path: p => p.startsWith('/youtubei/v1/like/like'), method: 'POST', headers: withAuth, body: b => JSON.parse(String(b)).target.playlistId === 'OLAK5uy_x' }).reply(200, liked);
+    tv()
+      .intercept({
+        path: (p) => p.startsWith('/youtubei/v1/like/like'),
+        method: 'POST',
+        headers: withAuth,
+        body: (b) => JSON.parse(String(b)).target.playlistId === 'OLAK5uy_x',
+      })
+      .reply(200, liked);
     await new InnerTube('T').likePlaylist('OLAK5uy_x');
-    tv().intercept({ path: p => p.startsWith('/youtubei/v1/subscription/subscribe'), method: 'POST', headers: withAuth }).reply(200, subscribed);
+    tv()
+      .intercept({
+        path: (p) => p.startsWith('/youtubei/v1/subscription/subscribe'),
+        method: 'POST',
+        headers: withAuth,
+      })
+      .reply(200, subscribed);
     await new InnerTube('T').subscribe('UCx');
   });
   it('refuses writes without a token', async () => {
@@ -101,21 +207,40 @@ describe('client', () => {
     await expect(new InnerTube(null).createPlaylist('x', '', 'PRIVATE')).rejects.toBeInstanceOf(AuthError);
   });
   it('reads a playlist back across Data API pages (set semantics)', async () => {
-    const page = (ids: string[], next?: string) => ({ items: ids.map(videoId => ({ contentDetails: { videoId } })), ...(next ? { nextPageToken: next } : {}) });
-    data().intercept({ path: p => p.startsWith('/youtube/v3/playlistItems?') && p.includes('playlistId=PLx') && !p.includes('pageToken'), headers: { authorization: 'Bearer T' } }).reply(200, page(['aaaaaaaaaaa'], 'p2'));
-    data().intercept({ path: p => p.startsWith('/youtube/v3/playlistItems?') && p.includes('pageToken=p2') }).reply(200, page(['bbbbbbbbbbb', 'aaaaaaaaaaa']));
+    const page = (ids: string[], next?: string) => ({
+      items: ids.map((videoId) => ({ contentDetails: { videoId } })),
+      ...(next ? { nextPageToken: next } : {}),
+    });
+    data()
+      .intercept({
+        path: (p) =>
+          p.startsWith('/youtube/v3/playlistItems?') && p.includes('playlistId=PLx') && !p.includes('pageToken'),
+        headers: { authorization: 'Bearer T' },
+      })
+      .reply(200, page(['aaaaaaaaaaa'], 'p2'));
+    data()
+      .intercept({ path: (p) => p.startsWith('/youtube/v3/playlistItems?') && p.includes('pageToken=p2') })
+      .reply(200, page(['bbbbbbbbbbb', 'aaaaaaaaaaa']));
     expect([...(await new InnerTube('T').playlistVideoIds('PLx'))].sort()).toEqual(['aaaaaaaaaaa', 'bbbbbbbbbbb']);
   });
   it('parses the recorded read-back fixtures (LL = liked videos)', async () => {
-    data().intercept({ path: p => p.includes('playlistId=PLYoHQq7hLMGg') }).reply(200, items);
+    data()
+      .intercept({ path: (p) => p.includes('playlistId=PLYoHQq7hLMGg') })
+      .reply(200, items);
     expect(await new InnerTube('T').playlistVideoIds('PLYoHQq7hLMGg')).toEqual(new Set(['sWcLccMuCA8']));
-    data().intercept({ path: p => p.includes('playlistId=LL') && !p.includes('pageToken') }).reply(200, itemsLL);
-    data().intercept({ path: p => p.includes('playlistId=LL') && p.includes('pageToken=') }).reply(200, { items: [] });
+    data()
+      .intercept({ path: (p) => p.includes('playlistId=LL') && !p.includes('pageToken') })
+      .reply(200, itemsLL);
+    data()
+      .intercept({ path: (p) => p.includes('playlistId=LL') && p.includes('pageToken=') })
+      .reply(200, { items: [] });
     expect((await new InnerTube('T').likedVideoIds()).size).toBe(3);
   });
   it('treats a hang as a retryable failure (D17)', async () => {
     music().intercept(SEARCH).reply(200, songs).delay(300).times(5); // every client hangs
-    await expect(new InnerTube(null, { timeoutMs: 50, retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
+    await expect(new InnerTube(null, { timeoutMs: 50, retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(
+      ThrottleError,
+    );
   });
   it('maps InnerTube 401 → AuthError; 429/5xx/HTML-200/abuse-page-403 → ThrottleError', async () => {
     music().intercept(SEARCH).reply(401, {});
@@ -126,17 +251,26 @@ describe('client', () => {
     await expect(new InnerTube(null, { retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
     music().intercept(SEARCH).reply(403, '<html><head><title>Sorry...</title></head></html>').times(5);
     await expect(new InnerTube(null, { retryDelayMs: 0 }).searchSongs('x')).rejects.toBeInstanceOf(ThrottleError);
-    tv().intercept({ path: p => p.startsWith('/youtubei/v1/like/like'), method: 'POST' }).reply(403, { error: { code: 403, status: 'PERMISSION_DENIED' } });
+    tv()
+      .intercept({ path: (p) => p.startsWith('/youtubei/v1/like/like'), method: 'POST' })
+      .reply(403, { error: { code: 403, status: 'PERMISSION_DENIED' } });
     await expect(new InnerTube('T').like('aaaaaaaaaaa')).rejects.toBeInstanceOf(AuthError);
   });
   it('maps Data API quota → ThrottleError until the reset; 401/403 → AuthError', async () => {
     const q = { error: { code: 403, errors: [{ reason: 'quotaExceeded' }], message: 'quota' } };
-    data().intercept({ path: p => p.startsWith('/youtube/v3/playlists'), method: 'POST' }).reply(403, q);
-    const e = await new InnerTube('T').createPlaylist('x', '', 'PRIVATE').catch(e => e);
-    expect(e).toBeInstanceOf(ThrottleError); expect((e as ThrottleError).retryAfterMs).toBeGreaterThan(60_000);
-    data().intercept({ path: p => p.startsWith('/youtube/v3/playlistItems') }).reply(401, { error: { code: 401 } });
+    data()
+      .intercept({ path: (p) => p.startsWith('/youtube/v3/playlists'), method: 'POST' })
+      .reply(403, q);
+    const e = await new InnerTube('T').createPlaylist('x', '', 'PRIVATE').catch((e) => e);
+    expect(e).toBeInstanceOf(ThrottleError);
+    expect((e as ThrottleError).retryAfterMs).toBeGreaterThan(60_000);
+    data()
+      .intercept({ path: (p) => p.startsWith('/youtube/v3/playlistItems') })
+      .reply(401, { error: { code: 401 } });
     await expect(new InnerTube('T').playlistVideoIds('PLx')).rejects.toBeInstanceOf(AuthError);
-    data().intercept({ path: p => p.startsWith('/youtube/v3/playlistItems') }).reply(403, { error: { code: 403, errors: [{ reason: 'forbidden' }] } });
+    data()
+      .intercept({ path: (p) => p.startsWith('/youtube/v3/playlistItems') })
+      .reply(403, { error: { code: 403, errors: [{ reason: 'forbidden' }] } });
     await expect(new InnerTube('T').playlistVideoIds('PLx')).rejects.toBeInstanceOf(AuthError);
   });
 });

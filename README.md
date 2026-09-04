@@ -1,4 +1,4 @@
-<img src=".github/readme/landing.webp" alt="Sideload: ten years of playlists, one afternoon saved" width="100%">
+<img src=".github/readme/landing.webp" alt="Sideload: ten years of playlists, moved over lunch" width="100%">
 
 # Sideload
 

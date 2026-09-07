@@ -12,15 +12,17 @@
       <a href="/privacy">Privacy and terms</a>
       <a href="https://github.com/marctorrelles/sideload" rel="noopener">GitHub</a>
     </nav>
-    <p class="ftr__line">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</p>
-    <p class="ftr__line made">
-      Made with ♥ by <a href="https://marctorrelles.com" rel="me noopener">Marc Torrelles</a>
-    </p>
+    <div class="ftr__small">
+      <p>Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</p>
+      <p class="made">Made with ♥ by <a href="https://marctorrelles.com" rel="me noopener">Marc Torrelles</a></p>
+    </div>
   </div>
 </footer>
 <style>
+  /* one type size for the whole footer: the hierarchy is carried by colour, not by a 1px difference */
   .ftr {
     background: var(--bg-footer);
+    font: 400 14px/1.5 var(--font-ui);
   }
   .ftr__in {
     display: flex;
@@ -35,7 +37,6 @@
     gap: 10px 24px;
   }
   .ftr__nav a {
-    font: 400 14px/1.4 var(--font-ui);
     color: var(--fg-2);
     text-decoration: none;
     transition: color var(--t-fast) ease;
@@ -44,14 +45,16 @@
     color: var(--fg);
     text-decoration: underline;
   }
-  .ftr__line {
+  .ftr__small {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ftr__small p {
     margin: 0;
-    font: 400 13px/1.5 var(--font-ui);
     color: var(--fg-4);
   }
-  /* the two small lines read as one block under the links */
   .made {
-    margin-top: -12px;
     color: var(--fg-3);
   }
   .made a {

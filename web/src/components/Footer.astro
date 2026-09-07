@@ -3,6 +3,14 @@
 ---
 
 <footer class="ftr hairline-top">
+  <nav class="container ftr__nav" aria-label="More">
+    <a href="/how-to-transfer-spotify-to-youtube-music">How it works</a>
+    <a href="/spotify-liked-songs-to-youtube-music">Liked songs</a>
+    <a href="/alternatives">Alternatives</a>
+    <a href="/faq">FAQ</a>
+    <a href="/privacy">Privacy and terms</a>
+    <a href="https://github.com/marctorrelles/sideload" rel="noopener">GitHub</a>
+  </nav>
   <div class="container ftr__in">
     <p>Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</p>
     <p class="made">Made with ♥ by <a href="https://marctorrelles.com" rel="me noopener">Marc Torrelles</a></p>
@@ -12,11 +20,27 @@
   .ftr {
     background: var(--bg-footer);
   }
+  .ftr__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    padding-top: 20px;
+  }
+  .ftr__nav a {
+    font: 400 13px/1.5 var(--font-ui);
+    color: var(--fg-3);
+    text-decoration: none;
+    transition: color var(--t-fast) ease;
+  }
+  .ftr__nav a:hover {
+    color: var(--fg);
+    text-decoration: underline;
+  }
   .ftr__in {
     display: flex;
     justify-content: space-between;
     gap: 8px;
-    padding-top: 18px;
+    padding-top: 16px;
     padding-bottom: 18px;
   }
   .ftr p {

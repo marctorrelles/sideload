@@ -1,0 +1,137 @@
+---
+// web/src/pages/spotify-liked-songs-to-youtube-music.astro: liked songs are their own query and their own hard case.
+import Base from '../layouts/Base.astro';
+const title = 'Transfer Spotify liked songs to YouTube Music, in order and free';
+const description =
+  'Move your Spotify liked songs to YouTube Music without losing the order you saved them in. Free, no song limit, and every like is read back afterwards because YouTube silently drops some.';
+const faq: [string, string][] = [
+  [
+    'Does the order of my liked songs survive?',
+    'YouTube Music sorts your likes its own way and gives you no control over it, so the order you built over ten years cannot be preserved in the likes list itself. Sideload also writes a private playlist called "Liked Songs" that keeps your Spotify order exactly, so the sequence is not lost.',
+  ],
+  [
+    'Is there a limit on how many liked songs I can move?',
+    'No. Spotify has no cap on liked songs and neither does Sideload. Most free transfer tools stop somewhere between 200 and 600 tracks per transfer, which is well under a normal liked songs list.',
+  ],
+  [
+    'Will the songs also be liked on YouTube Music, or only in a playlist?',
+    'Both. Each track is liked on YouTube Music, and the private playlist is written alongside it so you keep the order too.',
+  ],
+  [
+    'What happens to liked songs that YouTube Music does not have?',
+    'They go to the review list with the closest candidate, so you can accept it, search yourself, or skip. They are all in the CSV report either way. Nothing is dropped without telling you.',
+  ],
+];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Sideload', item: 'https://sideload.marctorrelles.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Spotify liked songs to YouTube Music' },
+    ],
+  },
+];
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <section class="container page">
+    <p class="eyebrow page__eyebrow">Guide</p>
+    <h1 class="h2">Transfer Spotify liked songs to YouTube Music</h1>
+    <p class="lede">
+      Liked songs are the hardest part of a library to move and the part people care about most. Here is what actually
+      happens to them, including the two things that go wrong everywhere else.
+    </p>
+    <p class="meta">Updated 7 September 2026.</p>
+
+    <dl class="faq prose">
+      <div class="faq__item">
+        <dt>Your order is kept, in a playlist</dt>
+        <dd>
+          <p>
+            Liked songs on Spotify are a list in the order you saved them, which for a long library is a decade of
+            history. YouTube Music's likes list does not let you control its order at all, so copying likes across
+            always loses that sequence.
+          </p>
+          <p>
+            Sideload does both halves: every track is liked on YouTube Music, and a private playlist called "Liked
+            Songs" is written with your Spotify order intact. Nothing is public unless you make it public.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>Every like is read back, because YouTube drops some</dt>
+        <dd>
+          <p>
+            YouTube's API will happily answer yes to a like and then not apply it. In the manual migration this tool
+            grew out of, 346 of 2,585 likes reported success and never took effect: about one in seven, gone quietly.
+          </p>
+          <p>
+            So Sideload reads the result back after writing and re adds whatever is missing until both sides agree. That
+            is the "checking" stage at the end of each list, and it is the whole reason this exists.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>No cap, and no paywall halfway through</dt>
+        <dd>
+          <p>
+            There is no song limit. A 12,000 track liked songs list goes through the same queue as a 200 track one. It
+            runs on the server, so you can close the tab and come back to the link later.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>The misses come back as a list</dt>
+        <dd>
+          <p>
+            About nine in ten songs match on the first try. The rest land in "Needs your review" with the closest
+            candidate: use it, search manually, or skip. Live takes and remixes that would silently collapse onto the
+            studio version are sent there on purpose rather than merged behind your back. Everything, moved or not, is
+            in the CSV report.
+          </p>
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="h3 sec">Common questions</h2>
+    <dl class="faq">
+      {
+        faq.map(([q, a]) => (
+          <div class="faq__item">
+            <>
+              <dt>{q}</dt>
+              <dd set:html={a} />
+            </>
+          </div>
+        ))
+      }
+    </dl>
+
+    <p class="page__more">
+      Liked songs move in the same run as your playlists, albums and followed artists: the <a
+        href="/how-to-transfer-spotify-to-youtube-music">full step by step guide</a
+      > covers the rest.
+    </p>
+    <a class="btn page__cta" href="/connect">Start a transfer</a>
+  </section>
+</Base>
+<style>
+  .prose p {
+    margin: 0 0 12px;
+  }
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+  .sec {
+    margin: 46px 0 0;
+  }
+  .page__cta {
+    margin-top: 40px;
+  }
+</style>

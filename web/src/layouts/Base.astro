@@ -16,7 +16,9 @@ interface Props {
   jsonLd?: object;
 }
 const { title, description, step, noindex = false, jsonLd } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+// build.format: 'preserve' makes pathname '/faq.html'; the Worker serves that at '/faq' and redirects the .html
+// form there, so the canonical (and og:url, and the sitemap) must be the extensionless URL.
+const canonical = new URL(Astro.url.pathname.replace(/(?:index)?\.html$/, ''), Astro.site);
 ---
 
 <html lang="en">
@@ -33,6 +35,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL('/og.jpg', Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sideload: move a Spotify library to YouTube Music" />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#121110" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

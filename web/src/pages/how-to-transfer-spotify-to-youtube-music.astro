@@ -1,0 +1,229 @@
+---
+// web/src/pages/how-to-transfer-spotify-to-youtube-music.astro: the long-tail "how do I do this" guide.
+// Targets the informational query; the landing page targets the transactional one, so the H1s stay distinct.
+import Base from '../layouts/Base.astro';
+const title = 'How to transfer Spotify playlists to YouTube Music (free, 2026)';
+const description =
+  'A step by step guide to moving Spotify playlists, liked songs, albums and followed artists to YouTube Music for free, with no song limit and no account. What moves, what does not, and how long it takes.';
+const faq: [string, string][] = [
+  [
+    'Can I transfer Spotify to YouTube Music for free?',
+    'Yes. Sideload is free with no song limit and no account, because it runs on one small Cloudflare Worker that costs a few dollars a month. Most other transfer tools are free only up to a few hundred songs per transfer.',
+  ],
+  [
+    'How many songs can I move at once?',
+    'There is no cap. A 500 playlist library and a 20,000 song library both go through the same queue. Playlists are capped at 500 per transfer only because the picker renders every row.',
+  ],
+  [
+    'Do I need Spotify Premium?',
+    'To create the Spotify app that Sideload connects to, yes. Since February 2026 Spotify caps every new app at 5 users, so a single shared login would break after the fifth person. Creating your own takes about two minutes and Sideload never sees a client secret.',
+  ],
+  [
+    'Does it move liked songs and albums too?',
+    'Yes: liked songs, saved albums and followed artists, not just playlists. Liked songs are a special case, see the <a href="/spotify-liked-songs-to-youtube-music">liked songs guide</a>.',
+  ],
+  [
+    'Can I close the tab while it runs?',
+    'Yes. The transfer runs on the server and survives crashes and restarts. The link to your transfer keeps working for 7 days, then the record is deleted.',
+  ],
+];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Sideload', item: 'https://sideload.marctorrelles.com/' },
+      { '@type': 'ListItem', position: 2, name: 'How to transfer Spotify to YouTube Music' },
+    ],
+  },
+];
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <section class="container page">
+    <p class="eyebrow page__eyebrow">Guide</p>
+    <h1 class="h2">How to transfer Spotify playlists to YouTube Music</h1>
+    <p class="lede">
+      Free, with no song limit, no account and no app to install. It takes about two minutes to set up and then runs on
+      its own while you do something else.
+    </p>
+    <p class="meta">Updated 7 September 2026.</p>
+
+    <dl class="faq prose">
+      <div class="faq__item">
+        <dt>Step 1 · Connect Spotify and YouTube Music</dt>
+        <dd>
+          <p>
+            Spotify connects with read only access to your library, playlists and followed artists. You create the
+            Spotify app it connects to, which takes about two minutes and needs a Premium account: Spotify caps every
+            new app at 5 users, so a shared button would stop working after the fifth person. The Connect step walks you
+            through it and never asks for a client secret.
+          </p>
+          <p>
+            YouTube Music has no public API, so the sign in is the one televisions use: Sideload shows a short code, you
+            approve it once on <code>google.com/device</code> with your Google account, and that is it.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>Step 2 · Pick what is worth keeping</dt>
+        <dd>
+          <p>
+            Every playlist, your liked songs, your saved albums and your followed artists show up in one list with
+            counts. Tick what you want. Ten years of a library usually contains a few years of things the algorithm made
+            for you, and this is the moment to leave them behind. Playlists other people made that you follow are shown
+            greyed out, because a personal Spotify app is not allowed to read them.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>Step 3 · Close the tab</dt>
+        <dd>
+          <p>
+            The transfer runs on the server, not in your browser, so it survives a closed laptop, a dropped connection
+            and a crash. You get a link you can come back to. When it finishes you get a report: every song, where it
+            landed, and the handful that need a decision from you.
+          </p>
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="h3 sec">What moves, and what does not</h2>
+    <table class="grid">
+      <tbody>
+        <tr><th>Playlists</th><td>Names, song order and the public or private setting are all kept.</td></tr>
+        <tr>
+          <th>Liked songs</th>
+          <td>Liked on YouTube Music, plus a private "Liked Songs" playlist that keeps your original order.</td>
+        </tr>
+        <tr><th>Saved albums</th><td>Saved to your YouTube Music library.</td></tr>
+        <tr><th>Followed artists</th><td>Subscribed on YouTube Music.</td></tr>
+        <tr><th>Podcasts</th><td>Not moved. YouTube Music handles shows differently.</td></tr>
+        <tr><th>Local files</th><td>Not moved, and listed in your report so nothing disappears quietly.</td></tr>
+        <tr><th>Playlist cover art</th><td>Not moved.</td></tr>
+        <tr
+          ><th>Followed playlists</th><td
+            >Skipped: a personal Spotify app cannot read playlists owned by other people.</td
+          ></tr
+        >
+      </tbody>
+    </table>
+
+    <h2 class="h3 sec">How long it takes</h2>
+    <p class="page__more">
+      About 45 songs a minute for songs nobody has moved before, and near instant for songs already in the shared match
+      cache. A 3,000 song library is usually under an hour. A few hundred songs is closer to ten minutes. Nothing is
+      waiting on you while it runs.
+    </p>
+
+    <h2 class="h3 sec">The two parts most transfer tools get wrong</h2>
+    <dl class="faq prose">
+      <div class="faq__item">
+        <dt>Songs that do not match are handed back, not dropped</dt>
+        <dd>
+          <p>
+            Roughly nine in ten songs match on the first try. The rest land in a "Needs your review" list with the
+            closest candidate: accept it, search manually, or skip. Everything ends up in the report either way. Two
+            cases are sent there on purpose: a song whose best match is a video another of your songs already used (a
+            remix collapsing onto the studio version, which YouTube would silently merge), and a song YouTube accepted
+            but never actually added.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>Every playlist is read back after it is written</dt>
+        <dd>
+          <p>
+            YouTube sometimes answers yes and does nothing. In the manual migration this tool grew out of, 346 of 2,585
+            likes came back as success and never took effect. Sideload reads each playlist back after writing it and re
+            adds whatever is missing until the two sides agree, which is why each playlist says "checking" at the end.
+          </p>
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="h3 sec">What it costs</h2>
+    <p class="page__more">
+      Nothing, and there is no song limit or paywall halfway through. Sideload is <a
+        href="https://github.com/marctorrelles/sideload"
+        rel="noopener">MIT licensed and open source</a
+      >, so you can also run your own copy. If you want to compare free tiers, see <a href="/alternatives"
+        >how it stacks up against TuneMyMusic, Soundiiz and FreeYourMusic</a
+      >. Your tokens are deleted when the transfer finishes and the record goes 7 days later: the full detail is in <a
+        href="/privacy">privacy and terms</a
+      >.
+    </p>
+
+    <h2 class="h3 sec">Common questions</h2>
+    <dl class="faq">
+      {
+        faq.map(([q, a]) => (
+          <div class="faq__item">
+            <>
+              <dt>{q}</dt>
+              <dd set:html={a} />
+            </>
+          </div>
+        ))
+      }
+    </dl>
+
+    <a class="btn page__cta" href="/connect">Start a transfer</a>
+  </section>
+</Base>
+<style>
+  .prose p {
+    margin: 0 0 12px;
+  }
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+  .sec {
+    margin: 46px 0 0;
+  }
+  .grid {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 72ch;
+    margin-top: 18px;
+    font: 400 16px/1.5 var(--font-ui);
+  }
+  .grid th,
+  .grid td {
+    text-align: left;
+    vertical-align: top;
+    padding: 10px 12px 10px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .grid th {
+    color: var(--fg);
+    font-weight: 500;
+    white-space: nowrap;
+    width: 11em;
+  }
+  .grid td {
+    color: var(--fg-2);
+  }
+  .page__cta {
+    margin-top: 40px;
+  }
+  @media (max-width: 900px) {
+    .grid,
+    .grid tbody,
+    .grid tr,
+    .grid th,
+    .grid td {
+      display: block;
+      width: auto;
+    }
+    .grid td {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+</style>

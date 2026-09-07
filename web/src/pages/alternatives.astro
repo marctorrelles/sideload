@@ -1,0 +1,193 @@
+---
+// web/src/pages/alternatives.astro: the comparison query ("free tunemymusic alternative" and friends).
+// Competitor free tiers change often: every number is dated and linked to their own pricing page.
+import Base from '../layouts/Base.astro';
+const title = 'A free alternative to TuneMyMusic, Soundiiz and FreeYourMusic';
+const description =
+  'Every popular Spotify to YouTube Music transfer tool has a free tier that stops after a few hundred songs. Sideload has no song limit, no account and no paid plan, and the code is MIT licensed.';
+const tools: { name: string; url: string; free: string; note: string }[] = [
+  {
+    name: 'Sideload',
+    url: '/',
+    free: 'No limit',
+    note: 'Free with no paid tier. No account. Open source (MIT), so you can also run your own copy.',
+  },
+  {
+    name: 'TuneMyMusic',
+    url: 'https://www.tunemymusic.com/pricing',
+    free: 'About 500 tracks per transfer',
+    note: 'Beyond that it is a subscription. Sync and scheduled transfers are paid.',
+  },
+  {
+    name: 'Soundiiz',
+    url: 'https://soundiiz.com/pricing',
+    free: 'About 200 tracks per playlist, one playlist at a time',
+    note: 'Liked songs, albums and artists are on the paid plan.',
+  },
+  {
+    name: 'FreeYourMusic',
+    url: 'https://freeyourmusic.com/pricing',
+    free: 'About 600 songs',
+    note: 'A lifetime licence after that. Desktop and mobile apps rather than a web page.',
+  },
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Sideload', item: 'https://sideload.marctorrelles.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Free alternative to TuneMyMusic and Soundiiz' },
+  ],
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <section class="container page">
+    <p class="eyebrow page__eyebrow">Comparison</p>
+    <h1 class="h2">A free alternative to TuneMyMusic, Soundiiz and FreeYourMusic</h1>
+    <p class="lede">
+      The transfer tools people usually find are free until roughly the point where a real library begins. Sideload has
+      no song limit, because moving your own music between two services you already pay for should not cost anything.
+    </p>
+    <p class="meta">Free tiers checked 7 September 2026. They change often, so check the links before you decide.</p>
+
+    <table class="cmp">
+      <thead>
+        <tr><th>Tool</th><th>Free tier</th><th class="cmp__note">Notes</th></tr>
+      </thead>
+      <tbody>
+        {
+          tools.map((t) => (
+            <tr>
+              <th scope="row">
+                {t.url.startsWith('/') ? (
+                  <a href={t.url}>{t.name}</a>
+                ) : (
+                  <a href={t.url} rel="noopener nofollow">
+                    {t.name}
+                  </a>
+                )}
+              </th>
+              <td>{t.free}</td>
+              <td class="cmp__note">{t.note}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+
+    <h2 class="h3 sec">Where Sideload is different</h2>
+    <dl class="faq prose">
+      <div class="faq__item">
+        <dt>No song limit and no paid plan</dt>
+        <dd>
+          <p>
+            There is no upgrade prompt at 200, 500 or 600 songs, because there is nothing to upgrade to. It runs on a
+            single Cloudflare Worker that costs a few dollars a month, so a coffee covers the bill for the next few
+            hundred transfers.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>It checks its own work</dt>
+        <dd>
+          <p>
+            YouTube's API answers yes to writes it never applies: in the migration this tool grew out of, 346 of 2,585
+            likes reported success and did nothing. Sideload reads every playlist back after writing it and re adds what
+            is missing. Tools that fire and forget will tell you the transfer succeeded and leave you short.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>Unmatched songs come back as a list</dt>
+        <dd>
+          <p>
+            Roughly nine in ten songs match first try. The rest are handed back with the closest candidate so you can
+            accept, search or skip, and everything is in a CSV report. A remix whose best match is a video another song
+            already used is flagged rather than silently merged.
+          </p>
+        </dd>
+      </div>
+      <div class="faq__item">
+        <dt>No account, and the code is public</dt>
+        <dd>
+          <p>
+            Nothing to sign up for. Tokens are deleted when the transfer finishes and the record 7 days later, which is
+            written down in <a href="/privacy">privacy and terms</a>. The whole thing is <a
+              href="https://github.com/marctorrelles/sideload"
+              rel="noopener">MIT licensed on GitHub</a
+            >, so you can read exactly what it does with your library or host it yourself.
+          </p>
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="h3 sec">Where the others are ahead</h2>
+    <p class="page__more">
+      Sideload moves Spotify to YouTube Music and nothing else yet, while Soundiiz and TuneMyMusic cover dozens of
+      services in both directions and can keep playlists in sync on a schedule. Sideload also asks you to make your own
+      Spotify app, which takes about two minutes and a Premium account, because Spotify caps each app at 5 users. If you
+      need Apple Music or Tidal today, use one of them. If you are moving a Spotify library to YouTube Music once and
+      want all of it, <a href="/how-to-transfer-spotify-to-youtube-music">here is how it works</a>.
+    </p>
+    <a class="btn page__cta" href="/connect">Start a transfer</a>
+  </section>
+</Base>
+<style>
+  .prose p {
+    margin: 0 0 12px;
+  }
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+  .sec {
+    margin: 46px 0 0;
+  }
+  .cmp {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 82ch;
+    margin-top: 26px;
+    font: 400 16px/1.5 var(--font-ui);
+  }
+  .cmp th,
+  .cmp td {
+    text-align: left;
+    vertical-align: top;
+    padding: 12px 16px 12px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .cmp thead th {
+    border-top: 0;
+    padding-top: 0;
+    font: 500 12px/1 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    padding-bottom: 10px;
+  }
+  .cmp tbody th {
+    color: var(--fg);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .cmp td {
+    color: var(--fg-2);
+  }
+  .cmp tbody tr:first-child th,
+  .cmp tbody tr:first-child td {
+    border-top: 1px solid var(--hairline-strong);
+  }
+  .page__cta {
+    margin-top: 40px;
+  }
+  @media (max-width: 900px) {
+    .cmp__note {
+      display: none;
+    }
+    .cmp tbody th {
+      white-space: normal;
+      width: 40%;
+    }
+  }
+</style>

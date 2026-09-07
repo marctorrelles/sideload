@@ -16,6 +16,7 @@ code { font-family: var(--font-mono); }
 .h1 { font: 600 58px/1.02 var(--font-ui); letter-spacing: -.038em; margin: 0; }
 .h2 { font: 600 36px/1.1 var(--font-ui); letter-spacing: -.03em; margin: 0; }
 .h2-done { font: 600 46px/1.05 var(--font-ui); letter-spacing: -.035em; margin: 0; }
+.h3 { font: 600 22px/1.25 var(--font-ui); letter-spacing: -.02em; margin: 0; }
 .lede { font: 400 18px/1.6 var(--font-ui); color: var(--fg-2); max-width: 56ch; margin: 22px 0 0; }
 .eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
 .mono { font-family: var(--font-mono); }
@@ -30,6 +31,6 @@ code { font-family: var(--font-mono); }
 .note { font: 400 13px/1.5 var(--font-ui); color: var(--fg-4); margin: 12px 0 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (max-width: 900px) {
-  .h1 { font-size: 38px; letter-spacing: -.035em; } .h2 { font-size: 28px; line-height: 1.12; letter-spacing: -.028em; } .h2-done { font-size: 32px; }
+  .h1 { font-size: 38px; letter-spacing: -.035em; } .h2 { font-size: 28px; line-height: 1.12; letter-spacing: -.028em; } .h2-done { font-size: 32px; } .h3 { font-size: 20px; }
   .lede { font-size: 16px; } .pct { font-size: 34px; }
 }

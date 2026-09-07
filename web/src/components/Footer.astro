@@ -1,34 +1,42 @@
 ---
-// web/src/components/Footer.astro
+// web/src/components/Footer.astro: one column, links first, then the two small lines.
 ---
 
 <footer class="ftr hairline-top">
-  <nav class="container ftr__nav" aria-label="More">
-    <a href="/how-to-transfer-spotify-to-youtube-music">How it works</a>
-    <a href="/spotify-liked-songs-to-youtube-music">Liked songs</a>
-    <a href="/alternatives">Alternatives</a>
-    <a href="/faq">FAQ</a>
-    <a href="/privacy">Privacy and terms</a>
-    <a href="https://github.com/marctorrelles/sideload" rel="noopener">GitHub</a>
-  </nav>
   <div class="container ftr__in">
-    <p>Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</p>
-    <p class="made">Made with ♥ by <a href="https://marctorrelles.com" rel="me noopener">Marc Torrelles</a></p>
+    <nav class="ftr__nav" aria-label="More">
+      <a href="/how-to-transfer-spotify-to-youtube-music">How it works</a>
+      <a href="/spotify-liked-songs-to-youtube-music">Liked songs</a>
+      <a href="/alternatives">Alternatives</a>
+      <a href="/faq">FAQ</a>
+      <a href="/privacy">Privacy and terms</a>
+      <a href="https://github.com/marctorrelles/sideload" rel="noopener">GitHub</a>
+    </nav>
+    <p class="ftr__line">Free and open source. Not affiliated with Spotify, YouTube, Apple or Tidal.</p>
+    <p class="ftr__line made">
+      Made with ♥ by <a href="https://marctorrelles.com" rel="me noopener">Marc Torrelles</a>
+    </p>
   </div>
 </footer>
 <style>
   .ftr {
     background: var(--bg-footer);
   }
+  .ftr__in {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 30px;
+    padding-bottom: 32px;
+  }
   .ftr__nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 22px;
-    padding-top: 20px;
+    gap: 10px 24px;
   }
   .ftr__nav a {
-    font: 400 13px/1.5 var(--font-ui);
-    color: var(--fg-3);
+    font: 400 14px/1.4 var(--font-ui);
+    color: var(--fg-2);
     text-decoration: none;
     transition: color var(--t-fast) ease;
   }
@@ -36,19 +44,14 @@
     color: var(--fg);
     text-decoration: underline;
   }
-  .ftr__in {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    padding-top: 16px;
-    padding-bottom: 18px;
-  }
-  .ftr p {
+  .ftr__line {
     margin: 0;
     font: 400 13px/1.5 var(--font-ui);
     color: var(--fg-4);
   }
+  /* the two small lines read as one block under the links */
   .made {
+    margin-top: -12px;
     color: var(--fg-3);
   }
   .made a {
@@ -60,10 +63,8 @@
   }
   @media (max-width: 900px) {
     .ftr__in {
-      flex-direction: column;
-    }
-    .ftr p {
-      font-size: 13px;
+      padding-top: 26px;
+      padding-bottom: 28px;
     }
   }
 </style>

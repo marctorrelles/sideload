@@ -2,15 +2,15 @@
 // web/src/pages/alternatives.astro: the comparison query ("free tunemymusic alternative" and friends).
 // Competitor free tiers change often: every number is dated and linked to their own pricing page.
 import Base from '../layouts/Base.astro';
-const title = 'A free alternative to TuneMyMusic, Soundiiz and FreeYourMusic';
+const title = 'Free TuneMyMusic and Soundiiz alternative · Sideload';
 const description =
-  'Every popular Spotify to YouTube Music transfer tool has a free tier that stops after a few hundred songs. Sideload has no song limit, no account and no paid plan, and the code is MIT licensed.';
+  'The popular Spotify to YouTube Music transfer tools stop free users after a few hundred songs. Sideload moves 25,000 a run, has no paid plan, and the code is MIT licensed.';
 const tools: { name: string; url: string; free: string; note: string }[] = [
   {
     name: 'Sideload',
     url: '/',
-    free: 'No limit',
-    note: 'Free with no paid tier. No account. Open source (MIT), so you can also run your own copy.',
+    free: '25,000 songs per transfer',
+    note: 'Free with no paid tier at any size. No account. Open source (MIT), so you can also run your own copy.',
   },
   {
     name: 'TuneMyMusic',
@@ -28,26 +28,19 @@ const tools: { name: string; url: string; free: string; note: string }[] = [
     name: 'FreeYourMusic',
     url: 'https://freeyourmusic.com/pricing',
     free: 'About 600 songs',
-    note: 'A lifetime licence after that. Desktop and mobile apps rather than a web page.',
+    note: 'A lifetime license after that. Desktop and mobile apps rather than a web page.',
   },
 ];
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Sideload', item: 'https://sideload.marctorrelles.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Free alternative to TuneMyMusic and Soundiiz' },
-  ],
-};
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description}>
   <section class="container page">
     <p class="eyebrow page__eyebrow">Comparison</p>
     <h1 class="h2">A free alternative to TuneMyMusic, Soundiiz and FreeYourMusic</h1>
     <p class="lede">
-      The transfer tools people usually find are free until roughly the point where a real library begins. Sideload has
-      no song limit, because moving your own music between two services you already pay for should not cost anything.
+      The transfer tools people usually find are free until roughly the point where a real library begins. Sideload
+      moves 25,000 songs a run and charges for none of them, because moving your own music between two services you
+      already pay for should not cost anything.
     </p>
     <p class="meta">Free tiers checked 7 September 2026. They change often, so check the links before you decide.</p>
 
@@ -79,12 +72,12 @@ const jsonLd = {
     <h2 class="h3 sec">Where Sideload is different</h2>
     <dl class="faq prose">
       <div class="faq__item">
-        <dt>No song limit and no paid plan</dt>
+        <dt>No paywall at any size</dt>
         <dd>
           <p>
-            There is no upgrade prompt at 200, 500 or 600 songs, because there is nothing to upgrade to. It runs on a
-            single Cloudflare Worker that costs a few dollars a month, so a coffee covers the bill for the next few
-            hundred transfers.
+            There is no upgrade prompt at 200, 500 or 600 songs, because there is nothing to upgrade to. The only
+            ceiling is 25,000 songs in one run, and a bigger library goes across in two. It runs on a single Cloudflare
+            Worker that costs a few dollars a month, so a coffee covers the bill for the next few hundred transfers.
           </p>
         </dd>
       </div>
@@ -93,8 +86,9 @@ const jsonLd = {
         <dd>
           <p>
             YouTube's API answers yes to writes it never applies: in the migration this tool grew out of, 346 of 2,585
-            likes reported success and did nothing. Sideload reads every playlist back after writing it and re adds what
-            is missing. Tools that fire and forget will tell you the transfer succeeded and leave you short.
+            likes reported success and did nothing. Sideload reads every playlist back after writing it and re-adds what
+            is missing, up to three passes, then hands you anything that still did not land. Tools that fire and forget
+            will tell you the transfer succeeded and leave you short.
           </p>
         </dd>
       </div>
@@ -102,9 +96,9 @@ const jsonLd = {
         <dt>Unmatched songs come back as a list</dt>
         <dd>
           <p>
-            Roughly nine in ten songs match first try. The rest are handed back with the closest candidate so you can
-            accept, search or skip, and everything is in a CSV report. A remix whose best match is a video another song
-            already used is flagged rather than silently merged.
+            Most songs match first try. The rest are handed back with the closest candidate so you can accept, search or
+            skip, and everything is in a CSV report. A remix whose best match is a video another song already used is
+            flagged rather than silently merged.
           </p>
         </dd>
       </div>
@@ -112,10 +106,9 @@ const jsonLd = {
         <dt>No account, and the code is public</dt>
         <dd>
           <p>
-            Nothing to sign up for. Tokens are deleted when the transfer finishes and the record 7 days later, which is
-            written down in <a href="/privacy">privacy and terms</a>. The whole thing is <a
-              href="https://github.com/marctorrelles/sideload"
-              rel="noopener">MIT licensed on GitHub</a
+            Nothing to sign up for. Your Spotify token goes the moment the transfer finishes, your YouTube token within
+            24 hours, and the record 7 days later, all written down in <a href="/privacy">privacy and terms</a>. The
+            whole thing is <a href="https://github.com/marctorrelles/sideload" rel="noopener">MIT licensed on GitHub</a
             >, so you can read exactly what it does with your library or host it yourself.
           </p>
         </dd>
@@ -181,13 +174,30 @@ const jsonLd = {
   .page__cta {
     margin-top: 40px;
   }
+  /* one row per tool instead of three cramped columns: the notes carry the caveats, so they must not be dropped */
   @media (max-width: 900px) {
-    .cmp__note {
+    .cmp thead {
       display: none;
+    }
+    .cmp,
+    .cmp tbody,
+    .cmp tr,
+    .cmp th,
+    .cmp td {
+      display: block;
+      width: auto;
     }
     .cmp tbody th {
       white-space: normal;
-      width: 40%;
+      padding-bottom: 2px;
+    }
+    .cmp td {
+      border-top: 0;
+      padding: 0 0 2px;
+    }
+    .cmp td:last-child {
+      padding-bottom: 16px;
+      color: var(--fg-3);
     }
   }
 </style>

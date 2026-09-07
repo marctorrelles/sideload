@@ -18,7 +18,7 @@ interface Props {
 const { title, description, step, noindex = false, jsonLd } = Astro.props;
 // build.format: 'preserve' makes pathname '/faq.html'; the Worker serves that at '/faq' and redirects the .html
 // form there, so the canonical (and og:url, and the sitemap) must be the extensionless URL.
-const canonical = new URL(Astro.url.pathname.replace(/(?:index)?\.html$/, ''), Astro.site);
+const canonical = new URL(Astro.url.pathname.replace(/(?:\/index)?\.html$/, ''), Astro.site);
 ---
 
 <html lang="en">

@@ -8,8 +8,17 @@ export function validateSelection(b: unknown): Selection {
   const playlists = Array.isArray(o.playlists) ? o.playlists : [];
   const albums = Array.isArray(o.albums) ? o.albums : [];
   const artists = Array.isArray(o.artists) ? o.artists : [];
-  if (playlists.length > 500 || albums.length > 2000 || artists.length > 2000)
-    throw new HttpError(413, 'too_many_items');
+  // Each new playlist costs 50 Data API units against a 10,000/day project quota, so ~200 a day is the real ceiling;
+  // past it the job parks until midnight Pacific and then dies on JOB_TIMEOUT_MS. Fail here instead, hours earlier.
+  // ponytail: one shared project quota, so two big transfers on one day still collide. Raise to 500 once the quota
+  // increase is granted. Albums and artists go through InnerTube and cost no units, hence the looser caps.
+  if (playlists.length > 180)
+    throw new HttpError(
+      413,
+      'too_many_items',
+      'More than 180 playlists in one transfer. YouTube only allows about 200 new playlists a day, so split it in two.',
+    );
+  if (albums.length > 2000 || artists.length > 2000) throw new HttpError(413, 'too_many_items');
   for (const p of playlists)
     if (
       !SPOTIFY_ID.test(p?.id) ||

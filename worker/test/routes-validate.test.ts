@@ -22,7 +22,9 @@ describe('validateSelection', () => {
   it('accepts a normal selection and rejects oversized or malformed ones', () => {
     expect(status({ playlists: [pl()] })).toBe(200);
     expect(status({ liked: true })).toBe(200);
-    expect(status({ playlists: Array.from({ length: 501 }, () => pl()) })).toBe(413);
+    expect(status({ playlists: Array.from({ length: 180 }, () => pl()) })).toBe(200); // the Data API quota ceiling
+    expect(status({ playlists: Array.from({ length: 181 }, () => pl()) })).toBe(413);
+    expect(status({ albums: Array.from({ length: 2001 }, () => 'A'.repeat(22)) })).toBe(413);
     expect(status({ playlists: [pl({ trackCount: -1 })] })).toBe(400);
     expect(status({ playlists: [pl({ name: 'x'.repeat(201) })] })).toBe(400);
     expect(status({ playlists: [pl({ id: 'short' })] })).toBe(400);

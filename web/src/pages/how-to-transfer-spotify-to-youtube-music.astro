@@ -2,17 +2,17 @@
 // web/src/pages/how-to-transfer-spotify-to-youtube-music.astro: the long-tail "how do I do this" guide.
 // Targets the informational query; the landing page targets the transactional one, so the H1s stay distinct.
 import Base from '../layouts/Base.astro';
-const title = 'How to transfer Spotify playlists to YouTube Music (free, 2026)';
+const title = 'How to transfer Spotify to YouTube Music · Sideload';
 const description =
-  'A step by step guide to moving Spotify playlists, liked songs, albums and followed artists to YouTube Music for free, with no song limit and no account. What moves, what does not, and how long it takes.';
+  'Move Spotify playlists, liked songs, albums and followed artists to YouTube Music for free, up to 25,000 songs a run. What moves, what does not, and how long it takes.';
 const faq: [string, string][] = [
   [
     'Can I transfer Spotify to YouTube Music for free?',
-    'Yes. Sideload is free with no song limit and no account, because it runs on one small Cloudflare Worker that costs a few dollars a month. Most other transfer tools are free only up to a few hundred songs per transfer.',
+    'Yes, and there is no paid tier to upgrade to: it runs on one small Cloudflare Worker that costs a few dollars a month. One run moves up to 25,000 songs, where most other transfer tools stop free users at a few hundred per transfer.',
   ],
   [
     'How many songs can I move at once?',
-    'There is no cap. A 500 playlist library and a 20,000 song library both go through the same queue. Playlists are capped at 500 per transfer only because the picker renders every row.',
+    "Up to 25,000 songs, 180 playlists, 2,000 saved albums and 2,000 followed artists in one run. The playlist number is YouTube's: it only lets any app create about 200 a day. A bigger library goes across in two runs, at no charge either time.",
   ],
   [
     'Do I need Spotify Premium?',
@@ -20,28 +20,18 @@ const faq: [string, string][] = [
   ],
   [
     'Does it move liked songs and albums too?',
-    'Yes: liked songs, saved albums and followed artists, not just playlists. Liked songs are a special case, see the <a href="/spotify-liked-songs-to-youtube-music">liked songs guide</a>.',
+    'Yes: liked songs, saved albums and followed artists, not just playlists. Liked songs are a special case, see the <a href="https://sideload.marctorrelles.com/spotify-liked-songs-to-youtube-music">liked songs guide</a>.',
   ],
   [
     'Can I close the tab while it runs?',
     'Yes. The transfer runs on the server and survives crashes and restarts. The link to your transfer keeps working for 7 days, then the record is deleted.',
   ],
 ];
-const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Sideload', item: 'https://sideload.marctorrelles.com/' },
-      { '@type': 'ListItem', position: 2, name: 'How to transfer Spotify to YouTube Music' },
-    ],
-  },
-];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
 ---
 
 <Base title={title} description={description} jsonLd={jsonLd}>
@@ -49,7 +39,7 @@ const jsonLd = [
     <p class="eyebrow page__eyebrow">Guide</p>
     <h1 class="h2">How to transfer Spotify playlists to YouTube Music</h1>
     <p class="lede">
-      Free, with no song limit, no account and no app to install. It takes about two minutes to set up and then runs on
+      Free, up to 25,000 songs a run, with no account and no app to install. It takes about two minutes to set up and
       its own while you do something else.
     </p>
     <p class="meta">Updated 7 September 2026.</p>
@@ -59,13 +49,14 @@ const jsonLd = [
         <dt>Step 1 · Connect Spotify and YouTube Music</dt>
         <dd>
           <p>
-            Spotify connects with read only access to your library, playlists and followed artists. You create the
-            Spotify app it connects to, which takes about two minutes and needs a Premium account: Spotify caps every
-            new app at 5 users, so a shared button would stop working after the fifth person. The Connect step walks you
-            through it and never asks for a client secret.
+            Spotify connects with read-only access to your library, playlists and followed artists, plus your email
+            address so the app you are signed in as is visible. You create the Spotify app it connects to, which takes
+            about two minutes and needs a Premium account: Spotify caps every new app at 5 users, so a shared button
+            would stop working after the fifth person. The Connect step walks you through it and never asks for a client
+            secret.
           </p>
           <p>
-            YouTube Music has no public API, so the sign in is the one televisions use: Sideload shows a short code, you
+            YouTube Music has no public API, so the sign-in is the one televisions use: Sideload shows a short code, you
             approve it once on <code>google.com/device</code> with your Google account, and that is it.
           </p>
         </dd>
@@ -96,18 +87,23 @@ const jsonLd = [
     <h2 class="h3 sec">What moves, and what does not</h2>
     <table class="grid">
       <tbody>
-        <tr><th>Playlists</th><td>Names, song order and the public or private setting are all kept.</td></tr>
+        <tr><th scope="row">Playlists</th><td>Names, song order and the public or private setting are all kept.</td></tr
+        >
         <tr>
-          <th>Liked songs</th>
+          <th scope="row">Liked songs</th>
           <td>Liked on YouTube Music, plus a private "Liked Songs" playlist that keeps your original order.</td>
         </tr>
-        <tr><th>Saved albums</th><td>Saved to your YouTube Music library.</td></tr>
-        <tr><th>Followed artists</th><td>Subscribed on YouTube Music.</td></tr>
-        <tr><th>Podcasts</th><td>Not moved. YouTube Music handles shows differently.</td></tr>
-        <tr><th>Local files</th><td>Not moved, and listed in your report so nothing disappears quietly.</td></tr>
-        <tr><th>Playlist cover art</th><td>Not moved.</td></tr>
+        <tr><th scope="row">Saved albums</th><td>Saved to your YouTube Music library.</td></tr>
+        <tr><th scope="row">Followed artists</th><td>Subscribed on YouTube Music.</td></tr>
+        <tr><th scope="row">Podcasts</th><td>Not moved and not listed. YouTube Music handles shows differently.</td></tr
+        >
         <tr
-          ><th>Followed playlists</th><td
+          ><th scope="row">Local files</th><td>Not moved, and listed in your report so nothing disappears quietly.</td
+          ></tr
+        >
+        <tr><th scope="row">Playlist cover art</th><td>Not moved.</td></tr>
+        <tr
+          ><th scope="row">Followed playlists</th><td
             >Skipped: a personal Spotify app cannot read playlists owned by other people.</td
           ></tr
         >
@@ -116,9 +112,9 @@ const jsonLd = [
 
     <h2 class="h3 sec">How long it takes</h2>
     <p class="page__more">
-      About 45 songs a minute for songs nobody has moved before, and near instant for songs already in the shared match
-      cache. A 3,000 song library is usually under an hour. A few hundred songs is closer to ten minutes. Nothing is
-      waiting on you while it runs.
+      About 45 songs a minute for songs nobody has moved before, and faster for songs already in the shared match cache.
+      A 3,000 song library is usually under an hour. A few hundred songs is closer to ten minutes. Nothing is waiting on
+      you while it runs.
     </p>
 
     <h2 class="h3 sec">The two parts most transfer tools get wrong</h2>
@@ -127,11 +123,11 @@ const jsonLd = [
         <dt>Songs that do not match are handed back, not dropped</dt>
         <dd>
           <p>
-            Roughly nine in ten songs match on the first try. The rest land in a "Needs your review" list with the
-            closest candidate: accept it, search manually, or skip. Everything ends up in the report either way. Two
-            cases are sent there on purpose: a song whose best match is a video another of your songs already used (a
-            remix collapsing onto the studio version, which YouTube would silently merge), and a song YouTube accepted
-            but never actually added.
+            Most songs match on the first try. The rest land in a "Needs your review" list with the closest candidate:
+            accept it, search manually, or skip. Everything ends up in the report either way. Two cases are sent there
+            on purpose: a song whose best match is a video another of your songs already used (a remix collapsing onto
+            the studio version, which YouTube would silently merge), and a song YouTube accepted but never actually
+            added.
           </p>
         </dd>
       </div>
@@ -140,8 +136,9 @@ const jsonLd = [
         <dd>
           <p>
             YouTube sometimes answers yes and does nothing. In the manual migration this tool grew out of, 346 of 2,585
-            likes came back as success and never took effect. Sideload reads each playlist back after writing it and re
-            adds whatever is missing until the two sides agree, which is why each playlist says "checking" at the end.
+            likes came back as success and never took effect. Sideload reads each playlist back after writing it and
+            re-adds whatever is missing, up to three passes, which is why each playlist says "checking" at the end.
+            Anything still missing after that lands in your review list rather than being called a success.
           </p>
         </dd>
       </div>
@@ -149,13 +146,14 @@ const jsonLd = [
 
     <h2 class="h3 sec">What it costs</h2>
     <p class="page__more">
-      Nothing, and there is no song limit or paywall halfway through. Sideload is <a
+      Nothing, and no paywall halfway through. Sideload is <a
         href="https://github.com/marctorrelles/sideload"
         rel="noopener">MIT licensed and open source</a
       >, so you can also run your own copy. If you want to compare free tiers, see <a href="/alternatives"
         >how it stacks up against TuneMyMusic, Soundiiz and FreeYourMusic</a
-      >. Your tokens are deleted when the transfer finishes and the record goes 7 days later: the full detail is in <a
-        href="/privacy">privacy and terms</a
+      >. Your Spotify token goes the moment the transfer finishes, your YouTube token within 24 hours so you can fix
+      unmatched songs first, and the transfer record 7 days later: the full detail is in <a href="/privacy"
+        >privacy and terms</a
       >.
     </p>
 
@@ -220,6 +218,9 @@ const jsonLd = [
     .grid td {
       display: block;
       width: auto;
+    }
+    .grid th {
+      white-space: normal;
     }
     .grid td {
       padding-top: 0;

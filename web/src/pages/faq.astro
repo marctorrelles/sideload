@@ -37,7 +37,7 @@ const faq: [string, string][] = [
   ],
   [
     'Why does each playlist say "checking" at the end?',
-    'Because YouTube sometimes says yes and does nothing: in the migration this tool grew out of, 346 of 2,585 likes came back as success and never took effect. Sideload reads every playlist back after writing it and re-adds whatever is missing until the two sides agree.',
+    'Because YouTube sometimes says yes and does nothing: in the migration this tool grew out of, 346 of 2,585 likes came back as success and never took effect. Sideload reads every playlist back after writing it and re-adds whatever is missing, up to three passes, then puts anything that still did not land in your review list.',
   ],
   ['Can I move Apple Music or Tidal?', 'Not yet. They are on the list.'],
   [

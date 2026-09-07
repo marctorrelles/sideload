@@ -57,33 +57,6 @@ const jsonLd = {
       </div>
     </div>
   </section>
-  <section class="more">
-    <div class="container">
-      <h2 class="h3">Move a Spotify library to YouTube Music, all of it</h2>
-      <div class="more__grid">
-        <div>
-          <p>
-            Sideload moves playlists (with their song order and their public or private setting), liked songs, saved
-            albums and followed artists from Spotify to YouTube Music. No paid tier and no trickle: a 12,000 track
-            library goes through the same queue as a 200 track one, up to 25,000 songs a run, and you can close the tab
-            while it runs.
-          </p>
-          <p>
-            Most songs match on the first try. The rest come back as a review list with the closest candidate, so
-            nothing disappears quietly. Every playlist is read back after it is written, because YouTube answers yes to
-            writes it never applies.
-          </p>
-        </div>
-        <ul class="more__links">
-          <li><a href="/how-to-transfer-spotify-to-youtube-music">How to transfer Spotify to YouTube Music</a></li>
-          <li><a href="/spotify-liked-songs-to-youtube-music">Moving liked songs, in order</a></li>
-          <li><a href="/alternatives">Free alternative to TuneMyMusic and Soundiiz</a></li>
-          <li><a href="/faq">Questions people ask before pressing start</a></li>
-          <li><a href="/privacy">What is stored, and for how long</a></li>
-        </ul>
-      </div>
-    </div>
-  </section>
 </Base>
 <style>
   .hero {
@@ -212,54 +185,7 @@ const jsonLd = {
     color: var(--fg-2);
     max-width: 36ch;
   }
-  .more {
-    padding-bottom: 60px;
-  }
-  .more__grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 40px;
-    border-top: 1px solid var(--hairline-strong);
-    margin-top: 20px;
-    padding-top: 26px;
-  }
-  .more__grid p {
-    margin: 0 0 14px;
-    font: 400 16px/1.6 var(--font-ui);
-    color: var(--fg-2);
-    max-width: 62ch;
-  }
-  .more__grid p:last-child {
-    margin-bottom: 0;
-  }
-  .more__links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .more__links li {
-    border-top: 1px solid var(--hairline);
-    padding: 10px 0;
-  }
-  .more__links li:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-  .more__links a {
-    font: 400 15px/1.4 var(--font-ui);
-    color: var(--fg-2);
-    text-decoration: none;
-    transition: color var(--t-fast) ease;
-  }
-  .more__links a:hover {
-    color: var(--fg);
-    text-decoration: underline;
-  }
   @media (max-width: 900px) {
-    .more__grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
     .hero__in {
       padding-top: 54px;
       padding-bottom: 46px;

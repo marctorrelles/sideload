@@ -24,7 +24,7 @@ Playlists, liked songs, saved albums, followed artists. Every add is read back a
 
 - **Nothing silently lost.** YouTube sometimes answers 200 to an add that never lands. Sideload reads every playlist back and re-adds what is missing.
 - **Honest matching.** Confident matches go straight in (93% on the first real library); the rest are handed to you with the closest candidate, never guessed.
-- **Nothing kept.** Tokens are encrypted and deleted 24 hours after the transfer, or the moment you click Disconnect. No accounts, no analytics script, no cookies beyond the session.
+- **Nothing kept.** Tokens are encrypted at rest; the Spotify one goes the moment the transfer finishes and the YouTube one within 24 hours, or the moment you click Disconnect. No accounts, no analytics script, no cookies beyond the session.
 - **Cheap to run.** One Cloudflare Worker, one SQLite Durable Object per transfer, YouTube's own app endpoints for search. A 5,000-song library costs the operator cents.
 
 ## Self-hosting / Operating

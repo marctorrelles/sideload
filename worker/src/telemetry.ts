@@ -12,3 +12,12 @@ export function track(event: string, tid: string | undefined, props: Props = {})
   for (const [k, v] of Object.entries(props)) if (v != null) attributes[k] = v;
   Sentry.logger.info(event, attributes);
 }
+
+// A browser opening a page that exists (not an asset, a prefetch or most crawlers, which send no Sec-Fetch-Dest): its
+// path and the host of the site it came from, never the query. No user, as no cookie ties one visit to the next.
+export function pageView(req: Request, res: Response): Props | undefined {
+  if (!res.ok || req.headers.get('sec-fetch-dest') !== 'document') return;
+  const url = new URL(req.url);
+  const from = URL.parse(req.headers.get('referer') ?? '');
+  return { path: url.pathname, referrer: from && from.host !== url.host ? from.hostname : undefined };
+}

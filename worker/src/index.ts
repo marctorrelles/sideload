@@ -2,7 +2,7 @@
 import { Hono } from 'hono';
 import * as Sentry from '@sentry/cloudflare';
 import { sentryOptions } from './sentry';
-import { track } from './telemetry';
+import { track, pageView } from './telemetry';
 import type { Env } from './env';
 import { HttpError, securityHeaders, withSecurityHeaders, sameOrigin, rateLimit } from './http';
 import {
@@ -381,5 +381,10 @@ app.get('/t/:id', async (c) => {
   out.headers.set('X-Robots-Tag', 'noindex');
   return out;
 });
-app.all('*', (c) => c.env.ASSETS.fetch(c.req.raw));
+app.all('*', async (c) => {
+  const res = await c.env.ASSETS.fetch(c.req.raw);
+  const view = pageView(c.req.raw, res);
+  if (view) track('page_viewed', undefined, view);
+  return res;
+});
 export default Sentry.withSentry<Env>(sentryOptions, { fetch: (req, env, ctx) => app.fetch(req, env, ctx) });

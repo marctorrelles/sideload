@@ -92,9 +92,10 @@ import Base from '../layouts/Base.astro';
             service we run ourselves on the same Cloudflare account, so no other company receives them. Error reports
             carry the stack trace and the request path, with cookies and headers stripped, so never a token, a title or
             an account. Usage counts (playlists in a transfer, songs matched, how long it took) and the errors of the
-            same session carry a random per-session id that is not linked to your Google or Spotify account. The page
-            itself runs no analytics script and sets no analytics cookie. Spotify only ever sees the read requests for
-            your own library.
+            same session carry a random per-session id that is not linked to your Google or Spotify account. Page visits
+            are counted by the server with the page and the site you came from, and no id at all. The page itself runs
+            no analytics script and sets no analytics cookie. Spotify only ever sees the read requests for your own
+            library.
           </p>
         </dd>
       </div>

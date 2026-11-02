@@ -154,7 +154,7 @@ app.get('/auth/spotify/callback', async (c) => {
         counts: { playlists: pl.total, liked: liked.total },
       },
     });
-    c.executionCtx.waitUntil(track(c.env, 'spotify_connected', tid, { playlists: pl.total, liked: liked.total }));
+    track('spotify_connected', tid, { playlists: pl.total, liked: liked.total });
     clearTransient(c);
     return c.redirect('/connect?connected=spotify'); // the island lights the card once, then strips the query
   } catch (e) {
@@ -199,7 +199,7 @@ app.post('/auth/google/poll', rateLimit('RL_READ'), async (c) => {
     ...s,
     google: { access: r.access, refresh: r.refresh, expiresAt: r.expiresAt, account: await channelInfo(r.access) },
   });
-  c.executionCtx.waitUntil(track(c.env, 'youtube_connected', s.tid));
+  track('youtube_connected', s.tid);
   delete tr.google;
   await writeTransient(c, c.env, tr);
   return c.json({ status: 'connected' });
@@ -257,15 +257,13 @@ app.get('/api/library', rateLimit('RL_READ'), async (c) => {
     after = p.artists.cursors.after;
   }
   const lib: Library = { likedCount: s.spotify.counts.liked, playlists, albums, artists };
-  c.executionCtx.waitUntil(
-    track(c.env, 'library_loaded', s.tid, {
-      playlists: playlists.length,
-      locked: playlists.filter((p) => !p.ownedByUser).length,
-      albums: albums.length,
-      artists: artists.length,
-      liked: lib.likedCount,
-    }),
-  );
+  track('library_loaded', s.tid, {
+    playlists: playlists.length,
+    locked: playlists.filter((p) => !p.ownedByUser).length,
+    albums: albums.length,
+    artists: artists.length,
+    liked: lib.likedCount,
+  });
   return c.json(lib);
 });
 
@@ -302,15 +300,13 @@ app.post('/api/jobs', rateLimit('RL_JOB_CREATE'), async (c) => {
       artists: selection.artists.length,
     }),
   );
-  c.executionCtx.waitUntil(
-    track(c.env, 'job_created', s.tid, {
-      job: id.slice(0, 6),
-      playlists: selection.playlists.length,
-      liked: selection.liked,
-      albums: selection.albums.length,
-      artists: selection.artists.length,
-    }),
-  );
+  track('job_created', s.tid, {
+    job: id.slice(0, 6),
+    playlists: selection.playlists.length,
+    liked: selection.liked,
+    albums: selection.albums.length,
+    artists: selection.artists.length,
+  });
   return c.json({ id });
 });
 app.get('/api/jobs/:id', rateLimit('RL_READ'), async (c) => {

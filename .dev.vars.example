@@ -1,10 +1,8 @@
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 COOKIE_SECRET=
-# optional: Sentry error reports (Cloudflare Workers project DSN); empty = nothing is sent
+# optional: a crashyard (or Sentry) project DSN for error reports and usage events; empty = nothing is sent
 SENTRY_DSN=
-# optional: Mixpanel project token for server-side usage counts; empty = nothing is sent (EU project: also set MIXPANEL_API=https://api-eu.mixpanel.com)
-MIXPANEL_TOKEN=
 TOKEN_SECRET=
 # optional: 32 hex chars; pasted as the Client ID it connects a built-in demo library instead of Spotify (for reviewers and demos)
 REVIEW_CODE=

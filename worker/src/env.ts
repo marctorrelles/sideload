@@ -19,7 +19,5 @@ export interface Env {
   TOKEN_SECRET: string;
   PUBLIC_ORIGIN: string;
   REVIEW_CODE?: string; // optional: a 32-hex "Client ID" that connects the built-in demo library (spotify-demo.ts) instead of Spotify
-  SENTRY_DSN?: string; // optional: error reports go nowhere without it
-  MIXPANEL_TOKEN?: string;
-  MIXPANEL_API?: string; // optional: usage events go nowhere without the token; API defaults to api.mixpanel.com (EU projects: api-eu.mixpanel.com)
+  SENTRY_DSN?: string; // optional: error reports and usage events go nowhere without it
 }

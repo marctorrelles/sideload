@@ -88,12 +88,13 @@ import Base from '../layouts/Base.astro';
             the encrypted token for the life of the transfer.
           </p>
           <p>
-            Two other services receive server-side data that contains no Google user data. Sentry gets error reports:
-            the stack trace and the request path, with cookies and headers stripped, so never a token, a title or an
-            account. Mixpanel gets usage counts (playlists in a transfer, songs matched, how long it took) under a
-            random per-session id that is not linked to your Google or Spotify account. The page itself runs no
-            analytics script and sets no analytics cookie. Spotify only ever sees the read requests for your own
-            library.
+            Error reports and usage counts, which contain no Google user data, go to crashyard, an error and analytics
+            service we run ourselves on the same Cloudflare account, so no other company receives them. Error reports
+            carry the stack trace and the request path, with cookies and headers stripped, so never a token, a title or
+            an account. Usage counts (playlists in a transfer, songs matched, how long it took) and the errors of the
+            same session carry a random per-session id that is not linked to your Google or Spotify account. The page
+            itself runs no analytics script and sets no analytics cookie. Spotify only ever sees the read requests for
+            your own library.
           </p>
         </dd>
       </div>

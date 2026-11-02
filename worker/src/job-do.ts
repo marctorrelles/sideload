@@ -871,7 +871,7 @@ export class JobDO extends DurableObject<Env> {
       seconds: Math.round((Date.now() - v.startedAt) / 1000),
     };
     console.log(JSON.stringify({ evt: 'job_done', ...summary }));
-    this.ctx.waitUntil(track(this.env, 'job_done', this.job()?.tid ?? undefined, summary));
+    track('job_done', this.job()?.tid ?? undefined, summary);
   }
   private async fail(failure: JobFailure): Promise<void> {
     this.sql.exec(
@@ -880,7 +880,7 @@ export class JobDO extends DurableObject<Env> {
       Date.now(),
     );
     console.log(JSON.stringify({ evt: 'job_failed', failure }));
-    this.ctx.waitUntil(track(this.env, 'job_failed', this.job()?.tid ?? undefined, { failure }));
+    track('job_failed', this.job()?.tid ?? undefined, { failure });
     await this.ctx.storage.setAlarm(Date.now() + RETENTION_MS);
   }
   private async handleError(e: unknown, job: JobRow): Promise<void> {

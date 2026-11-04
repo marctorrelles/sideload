@@ -342,6 +342,47 @@ describe('JobDO', () => {
     });
   });
 
+  it('continues a full playlist in "<name> (2)" and verifies each part', async () => {
+    // No Spotify interceptor: the first native tick backs off on the un-mocked fetch; seed a playlist at YouTube's cap meanwhile.
+    await stub.start(payload(id));
+    await vi.waitFor(() =>
+      runInDurableObject(stub, (_, state) => {
+        if (!state.storage.sql.exec('SELECT attempt FROM job').one().attempt) throw new Error('first tick not done');
+      }),
+    );
+    await runInDurableObject(stub, (_, state) => {
+      const sql = state.storage.sql;
+      sql.exec("UPDATE item SET fetched = 1, status = 'writing', yt_id = 'PL1'");
+      sql.exec(
+        `WITH RECURSIVE n(i) AS (SELECT 0 UNION ALL SELECT i + 1 FROM n WHERE i < 4999)
+         INSERT INTO track (item_id, pos, name, artists, status, video_id, yt_pl)
+         SELECT (SELECT id FROM item), i, 'x', 'y', 'moved', printf('v%010d', i), 'PL1' FROM n`,
+      );
+      sql.exec(
+        "INSERT INTO track (item_id, pos, name, artists, status, video_id) SELECT id, 5000, 'Xtal', 'Aphex Twin', 'matched', 'abcdefghijk' FROM item",
+      );
+      sql.exec('UPDATE job SET attempt = 0, throttled_until = 0');
+    });
+    data()
+      .intercept({ ...CREATE, body: (b) => JSON.parse(String(b)).snippet.title === 'Deep Focus (2)' })
+      .reply(200, { id: 'PL2' });
+    tv()
+      .intercept({ ...EDIT, body: (b) => JSON.parse(String(b)).playlistId === 'PL2' })
+      .reply(200, captureAdds);
+    data()
+      .intercept({ ...READBACK, path: (p) => p.includes('playlistId=PL1') })
+      .reply(200, pageOf(Array.from({ length: 5000 }, (_, i) => `v${String(i).padStart(10, '0')}`)));
+    data()
+      .intercept({ ...READBACK, path: (p) => p.includes('playlistId=PL2') })
+      .reply(200, () => pageOf(added));
+    expect(await runDurableObjectAlarm(stub)).toBe(true);
+    await settle(stub);
+    const v = (await stub.view())!;
+    expect(v.status).toBe('done');
+    expect(v.totals).toMatchObject({ moved: 5001, review: 0 });
+    expect(added).toEqual(['abcdefghijk']);
+  });
+
   it('reads the built-in demo library when the job carries demo tokens', async () => {
     const p = payload(id);
     p.spotify = demoTokens('deadbeef'.repeat(4));

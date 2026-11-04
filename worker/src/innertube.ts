@@ -326,6 +326,9 @@ export class InnerTube {
     if (r.status === 403 && /rateLimit/i.test(reason)) throw new ThrottleError(403, reason);
     if (r.status === 403) throw new AuthError(reason);
     if (r.status === 429 || r.status >= 500) throw new ThrottleError(r.status, reason);
+    // Measured: reading a playlist created a second earlier, or its second page, can 404 until Google's replicas catch up.
+    // ponytail: a playlist the user deleted mid-transfer also backs off until JOB_TIMEOUT_MS; fail the item if that shows up.
+    if (r.status === 404 && reason === 'playlistNotFound') throw new ThrottleError(404, reason);
     throw new Error(
       `data api ${path.split('?')[0]}: ${r.status} ${reason || String(j?.error?.message ?? '').slice(0, 120)}`,
     );

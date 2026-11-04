@@ -3,11 +3,13 @@ import type { Selection } from '@shared/types';
 import { HttpError } from './http';
 const SPOTIFY_ID = /^[A-Za-z0-9]{22}$/;
 const str = (v: unknown, max: number) => typeof v === 'string' && v.length <= max;
+// Spotify's paged lists can return the same entry twice (seen in production: a duplicate playlist id), and an id is a JobDO item key.
+const uniq = (v: unknown): any[] => (Array.isArray(v) ? [...new Map(v.map((x) => [x?.id, x])).values()] : []);
 export function validateSelection(b: unknown): Selection {
   const o = (b ?? {}) as Record<string, unknown>;
-  const playlists = Array.isArray(o.playlists) ? o.playlists : [];
-  const albums = Array.isArray(o.albums) ? o.albums : [];
-  const artists = Array.isArray(o.artists) ? o.artists : [];
+  const playlists = uniq(o.playlists);
+  const albums = uniq(o.albums);
+  const artists = uniq(o.artists);
   // Each new playlist costs 50 Data API units against a 10,000/day project quota, so ~200 a day is the real ceiling;
   // past it the job parks until midnight Pacific and then dies on JOB_TIMEOUT_MS. Fail here instead, hours earlier.
   // ponytail: one shared project quota, so two big transfers on one day still collide. Raise to 500 once the quota

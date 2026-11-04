@@ -273,4 +273,10 @@ describe('client', () => {
       .reply(403, { error: { code: 403, errors: [{ reason: 'forbidden' }] } });
     await expect(new InnerTube('T').playlistVideoIds('PLx')).rejects.toBeInstanceOf(AuthError);
   });
+  it('maps playlistNotFound on a read → ThrottleError (a fresh playlist reads as 404 for a moment)', async () => {
+    data()
+      .intercept({ path: (p) => p.startsWith('/youtube/v3/playlistItems') })
+      .reply(404, { error: { code: 404, errors: [{ reason: 'playlistNotFound' }] } });
+    await expect(new InnerTube('T').playlistVideoIds('PLx')).rejects.toBeInstanceOf(ThrottleError);
+  });
 });

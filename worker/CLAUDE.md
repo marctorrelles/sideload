@@ -38,6 +38,7 @@ Invariants:
 - Verify (D15): after writes, read the playlist (and `LL` for `liked`) back through the Data API; mark missing tracks `redo` and re-drive; up to `MAX_VERIFY_PASSES = 3`, then `write_failed` review items.
 - Collapsed matches (D16): if a track's best video is already used by another track in the same item, it becomes a `duplicate_match` review item with a suggestion, never silently merged.
 - Liked songs (D18): a private "Liked Songs" mirror playlist plus individual likes (oldest first).
+- Full playlists: YouTube caps a playlist at 5,000 songs (`PLAYLIST_MAX`; one more add answers `FAILED_PRECONDITION Maximum playlist size exceeded`). `writeBatch` fills the current part up to the cap, then creates `<name> (2)`, `(3)`… (50 Data API units each; the Liked Songs mirror too, likes are uncapped). `track.yt_pl` records the part a song went into; verify reads every part and the re-drive adds a song back to its own part. `item.yt_id` is the newest part. Jobs older than the column get it in the constructor, backfilled from `item.yt_id`.
 - Tokens: sealed with `TOKEN_SECRET`; Spotify tokens wiped at finish, YouTube token kept 24 h for review actions (`disconnect()` wipes early), storage deleted 7 days after finish.
 - Match cache: KV `m1:<cacheKey>` → videoId, 180-day TTL, confident matches only.
 - RPC methods return values (`start()` returns `{ok:false,error}`) instead of throwing: a throw inside an RPC is also logged by workerd as an uncaught exception.

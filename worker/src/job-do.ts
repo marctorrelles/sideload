@@ -36,6 +36,7 @@ const TICK_BUDGET_MS = 50_000; // wall-clock per alarm; CPU use is tiny, network
 const RECENT = 12; // live feed depth
 const CONCURRENCY = 2; // ponytail: per job. If logs show shared-IP throttling across jobs, add a global limiter DO.
 const WRITE_BATCH = 100;
+const PLAYLIST_MAX = 5_000; // YouTube's cap: one more add answers FAILED_PRECONDITION "Maximum playlist size exceeded"
 const MAX_VERIFY_PASSES = 3; // measured: one pass fixed all 346 silent no-op likes; three is generous
 const MAX_TRACKS = 25_000;
 const JOB_TIMEOUT_MS = 24 * 3600_000;
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS track (
   id INTEGER PRIMARY KEY AUTOINCREMENT, item_id TEXT NOT NULL, pos INTEGER NOT NULL, spotify_id TEXT,
   name TEXT NOT NULL, artists TEXT NOT NULL, album TEXT, duration_ms INTEGER, is_local INTEGER NOT NULL DEFAULT 0,
   status TEXT NOT NULL DEFAULT 'pending', video_id TEXT, reason TEXT, suggestion TEXT, resolution TEXT,
-  liked INTEGER NOT NULL DEFAULT 0, redo INTEGER NOT NULL DEFAULT 0, collides_with TEXT
+  liked INTEGER NOT NULL DEFAULT 0, redo INTEGER NOT NULL DEFAULT 0, collides_with TEXT, yt_pl TEXT
 );
 CREATE INDEX IF NOT EXISTS track_item_status ON track(item_id, status, pos);
 CREATE INDEX IF NOT EXISTS track_status ON track(status);`;
@@ -115,6 +116,7 @@ interface TrackRow {
   liked: number;
   redo: number;
   collides_with: string | null;
+  yt_pl: string | null;
 }
 const ids = (rows: { id: number }[]) => rows.map(() => '?').join(',');
 const REASON_TEXT: Record<string, string> = {
@@ -136,6 +138,13 @@ export class JobDO extends DurableObject<Env> {
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
     for (const stmt of SCHEMA.split(';')) if (stmt.trim()) this.sql.exec(stmt);
+    // jobs created before playlists could continue past PLAYLIST_MAX: everything moved so far went into the item's one playlist
+    if (!this.sql.exec("SELECT 1 FROM pragma_table_info('track') WHERE name = 'yt_pl'").toArray().length) {
+      this.sql.exec('ALTER TABLE track ADD COLUMN yt_pl TEXT');
+      this.sql.exec(
+        "UPDATE track SET yt_pl = (SELECT yt_id FROM item WHERE item.id = track.item_id) WHERE status = 'moved'",
+      );
+    }
   }
   private job(): JobRow | null {
     try {
@@ -423,9 +432,10 @@ export class JobDO extends DurableObject<Env> {
       if (item.kind === 'liked') await yt.like(videoId);
       else await yt.addPlaylistItems(item.yt_id!, [videoId]);
       this.sql.exec(
-        "UPDATE track SET status = 'moved', video_id = ?, resolution = ? WHERE id = ?",
+        "UPDATE track SET status = 'moved', video_id = ?, resolution = ?, yt_pl = ? WHERE id = ?",
         videoId,
         a.action,
+        item.yt_id, // a liked song resolved mid-write is missing from the mirror; verify adds it there, as before
         trackId,
       );
     } else {
@@ -687,9 +697,23 @@ export class JobDO extends DurableObject<Env> {
     };
   }
   private async writeBatch(item: ItemRow, yt: InnerTube): Promise<void> {
-    if (!item.yt_id) {
+    const room = item.yt_id
+      ? PLAYLIST_MAX -
+        (this.sql.exec('SELECT COUNT(*) AS n FROM track WHERE yt_pl = ?', item.yt_id).one() as { n: number }).n
+      : 0;
+    const waiting = this.sql
+      .exec("SELECT 1 FROM track WHERE item_id = ? AND status = 'matched' LIMIT 1", item.id)
+      .toArray().length;
+    if (!item.yt_id || (room <= 0 && waiting)) {
       // D18: liked songs get a private "Liked Songs" mirror playlist (order preserved, shareable, verifiable) plus the individual likes below.
-      const title = item.kind === 'liked' ? 'Liked Songs' : item.name;
+      // Past PLAYLIST_MAX the rest continues in "<name> (2)", "(3)"…; every part costs another 50 Data API units.
+      const parts = (
+        this.sql
+          .exec('SELECT COUNT(DISTINCT yt_pl) AS n FROM track WHERE item_id = ? AND yt_pl IS NOT NULL', item.id)
+          .one() as { n: number }
+      ).n;
+      const name = item.kind === 'liked' ? 'Liked Songs' : item.name;
+      const title = item.yt_id ? `${name} (${parts + 1})` : name;
       const description =
         item.kind === 'liked' ? 'Your Spotify liked songs, moved with Sideload.' : (item.description ?? '');
       const ytId = await yt.createPlaylist(title, description, item.is_public ? 'PUBLIC' : 'PRIVATE');
@@ -705,7 +729,7 @@ export class JobDO extends DurableObject<Env> {
       .exec(
         "SELECT id, video_id FROM track WHERE item_id = ? AND status = 'matched' ORDER BY pos ASC LIMIT ?",
         item.id,
-        WRITE_BATCH,
+        Math.min(WRITE_BATCH, room),
       )
       .toArray() as { id: number; video_id: string }[];
     if (batch.length) {
@@ -713,7 +737,11 @@ export class JobDO extends DurableObject<Env> {
         item.yt_id,
         batch.map((b) => b.video_id),
       );
-      this.sql.exec(`UPDATE track SET status = 'moved' WHERE id IN (${ids(batch)})`, ...batch.map((b) => b.id));
+      this.sql.exec(
+        `UPDATE track SET status = 'moved', yt_pl = ? WHERE id IN (${ids(batch)})`,
+        item.yt_id,
+        ...batch.map((b) => b.id),
+      );
       await this.note(
         'add',
         `Added ${batch.length} song${batch.length === 1 ? '' : 's'} to "${item.kind === 'liked' ? 'Liked Songs' : item.name}"`,
@@ -743,12 +771,13 @@ export class JobDO extends DurableObject<Env> {
    */
   private async verifyItem(item: ItemRow, yt: InnerTube): Promise<void> {
     const moved = this.sql
-      .exec("SELECT id, video_id, liked FROM track WHERE item_id = ? AND status = 'moved'", item.id)
-      .toArray() as { id: number; video_id: string; liked: number }[];
+      .exec("SELECT id, video_id, liked, yt_pl FROM track WHERE item_id = ? AND status = 'moved'", item.id)
+      .toArray() as { id: number; video_id: string; liked: number; yt_pl: string }[];
     const finishItem = () => this.sql.exec("UPDATE item SET status = 'done' WHERE id = ?", item.id);
     if (!moved.length) return void finishItem();
-    const inPlaylist = await yt.playlistVideoIds(item.yt_id!);
-    const missingAdds = moved.filter((t) => !inPlaylist.has(t.video_id));
+    const inPlaylist = new Map<string, Set<string>>(); // one read per part
+    for (const pl of new Set(moved.map((t) => t.yt_pl))) inPlaylist.set(pl, await yt.playlistVideoIds(pl));
+    const missingAdds = moved.filter((t) => !inPlaylist.get(t.yt_pl)!.has(t.video_id));
     const likedSet = item.kind === 'liked' ? await yt.likedVideoIds() : null;
     const missingLikes = likedSet ? moved.filter((t) => t.liked && !likedSet.has(t.video_id)) : [];
     const passes = item.verify_passes + 1;
@@ -793,16 +822,17 @@ export class JobDO extends DurableObject<Env> {
     });
   }
   private async redrive(item: ItemRow, yt: InnerTube): Promise<void> {
-    const adds = this.sql
+    const firstPart = this.sql
       .exec(
-        'SELECT id, video_id FROM track WHERE item_id = ? AND redo = 1 ORDER BY pos ASC LIMIT ?',
+        'SELECT id, video_id, yt_pl FROM track WHERE item_id = ? AND redo = 1 ORDER BY yt_pl, pos LIMIT ?',
         item.id,
         WRITE_BATCH,
       )
-      .toArray() as { id: number; video_id: string }[];
+      .toArray() as { id: number; video_id: string; yt_pl: string }[];
+    const adds = firstPart.filter((a) => a.yt_pl === firstPart[0]!.yt_pl); // each song goes back into the part it was missing from
     if (adds.length) {
       await yt.addPlaylistItems(
-        item.yt_id!,
+        adds[0]!.yt_pl,
         adds.map((a) => a.video_id),
       );
       this.sql.exec(`UPDATE track SET redo = 0 WHERE id IN (${ids(adds)})`, ...adds.map((a) => a.id));

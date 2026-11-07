@@ -75,8 +75,9 @@ import Select from '../islands/Select';
   }
   .toolbar {
     display: flex;
+    flex-wrap: wrap; /* phones: the sort drops to a second line */
     align-items: center;
-    gap: 16px;
+    gap: 8px 16px;
     padding: 10px 16px;
     background: var(--bg-sunken-2);
     border: 1px solid var(--hairline-strong);
@@ -90,7 +91,8 @@ import Select from '../islands/Select';
     cursor: pointer;
     white-space: nowrap;
   }
-  .toolbar__selected {
+  .toolbar__selected,
+  .toolbar__clear {
     white-space: nowrap;
   }
   .toolbar__selected {

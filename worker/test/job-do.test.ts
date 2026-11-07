@@ -383,6 +383,36 @@ describe('JobDO', () => {
     expect(added).toEqual(['abcdefghijk']);
   });
 
+  it('writes and re-drives batches past SQLite’s 100 bound variables', async () => {
+    await stub.start(payload(id));
+    await vi.waitFor(() =>
+      runInDurableObject(stub, (_, state) => {
+        if (!state.storage.sql.exec('SELECT attempt FROM job').one().attempt) throw new Error('first tick not done');
+      }),
+    );
+    await runInDurableObject(stub, (_, state) => {
+      const sql = state.storage.sql;
+      sql.exec("UPDATE item SET fetched = 1, status = 'writing', yt_id = 'PL1'");
+      sql.exec(
+        `WITH RECURSIVE n(i) AS (SELECT 0 UNION ALL SELECT i + 1 FROM n WHERE i < 149)
+         INSERT INTO track (item_id, pos, name, artists, status, video_id)
+         SELECT (SELECT id FROM item), i, 'x', 'y', 'matched', printf('v%010d', i) FROM n`,
+      );
+      sql.exec('UPDATE job SET attempt = 0, throttled_until = 0');
+    });
+    tv().intercept(EDIT).reply(200, captureAdds).times(4); // 100 + 50, then the re-drive of all 150
+    data().intercept(READBACK).reply(200, pageOf([])); // first read-back: every song missing → 150 ids marked for redo
+    data()
+      .intercept(READBACK)
+      .reply(200, () => pageOf(added));
+    expect(await runDurableObjectAlarm(stub)).toBe(true);
+    await settle(stub);
+    const v = (await stub.view())!;
+    expect(v.status).toBe('done');
+    expect(v.totals).toMatchObject({ moved: 150, review: 0 });
+    expect(added).toHaveLength(300);
+  });
+
   it('reads the built-in demo library when the job carries demo tokens', async () => {
     const p = payload(id);
     p.spotify = demoTokens('deadbeef'.repeat(4));

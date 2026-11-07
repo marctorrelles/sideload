@@ -118,7 +118,6 @@ interface TrackRow {
   collides_with: string | null;
   yt_pl: string | null;
 }
-const ids = (rows: { id: number }[]) => rows.map(() => '?').join(',');
 const REASON_TEXT: Record<string, string> = {
   no_match: 'no match found',
   low_confidence: 'needs a look',
@@ -737,10 +736,10 @@ export class JobDO extends DurableObject<Env> {
         item.yt_id,
         batch.map((b) => b.video_id),
       );
-      this.sql.exec(
-        `UPDATE track SET status = 'moved', yt_pl = ? WHERE id IN (${ids(batch)})`,
+      this.setTracks(
+        "status = 'moved', yt_pl = ?",
+        batch.map((b) => b.id),
         item.yt_id,
-        ...batch.map((b) => b.id),
       );
       await this.note(
         'add',
@@ -759,7 +758,10 @@ export class JobDO extends DurableObject<Env> {
         .toArray() as { id: number; video_id: string }[];
       if (likes.length) {
         await Promise.all(likes.map((l) => yt.like(l.video_id)));
-        this.sql.exec(`UPDATE track SET liked = 1 WHERE id IN (${ids(likes)})`, ...likes.map((l) => l.id));
+        this.setTracks(
+          'liked = 1',
+          likes.map((l) => l.id),
+        );
         return;
       }
     }
@@ -803,11 +805,14 @@ export class JobDO extends DurableObject<Env> {
       if (passes <= MAX_VERIFY_PASSES) {
         // mark for re-drive; the next steps write them and we verify again
         if (missingAdds.length)
-          this.sql.exec(`UPDATE track SET redo = 1 WHERE id IN (${ids(missingAdds)})`, ...missingAdds.map((t) => t.id));
+          this.setTracks(
+            'redo = 1',
+            missingAdds.map((t) => t.id),
+          );
         if (missingLikes.length)
-          this.sql.exec(
-            `UPDATE track SET redo = 2 WHERE id IN (${ids(missingLikes)})`,
-            ...missingLikes.map((t) => t.id),
+          this.setTracks(
+            'redo = 2',
+            missingLikes.map((t) => t.id),
           );
         return;
       }
@@ -835,7 +840,10 @@ export class JobDO extends DurableObject<Env> {
         adds[0]!.yt_pl,
         adds.map((a) => a.video_id),
       );
-      this.sql.exec(`UPDATE track SET redo = 0 WHERE id IN (${ids(adds)})`, ...adds.map((a) => a.id));
+      this.setTracks(
+        'redo = 0',
+        adds.map((a) => a.id),
+      );
       return;
     }
     const likes = this.sql
@@ -847,7 +855,19 @@ export class JobDO extends DurableObject<Env> {
       .toArray() as { id: number; video_id: string }[];
     if (likes.length) {
       await Promise.all(likes.map((l) => yt.like(l.video_id)));
-      this.sql.exec(`UPDATE track SET redo = 0 WHERE id IN (${ids(likes)})`, ...likes.map((l) => l.id));
+      this.setTracks(
+        'redo = 0',
+        likes.map((l) => l.id),
+      );
+    }
+  }
+  /** Durable Object SQLite binds at most 100 variables per statement, so a long id list goes in chunks. No await in between,
+   *  so the chunks still commit together. */
+  private setTracks(set: string, ids: number[], ...params: SqlStorageValue[]): void {
+    const size = 100 - params.length;
+    for (let i = 0; i < ids.length; i += size) {
+      const chunk = ids.slice(i, i + size);
+      this.sql.exec(`UPDATE track SET ${set} WHERE id IN (${chunk.map(() => '?').join(',')})`, ...params, ...chunk);
     }
   }
   private async moveEntity(item: ItemRow, yt: InnerTube): Promise<void> {

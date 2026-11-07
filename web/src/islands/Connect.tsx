@@ -305,7 +305,12 @@ export default function Connect() {
               </button>
               <p class="note">
                 Google shows this as full YouTube access: it has no narrower permission that can write playlists, likes
-                and subscriptions. Sideload never deletes anything.
+                and subscriptions. Sideload never deletes anything. By signing in you agree to Sideload's{' '}
+                <a href="/privacy">privacy policy and terms</a> and to the{' '}
+                <a href="https://www.youtube.com/t/terms" rel="noopener">
+                  YouTube Terms of Service
+                </a>
+                .
               </p>
               {!s.spotify && <p class="note">Connect Spotify first.</p>}
             </>

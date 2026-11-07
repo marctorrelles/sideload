@@ -947,7 +947,12 @@ export class JobDO extends DurableObject<Env> {
       await this.note('throttle', 'YouTube asked us to slow down', `retrying in ${Math.round(wait / 1000)} s`);
       return this.ctx.storage.setAlarm(Date.now() + wait);
     }
-    if (e instanceof AuthError || e instanceof GoogleError || (e instanceof SpotifyError && e.status === 401))
+    // Spotify rotates refresh tokens and answers a dead one with 400 invalid_grant; its guidance is to sign in again, not retry.
+    if (
+      e instanceof AuthError ||
+      e instanceof GoogleError ||
+      (e instanceof SpotifyError && (e.status === 401 || e.code === 'invalid_grant'))
+    )
       return this.fail('auth_expired');
     if (e instanceof FatalError) return this.fail(e.failure);
     Sentry.captureException(e);

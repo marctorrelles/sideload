@@ -305,6 +305,20 @@ describe('JobDO', () => {
     expect(v.ytConnected).toBe(false);
   });
 
+  it('asks for a new sign-in when Spotify refuses the refresh token (invalid_grant) instead of retrying', async () => {
+    fetchMock
+      .get('https://accounts.spotify.com')
+      .intercept({ path: '/api/token', method: 'POST' })
+      .reply(400, { error: 'invalid_grant', error_description: 'Refresh token revoked' });
+    const p = payload(id);
+    p.spotify.expiresAt = Date.now(); // due for a refresh on the first Spotify call
+    await stub.start(p);
+    await settle(stub);
+    const v = (await stub.view())!;
+    expect(v.status).toBe('failed');
+    expect(v.failure).toBe('auth_expired');
+  });
+
   it('fails just the item when Spotify refuses a playlist (403 on playlists owned by others in Development Mode)', async () => {
     const other = 'Q'.repeat(22);
     sp()

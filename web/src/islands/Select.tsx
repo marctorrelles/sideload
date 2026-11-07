@@ -77,6 +77,7 @@ export default function Select() {
       [tab]: new Set(tri === 'all' ? [] : ids),
       ...(tab === 'playlists' ? { liked: tri !== 'all' && lib.likedCount > 0 } : {}),
     });
+  const clearAll = () => setSel({ ...sel, [tab]: new Set(), ...(tab === 'playlists' ? { liked: false } : {}) });
   const toggle = (id: string, on: boolean, shift: boolean) => {
     setSel({ ...sel, [tab]: rangeToggle(ids, shift ? anchor.current : null, id, set, on) });
     anchor.current = id;
@@ -175,6 +176,16 @@ export default function Select() {
             />
             Select all
           </label>
+          {/* From a partial selection the box selects everything (WAI-ARIA mixed checkbox), so clearing gets its own control.
+              Hidden, not removed, when nothing is selected: the toolbar keeps its shape. */}
+          <button
+            type="button"
+            class="link toolbar__clear"
+            style={tri === 'none' ? { visibility: 'hidden' } : undefined}
+            onClick={clearAll}
+          >
+            Unselect all
+          </button>
           <span class="meta toolbar__selected">{n(t.songs)} selected</span>
           <label class="meta toolbar__sort">
             sort:{' '}

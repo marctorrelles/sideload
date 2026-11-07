@@ -966,12 +966,16 @@ export class JobDO extends DurableObject<Env> {
       job.yt_tokens ?? '',
     );
     if (!g) throw new AuthError();
-    if (g.expiresAt - Date.now() < 180_000) {
-      const r = await refreshGoogle(this.env.GOOGLE_CLIENT_ID, this.env.GOOGLE_CLIENT_SECRET, g.refresh);
-      Object.assign(g, r);
-      this.sql.exec('UPDATE job SET yt_tokens = ?', await seal(this.env.TOKEN_SECRET, g));
-    }
-    return new InnerTube(g.access);
+    // Checked before every signed-in call, not once per tick: a step can outlast the token (a liked list read back page by page).
+    // ponytail: two parallel calls may both refresh; harmless, as Google does not rotate refresh tokens.
+    return new InnerTube(async () => {
+      if (g.expiresAt - Date.now() < 180_000) {
+        Object.assign(g, await refreshGoogle(this.env.GOOGLE_CLIENT_ID, this.env.GOOGLE_CLIENT_SECRET, g.refresh));
+        const sealed = await seal(this.env.TOKEN_SECRET, g);
+        this.sql.exec('UPDATE job SET yt_tokens = ? WHERE yt_tokens IS NOT NULL', sealed); // never revive a disconnect made mid-tick
+      }
+      return g.access;
+    });
   }
   private async spotify(job: JobRow): Promise<Spotify> {
     const t = await open<Tokens>(this.env.TOKEN_SECRET, job.spotify_tokens ?? '');

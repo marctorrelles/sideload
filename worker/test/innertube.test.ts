@@ -202,6 +202,20 @@ describe('client', () => {
       .reply(200, subscribed);
     await new InnerTube('T').subscribe('UCx');
   });
+  it('asks a token function before every signed-in call, so a long step picks up a refreshed token', async () => {
+    const tokens = ['A', 'B'];
+    const yt = new InnerTube(async () => tokens.shift()!);
+    for (const t of ['A', 'B'])
+      tv()
+        .intercept({
+          path: (p) => p.startsWith('/youtubei/v1/like/like'),
+          method: 'POST',
+          headers: { authorization: `Bearer ${t}` },
+        })
+        .reply(200, liked);
+    await yt.like('aaaaaaaaaaa');
+    await yt.like('aaaaaaaaaaa');
+  });
   it('refuses writes without a token', async () => {
     await expect(new InnerTube(null).like('aaaaaaaaaaa')).rejects.toBeInstanceOf(AuthError);
     await expect(new InnerTube(null).createPlaylist('x', '', 'PRIVATE')).rejects.toBeInstanceOf(AuthError);

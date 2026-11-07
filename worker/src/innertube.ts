@@ -188,9 +188,10 @@ export interface InnerTubeOptions {
 export class InnerTube {
   private timeoutMs: number;
   private retryDelayMs: number;
-  /** `token` may be null for search-only use; every write and read-back needs it. */
+  /** `token` may be null for search-only use; every write and read-back needs it. A function is asked before each
+   *  signed-in call, so a long step (a big read-back) refreshes the token instead of running past its expiry. */
   constructor(
-    private token: string | null,
+    private token: string | null | (() => Promise<string>),
     opts: InnerTubeOptions = {},
   ) {
     this.timeoutMs = opts.timeoutMs ?? 30_000;
@@ -291,12 +292,17 @@ export class InnerTube {
       },
     );
   }
+  private async bearer(): Promise<string> {
+    const t = typeof this.token === 'function' ? await this.token() : this.token;
+    if (!t) throw new AuthError('no token');
+    return t;
+  }
   /** Authenticated InnerTube on www.youtube.com (TVHTML5): the one client that accepts a TV OAuth token. */
   async tv(endpoint: string, body: object): Promise<J> {
-    if (!this.token) throw new AuthError('no token');
+    const token = await this.bearer();
     return this.post(
       `${TV}${endpoint}?prettyPrint=false`,
-      { 'content-type': 'application/json', 'user-agent': TV_UA, authorization: `Bearer ${this.token}` },
+      { 'content-type': 'application/json', 'user-agent': TV_UA, authorization: `Bearer ${token}` },
       {
         ...body,
         context: { client: { clientName: 'TVHTML5', clientVersion: '7.20250120.19.00', hl: 'en', gl: 'US' }, user: {} },
@@ -305,12 +311,12 @@ export class InnerTube {
   }
   /** YouTube Data API v3 (quota: list = 1 unit, insert = 50). */
   async data(method: 'GET' | 'POST', path: string, body?: object): Promise<J> {
-    if (!this.token) throw new AuthError('no token');
+    const token = await this.bearer();
     let r: Response;
     try {
       r = await fetch(`${DATA}${path}`, {
         method,
-        headers: { authorization: `Bearer ${this.token}`, 'content-type': 'application/json' },
+        headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
         body: body ? JSON.stringify(body) : undefined,
         signal: AbortSignal.timeout(this.timeoutMs),
       });

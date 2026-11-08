@@ -195,9 +195,17 @@ app.post('/auth/google/poll', rateLimit('RL_READ'), async (c) => {
   const r = await pollDevice(c.env.GOOGLE_CLIENT_ID, c.env.GOOGLE_CLIENT_SECRET, g.deviceCode);
   if (r.status !== 'ok') return c.json({ status: r.status });
   const s = (await readSession(c, c.env)) ?? {};
+  const account = await channelInfo(r.access);
+  if (account === 'none') {
+    // no channel = no playlists for any app; say so now instead of failing after the whole library is matched
+    track('youtube_no_channel', s.tid);
+    delete tr.google;
+    await writeTransient(c, c.env, tr);
+    return c.json({ status: 'no_channel' });
+  }
   await writeSession(c, c.env, {
     ...s,
-    google: { access: r.access, refresh: r.refresh, expiresAt: r.expiresAt, account: await channelInfo(r.access) },
+    google: { access: r.access, refresh: r.refresh, expiresAt: r.expiresAt, account },
   });
   track('youtube_connected', s.tid);
   delete tr.google;

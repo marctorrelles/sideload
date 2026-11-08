@@ -37,7 +37,8 @@ export const api = {
   spotifyLogout: () => post('/auth/spotify/logout'),
   googleStart: () =>
     post<{ userCode: string; verificationUrl: string; interval: number; expiresIn: number }>('/auth/google/start'),
-  googlePoll: () => post<{ status: 'pending' | 'slow_down' | 'connected' | 'denied' | 'expired' }>('/auth/google/poll'),
+  googlePoll: () =>
+    post<{ status: 'pending' | 'slow_down' | 'connected' | 'denied' | 'expired' | 'no_channel' }>('/auth/google/poll'),
   googleLogout: () => post('/auth/google/logout'),
   library: () => req<Library>('/api/library'),
   createJob: (s: Selection) => post<{ id: string }>('/api/jobs', s),

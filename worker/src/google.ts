@@ -49,16 +49,23 @@ export async function pollDevice(clientId: string, secret: string, deviceCode: s
   if (j.error === 'access_denied') return { status: 'denied' };
   return { status: 'expired' };
 }
-/** Channel behind the token (Data API `channels.list mine`, 1 unit). Null on any failure: cosmetic, never blocks connecting. */
-export async function channelInfo(access: string): Promise<{ title: string; handle: string | null } | null> {
+/** Channel behind the token (Data API `channels.list mine`, 1 unit). `'none'`: the account has no YouTube channel, and
+ *  YouTube lets no app create a playlist for it (`playlists.insert` answers 401 youtubeSignupRequired), so connecting
+ *  stops there. Null on any other failure: cosmetic, never blocks connecting. */
+export async function channelInfo(access: string): Promise<{ title: string; handle: string | null } | 'none' | null> {
   try {
     const r = await fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', {
       headers: { authorization: `Bearer ${access}` },
       signal: AbortSignal.timeout(15_000),
     });
+    const j = (await r.json().catch(() => ({}))) as {
+      items?: { snippet?: { title?: string; customUrl?: string } }[];
+      error?: { errors?: { reason?: string }[] };
+    };
+    if (j.error?.errors?.[0]?.reason === 'youtubeSignupRequired') return 'none';
     if (!r.ok) return null;
-    const j = (await r.json()) as { items?: { snippet?: { title?: string; customUrl?: string } }[] };
-    const sn = j.items?.[0]?.snippet;
+    if (!j.items?.length) return 'none';
+    const sn = j.items[0]!.snippet;
     return sn?.title ? { title: sn.title, handle: sn.customUrl ?? null } : null;
   } catch {
     return null;

@@ -9,6 +9,8 @@ import ReviewItem from './ReviewItem';
 const FAILURE: Record<string, string> = {
   auth_expired:
     'One of the sign-ins expired mid-transfer. Nothing was deleted anywhere. Start another transfer: songs already matched are cached, so it will be fast.',
+  no_channel:
+    'Your Google account has no YouTube channel, and YouTube only lets apps create playlists for accounts that have one. Create it at youtube.com/create_channel, then start another transfer: matched songs are cached.',
   provider_error:
     'Spotify or YouTube kept returning errors for a long time. Start another transfer in a while; matched songs are cached.',
   too_large: 'That is more than 25,000 songs. Split it into two transfers.',

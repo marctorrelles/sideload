@@ -32,7 +32,7 @@ export default function Connect() {
     return e ? (SPOTIFY_ERRORS[e] ?? `Spotify error: ${e}`) : null;
   });
   const [dev, setDev] = useState<Dev | null>(null);
-  const [devState, setDevState] = useState<'idle' | 'code' | 'denied' | 'expired' | 'error'>('idle');
+  const [devState, setDevState] = useState<'idle' | 'code' | 'denied' | 'expired' | 'no_channel' | 'error'>('idle');
   const [copied, setCopied] = useState<'redirect' | 'code' | null>(null);
   const timer = useRef<number>();
   const codeRef = useRef<HTMLSpanElement>(null);
@@ -92,7 +92,7 @@ export default function Connect() {
         setLit('google');
         return;
       }
-      if (r.status === 'denied' || r.status === 'expired') {
+      if (r.status === 'denied' || r.status === 'expired' || r.status === 'no_channel') {
         setDevState(r.status);
         setDev(null);
         return;
@@ -288,6 +288,17 @@ export default function Connect() {
               {devState === 'expired' && (
                 <p class="error" role="alert">
                   That code expired. Get a new one.
+                </p>
+              )}
+              {devState === 'no_channel' && (
+                <p class="error" role="alert">
+                  This Google account has no YouTube channel, and YouTube only lets apps create playlists for accounts
+                  that have one.{' '}
+                  <a href="https://www.youtube.com/create_channel" target="_blank" rel="noopener">
+                    Create your channel
+                  </a>{' '}
+                  (free, takes a minute), then sign in again. If your library is on another Google account, sign in with
+                  that one.
                 </p>
               )}
               {devState === 'error' && (

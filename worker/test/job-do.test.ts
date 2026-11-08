@@ -305,6 +305,23 @@ describe('JobDO', () => {
     expect(v.ytConnected).toBe(false);
   });
 
+  it('fails as no_channel, not an expired sign-in, when the Google account has no YouTube channel', async () => {
+    sp()
+      .intercept({ path: (p) => p.startsWith('/v1/playlists/') })
+      .reply(200, { total: 1, next: null, items: [entry('t1', 'Xtal')] });
+    music()
+      .intercept({ ...SEARCH, body: q('Xtal') })
+      .reply(200, songs);
+    data()
+      .intercept(CREATE)
+      .reply(401, { error: { code: 401, errors: [{ reason: 'youtubeSignupRequired' }], message: 'Unauthorized' } });
+    await stub.start(payload(id));
+    await settle(stub);
+    const v = (await stub.view())!;
+    expect(v.status).toBe('failed');
+    expect(v.failure).toBe('no_channel');
+  });
+
   it('asks for a new sign-in when Spotify refuses the refresh token (invalid_grant) instead of retrying', async () => {
     fetchMock
       .get('https://accounts.spotify.com')

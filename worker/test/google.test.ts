@@ -52,4 +52,12 @@ describe('google device flow', () => {
       .reply(403, {});
     expect(await channelInfo('t')).toBeNull();
   });
+  it('channelInfo tells an account without a YouTube channel apart', async () => {
+    const g = () =>
+      fetchMock.get('https://www.googleapis.com').intercept({ path: '/youtube/v3/channels?part=snippet&mine=true' });
+    g().reply(200, { pageInfo: { totalResults: 0 } });
+    expect(await channelInfo('t')).toBe('none');
+    g().reply(401, { error: { code: 401, errors: [{ reason: 'youtubeSignupRequired' }] } });
+    expect(await channelInfo('t')).toBe('none');
+  });
 });

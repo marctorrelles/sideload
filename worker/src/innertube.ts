@@ -33,6 +33,8 @@ export class ThrottleError extends Error {
     super(`youtube throttled (${status})${detail ? `: ${detail}` : ''}`);
   }
 }
+/** The Google account has no YouTube channel (Data API 401 youtubeSignupRequired): a fix on the user's side, not a sign-in. */
+export class NoChannelError extends Error {}
 export class AuthError extends Error {
   constructor(detail = '') {
     super(`youtube auth rejected${detail ? `: ${detail}` : ''}`);
@@ -326,7 +328,8 @@ export class InnerTube {
     const j: J = await r.json().catch(() => ({}));
     if (r.ok) return j;
     const reason: string = j?.error?.errors?.[0]?.reason ?? '';
-    if (r.status === 401) throw new AuthError();
+    if (reason === 'youtubeSignupRequired') throw new NoChannelError(reason);
+    if (r.status === 401) throw new AuthError(reason);
     if (r.status === 403 && /quotaExceeded|dailyLimit/i.test(reason))
       throw new ThrottleError(403, reason, msUntilQuotaReset()); // project-wide daily quota
     if (r.status === 403 && /rateLimit/i.test(reason)) throw new ThrottleError(403, reason);

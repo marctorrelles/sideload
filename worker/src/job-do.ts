@@ -6,7 +6,7 @@ import type { Env } from './env';
 import { seal, open } from './crypto';
 import { Spotify, SpotifyError, toTrack, type Tokens } from './spotify';
 import { refreshGoogle, GoogleError } from './google';
-import { InnerTube, ThrottleError, AuthError } from './innertube';
+import { InnerTube, ThrottleError, AuthError, NoChannelError } from './innertube';
 import { buildQuery, cacheKey, pickBest, similarity } from './match';
 import { toCsv } from './csv';
 import type {
@@ -947,13 +947,16 @@ export class JobDO extends DurableObject<Env> {
       await this.note('throttle', 'YouTube asked us to slow down', `retrying in ${Math.round(wait / 1000)} s`);
       return this.ctx.storage.setAlarm(Date.now() + wait);
     }
+    if (e instanceof NoChannelError) return this.fail('no_channel');
     // Spotify rotates refresh tokens and answers a dead one with 400 invalid_grant; its guidance is to sign in again, not retry.
     if (
       e instanceof AuthError ||
       e instanceof GoogleError ||
       (e instanceof SpotifyError && (e.status === 401 || e.code === 'invalid_grant'))
-    )
+    ) {
+      Sentry.captureException(e); // carries the provider's reason, which the user-facing failure does not
       return this.fail('auth_expired');
+    }
     if (e instanceof FatalError) return this.fail(e.failure);
     Sentry.captureException(e);
     console.error(
